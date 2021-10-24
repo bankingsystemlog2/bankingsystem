@@ -22,6 +22,8 @@
           <span class="glyphicon glyphicon-th"></span>
           <span>Vendor Portal</span>
        </strong>
+
+
       </div>
      <div class="panel-body">
       <table class="table table-bordered table-striped">
