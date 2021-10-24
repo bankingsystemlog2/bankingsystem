@@ -23,10 +23,10 @@
     </a>
     <ul class="nav submenu">
     <?php if($user['user_level'] === '1'): ?>
-    <li><a href="vendor1.php">List of Applicant (admin only)</a></li>
+    <li><a href="vendor.php">List of Applicant (admin only)</a></li>
     <?php endif;?>
 
-    <li><a href="vendor.php">Supplier Application</a>
+    <li><a href="applicationform.php">Supplier Application</a>
       
     </li>
    </ul>
