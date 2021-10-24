@@ -3,6 +3,7 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
   // page_require_level(1);
+  //sample changes
   $groups = find_all('vendors');
   $users_id = current_user()['id'];
 ?>
