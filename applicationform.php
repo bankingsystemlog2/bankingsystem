@@ -92,9 +92,11 @@
             </div> -->
             <div class="form-group clearfix">
               <button type="submit" name="applicationform" class="btn btn-success">Submit</button>
+              
             </div>
             
         </form>
+        
         <a href="admin.php"><button type="submit" name="applicationform" class="btn btn-danger">Home</button></a>
         </div>
 

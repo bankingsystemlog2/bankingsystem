@@ -22,9 +22,9 @@
       <span>Vendor</span>
     </a>
     <ul class="nav submenu">
-    <?php if($user['user_level'] === '1'): ?>
-    <li><a href="vendor.php">List of Applicant (admin only)</a></li>
-    <?php endif;?>
+    <!-- <?php if($user['user_level'] === '1'): ?> -->
+    <li><a href="vendor.php">List of Applicant</a></li>
+    <!-- <?php endif;?> -->
 
     <li><a href="applicationform.php">Supplier Application</a>
       
