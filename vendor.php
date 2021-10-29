@@ -6,7 +6,7 @@
 // Checkin What level user has permission to view this page
  page_require_level(1);
 //pull out all user form database
- $all_users = find_all_user();
+ $all_vendors = find_all('vendors');
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -30,39 +30,50 @@
         <thead>
           <tr>
             <th class="text-center" style="width: 50px;">#</th>
-            <th>Name </th>
-            <th>Company</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th class="text-center" style="width: 15%;">Company Name</th>
+            <th class="text-center" style="width: 15%;">Email</th>
+            <th class="text-center" style="width: 15%;">Number of year in Business</th>
             <th class="text-center" style="width: 15%;">Offer</th>
+            <th class="text-center" style="width: 15%;">Phone</th>
             <th class="text-center" style="width: 10%;">Status</th>
-            <th style="width: 20%;">Contract Duration</th>
+            <?php if($user['user_level'] === '0'): ?>
             <th class="text-center" style="width: 100px;">Actions</th>
+            <?php endif;?>
+            <!-- <th style="width: 20%;">Contract Duration</th> -->
           </tr>
         </thead>
         <tbody>
-        <?php foreach($all_users as $a_user): ?>
+        <?php foreach($all_vendors as $a_vendor): ?>
           <tr>
            <td class="text-center"><?php echo count_id();?></td>
-           <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
-           <td><?php echo remove_junk(ucwords($a_user['username']))?></td>
-           <td class="text-center"><?php echo remove_junk(ucwords($a_user['group_name']))?></td>
-           <td class="text-center">
-           <?php if($a_user['status'] === '1'): ?>
-            <span class="label label-success"><?php echo "Active"; ?></span>
+           <td><?php echo remove_junk(ucwords($a_vendor['Name']))?></td>
+           <td><?php echo remove_junk(ucwords($a_vendor['Address']))?></td>
+           <td><?php echo remove_junk(ucwords($a_vendor['Company']))?></td>
+           <td><?php echo remove_junk(ucwords($a_vendor['Email']))?></td>
+           <td><?php echo remove_junk(ucwords($a_vendor['years']))?></td>
+           <td><?php echo remove_junk(ucwords($a_vendor['Offer']))?></td>
+           <td><?php echo remove_junk(ucwords($a_vendor['Phone']))?></td>
+           <td>
+           <?php if($a_vendor['statuss'] === '1'): ?>
+            <span class="label label-success"><?php echo "Approve"; ?></span>
           <?php else: ?>
-            <span class="label label-danger"><?php echo "Deactive"; ?></span>
+            <span class="label label-danger"><?php echo "Reject"; ?></span>
           <?php endif;?>
            </td>
-           <td><?php echo read_date($a_user['last_login'])?></td>
+           <?php if($user['user_level'] === '0'): ?>
            <td class="text-center">
              <div class="btn-group">
-                <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
+                <a href="edit_user.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
                   <i class="glyphicon glyphicon-pencil"></i>
                </a>
-                <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+                <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
                   <i class="glyphicon glyphicon-remove"></i>
                 </a>
                 </div>
            </td>
+           <?php endif;?>
           </tr>
         <?php endforeach;?>
        </tbody>
