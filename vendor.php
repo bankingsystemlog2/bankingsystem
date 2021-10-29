@@ -35,10 +35,12 @@
             <th class="text-center" style="width: 15%;">Company Name</th>
             <th class="text-center" style="width: 15%;">Email</th>
             <th class="text-center" style="width: 15%;">Number of year in Business</th>
+            <?php if($user['user_level'] === '1'): ?>
             <th class="text-center" style="width: 15%;">Offer</th>
+            <?php endif;?>
             <th class="text-center" style="width: 15%;">Phone</th>
             <th class="text-center" style="width: 10%;">Status</th>
-            <?php if($user['user_level'] === '0'): ?>
+            <?php if($user['user_level'] === '1'): ?>
             <th class="text-center" style="width: 100px;">Actions</th>
             <?php endif;?>
             <!-- <th style="width: 20%;">Contract Duration</th> -->
@@ -53,7 +55,9 @@
            <td><?php echo remove_junk(ucwords($a_vendor['Company']))?></td>
            <td><?php echo remove_junk(ucwords($a_vendor['Email']))?></td>
            <td><?php echo remove_junk(ucwords($a_vendor['years']))?></td>
+           <?php if($user['user_level'] === '1'): ?>
            <td><?php echo remove_junk(ucwords($a_vendor['Offer']))?></td>
+           <?php endif;?>
            <td><?php echo remove_junk(ucwords($a_vendor['Phone']))?></td>
            <td>
            <?php if($a_vendor['statuss'] === '1'): ?>
@@ -62,7 +66,7 @@
             <span class="label label-danger"><?php echo "Reject"; ?></span>
           <?php endif;?>
            </td>
-           <?php if($user['user_level'] === '0'): ?>
+           <?php if($user['user_level'] === '1'): ?>
            <td class="text-center">
              <div class="btn-group">
                 <a href="edit_user.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
