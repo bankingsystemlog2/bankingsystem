@@ -12,6 +12,21 @@ function find_all($table) {
    }
 }
 /*--------------------------------------------------------------*/
+/* Function for find specific vendor by userid
+/*--------------------------------------------------------------*/
+function find_vendor_by_id($table,$id)
+{
+  global $db;
+  $id = (int)$id;
+    if(tableExists($table)){
+          $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE users_id='{$db->escape($id)}' LIMIT 1");
+          if($result = $db->fetch_assoc($sql))
+            return $result;
+          else
+            return null;
+     }
+}
+/*--------------------------------------------------------------*/
 /* Function for Perform queries
 /*--------------------------------------------------------------*/
 function find_by_sql($sql)

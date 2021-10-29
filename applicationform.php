@@ -98,6 +98,7 @@
         </form>
         
         <a href="admin.php"><button type="submit" name="applicationform" class="btn btn-danger">Home</button></a>
+        <a href="applicant_edit.php"><button type="submit" name="applicationform" class="btn btn-success">edit submittion</button></a>
         </div>
 
       </div>
