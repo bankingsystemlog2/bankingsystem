@@ -20,7 +20,7 @@
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Vendor Portal</span>
+          <span>List of Applicant</span>
        </strong>
 
 
@@ -61,15 +61,15 @@
            <td><?php echo remove_junk(ucwords($a_vendor['Phone']))?></td>
            <td>
            <?php if($a_vendor['statuss'] === '1'): ?>
-            <span class="label label-success"><?php echo "Approve"; ?></span>
+            <span class="label label-success"><?php echo "Approved"; ?></span>
           <?php else: ?>
-            <span class="label label-danger"><?php echo "Reject"; ?></span>
+            <span class="label label-danger"><?php echo "Rejected"; ?></span>
           <?php endif;?>
            </td>
            <?php if($user['user_level'] === '1'): ?>
            <td class="text-center">
              <div class="btn-group">
-                <a href="edit_user.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
+                <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
                   <i class="glyphicon glyphicon-pencil"></i>
                </a>
                 <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
