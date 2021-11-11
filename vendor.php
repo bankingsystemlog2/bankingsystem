@@ -62,6 +62,8 @@
            <td>
            <?php if($a_vendor['statuss'] === '1'): ?>
             <span class="label label-success"><?php echo "Approved"; ?></span>
+            <?php elseif($a_vendor['statuss'] === '2'): ?>
+            <span class="label label-default"><?php echo "Pending"; ?></span>
           <?php else: ?>
             <span class="label label-danger"><?php echo "Rejected"; ?></span>
           <?php endif;?>
