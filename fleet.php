@@ -6,7 +6,9 @@
 // Checkin What level user has permission to view this page
  page_require_level(1);
 //pull out all user form database
- $all_users = find_all_user();
+ $a_cars = find_all_cars();
+ $a_vans = find_all_vans();
+ $a_armors = find_all_armor();
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -74,24 +76,162 @@
         <p>Click on the buttons inside the tabbed menu:</p>
 
         <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'London')">London</button>
-            <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+            <button class="tablinks" onclick="openCity(event, 'Car')">Car</button>
+            <button class="tablinks" onclick="openCity(event, 'Van')">Van</button>
+            <button class="tablinks" onclick="openCity(event, 'ArmorVehicle')">Armor Vehicle</button>
         </div>
 
-        <div id="London" class="tabcontent">
-            <h3>London</h3>
-            <p>London is the capital city of England.</p>
+        <div id="Car" class="tabcontent">
+            <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width: 50px;">#</th>
+                    <th class="text-center" style="width: 15%;">Model</th>
+                    <th class="text-center" style="width: 10%;">Seating Capacity</th>
+                    <th class="text-center" style="width: 20%;">Type</th>
+                    <th class="text-center" style="width: 100px;">Availability</th>
+                    <th class="text-center" style="width: 100px;">Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php foreach($a_cars as $a_car):?>
+                  <tr>
+                   <td class="text-center"><?php echo count_id();?></td>
+                   <td><?php echo ($a_car['v_model'])?></td>
+                   <td><?php echo remove_junk(ucwords($a_car['v_capacity']))?></td>
+                   <td class="text-center">
+                   <?php if($a_car['v_category'] === '1'): ?>
+                    <?php echo "Car"; ?>
+                    <?php elseif($a_car['v_category'] === '2'): ?>
+                    <?php echo "Van"; ?>
+                  <?php else: ?>
+                    <?php echo "Armored Vehicle"; ?>
+                  <?php endif;?>
+                   </td>
+                   <td class="text-center">
+                   <?php if($a_car['v_avail'] === '1'): ?>
+                    <span class="label label-success"><?php echo "Available"; ?></span>
+                  <?php else: ?>
+                    <span class="label label-danger"><?php echo "Unavailable"; ?></span>
+                  <?php endif;?>
+                   </td>
+                   <td><?php echo remove_junk(ucwords($a_car['v_condition']))?></td>
+                   <td class="text-center">
+                     <div class="btn-group">
+                        <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
+                          <i class="glyphicon glyphicon-pencil"></i>
+                       </a>
+                        <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+                          <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                        </div>
+                   </td>
+                  </tr>
+                 <?php endforeach;?>
+               </tbody>
+             </table>
         </div>
 
-        <div id="Paris" class="tabcontent">
-          <h3>Paris</h3>
-          <p>Paris is the capital of France.</p> 
+        <div id="Van" class="tabcontent">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                    <th class="text-center" style="width: 50px;">#</th>
+                    <th class="text-center" style="width: 15%;">Model</th>
+                    <th class="text-center" style="width: 10%;">Seating Capacity</th>
+                    <th class="text-center" style="width: 20%;">Type</th>
+                    <th class="text-center" style="width: 100px;">Availability</th>
+                    <th class="text-center" style="width: 100px;">Condition</th>
+                  </tr>
+            </thead>
+            <tbody>
+            <?php foreach($a_vans as $a_van):?>
+                  <tr>
+                   <td class="text-center"><?php echo count_id();?></td>
+                   <td><?php echo ($a_van['v_model'])?></td>
+                   <td><?php echo remove_junk(ucwords($a_van['v_capacity']))?></td>
+                   <td class="text-center">
+                   <?php if($a_van['v_category'] === '1'): ?>
+                    <?php echo "Car"; ?>
+                    <?php elseif($a_van['v_category'] === '2'): ?>
+                    <?php echo "Van"; ?>
+                  <?php else: ?>
+                    <?php echo "Armored Vehicle"; ?>
+                  <?php endif;?>
+                   </td>
+                   <td class="text-center">
+                   <?php if($a_van['v_avail'] === '1'): ?>
+                    <span class="label label-success"><?php echo "Available"; ?></span>
+                  <?php else: ?>
+                    <span class="label label-danger"><?php echo "Unavailable"; ?></span>
+                  <?php endif;?>
+                   </td>
+                   <td><?php echo remove_junk(ucwords($a_van['v_condition']))?></td>
+                   <td class="text-center">
+                     <div class="btn-group">
+                        <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
+                          <i class="glyphicon glyphicon-pencil"></i>
+                       </a>
+                        <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+                          <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                        </div>
+                   </td>
+                  </tr>
+                 <?php endforeach;?>
+           </tbody>
+         </table>
         </div>
 
-        <div id="Tokyo" class="tabcontent">
-          <h3>Tokyo</h3>
-          <p>Tokyo is the capital of Japan.</p>
+        <div id="ArmorVehicle" class="tabcontent">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                    <th class="text-center" style="width: 50px;">#</th>
+                    <th class="text-center" style="width: 15%;">Model</th>
+                    <th class="text-center" style="width: 10%;">Seating Capacity</th>
+                    <th class="text-center" style="width: 20%;">Type</th>
+                    <th class="text-center" style="width: 100px;">Availability</th>
+                    <th class="text-center" style="width: 100px;">Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php foreach($a_armors as $a_armor):?>
+                  <tr>
+                   <td class="text-center"><?php echo count_id();?></td>
+                   <td><?php echo ($a_armor['v_model'])?></td>
+                   <td><?php echo remove_junk(ucwords($a_armor['v_capacity']))?></td>
+                   <td class="text-center">
+                   <?php if($a_armor['v_category'] === '1'): ?>
+                    <?php echo "Car"; ?>
+                    <?php elseif($a_armor['v_category'] === '2'): ?>
+                    <?php echo "Van"; ?>
+                  <?php else: ?>
+                    <?php echo "Armored Vehicle"; ?>
+                  <?php endif;?>
+                   </td>
+                   <td class="text-center">
+                   <?php if($a_armor['v_avail'] === '1'): ?>
+                    <span class="label label-success"><?php echo "Available"; ?></span>
+                  <?php else: ?>
+                    <span class="label label-danger"><?php echo "Unavailable"; ?></span>
+                  <?php endif;?>
+                   </td>
+                   <td><?php echo remove_junk(ucwords($a_armor['v_condition']))?></td>
+                   <td class="text-center">
+                     <div class="btn-group">
+                        <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
+                          <i class="glyphicon glyphicon-pencil"></i>
+                       </a>
+                        <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+                          <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                        </div>
+                   </td>
+                  </tr>
+                 <?php endforeach;?>
+           </tbody>
+         </table>
         </div>
 
         <script>
@@ -108,6 +248,33 @@
           document.getElementById(cityName).style.display = "block";
           evt.currentTarget.className += " active";
         }
+        </script>
+        <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+              modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
         </script>
    
         </body>

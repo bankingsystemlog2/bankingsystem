@@ -27,6 +27,21 @@ function find_vendor_by_id($table,$id)
      }
 }
 /*--------------------------------------------------------------*/
+/* Function for find specific vehicle by category
+/*--------------------------------------------------------------*/
+function find_vehicle_by_cate($tablecate,$cate)
+{
+  global $db;
+  $cate = (int)$cate;
+    if(catetableExists($table)){
+          $sql = $db->query("SELECT * FROM {$db->escape($tablecate)} WHERE v_category = 1");
+          if($result = $db->fetch_assoc($sql))
+            return $result;
+          else
+            return null;
+     }
+}
+/*--------------------------------------------------------------*/
 /* Function for Perform queries
 /*--------------------------------------------------------------*/
 function find_by_sql($sql)
@@ -50,6 +65,23 @@ function find_by_id($table,$id)
           else
             return null;
      }
+}
+/*--------------------------------------------------------------*/
+/*  Function for Find data from table by id
+/*--------------------------------------------------------------*/
+function find_by_cate($tablecate,$cate)
+{
+  global $db;
+  $cate = (int)$cate;
+    if(catetableExists($tablecate)){
+          $sql = $db->query("SELECT * FROM {$cate->escape($tablecate)} WHERE 'v_category' = 1");
+          if($result = $db->fetch_assoc($sql)){
+            return $result;}
+          else
+            return null;
+    
+     }else 
+        return null;
 }
 /*--------------------------------------------------------------*/
 /* Function for Delete data from table by id
@@ -83,6 +115,19 @@ function count_by_id($table){
 /* Determine if database table exists
 /*--------------------------------------------------------------*/
 function tableExists($table){
+  global $db;
+  $table_exit = $db->query('SHOW TABLES FROM '.DB_NAME.' LIKE "'.$db->escape($table).'"');
+      if($table_exit) {
+        if($db->num_rows($table_exit) > 0)
+              return true;
+         else
+              return false;
+      }
+  }
+  /*--------------------------------------------------------------*/
+/* Determine if database catetable exists
+/*--------------------------------------------------------------*/
+function catetableExists($tablecate){
   global $db;
   $table_exit = $db->query('SHOW TABLES FROM '.DB_NAME.' LIKE "'.$db->escape($table).'"');
       if($table_exit) {
@@ -148,6 +193,20 @@ function tableExists($table){
     return $current_user;
   }
   /*--------------------------------------------------------------*/
+  /* Find current log in user by session id
+  /*--------------------------------------------------------------*/
+  function category(){
+      static $category;
+      global $db;
+      if(!$category){
+         if(isset($_SESSION['v_category'])):
+             $v_category = intval($_SESSION['v_category']);
+             $cate = find_by_cate('users',$v_category);
+        endif;
+      }
+    return $category;
+  }
+  /*--------------------------------------------------------------*/
   /* Find all user by
   /* Joining users table and user gropus table
   /*--------------------------------------------------------------*/
@@ -161,6 +220,30 @@ function tableExists($table){
       $sql .="ON g.group_level=u.user_level ORDER BY u.name ASC";
       $result = find_by_sql($sql);
       return $result;
+  }
+  function find_all_cars(){
+      global $db;
+      $sql = "SELECT * FROM v_info WHERE v_category = '1'";
+      $result = find_by_sql($sql);
+      $datas = array();
+      return $result;
+
+  }
+  function find_all_vans(){
+      global $db;
+      $sql = "SELECT * FROM v_info WHERE v_category = '2'";
+      $result = find_by_sql($sql);
+      $datas = array();
+      return $result;
+
+  }
+  function find_all_armor(){
+      global $db;
+      $sql = "SELECT * FROM v_info WHERE v_category = '3'";
+      $result = find_by_sql($sql);
+      $datas = array();
+      return $result;
+
   }
   /*--------------------------------------------------------------*/
   /* Function to update the last log in of a user
@@ -586,4 +669,5 @@ function  monthlySales($year){
   $sql .= " ORDER BY date_format(s.date, '%c' ) ASC";
   return find_by_sql($sql);
 }
+
 ?>
