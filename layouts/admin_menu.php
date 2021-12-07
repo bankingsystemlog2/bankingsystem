@@ -42,7 +42,7 @@
       </a>
       <ul class="nav submenu">
   
-      <li><a href="vehicle.php">Reservation</a></li>
+      <li><a href="vehicles.php">Reservation</a></li>
       </ul>
   </li>
   <li>

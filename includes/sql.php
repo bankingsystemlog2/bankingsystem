@@ -29,12 +29,12 @@ function find_vendor_by_id($table,$id)
 /*--------------------------------------------------------------*/
 /* Function for find specific vehicle by category
 /*--------------------------------------------------------------*/
-function find_vehicle_by_cate($tablecate,$cate)
+function find_vehicle_by_cate($table,$id)
 {
   global $db;
-  $cate = (int)$cate;
+  $id = (int)$id;
     if(catetableExists($table)){
-          $sql = $db->query("SELECT * FROM {$db->escape($tablecate)} WHERE v_category = 1");
+          $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE users_id='{$db->escape($id)}' LIMIT 1");
           if($result = $db->fetch_assoc($sql))
             return $result;
           else

@@ -30,7 +30,7 @@
        $v_license   = remove_junk($db->escape($_POST['v_license']));
        $v_condition   = remove_junk($db->escape($_POST['v_condition']));
        $v_avail   = remove_junk($db->escape($_POST['v_avail'])); 
-        $query = "INSERT INTO vendors (";
+        $query = "INSERT INTO v_info (";
         $query .="v_category,v_model,v_year,v_color,v_regnum,v_serialnum,v_capacity,v_datepur,v_manu,v_enginetype,v_loc,v_fueltype,v_fuelcap,v_license,v_condition,v_avail";
         $query .=") VALUES (";
         $query .="'{$v_category}', '{$v_model}', '{$v_year}', '{$v_color}', '{$v_regnum}', '{$v_serialnum}', '{$v_capacity}', '{$v_datepur}', '{$v_manu}', '{$v_enginetype}', '{$v_loc}', '{$v_fueltype}', '{$v_fuelcap}', '{$v_license}', '{$v_condition}', '{$v_avail}'";
@@ -65,10 +65,9 @@
           <form method="post" action="fleet_addvehicle.php" autocomplete="off">
             <div class="form-group">
                 <label for="v_category">Category</label>
-                <select class="form-control" name="level">
-                  <?php foreach ($groups as $group ):?>
-                   <option value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
-                <?php endforeach;?>
+                <select class="form-control" name="v_category" placeholder="v_category">
+                  <option <?php if('v_category')  echo 'selected="selected"';?>value="2">VAN</option>
+                  <option <?php if('v_category')  echo 'selected="selected"';?>value="1">CAR</option>
                 </select>
             </div>
             <div class="form-group">
@@ -131,14 +130,6 @@
                 <label for="v_avail">Availability</label>
                 <input type="text" class="form-control" name ="v_avail"  placeholder="v_avail">
             </div>
-            <!-- <div class="form-group">
-              <label for="level">User Role</label>
-                <select class="form-control" name="level">
-                  <?php foreach ($groups as $group ):?>
-                   <option value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
-                <?php endforeach;?>
-                </select>
-            </div> -->
             <div class="form-group clearfix">
               <button type="submit" name="fleet_addvehicle" class="btn btn-success">Submit</button>
               

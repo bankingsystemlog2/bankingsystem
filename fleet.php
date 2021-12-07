@@ -94,29 +94,6 @@
                     <th class="text-center" style="width: 100px;">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
-                <?php foreach($all_users as $a_user): ?>
-                  <tr>
-                   <td class="text-center"><?php echo count_id();?></td>
-                   <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
-                   <td><?php echo remove_junk(ucwords($a_user['username']))?></td>
-                   <td class="text-center"><?php echo remove_junk(ucwords($a_user['group_name']))?></td>
-                   <td class="text-center">
-                   <?php if($a_user['status'] === '1'): ?>
-                    <span class="label label-success"><?php echo "Active"; ?></span>
-                  <?php else: ?>
-                    <span class="label label-danger"><?php echo "Deactive"; ?></span>
-                  <?php endif;?>
-                   </td>
-                   <td><?php echo read_date($a_user['last_login'])?></td>
-                    <th class="text-center" style="width: 15%;">Model</th>
-                    <th class="text-center" style="width: 10%;">Seating Capacity</th>
-                    <th class="text-center" style="width: 20%;">Type</th>
-                    <th class="text-center" style="width: 100px;">Availability</th>
-                    <th class="text-center" style="width: 100px;">Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
                 <?php foreach($a_cars as $a_car):?>
                   <tr>
                    <td class="text-center"><?php echo count_id();?></td>
@@ -151,7 +128,6 @@
                    </td>
                   </tr>
                 <?php endforeach;?>
-                 <?php endforeach;?>
                </tbody>
              </table>
         </div>
@@ -168,41 +144,6 @@
                 <th style="width: 20%;">Last Login</th>
                 <th class="text-center" style="width: 100px;">Actions</th>
               </tr>
-            </thead>
-            <tbody>
-            <?php foreach($all_users as $a_user): ?>
-              <tr>
-               <td class="text-center"><?php echo count_id();?></td>
-               <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
-               <td><?php echo remove_junk(ucwords($a_user['username']))?></td>
-               <td class="text-center"><?php echo remove_junk(ucwords($a_user['group_name']))?></td>
-               <td class="text-center">
-               <?php if($a_user['status'] === '1'): ?>
-                <span class="label label-success"><?php echo "Active"; ?></span>
-              <?php else: ?>
-                <span class="label label-danger"><?php echo "Deactive"; ?></span>
-              <?php endif;?>
-               </td>
-               <td><?php echo read_date($a_user['last_login'])?></td>
-               <td class="text-center">
-                 <div class="btn-group">
-                    <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                      <i class="glyphicon glyphicon-pencil"></i>
-                   </a>
-                    <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                      <i class="glyphicon glyphicon-remove"></i>
-                    </a>
-                    </div>
-               </td>
-              </tr>
-            <?php endforeach;?>
-                    <th class="text-center" style="width: 50px;">#</th>
-                    <th class="text-center" style="width: 15%;">Model</th>
-                    <th class="text-center" style="width: 10%;">Seating Capacity</th>
-                    <th class="text-center" style="width: 20%;">Type</th>
-                    <th class="text-center" style="width: 100px;">Availability</th>
-                    <th class="text-center" style="width: 100px;">Condition</th>
-                  </tr>
             </thead>
             <tbody>
             <?php foreach($a_vans as $a_van):?>
