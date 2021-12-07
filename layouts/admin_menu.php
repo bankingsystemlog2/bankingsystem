@@ -9,10 +9,14 @@
   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-user"></i>
-      <span>Fleet</span>
+      <span>Fleet Management</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="fleet.php">(page name)</a> </li>
+      <li><a href="fleet.php">Vehicle Information</a> </li>
+      
+   </ul>
+    <ul class="nav submenu">
+      <li><a href="fleet_addvehicle.php">Add Vehicle</a> </li>
       
    </ul>
   </li>

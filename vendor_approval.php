@@ -77,6 +77,7 @@
                 <select class="form-control" name="statuss">
                   <option <?php if($vendors['statuss'] === '1') echo 'selected="selected"';?>value="1">Approved</option>
                   <option <?php if($vendors['statuss'] === '0') echo 'selected="selected"';?>value="0">Rejected</option>
+                  <option <?php if($vendors['statuss'] === '2') echo 'selected="selected"';?>value="2">Pending</option>
                 </select>
             </div>
             <div class="form-group clearfix">
