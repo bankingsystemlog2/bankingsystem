@@ -39,11 +39,11 @@
             <th class="text-center" style="width: 15%;">Offer</th>
             <?php endif;?>
             <th class="text-center" style="width: 15%;">Phone</th>
+            <th class="text-center" style="width: 15%;">Category</th>
             <th class="text-center" style="width: 10%;">Status</th>
             <?php if($user['user_level'] === '1'): ?>
             <th class="text-center" style="width: 100px;">Actions</th>
             <?php endif;?>
-            <!-- <th style="width: 20%;">Contract Duration</th> -->
           </tr>
         </thead>
         <tbody>
@@ -59,6 +59,13 @@
            <td><?php echo remove_junk(ucwords($a_vendor['Offer']))?></td>
            <?php endif;?>
            <td><?php echo remove_junk(ucwords($a_vendor['Phone']))?></td>
+           <td>
+           <?php if($a_vendor['category'] == 1): ?>
+            <span class="label label-success"><?php echo "Contractor"; ?></span>
+            <?php elseif($a_vendor['category'] == 0):?>
+            <span class="label label-danger"><?php echo "Supplier"; ?></span>
+            <?php endif;?>
+           </td>
            <td>
            <?php if($a_vendor['statuss'] === '1'): ?>
             <span class="label label-success"><?php echo "Approved"; ?></span>

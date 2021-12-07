@@ -7,7 +7,7 @@
 <?php
  //update user other info
  if(isset($_POST['update-vendor'])) {
-    $req_fields = array('name','address','company','email','years','offer','phone');
+    $req_fields = array('name','address','company','email','years','offer','phone','type');
     validate_fields($req_fields);
     if(empty($errors)){
              $id = (int)$vendors['id'];

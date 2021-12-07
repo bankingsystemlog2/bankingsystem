@@ -26,7 +26,7 @@
     <li><a href="vendor.php">List of Applicant</a></li>
     <!-- <?php endif;?> -->
 
-    <li><a href="applicationform.php">Supplier Application</a>
+    <li><a href="applicationform.php">Vendor Application</a>
       
     </li>
    </ul>

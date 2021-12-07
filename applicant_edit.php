@@ -18,7 +18,8 @@
              $years   = remove_junk($db->escape($_POST['years']));
              $offer   = remove_junk($db->escape($_POST['offer']));
              $phone   = remove_junk($db->escape($_POST['phone'])); 
-             $sql = "UPDATE vendors SET name ='{$name}', address ='{$address}', company ='{$company}', email ='{$email}', years ='{$years}', offer ='{$offer}', phone ='{$phone}' WHERE id ='{$id}'";
+             $category   = remove_junk($db->escape($_POST['category']));
+             $sql = "UPDATE vendors SET name ='{$name}', address ='{$address}', company ='{$company}', email ='{$email}', years ='{$years}', offer ='{$offer}', phone ='{$phone}', category ='{$category}'  WHERE id ='{$id}'";
              $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Application updated ");
@@ -71,6 +72,13 @@
                   <label for="address" class="control-label">Phone</label>
                   <input type="text" class="form-control" name="phone" value="<?php echo remove_junk(ucwords($vendors['Phone'])); ?>">
             </div>
+            <div class="form-group">
+                  <label for="category" class="control-label">Type of Application</label>
+            <select class="form-control" name="category">
+                  <option <?php if($vendors['category'] === '1') echo 'selected="selected"';?>value="1">Contractor</option>
+                  <option <?php if($vendors['category'] === '0') echo 'selected="selected"';?>value="0">Supplier</option>
+                </select>
+           </td>
             <div class="form-group clearfix">
                     <button type="submit" name="update-vendor" class="btn btn-info">Update</button>
             </div>
