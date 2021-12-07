@@ -6,11 +6,13 @@
   //sample changes
   $groups = find_all('vendors');
   $users_id = current_user()['id'];
+  $result = find_vendor_by_id('vendors',$users_id);
+  $is_show = 1;
 ?>
 <?php
   if(isset($_POST['applicationform'])){
 
-   $req_fields = array('name','address','company','email','years','offer','phone');
+   $req_fields = array('name','address','company','email','years','offer','phone','category');
    validate_fields($req_fields);
 
    if(empty($errors)){
@@ -20,18 +22,19 @@
        $email   = remove_junk($db->escape($_POST['email']));
        $years   = remove_junk($db->escape($_POST['years']));
        $offer   = remove_junk($db->escape($_POST['offer']));
-       $phone   = remove_junk($db->escape($_POST['phone'])); 
+       $phone   = remove_junk($db->escape($_POST['phone']));
+       $category   = remove_junk($db->escape($_POST['category']));
         $query = "INSERT INTO vendors (";
-        $query .="Name,Address,Company,Email,years,Offer,Phone,users_id";
+        $query .="Name,Address,Company,Email,years,Offer,Phone,category,users_id";
         $query .=") VALUES (";
-        $query .="'{$name}', '{$address}', '{$company}', '{$email}', '{$years}', '{$offer}', '{$phone}', '{$users_id}'";
+        $query .="'{$name}', '{$address}', '{$company}', '{$email}', '{$years}', '{$offer}', '{$phone}', '{$category}', '{$users_id}'";
         $query .=")";
         if($db->query($query)){
-          //sucess
+          
           $session->msg('s',"Application form sent! ");
           redirect('applicationform.php', false);
         } else {
-          //failed
+         
           $session->msg('d',' Sorry Application form failed to send!');
           redirect('applicationform.php', false);
         }
@@ -82,17 +85,17 @@
                 <label for="phone">Phone</label>
                 <input type="text" class="form-control" name ="phone"  placeholder="phone">
             </div>
-            <!-- <div class="form-group">
-              <label for="level">User Role</label>
-                <select class="form-control" name="level">
-                  <?php foreach ($groups as $group ):?>
-                   <option value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
-                <?php endforeach;?>
+           <div class="form-group">
+           <label for="category">Type of Application</label>
+                <select class="form-control" name="category" placeholder="category">
+                  <option <?php if('category')  echo 'selected="selected"';?>value="1">Supplier</option>
+                  <option <?php if('category')  echo 'selected="selected"';?>value="0">Contractor</option>
                 </select>
-            </div> -->
+            </div>
             <div class="form-group clearfix">
+            <?php if($result == null): ?>
               <button type="submit" name="applicationform" class="btn btn-success">Submit</button>
-              
+            <?php endif?>
             </div>
             
         </form>
