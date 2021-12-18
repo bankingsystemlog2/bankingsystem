@@ -1,6 +1,7 @@
 <?php
   $page_title = 'Fleet Management';
   require_once('includes/load.php');
+  $users_id = current_user()['id'];
 ?>
 <?php
 // Checkin What level user has permission to view this page

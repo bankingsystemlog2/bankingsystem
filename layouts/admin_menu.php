@@ -26,13 +26,12 @@
       <span>Vendor</span>
     </a>
     <ul class="nav submenu">
-    <!-- <?php if($user['user_level'] === '1'): ?> -->
+    <!-- <?php if($_SESSION['user_id'] == '1'){ ?> -->
     <li><a href="vendor.php">List of Applicant</a></li>
-    <!-- <?php endif;?> -->
+    <?php }?>
 
-    <li><a href="applicationform.php">Vendor Application</a>
-      
-    </li>
+    <!-- <li><a href="applicationform.php">Vendor Application</a></li> -->
+    <li><a href="vendor_form.php">Vendor Form</a></li>
    </ul>
   </li>
   <li>
@@ -60,6 +59,6 @@
        <span>Audit</span>
       </a>
       <ul class="nav submenu">
-      <li><a href="audit.php">(page name)</a></li>
+      <li><a href="audit.php">Audit Logs</a></li>
       </ul>
   </li>

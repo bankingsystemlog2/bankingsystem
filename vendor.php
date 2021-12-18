@@ -60,19 +60,21 @@
            <?php endif;?>
            <td><?php echo remove_junk(ucwords($a_vendor['Phone']))?></td>
            <td>
-           <?php if($a_vendor['category'] == 1): ?>
+           <?php if($a_vendor['category'] == 0): ?>
             <span class="label label-success"><?php echo "Contractor"; ?></span>
-            <?php elseif($a_vendor['category'] == 0):?>
+            <?php elseif($a_vendor['category'] == 1):?>
             <span class="label label-danger"><?php echo "Supplier"; ?></span>
             <?php endif;?>
            </td>
            <td>
            <?php if($a_vendor['statuss'] === '1'): ?>
             <span class="label label-success"><?php echo "Approved"; ?></span>
-            <?php elseif($a_vendor['statuss'] === '2'): ?>
+            <?php elseif($a_vendor['statuss'] === '0'): ?>
             <span class="label label-default"><?php echo "Pending"; ?></span>
-          <?php else: ?>
+            <?php elseif($a_vendor['statuss'] === '2'): ?>
             <span class="label label-danger"><?php echo "Rejected"; ?></span>
+          <?php else: ?>
+            <span class="label label-danger"><?php echo "Error"; ?></span>
           <?php endif;?>
            </td>
            <?php if($user['user_level'] === '1'): ?>

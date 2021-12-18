@@ -11,6 +11,9 @@ function find_all($table) {
      return find_by_sql("SELECT * FROM ".$db->escape($table));
    }
 }
+
+
+
 /*--------------------------------------------------------------*/
 /* Function for find specific vendor by userid
 /*--------------------------------------------------------------*/
@@ -94,6 +97,16 @@ function delete_by_id($table,$id)
     $sql = "DELETE FROM ".$db->escape($table);
     $sql .= " WHERE id=". $db->escape($id);
     $sql .= " LIMIT 1";
+    
+     // for Audit Log
+    $link = $_SERVER['PHP_SELF'];
+    $link_array = explode('/',$link);
+    $page = end($link_array);
+    $now =  date('Y-m-d H:i:s');
+   
+    $sqlAudit = "INSERT INTO `audit_logs`(`module`, `action_taken`, `users_id`, `datetime_created`) values ('{$page }','Delete a records where id is {$db->escape($id)}','{$_SESSION['user_id']}','{$now}' )";
+    $db->query($sqlAudit);
+
     $db->query($sql);
     return ($db->affected_rows() === 1) ? true : false;
    }
@@ -670,4 +683,11 @@ function  monthlySales($year){
   return find_by_sql($sql);
 }
 
+
+ function getAuditlog($table){
+  global $db;
+  $sql = "select audit_logs.module,audit_logs.action_taken,users.name,audit_logs.datetime_created from audit_logs inner join users on audit_logs.users_id=users.id";
+  return find_by_sql($sql);
+
+ }
 ?>

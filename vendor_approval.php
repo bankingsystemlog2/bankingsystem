@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Edit Submittion';
+  $page_title = 'Vendor Application Form';
   require_once('includes/load.php');
    page_require_level(1);
    $vendors = find_vendor_by_id('vendors',current_user('id'));
@@ -8,7 +8,7 @@
  //update user other info
  if(isset($_POST['update-vendor'])) {
     $req_fields = array('name','address','company','email','years','offer','phone','type');
-    validate_fields($req_fields);
+   // validate_fields($req_fields);
     if(empty($errors)){
              $id = (int)$vendors['id'];
              $name   = remove_junk($db->escape($_POST['name']));
@@ -40,7 +40,7 @@
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
         <span class="glyphicon glyphicon-edit"></span>
-        <span>Edit My Application Form</span>
+        <span>Application Form</span>
       </div>
       <div class="panel-body">
           <form method="post" action="vendor_approval.php?id=<?php echo (int)$vendors['id'];?>" class="clearfix">
@@ -72,14 +72,16 @@
                   <label for="phone" class="control-label">Phone</label>
                   <input type="text" class="form-control" name="phone" value="<?php echo remove_junk(ucwords($vendors['Phone'])); ?>">
             </div>
+            <?php if($_SESSION['user_id'] == '1'){?>
             <div class="form-group">
               <label for="statuss">Status</label>
                 <select class="form-control" name="statuss">
                   <option <?php if($vendors['statuss'] === '1') echo 'selected="selected"';?>value="1">Approved</option>
-                  <option <?php if($vendors['statuss'] === '0') echo 'selected="selected"';?>value="0">Rejected</option>
-                  <option <?php if($vendors['statuss'] === '2') echo 'selected="selected"';?>value="2">Pending</option>
+                  <option <?php if($vendors['statuss'] === '2') echo 'selected="selected"';?>value="2">Rejected</option>
+                  <option <?php if($vendors['statuss'] === '0') echo 'selected="selected"';?>value="0">Pending</option>
                 </select>
             </div>
+            <?php }?>
             <div class="form-group clearfix">
                     <button type="submit" name="update-vendor" class="btn btn-info">Update</button>
             </div>
