@@ -9,6 +9,14 @@
  $all_vendors = find_all('vendors');
 ?>
 <?php include_once('layouts/header.php'); ?>
+<style>
+  #vendorTableBodyPanel{
+    overflow-x: auto;
+
+  }
+
+</style>
+
 <div class="row">
    <div class="col-md-12">
      <?php echo display_msg($msg); ?>
@@ -25,7 +33,7 @@
 
 
       </div>
-     <div class="panel-body">
+     <div class="panel-body"  id="vendorTableBodyPanel">
       <table class="table table-bordered table-striped">
         <thead>
           <tr>

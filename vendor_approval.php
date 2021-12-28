@@ -2,7 +2,12 @@
   $page_title = 'Vendor Application Form';
   require_once('includes/load.php');
    page_require_level(1);
-   $vendors = find_vendor_by_id('vendors',current_user('id'));
+   global $db;
+   $id = $_GET['id'];
+   $sql = $db->query("SELECT * FROM vendors WHERE id='{$id}' LIMIT 1");
+          //if(
+            $vendors = $db->fetch_assoc($sql);
+            //return $vendors;
 ?>
 <?php
  //update user other info
@@ -23,6 +28,16 @@
              $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Application updated ");
+              // for Audit Log
+              $link = $_SERVER['PHP_SELF'];
+              $link_array = explode('/',$link);
+              $page = end($link_array);
+              $now =  date('Y-m-d H:i:s');
+            
+              $sqlAudit = "INSERT INTO `audit_logs`(`module`, `action_taken`, `users_id`, `datetime_created`) values ('{$page }',' Record has been Update where vendor is {$name}','{$_SESSION['user_id']}','{$now}' )";
+              $db->query($sqlAudit);
+
+          //end AuditLog Insert
             redirect('vendor.php', false);
           } else {
             $session->msg('d',' Sorry failed to updated!');

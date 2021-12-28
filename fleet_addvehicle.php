@@ -1,4 +1,4 @@
-<?php
+<?php 
   $page_title = 'Application Form';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
