@@ -38,6 +38,16 @@
         if($db->query($query)){
           
           $session->msg('s',"Application form sent! ");
+          // for Audit Log
+          $link = $_SERVER['PHP_SELF'];
+          $link_array = explode('/',$link);
+          $page = end($link_array);
+          $now =  date('Y-m-d H:i:s');
+        
+          $sqlAudit = "INSERT INTO `audit_logs`(`module`, `action_taken`, `users_id`, `datetime_created`) values ('{$page }','New added record where vendor is {$name}','{$_SESSION['user_id']}','{$now}' )";
+          $db->query($sqlAudit);
+
+          //end AuditLog Insert
           redirect('vendor_form.php', false);
         } else {
          
@@ -108,6 +118,11 @@
                     border: 1px solid #ccc;
                     border-top: none;
                 }
+                /* Table Scroll */
+                #ViewData{
+                    overflow-x: auto;
+
+                 }
             </style>
         </head>
         <body>
@@ -218,13 +233,17 @@
             <?php if($user['user_level'] === '1'): ?>
             <td class="text-center">
                 <div class="btn-group">
+                  <?php if ($a_vendor['statuss'] === '0'): ?>
                     <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                </a>
-                    <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                    <i class="glyphicon glyphicon-remove"></i>
+                      <i class="glyphicon glyphicon-pencil"></i>
                     </a>
-                    </div>
+                    <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                    <?php elseif ($a_vendor['statuss'] === '1' || $a_vendor['statuss'] === '2'): ?>
+                    <?php endif; ?>
+                     
+                </div>
             </td>
             <?php endif;?>
             </tr>
