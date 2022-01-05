@@ -9,6 +9,7 @@
  $all_vendors = find_all('vendors');
 ?>
 <?php include_once('layouts/header.php'); ?>
+<link rel="stylesheet" href="datatables.css">
 <style>
   #vendorTableBodyPanel{
     overflow-x: auto;
@@ -34,7 +35,7 @@
 
       </div>
      <div class="panel-body"  id="vendorTableBodyPanel">
-      <table class="table table-bordered table-striped">
+      <table class="table table-bordered table-striped" id="myTable">
         <thead>
           <tr>
             <th class="text-center" style="width: 50px;">#</th>
@@ -105,4 +106,10 @@
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="datatables.js"></script>
+<script>
+  $("#myTable").DataTable();
+
+</script>
   <?php include_once('layouts/footer.php'); ?>

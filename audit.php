@@ -9,6 +9,7 @@
  $data =  getAuditlog('audit_logs');
 ?>
 <?php include_once('layouts/header.php'); ?>
+<link rel="stylesheet" href="datatables.css">
 <style>
   #myInput{
     margin-bottom: 15px;
@@ -32,11 +33,10 @@
        </strong>
       </div>
       <div class="panel-body">
-      <input type="text" id="myInput" name="searchbar" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
       <table class="table table-bordered table-striped" id="myTable">
         <thead>
           <tr>
-            <th>ID</th>
+            <th class="text-center" style="width: 15%;">#</th>
             <th>Module</th>
             <th>Action Taken</th>
             <th class="text-center" style="width: 15%;">Users Id</th>
@@ -59,24 +59,11 @@
   </div>
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="datatables.js"></script>
 <script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
+  $("#myTable").DataTable();
+
 </script>
   <?php include_once('layouts/footer.php'); ?>

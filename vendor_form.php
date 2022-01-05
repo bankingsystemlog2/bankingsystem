@@ -3,6 +3,7 @@
   require_once('includes/load.php');
   $users_id = current_user()['id'];
 ?>
+<link rel="stylesheet" href="datatables.css">
 <?php
 // Checkin What level user has permission to view this page
  page_require_level(1);
@@ -178,7 +179,7 @@
         </div>
 
         <div id="ViewData" class="tabcontent">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped" id="myTable">
             <thead>
             <tr>
                 <th class="text-center" style="width: 50px;">#</th>
@@ -296,7 +297,12 @@
               }
             }
         </script>
-   
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="datatables.js"></script>
+<script>
+  $("#myTable").DataTable();
+
+</script>
         </body>
      </div>
     </div>
