@@ -74,7 +74,7 @@
            <?php if($a_vendor['category'] == 0): ?>
             <span class="label label-success"><?php echo "Contractor"; ?></span>
             <?php elseif($a_vendor['category'] == 1):?>
-            <span class="label label-danger"><?php echo "Supplier"; ?></span>
+            <span class="label label-default"><?php echo "Supplier"; ?></span>
             <?php endif;?>
            </td>
            <td>

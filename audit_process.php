@@ -68,9 +68,12 @@
                   <input type="text" class="form-control" name="date_created" value="<?php echo remove_junk(ucwords($audit['date_created'])); ?>">
             </div>
             <div class="form-group">
-                  <label for="preparedby" class="control-label">Prepared By</label>
-                  <input type="text" class="form-control" name="preparedby" value="<?php echo remove_junk(ucwords($audit['preparedby'])); ?>">
-            </div>
+            <label for="preparedby">Prepared by</label>
+                    <select class="form-control" name="preparedby" placeholder="preparedby">
+                    <option <?php if('preparedby')  echo 'selected="selected"';?>value="1">Staff</option>
+                    <option <?php if('preparedby')  echo 'selected="selected"';?>value="0">Admin</option>
+                    </select>
+                </div>
             <div class="form-group">
                   <label for="date_from" class="control-label">Date From</label>
                   <input type="text" class="form-control" name="date_from" value="<?php echo remove_junk(ucwords($audit['date_from'])); ?>">
@@ -87,8 +90,7 @@
             <div class="form-group">
               <label for="status">Status</label>
                 <select class="form-control" name="status">
-                  <option <?php if($audit['status'] === '1') echo 'selected="selected"';?>value="1">On Process</option>
-                  <option <?php if($audit['status'] === '2') echo 'selected="selected"';?>value="2">Evaluation</option>
+                 <option <?php if($audit['status'] === '5') echo 'selected="selected"';?>value="5">Canceled</option>
                   <option <?php if($audit['status'] === '3') echo 'selected="selected"';?>value="3">Verified</option>
                 </select>
             </div>

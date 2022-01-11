@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2022 at 11:26 AM
+-- Generation Time: Jan 11, 2022 at 02:40 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -34,8 +34,9 @@ CREATE TABLE `audit` (
   `date_from` date NOT NULL,
   `date_to` date NOT NULL,
   `Body` text NOT NULL,
-  `preparedby` text NOT NULL,
+  `preparedby` varchar(50) NOT NULL,
   `status` int(11) NOT NULL,
+  `urlpath` varchar(350) NOT NULL,
   `date_created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -43,9 +44,19 @@ CREATE TABLE `audit` (
 -- Dumping data for table `audit`
 --
 
-INSERT INTO `audit` (`id`, `title`, `sec_dep`, `date_from`, `date_to`, `Body`, `preparedby`, `status`, `date_created`) VALUES
-(10, 'TEST2', 'QWE', '2022-01-12', '2022-01-25', 'QWER', 'QWE', 2, '2022-01-11'),
-(11, 'Supplies', 'Warehouse', '2022-01-12', '2022-01-19', 'Stored 150 Facemask', 'admin', 3, '2022-01-11');
+INSERT INTO `audit` (`id`, `title`, `sec_dep`, `date_from`, `date_to`, `Body`, `preparedby`, `status`, `urlpath`, `date_created`) VALUES
+(10, 'TEST2', 'QWE', '2022-01-12', '2022-01-25', 'QWER', '0', 1, '', '2022-01-11'),
+(11, 'Supplies', 'Warehouse', '2022-01-12', '2022-01-19', 'Stored 150 Facemask', '0', 3, '', '2022-01-11'),
+(12, 'testing', 'testing', '2022-01-11', '2022-01-19', 'testing', '0', 1, '', '2022-01-11'),
+(13, 'Testing', 'Testing', '2022-01-11', '2022-01-19', 'Testing123', '0', 5, '', '2022-01-11'),
+(14, 'testing', 'testing', '2022-01-11', '2022-01-19', 'testing2421', 'Antigua &amp; Barbuda', 1, 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(15, 'testtt', 'testtt', '2022-01-11', '2022-01-12', 'testttt', 'Antigua &amp; Barbuda', 1, 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(16, 'tester', 'tester', '2022-01-11', '2022-01-13', 'tester', 'Armenia', 1, 'uploads/FORMAT.docx', '2022-01-11'),
+(17, 'qsa', 'sa', '2022-01-13', '2022-01-12', 'sa', 'Azerbaijan', 1, 'uploads/helen.jpg', '2022-01-11'),
+(18, 'qwrqw', 'qweqwr', '2022-01-11', '2022-01-20', 'qtqweqwe', 'Lester', 1, 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(19, 'Qweasdwa', 'Qwrqwdasdwad', '2022-01-11', '2022-01-19', 'Aweqdasdwad', '0', 3, 'uploads/FORMAT.docx', '2022-01-11'),
+(20, 'Papot', 'Papot', '2022-01-11', '2022-01-19', 'Papot Upload', '0', 2, 'uploads/Energy Pyramid.docx', '2022-01-11'),
+(21, 'Eqwe', 'Rtqweq', '2022-01-11', '2022-01-12', 'Audit Papot', '0', 3, 'uploads/Andrea Villamor.docx', '2022-01-11');
 
 -- --------------------------------------------------------
 
@@ -158,8 +169,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, 'Admin', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, '21bvuwk1.png', 1, '2022-01-11 18:07:54'),
-(10, 'Peter', 'user', '12dea96fec20593566ab75692c9949596833adc9', 1, 'vmffvpxo10.jpg', 1, '2022-01-11 18:10:58'),
+(1, 'Admin', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, '21bvuwk1.png', 1, '2022-01-11 19:01:52'),
+(10, 'Peter', 'user', '12dea96fec20593566ab75692c9949596833adc9', 1, 'vmffvpxo10.jpg', 1, '2022-01-11 19:01:42'),
 (11, 'Eddie Brock', 'venom', '93f792c9533345761d191e104743ac597f6c6806', 2, 'nu59ekud11.jpg', 1, '2021-08-11 18:31:55');
 
 -- --------------------------------------------------------
@@ -323,7 +334,7 @@ ALTER TABLE `v_info`
 -- AUTO_INCREMENT for table `audit`
 --
 ALTER TABLE `audit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `audit_logs`
