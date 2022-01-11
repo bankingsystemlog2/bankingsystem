@@ -6,7 +6,7 @@
 // Checkin What level user has permission to view this page
  page_require_level(1);
 //pull out all user form database
- $all_vendors = find_all('vendors');
+ $all_vendors = find_all_inner('vendors');
 ?>
 <?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
@@ -39,6 +39,7 @@
         <thead>
           <tr>
             <th class="text-center" style="width: 50px;">#</th>
+            <th>Product Name</th>
             <th>Name</th>
             <th>Address</th>
             <th class="text-center" style="width: 15%;">Company Name</th>
@@ -59,6 +60,7 @@
         <?php foreach($all_vendors as $a_vendor): ?>
           <tr>
            <td class="text-center"><?php echo count_id();?></td>
+           <td><?php echo remove_junk(ucwords($a_vendor['product_name']))?></td>
            <td><?php echo remove_junk(ucwords($a_vendor['Name']))?></td>
            <td><?php echo remove_junk(ucwords($a_vendor['Address']))?></td>
            <td><?php echo remove_junk(ucwords($a_vendor['Company']))?></td>
@@ -80,7 +82,7 @@
             <span class="label label-success"><?php echo "Approved"; ?></span>
             <?php elseif($a_vendor['statuss'] === '0'): ?>
             <span class="label label-default"><?php echo "Pending"; ?></span>
-            <?php elseif($a_vendor['statuss'] === '2'): ?>
+            <?php elseif($a_vendor['statuss'] === '3'): ?>
             <span class="label label-danger"><?php echo "Rejected"; ?></span>
           <?php else: ?>
             <span class="label label-danger"><?php echo "Error"; ?></span>

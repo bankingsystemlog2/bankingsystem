@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Audit Logs';
+  $page_title = 'Audit Management';
   require_once('includes/load.php');
 ?>
 <?php
@@ -29,7 +29,7 @@
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Audit Logs</span>
+          <span>Audit Management</span>
        </strong>
       </div>
       <div class="panel-body">

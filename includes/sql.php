@@ -12,6 +12,14 @@ function find_all($table) {
    }
 }
 
+function find_all_inner($table) {
+  global $db;
+  if(tableExists($table))
+  {
+    return find_by_sql("SELECT * FROM ".$db->escape($table). " inner join product on vendors.product_id = product.product_id");
+  }
+}
+
 
 
 /*--------------------------------------------------------------*/

@@ -59,6 +59,9 @@
        <span>Audit</span>
       </a>
       <ul class="nav submenu">
-      <li><a href="audit.php">Audit Logs</a></li>
+      <li><a href="audit.php">Audit Trail</a></li>
+      </ul>
+      <ul class="nav submenu">
+      <li><a href="audit_form.php">Audit</a></li>
       </ul>
   </li>
