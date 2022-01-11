@@ -20,7 +20,7 @@
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>fleet Management</span>
+          <span>Vehicle Reservation</span>
        </strong>
          
       </div>

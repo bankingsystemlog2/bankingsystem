@@ -1,39 +1,30 @@
 <?php
-  $page_title = 'Application Form';
+  $page_title = 'Reservation Form';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
   // page_require_level(1);
   //sample changes
-  $groups = find_all('v_info');
+  $groups = find_all('v_res');
+  $fleet = find_all('v_info');
   $users_id = current_user()['id'];
 ?>
 <?php
-  if(isset($_POST['fleet_addvehicle'])){
+  if(isset($_POST['vehicle_reservation_form'])){
 
-   $req_fields = array('v_category', 'v_model', 'v_year', 'v_color', 'v_regnum', 'v_serialnum', 'v_capacity', 'v_datepur', 'v_manu', 'v_enginetype', 'v_loc', 'v_fueltype', 'v_fuelcap', 'v_license', 'v_condition', 'v_avail');
+   $req_fields = array('emp_id,res_time,s_date,r_deadline');
    validate_fields($req_fields);
 
    if(empty($errors)){
-       $v_category   = remove_junk($db->escape($_POST['v_category']));
-       $v_model   = remove_junk($db->escape($_POST['v_model']));
-       $v_year   = remove_junk($db->escape($_POST['v_year']));
-       $v_color   = remove_junk($db->escape($_POST['v_color']));
-       $v_regnum   = remove_junk($db->escape($_POST['v_regnum']));
-       $v_serialnum   = remove_junk($db->escape($_POST['v_serialnum'])); 
-       $v_capacity   = remove_junk($db->escape($_POST['v_capacity']));
-       $v_datepur   = remove_junk($db->escape($_POST['v_datepur']));
-       $v_manu   = remove_junk($db->escape($_POST['v_manu']));
-       $v_enginetype   = remove_junk($db->escape($_POST['v_enginetype']));
-       $v_loc   = remove_junk($db->escape($_POST['v_loc'])); 
-       $v_fueltype   = remove_junk($db->escape($_POST['v_fueltype']));
-       $v_fuelcap   = remove_junk($db->escape($_POST['v_fuelcap']));
-       $v_license   = remove_junk($db->escape($_POST['v_license']));
-       $v_condition   = remove_junk($db->escape($_POST['v_condition']));
-       $v_avail   = remove_junk($db->escape($_POST['v_avail'])); 
-        $query = "INSERT INTO vendors (";
-        $query .="v_category,v_model,v_year,v_color,v_regnum,v_serialnum,v_capacity,v_datepur,v_manu,v_enginetype,v_loc,v_fueltype,v_fuelcap,v_license,v_condition,v_avail";
+       $emp_id   = remove_junk($db->escape($_POST['emp_id']));
+       $emp_pos   = remove_junk($db->escape($_POST['emp_pos']));
+       $res_time   = remove_junk($db->escape($_POST['res_time']));
+       $s_date   = remove_junk($db->escape($_POST['s_date']));
+       $r_deadline   = remove_junk($db->escape($_POST['r_deadline']));
+       $fleetid   = remove_junk($db->escape($_POST['fleetid'])); 
+        $query = "INSERT INTO v_res (";
+        $query .="emp_id,emp_pos,res_time,s_date,r_deadline,fleetid";
         $query .=") VALUES (";
-        $query .="'{$v_category}', '{$v_model}', '{$v_year}', '{$v_color}', '{$v_regnum}', '{$v_serialnum}', '{$v_capacity}', '{$v_datepur}', '{$v_manu}', '{$v_enginetype}', '{$v_loc}', '{$v_fueltype}', '{$v_fuelcap}', '{$v_license}', '{$v_condition}', '{$v_avail}'";
+        $query .="'{$emp_id}', '{$emp_pos}', '{$res_time}', '{$s_date}', '{$r_deadline}', '{$fleetid}'";
         $query .=")";
         if($db->query($query)){
           //sucess
@@ -65,17 +56,10 @@
           <form method="post" action="fleet_addvehicle.php" autocomplete="off">
             <div class="form-group">
                 <label for="v_category">Category</label>
-<<<<<<< Updated upstream
-                <select class="form-control" name="level">
-                  <?php foreach ($groups as $group ):?>
-                   <option value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
-                <?php endforeach;?>
-=======
                 <select class="form-control" name="v_category" placeholder="v_category">
                   <option <?php if('v_category')  echo 'selected="selected"';?>value="3">ARMORED VEHICLE</option>
                   <option <?php if('v_category')  echo 'selected="selected"';?>value="2">VAN</option>
                   <option <?php if('v_category')  echo 'selected="selected"';?>value="1">CAR</option>
->>>>>>> Stashed changes
                 </select>
             </div>
             <div class="form-group">
@@ -138,14 +122,6 @@
                 <label for="v_avail">Availability</label>
                 <input type="text" class="form-control" name ="v_avail"  placeholder="v_avail">
             </div>
-            <!-- <div class="form-group">
-              <label for="level">User Role</label>
-                <select class="form-control" name="level">
-                  <?php foreach ($groups as $group ):?>
-                   <option value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
-                <?php endforeach;?>
-                </select>
-            </div> -->
             <div class="form-group clearfix">
               <button type="submit" name="fleet_addvehicle" class="btn btn-success">Submit</button>              
             </div>

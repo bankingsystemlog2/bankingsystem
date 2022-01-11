@@ -42,7 +42,15 @@
       </a>
       <ul class="nav submenu">
   
+<<<<<<< Updated upstream
       <li><a href="vehicle.php">Reservation</a></li>
+=======
+      <li><a href="vehicles.php">Reservation List</a></li>
+      </ul>
+      <ul class="nav submenu">
+  
+      <li><a href="vehicle_reservation_form.php">Reservation Form</a></li>
+>>>>>>> Stashed changes
       </ul>
   </li>
   <li>
