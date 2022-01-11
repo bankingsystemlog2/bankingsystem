@@ -34,6 +34,14 @@ body{
   padding: 35px 15px 20px 270px;
 }
 
+.page-wo-sidebar{
+  position: relative;
+  display: block;
+  top: 50px;
+  left: 0;
+  padding: 35px 15px 20px 15px;
+}
+
 .page-lgn{
   position: relative;
   display: block;

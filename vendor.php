@@ -44,11 +44,11 @@
             <th>Address</th>
             <th class="text-center" style="width: 15%;">Company Name</th>
             <th class="text-center" style="width: 15%;">Email</th>
-            <th class="text-center" style="width: 15%;">Number of year in Business</th>
+            <th class="text-center" style="width: 15%;">Item Description</th>
             <?php if($user['user_level'] === '1'): ?>
-            <th class="text-center" style="width: 15%;">Offer</th>
+            <th class="text-center" style="width: 15%;">Bidding Price</th>
             <?php endif;?>
-            <th class="text-center" style="width: 15%;">Phone</th>
+            <th class="text-center" style="width: 15%;">Contact #</th>
             <th class="text-center" style="width: 15%;">Category</th>
             <th class="text-center" style="width: 10%;">Status</th>
             <?php if($user['user_level'] === '1'): ?>
@@ -65,7 +65,7 @@
            <td><?php echo remove_junk(ucwords($a_vendor['Address']))?></td>
            <td><?php echo remove_junk(ucwords($a_vendor['Company']))?></td>
            <td><?php echo remove_junk(ucwords($a_vendor['Email']))?></td>
-           <td><?php echo remove_junk(ucwords($a_vendor['years']))?></td>
+           <td><?php echo remove_junk(ucwords($a_vendor['item_description']))?></td>
            <?php if($user['user_level'] === '1'): ?>
            <td><?php echo remove_junk(ucwords($a_vendor['Offer']))?></td>
            <?php endif;?>

@@ -16,7 +16,7 @@
 <?php
   if(isset($_POST['applicationform'])){
 
-   $req_fields = array('name','address','company','email','years','offer','phone','category');
+   $req_fields = array('name','address','company','email','item_description','offer','phone','category');
    validate_fields($req_fields);
 
    if(empty($errors)){
@@ -24,14 +24,14 @@
        $address   = remove_junk($db->escape($_POST['address']));
        $company   = remove_junk($db->escape($_POST['company']));
        $email   = remove_junk($db->escape($_POST['email']));
-       $years   = remove_junk($db->escape($_POST['years']));
+       $item_description   = remove_junk($db->escape($_POST['item_description']));
        $offer   = remove_junk($db->escape($_POST['offer']));
        $phone   = remove_junk($db->escape($_POST['phone']));
        $category   = remove_junk($db->escape($_POST['category']));
         $query = "INSERT INTO vendors (";
-        $query .="Name,Address,Company,Email,years,Offer,Phone,category,users_id";
+        $query .="Name,Address,Company,Email,item_description,Offer,Phone,category,users_id";
         $query .=") VALUES (";
-        $query .="'{$name}', '{$address}', '{$company}', '{$email}', '{$years}', '{$offer}', '{$phone}', '{$category}', '{$users_id}'";
+        $query .="'{$name}', '{$address}', '{$company}', '{$email}', '{$item_description}', '{$offer}', '{$phone}', '{$category}', '{$users_id}'";
         $query .=")";
 
 
@@ -151,16 +151,16 @@
                     <input type="text" class="form-control" name ="email"  placeholder="email">
                 </div>
                 <div class="form-group">
-                    <label for="years">Number of year in business</label>
-                    <input type="text" class="form-control" name ="years"  placeholder="years">
+                    <label for="item_description">Item Description</label>
+                    <textarea type="text" class="form-control" name ="item_description"  placeholder="item description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="offer">Offer</label>
+                    <label for="offer">Bidding Price</label>
                     <input type="text" class="form-control" name ="offer"  placeholder="offer">
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" name ="phone"  placeholder="phone">
+                    <label for="phone">Contact #</label>
+                    <input type="text" class="form-control" name ="phone"  placeholder="contact#">
                 </div>
             <div class="form-group">
             <label for="category">Type of Application</label>
@@ -188,11 +188,11 @@
                 <th>Address</th>
                 <th class="text-center" style="width: 15%;">Company Name</th>
                 <th class="text-center" style="width: 15%;">Email</th>
-                <th class="text-center" style="width: 15%;">Number of year in Business</th>
+                <th class="text-center" style="width: 15%;">Item Description</th>
                 <?php if($user['user_level'] === '1'): ?>
-                <th class="text-center" style="width: 15%;">Offer</th>
+                <th class="text-center" style="width: 15%;">Bidding Price</th>
                 <?php endif;?>
-                <th class="text-center" style="width: 15%;">Phone</th>
+                <th class="text-center" style="width: 15%;">Contact #</th>
                 <th class="text-center" style="width: 15%;">Category</th>
                 <th class="text-center" style="width: 10%;">Status</th>
                 <?php if($user['user_level'] === '1'): ?>
@@ -210,7 +210,7 @@
             <td><?php echo remove_junk(ucwords($a_vendor['Address']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['Company']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['Email']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['years']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['item_description']))?></td>
             <?php if($user['user_level'] === '1'): ?>
             <td><?php echo remove_junk(ucwords($a_vendor['Offer']))?></td>
             <?php endif;?>

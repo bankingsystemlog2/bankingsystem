@@ -32,7 +32,7 @@ CREATE TABLE `vendors` (
   `Address` text NOT NULL,
   `Company` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `years` int(11) NOT NULL,
+  `item_description` int(11) NOT NULL,
   `Offer` varchar(250) NOT NULL,
   `Phone` int(11) NOT NULL,
   `id` int(11) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `vendors` (
 -- Dumping data for table `vendors`
 --
 
-INSERT INTO `vendors` (`Name`, `Address`, `Company`, `Email`, `years`, `Offer`, `Phone`, `id`, `users_id`, `statuss`, `category`) VALUES
+INSERT INTO `vendors` (`Name`, `Address`, `Company`, `Email`, `item_description`, `Offer`, `Phone`, `id`, `users_id`, `statuss`, `category`) VALUES
 ('Asdwad', 'Asdwadsd', 'Awda', 'A@mail.com', 123, '12314', 12312412, 46, 1, 0, '1');
 
 --

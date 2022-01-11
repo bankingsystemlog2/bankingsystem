@@ -12,7 +12,7 @@
 <?php
  //update user other info
  if(isset($_POST['update-vendor'])) {
-    $req_fields = array('name','address','company','email','years','offer','phone','type');
+    $req_fields = array('name','address','company','email','item_description','offer','phone','type');
    // validate_fields($req_fields);
     if(empty($errors)){
              $id = (int)$vendors['id'];
@@ -20,11 +20,11 @@
              $address   = remove_junk($db->escape($_POST['address']));
              $company   = remove_junk($db->escape($_POST['company']));
              $email   = remove_junk($db->escape($_POST['email']));
-             $years   = remove_junk($db->escape($_POST['years']));
+             $item_description   = remove_junk($db->escape($_POST['item_description']));
              $offer   = remove_junk($db->escape($_POST['offer']));
              $phone   = remove_junk($db->escape($_POST['phone']));
              $statuss   = remove_junk($db->escape($_POST['statuss'])); 
-             $sql = "UPDATE vendors SET name ='{$name}', address ='{$address}', company ='{$company}', email ='{$email}', years ='{$years}', offer ='{$offer}', phone ='{$phone}', statuss='{$statuss}' WHERE id ='{$id}'";
+             $sql = "UPDATE vendors SET name ='{$name}', address ='{$address}', company ='{$company}', email ='{$email}', item_description ='{$item_description}', offer ='{$offer}', phone ='{$phone}', statuss='{$statuss}' WHERE id ='{$id}'";
              $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Application updated ");
@@ -76,15 +76,15 @@
                   <input type="text" class="form-control" name="email" value="<?php echo remove_junk(ucwords($vendors['Email'])); ?>">
             </div>
             <div class="form-group">
-                  <label for="years" class="control-label">Number of year in business</label>
-                  <input type="text" class="form-control" name="years" value="<?php echo remove_junk(ucwords($vendors['years'])); ?>">
+                  <label for="item_description" class="control-label">Item Description</label>
+                  <input type="text" class="form-control" name="item_description" value="<?php echo remove_junk(ucwords($vendors['item_description'])); ?>">
             </div>
             <div class="form-group">
-                  <label for="offer" class="control-label">Offer</label>
+                  <label for="offer" class="control-label">Bidding Price</label>
                   <input type="text" class="form-control" name="offer" value="<?php echo remove_junk(ucwords($vendors['Offer'])); ?>">
             </div>
             <div class="form-group">
-                  <label for="phone" class="control-label">Phone</label>
+                  <label for="phone" class="control-label">Contact #</label>
                   <input type="text" class="form-control" name="phone" value="<?php echo remove_junk(ucwords($vendors['Phone'])); ?>">
             </div>
             <?php if($_SESSION['user_id'] == '1'){?>

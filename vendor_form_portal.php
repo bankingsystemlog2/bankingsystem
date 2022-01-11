@@ -1,9 +1,11 @@
 <?php
   ob_start();
   require_once('includes/load.php');
+  $users_id = current_user()['id'];
   //if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
 ?>
-<?php #include_once('layouts/header.php'); ?>
+
+<?php include_once('layouts/header_WOsidebar.php'); ?>
 <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -36,7 +38,7 @@
    $product_id = $_GET['product_id'];
   if(isset($_POST['applicationform'])){
    
-   $req_fields = array('name','address','company','email','years','offer','phone','category');
+   $req_fields = array('name','address','company','email','item_description','offer','phone','category');
    validate_fields($req_fields);
 
    if(empty($errors)){
@@ -45,14 +47,14 @@
        $address   = remove_junk($db->escape($_POST['address']));
        $company   = remove_junk($db->escape($_POST['company']));
        $email   = remove_junk($db->escape($_POST['email']));
-       $years   = remove_junk($db->escape($_POST['years']));
+       $item_description   = remove_junk($db->escape($_POST['item_description']));
        $offer   = remove_junk($db->escape($_POST['offer']));
        $phone   = remove_junk($db->escape($_POST['phone']));
        $category   = remove_junk($db->escape($_POST['category']));
         $query = "INSERT INTO vendors (";
-        $query .="product_id,Name,Address,Company,Email,years,Offer,Phone,category";
+        $query .="product_id,Name,Address,Company,Email,item_description,Offer,Phone,category,users_id";
         $query .=") VALUES (";
-        $query .="'{$product_id}','{$name}', '{$address}', '{$company}', '{$email}', '{$years}', '{$offer}', '{$phone}', '{$category}'";
+        $query .="'{$product_id}','{$name}', '{$address}', '{$company}', '{$email}', '{$item_description}', '{$offer}', '{$phone}', '{$category}', '{$users_id}'";
         $query .=")";
 
 
@@ -84,7 +86,7 @@
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Vendor Portal</span>
+          <span>Vendor Application</span>
        </strong>
          
       </div>
@@ -138,11 +140,7 @@
             </style>
         </head>
         <body>
-        <div class="tab">
-            <button class="tablinks" onclick="Tab(event, 'ApplicationForm')">Register Application</button>
-        </div>
-
-        <div id="ApplicationForm" class="tabcontent">
+       <div id="ApplicationForm" class="panel-body">
 
             <form method="post" action="vendor_form_portal.php?product_id=1" autocomplete="off" > 
                 <div class="form-group">
@@ -162,16 +160,16 @@
                     <input type="text" class="form-control" name ="email"  placeholder="email">
                 </div>
                 <div class="form-group">
-                    <label for="years">Number of year in business</label>
-                    <input type="text" class="form-control" name ="years"  placeholder="years">
+                    <label for="item_description">Item Description</label>
+                    <textarea type="text" class="form-control" name ="item_description"  placeholder="item description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="offer">Offer</label>
+                    <label for="offer">Bidding Price</label>
                     <input type="text" class="form-control" name ="offer"  placeholder="offer">
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" name ="phone"  placeholder="phone">
+                    <label for="phone">Contact #</label>
+                    <input type="text" class="form-control" name ="phone"  placeholder="contact#">
                 </div>
             <div class="form-group">
             <label for="category">Type of Application</label>
@@ -192,7 +190,7 @@
        
 
 
-        <script>
+        <!-- <script>
         function Tab(evt, cityName) {
           var i, tabcontent, tablinks;
           tabcontent = document.getElementsByClassName("tabcontent");
@@ -233,7 +231,7 @@
                 modal.style.display = "none";
               }
             }
-        </script>
+        </script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
