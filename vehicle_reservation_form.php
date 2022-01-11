@@ -8,6 +8,9 @@
   $fleet = find_all('v_info');
   $users_id = current_user()['id'];
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <?php
   if(isset($_POST['vehicle_reservation_form'])){
 
@@ -86,42 +89,6 @@
                 <label for="v_capacity">Maximum Capacity</label>
                 <input type="text" class="form-control" name ="v_capacity"  placeholder="v_capacity">
             </div>
-            <div class="form-group">
-                <label for="v_datepur">Date of Purchase</label>
-                <input type="text" class="form-control" name ="v_datepur"  placeholder="v_datepur">
-            </div>
-            <div class="form-group">
-                <label for="v_manu">Manufacturer</label>
-                <input type="text" class="form-control" name ="v_manu"  placeholder="v_manu">
-            </div>
-            <div class="form-group">
-                <label for="v_enginetype">Engine Type</label>
-                <input type="text" class="form-control" name ="v_enginetype"  placeholder="v_enginetype">
-            </div>
-            <div class="form-group">
-                <label for="v_loc">Location of purchase</label>
-                <input type="text" class="form-control" name ="v_loc"  placeholder="v_loc">
-            </div>
-            <div class="form-group">
-                <label for="v_fueltype">Fuel Type</label>
-                <input type="text" class="form-control" name ="v_fueltype"  placeholder="v_fueltype">
-            </div>
-            <div class="form-group">
-                <label for="v_fuelcap">Fuel Capacity</label>
-                <input type="text" class="form-control" name ="v_fuelcap"  placeholder="v_fuelcap">
-            </div>
-            <div class="form-group">
-                <label for="v_license">License</label>
-                <input type="text" class="form-control" name ="v_license"  placeholder="v_license">
-            </div>
-            <div class="form-group">
-                <label for="v_condition">Condition</label>
-                <input type="text" class="form-control" name ="v_condition"  placeholder="v_condition">
-            </div>
-            <div class="form-group">
-                <label for="v_avail">Availability</label>
-                <input type="text" class="form-control" name ="v_avail"  placeholder="v_avail">
-            </div>
             <div class="form-group clearfix">
               <button type="submit" name="fleet_addvehicle" class="btn btn-success">Submit</button>              
             </div>
@@ -136,5 +103,36 @@
 
     </div>
   </div>
+  <script>  
+      $(document).ready(function(){  
+           $.datepicker.setDefaults({  
+                dateFormat: 'yy-mm-dd'   
+           });  
+           $(function(){  
+                $("#from_date").datepicker();  
+                $("#to_date").datepicker();  
+           });  
+           $('#filter').click(function(){  
+                var from_date = $('#from_date').val();  
+                var to_date = $('#to_date').val();  
+                if(from_date != '' && to_date != '')  
+                {  
+                     $.ajax({  
+                          url:"filter.php",  
+                          method:"POST",  
+                          data:{from_date:from_date, to_date:to_date},  
+                          success:function(data)  
+                          {  
+                               $('#order_table').html(data);  
+                          }  
+                     });  
+                }  
+                else  
+                {  
+                     alert("Please Select Date");  
+                }  
+           });  
+      });  
+ </script>
 
 <?php include_once('layouts/footer.php'); ?>
