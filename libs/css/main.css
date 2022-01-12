@@ -340,7 +340,7 @@ table tfoot tr td:first-child{
 }
 
 input[type=file]{
-  text-indent: -99999px;
+  /* text-indent: -99999px; */
 }td img.img-thumbnail{
   width: 125px;
   height: 125px;

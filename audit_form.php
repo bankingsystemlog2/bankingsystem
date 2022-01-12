@@ -118,8 +118,7 @@
                 /* Table Scroll */
                 #ViewData{
                     overflow-x: auto;
-
-                 }
+                }
             </style>
         </head>
         <body>
@@ -156,7 +155,7 @@
                 </div>
                 <div class="form-group">
                     <label for="upload_file">Upload File</label>
-                    <input type="file" name="fileToUpload" id="fileToUpload" >
+                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
                 </div>
                 <div class="form-group">
             <label for="preparedby">Prepared by</label>
@@ -223,7 +222,7 @@
             <td><?php echo remove_junk(ucwords($a_vendor['preparedby']))?></td>
             <td> 
                 <a href="download.php?id=<?php echo $a_vendor['id']; ?>&urlpath=<?php echo $a_vendor['urlpath']; ?>" class="btn btn-small btn-success" data-toggle="tooltip" title="Download file">
-                  <i class="glyphicon glyphicon-download"></i>
+                  Download File <i class="glyphicon glyphicon-download"></i>
                 </a>
             </td>
             <td>
