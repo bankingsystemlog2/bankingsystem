@@ -40,8 +40,11 @@
        <span>Vehicles</span>
       </a>
       <ul class="nav submenu">
+      <li><a href="vehicles.php">Reservation List</a></li>
+      </ul>
+      <ul class="nav submenu">
   
-      <li><a href="vehicles.php">Reservation</a></li>
+      <li><a href="vehicle_reservation_form.php">Reservation Form</a></li>
       </ul>
   </li>
   <li>

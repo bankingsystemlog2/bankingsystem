@@ -25,7 +25,6 @@
           <span class="glyphicon glyphicon-th"></span>
           <span>fleet Management</span>
        </strong>
-         
       </div>
      <div class="panel-body">
       <head>
@@ -72,8 +71,6 @@
             </style>
         </head>
         <body>
-
-        <h2>Tabs</h2>
         <p>Click on the buttons inside the tabbed menu:</p>
 
         <div class="tab">
@@ -82,7 +79,7 @@
             <button class="tablinks" onclick="openCity(event, 'ArmorVehicle')">Armor Vehicle</button>
         </div>
 
-        <div id="Car" class="tabcontent">
+        <div id="Car" class="tabcontent" >
             <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -119,12 +116,29 @@
                    <td><?php echo remove_junk(ucwords($a_car['v_condition']))?></td>
                    <td class="text-center">
                      <div class="btn-group">
-                        <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
+                        <a href="#?id=<?php echo (int)$a_car['fleetid'];?>" id="button-popup" class="btn btn-xs btn-success" data-toggle="tooltip" title="View">
+                          <i class="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                        <a href="edit_fleet.php?id=<?php echo (int)$a_car['fleetid'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
                           <i class="glyphicon glyphicon-pencil"></i>
                        </a>
-                        <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+                        <a href="fleet_delete.php?id=<?php echo (int)$a_car['fleetid'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
                           <i class="glyphicon glyphicon-remove"></i>
                         </a>
+                        </div>
+                        <div class="bg-modal">
+                          <div class="modal-contents">
+
+                            <div class="close">+</div>
+                            <img src="" alt="">
+
+                            <form action="">
+                              <input type="text" placeholder="Name">
+                              <input type="email" placeholder="E-Mail">
+                              <a href="#" class="button">Submit</a>
+                            </form>
+
+                          </div>
                         </div>
                    </td>
                   </tr>
@@ -137,13 +151,12 @@
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th class="text-center" style="width: 50px;">#</th>
-                <th>Name </th>
-                <th>Username</th>
-                <th class="text-center" style="width: 15%;">User Role</th>
-                <th class="text-center" style="width: 10%;">Status</th>
-                <th style="width: 20%;">Last Login</th>
-                <th class="text-center" style="width: 100px;">Actions</th>
+                    <th class="text-center" style="width: 50px;">#</th>
+                    <th class="text-center" style="width: 15%;">Model</th>
+                    <th class="text-center" style="width: 10%;">Seating Capacity</th>
+                    <th class="text-center" style="width: 20%;">Type</th>
+                    <th class="text-center" style="width: 100px;">Availability</th>
+                    <th class="text-center" style="width: 100px;">Condition</th>
               </tr>
             </thead>
             <tbody>
@@ -171,10 +184,13 @@
                    <td><?php echo remove_junk(ucwords($a_van['v_condition']))?></td>
                    <td class="text-center">
                      <div class="btn-group">
-                        <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
+                        <a href="#?id=<?php echo (int)$a_van['fleetid'];?>" id="button-popup" class="btn btn-xs btn-success" data-toggle="tooltip" title="View">
+                          <i class="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                        <a href="edit_fleet.php?id=<?php echo (int)$a_van['fleetid'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
                           <i class="glyphicon glyphicon-pencil"></i>
                        </a>
-                        <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+                        <a href="fleet_delete.php?id=<?php echo (int)$a_van['fleetid'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
                           <i class="glyphicon glyphicon-remove"></i>
                         </a>
                         </div>
@@ -258,10 +274,13 @@
                    <td><?php echo remove_junk(ucwords($a_armor['v_condition']))?></td>
                    <td class="text-center">
                      <div class="btn-group">
-                        <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
+                        <a href="#?id=<?php echo (int)$a_armor['fleetid'];?>" id="button-popup" class="btn btn-xs btn-success" data-toggle="tooltip" title="View">
+                          <i class="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                        <a href="edit_fleet.php?id=<?php echo (int)$a_armor['fleetid'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
                           <i class="glyphicon glyphicon-pencil"></i>
                        </a>
-                        <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+                        <a href="fleet_delete.php?id=<?php echo (int)$a_armor['fleetid'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
                           <i class="glyphicon glyphicon-remove"></i>
                         </a>
                         </div>
@@ -314,10 +333,10 @@
               }
             }
         </script>
-   
         </body>
      </div>
     </div>
   </div>
 </div>
   <?php include_once('layouts/footer.php'); ?>
+
