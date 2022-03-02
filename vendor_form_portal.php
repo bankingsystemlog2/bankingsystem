@@ -40,7 +40,10 @@
    
    $req_fields = array('name','address','company','email','item_description','offer','phone','category');
    validate_fields($req_fields);
-
+   $target_dir = "uploads/";
+   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+   $uploadOk = 1;
+   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
    if(empty($errors)){
       
        $name   = remove_junk($db->escape($_POST['name']));
@@ -52,18 +55,20 @@
        $phone   = remove_junk($db->escape($_POST['phone']));
        $category   = remove_junk($db->escape($_POST['category']));
         $query = "INSERT INTO vendors (";
-        $query .="product_id,Name,Address,Company,Email,item_description,Offer,Phone,category,users_id";
+        $query .="product_id,Name,Address,Company,Email,item_description,Offer,Phone,category,path_url,users_id";
         $query .=") VALUES (";
-        $query .="'{$product_id}','{$name}', '{$address}', '{$company}', '{$email}', '{$item_description}', '{$offer}', '{$phone}', '{$category}', '{$users_id}'";
+        $query .="'{$product_id}','{$name}', '{$address}', '{$company}', '{$email}', '{$item_description}', '{$offer}', '{$phone}', '{$category}', '{$target_file}', '{$users_id}'";
         $query .=")";
 
 
         
         if($db->query($query)){
-          
+          move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
           $session->msg('s',"Application form sent! ");
           //end AuditLog Insert
-          redirect('landing_page.php', false);
+         // redirect('landing_page.php', false);
+         $message = "Application Sent!";
+        echo "<script type='text/javascript'>alert('$message');</script>";
         } else {
          
           $session->msg('d',' Sorry Application form failed to send!');
@@ -142,7 +147,7 @@
         <body>
        <div id="ApplicationForm" class="panel-body">
 
-            <form method="post" action="vendor_form_portal.php?product_id=1" autocomplete="off" > 
+            <form method="post" action="vendor_form_portal.php?product_id=1" enctype="multipart/form-data" autocomplete="off" > 
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" placeholder="name">
@@ -165,11 +170,15 @@
                 </div>
                 <div class="form-group">
                     <label for="offer">Bidding Price</label>
-                    <input type="text" class="form-control" name ="offer"  placeholder="offer">
+                    <input type="number" class="form-control" name ="offer" min="1" max="99999999999" placeholder="Bidding Price">
                 </div>
                 <div class="form-group">
-                    <label for="phone">Contact #</label>
-                    <input type="text" class="form-control" name ="phone"  placeholder="contact#">
+                <label for="phone">Phone number:</label><br><br>
+                 <input type="tel" id="phone" name="phone" placeholder="09*********" required>
+                </div>
+                <div class="form-group">
+                    <label for="upload_file">Upload File (Business Permit,DIT and etc.)</label>
+                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
                 </div>
             <div class="form-group">
             <label for="category">Type of Application</label>

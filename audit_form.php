@@ -222,7 +222,7 @@
             <td><?php echo remove_junk(ucwords($a_vendor['preparedby']))?></td>
             <td> 
                 <a href="download.php?id=<?php echo $a_vendor['id']; ?>&urlpath=<?php echo $a_vendor['urlpath']; ?>" class="btn btn-small btn-success" data-toggle="tooltip" title="Download file">
-                  Download File <i class="glyphicon glyphicon-download"></i>
+                <?php echo basename($a_vendor['urlpath'])?><i class="glyphicon glyphicon-download"></i>
                 </a>
             </td>
             <td>
@@ -313,7 +313,7 @@
     {
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            'csv', 'excel', 'pdf', 'print'
         ]
     }
   );

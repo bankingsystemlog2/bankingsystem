@@ -10,13 +10,7 @@
 ?>
 <?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
-<style>
-  #vendorTableBodyPanel{
-    overflow-x: auto;
 
-  }
-
-</style>
 
 <div class="row">
    <div class="col-md-12">
@@ -31,10 +25,61 @@
           <span class="glyphicon glyphicon-th"></span>
           <span>List of Applicant</span>
        </strong>
-
-
       </div>
-     <div class="panel-body"  id="vendorTableBodyPanel">
+      <div class="panel-body">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+                body {font-family: Arial;}
+
+                /* Style the tab */
+                .tab {
+                    overflow: hidden;
+                    border: 1px solid #ccc;
+                    background-color: #f1f1f1;
+                }
+
+                /* Style the buttons inside the tab */
+                .tab button {
+                    background-color: inherit;
+                    float: left;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    padding: 14px 16px;
+                    transition: 0.3s;
+                    font-size: 17px;
+                }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+                /* Style the tab content */
+                .tabcontent {
+                    display: none;
+                    padding: 6px 12px;
+                    border: 1px solid #ccc;
+                    border-top: none;
+                }
+                /*Table Scroll */
+                #vendorTableBodyPanel{
+                    overflow-x: auto;
+
+                 }
+                </style>
+      <div class="tab">
+            <button class="tablinks" onclick="Tab(event, 'vendorTableBodyPanel')">List Of Application</button>
+            <button class="tablinks" onclick="Tab(event, 'Forward')">Forward</button>
+        </div>
+      <body>
+     <div class="tabcontent"  id="vendorTableBodyPanel">
       <table class="table table-bordered table-striped" id="myTable">
         <thead>
           <tr>
@@ -51,6 +96,7 @@
             <th class="text-center" style="width: 15%;">Contact #</th>
             <th class="text-center" style="width: 15%;">Category</th>
             <th class="text-center" style="width: 10%;">Status</th>
+            <th class="text-center" style="width: 10%;">Files</th>
             <?php if($user['user_level'] === '1'): ?>
             <th class="text-center" style="width: 100px;">Actions</th>
             <?php endif;?>
@@ -88,6 +134,11 @@
             <span class="label label-danger"><?php echo "Error"; ?></span>
           <?php endif;?>
            </td>
+           <td> 
+                <a href="download_vendor.php?id=<?php echo $a_vendor['id']; ?>&path_url=<?php echo $a_vendor['path_url']; ?>" class="btn btn-small btn-success" data-toggle="tooltip" title="Download file">
+                <?php echo basename($a_vendor['path_url'])?><i class="glyphicon glyphicon-download"></i>
+                </a>
+            </td>
            <?php if($user['user_level'] === '1'): ?>
            <td class="text-center">
              <div class="btn-group">
@@ -108,6 +159,48 @@
     </div>
   </div>
 </div>
+<script>
+        function Tab(evt, cityName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+        </script>
+        <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+              modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+        </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="datatables.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -123,7 +216,7 @@
     {
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+             'csv', 'excel', 'pdf', 'print'
         ]
     }
   );
