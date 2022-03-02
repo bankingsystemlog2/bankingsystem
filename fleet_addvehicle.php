@@ -66,6 +66,7 @@
             <div class="form-group">
                 <label for="v_category">Category</label>
                 <select class="form-control" name="v_category" placeholder="v_category">
+                  <option <?php if('v_category')  echo 'selected="selected"';?>value="3">ARMORED VEHICLE</option>
                   <option <?php if('v_category')  echo 'selected="selected"';?>value="2">VAN</option>
                   <option <?php if('v_category')  echo 'selected="selected"';?>value="1">CAR</option>
                 </select>
@@ -131,8 +132,7 @@
                 <input type="text" class="form-control" name ="v_avail"  placeholder="v_avail">
             </div>
             <div class="form-group clearfix">
-              <button type="submit" name="fleet_addvehicle" class="btn btn-success">Submit</button>
-              
+              <button type="submit" name="fleet_addvehicle" class="btn btn-success">Submit</button>              
             </div>
             
         </form>
