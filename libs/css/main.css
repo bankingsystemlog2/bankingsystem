@@ -98,9 +98,6 @@ body{
 	color: #333;
 	transform: rotate(45deg);
 	cursor: pointer;
-	&:hover {
-		color: #666;
-	}
 }
 .panel-default >.panel-heading{
   background-color: #2B547E ;
