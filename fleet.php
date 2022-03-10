@@ -74,29 +74,28 @@
         <p>Click on the buttons inside the tabbed menu:</p>
 
         <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'Car')">Car</button>
+            <button class="tablinks" onclick="openCity(event, 'Car')" id="defaultOpen">Car</button>
             <button class="tablinks" onclick="openCity(event, 'Van')">Van</button>
             <button class="tablinks" onclick="openCity(event, 'ArmorVehicle')">Armor Vehicle</button>
         </div>
-
+        <!-- Car Tab -->
         <div id="Car" class="tabcontent" >
             <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th class="text-center" style="width: 50px;">#</th>
-                    <thclass="text-center" style="width: 15%;">Name </th>
-                    <thclass="text-center" style="width: 15%;">Username</th>
-                    <th class="text-center" style="width: 15%;">User Role</th>
-                    <th class="text-center" style="width: 10%;">Status</th>
-                    <th class="text-center" style="width: 20%;">Last Login</th>
-                    <th class="text-center" style="width: 100px;">Actions</th>
+                    <th class="text-center" style="width: 5%;">Model</th>
+                    <th class="text-center" style="width: 10%;">Seating Capacity</th>
+                    <th class="text-center" style="width: 10%;">Type</th>
+                    <th class="text-center" style="width: 100px;">Availability</th>
+                    <th class="text-center" style="width: 100px;">Condition</th>
                   </tr>
                 </thead>
                 <?php foreach($a_cars as $a_car):?>
                   <tr>
                    <td class="text-center"><?php echo count_id();?></td>
-                   <td><?php echo ($a_car['v_model'])?></td>
-                   <td><?php echo remove_junk(ucwords($a_car['v_capacity']))?></td>
+                   <td class="text-center"><?php echo ($a_car['v_model'])?></td>
+                   <td class="text-center"><?php echo remove_junk(ucwords($a_car['v_capacity']))?></td>
                    <td class="text-center">
                    <?php if($a_car['v_category'] === '1'): ?>
                     <?php echo "Car"; ?>
@@ -116,7 +115,7 @@
                    <td><?php echo remove_junk(ucwords($a_car['v_condition']))?></td>
                    <td class="text-center">
                      <div class="btn-group">
-                        <a href="#?id=<?php echo (int)$a_car['fleetid'];?>" id="button-popup" class="btn btn-xs btn-success" data-toggle="tooltip" title="View">
+                        <a href="#?id=<?php echo (int)$a_car['fleetid'];?>" id="button-popup" class="btn btn-xs btn-success" data-toggle="modal" data-target="#exampleModal" title="View">
                           <i class="glyphicon glyphicon-eye-open"></i>
                         </a>
                         <a href="edit_fleet.php?id=<?php echo (int)$a_car['fleetid'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
@@ -126,35 +125,23 @@
                           <i class="glyphicon glyphicon-remove"></i>
                         </a>
                         </div>
-                        <div class="bg-modal">
-                          <div class="modal-contents">
-
-                            <div class="close">+</div>
-                            <img src="" alt="">
-
-                            <form action="">
-                              <input type="text" placeholder="Name">
-                              <input type="email" placeholder="E-Mail">
-                              <a href="#" class="button">Submit</a>
-                            </form>
-
-                          </div>
-                        </div>
+                        
                    </td>
                   </tr>
                 <?php endforeach;?>
                </tbody>
              </table>
         </div>
-
+        <!-- Car tab end-->
+        <!-- Van tab-->
         <div id="Van" class="tabcontent">
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
                     <th class="text-center" style="width: 50px;">#</th>
-                    <th class="text-center" style="width: 15%;">Model</th>
+                    <th class="text-center" style="width: 5%;">Model</th>
                     <th class="text-center" style="width: 10%;">Seating Capacity</th>
-                    <th class="text-center" style="width: 20%;">Type</th>
+                    <th class="text-center" style="width: 10%;">Type</th>
                     <th class="text-center" style="width: 100px;">Availability</th>
                     <th class="text-center" style="width: 100px;">Condition</th>
               </tr>
@@ -163,8 +150,8 @@
             <?php foreach($a_vans as $a_van):?>
                   <tr>
                    <td class="text-center"><?php echo count_id();?></td>
-                   <td><?php echo ($a_van['v_model'])?></td>
-                   <td><?php echo remove_junk(ucwords($a_van['v_capacity']))?></td>
+                   <td class="text-center"><?php echo ($a_van['v_model'])?></td>
+                   <td class="text-center"><?php echo remove_junk(ucwords($a_van['v_capacity']))?></td>
                    <td class="text-center">
                    <?php if($a_van['v_category'] === '1'): ?>
                     <?php echo "Car"; ?>
@@ -200,51 +187,15 @@
            </tbody>
          </table>
         </div>
-
+        <!-- ArmorVehicle tab-->
         <div id="ArmorVehicle" class="tabcontent">
           <table class="table table-bordered table-striped">
             <thead>
-              <tr>
-                <th class="text-center" style="width: 50px;">#</th>
-                <th>Name </th>
-                <th>Username</th>
-                <th class="text-center" style="width: 15%;">User Role</th>
-                <th class="text-center" style="width: 10%;">Status</th>
-                <th style="width: 20%;">Last Login</th>
-                <th class="text-center" style="width: 100px;">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-            <?php foreach($all_users as $a_user): ?>
-              <tr>
-               <td class="text-center"><?php echo count_id();?></td>
-               <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
-               <td><?php echo remove_junk(ucwords($a_user['username']))?></td>
-               <td class="text-center"><?php echo remove_junk(ucwords($a_user['group_name']))?></td>
-               <td class="text-center">
-               <?php if($a_user['status'] === '1'): ?>
-                <span class="label label-success"><?php echo "Active"; ?></span>
-              <?php else: ?>
-                <span class="label label-danger"><?php echo "Deactive"; ?></span>
-              <?php endif;?>
-               </td>
-               <td><?php echo read_date($a_user['last_login'])?></td>
-               <td class="text-center">
-                 <div class="btn-group">
-                    <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                      <i class="glyphicon glyphicon-pencil"></i>
-                   </a>
-                    <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                      <i class="glyphicon glyphicon-remove"></i>
-                    </a>
-                    </div>
-               </td>
-              </tr>
-            <?php endforeach;?>
+              <tr>                
                     <th class="text-center" style="width: 50px;">#</th>
-                    <th class="text-center" style="width: 15%;">Model</th>
+                    <th class="text-center" style="width: 5%;">Model</th>
                     <th class="text-center" style="width: 10%;">Seating Capacity</th>
-                    <th class="text-center" style="width: 20%;">Type</th>
+                    <th class="text-center" style="width: 10%;">Type</th>
                     <th class="text-center" style="width: 100px;">Availability</th>
                     <th class="text-center" style="width: 100px;">Condition</th>
                   </tr>
@@ -253,8 +204,8 @@
                 <?php foreach($a_armors as $a_armor):?>
                   <tr>
                    <td class="text-center"><?php echo count_id();?></td>
-                   <td><?php echo ($a_armor['v_model'])?></td>
-                   <td><?php echo remove_junk(ucwords($a_armor['v_capacity']))?></td>
+                   <td class="text-center"><?php echo ($a_armor['v_model'])?></td>
+                   <td class="text-center"><?php echo remove_junk(ucwords($a_armor['v_capacity']))?></td>
                    <td class="text-center">
                    <?php if($a_armor['v_category'] === '1'): ?>
                     <?php echo "Car"; ?>
@@ -290,7 +241,7 @@
            </tbody>
          </table>
         </div>
-
+        <!-- ArmorVehicle tab end-->
         <script>
         function openCity(evt, cityName) {
           var i, tabcontent, tablinks;
@@ -304,7 +255,11 @@
           }
           document.getElementById(cityName).style.display = "block";
           evt.currentTarget.className += " active";
+          
         }
+        
+          // Get the element with id="defaultOpen" and click on it
+          document.getElementById("defaultOpen").click();
         </script>
         <script>
             // Get the modal
@@ -333,6 +288,27 @@
               }
             }
         </script>
+            <!-- Modal-->
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="fleet" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             <!--  Modal End-->
         </body>
      </div>
     </div>
