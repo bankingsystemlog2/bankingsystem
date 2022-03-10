@@ -1,7 +1,6 @@
 <?php
   $page_title = 'Audit Management Form';
   require_once('includes/load.php');
-  $users_id = current_user()['id'];
 ?>
 <link rel="stylesheet" href="datatables.css">
 <?php
@@ -154,8 +153,8 @@
                     <textarea type="body" class="form-control" name="body" rows="3" cols="60"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="upload_file">Upload File</label>
-                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                    <label for="upload_file">Upload File(PDF FORMAT)</label>
+                    <input type="file" accept="application/pdf" class="form-control" name="fileToUpload" id="fileToUpload">
                 </div>
                 <div class="form-group">
             <label for="preparedby">Prepared by</label>

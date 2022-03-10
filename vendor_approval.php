@@ -29,16 +29,31 @@
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Application updated ");
               // for Audit Log
-              $link = $_SERVER['PHP_SELF'];
-              $link_array = explode('/',$link);
-              $page = end($link_array);
-              $now =  date('Y-m-d H:i:s');
-            
-              $sqlAudit = "INSERT INTO `audit_logs`(`module`, `action_taken`, `users_id`, `datetime_created`) values ('{$page }',' Record has been Update where vendor is {$name}','{$_SESSION['user_id']}','{$now}' )";
-              $db->query($sqlAudit);
+              // $link = $_SERVER['PHP_SELF'];
+              // $link_array = explode('/',$link);
+              // $page = end($link_array);
+              // $now =  date('Y-m-d H:i:s');
+
+              // $sqlAudit = "INSERT INTO `audit_logs`(`module`, `action_taken`, `users_id`, `datetime_created`) values ('{$page }',' Record has been Update where vendor is {$name}','{$_SESSION['user_id']}','{$now}' )";
+              // $db->query($sqlAudit);
+              //sample
+
+              // Variables nyo
+              // $link = $_SERVER['PHP_SELF'];
+              // $link_array = explode('/',$link);
+              // $page = end($link_array);
+              // $variable4 = $_POST[id for file]
+              // $now = date('Y-m-d H:i:s');
+
+              //$sqlDocumentTracking = "INSERT INTO `docu_tracking`( `Action`, `users_id`, `Location`, `Document_Subject`, `Date_Created`) VALUES ('"(action)" to {$variable1}','{$_SESSION['user_id']}','{$page}','{$variable4}','{$now}')";
+              // $db->query($sqlDocumentTracking);
+
+              
+
+
 
           //end AuditLog Insert
-            redirect('vendor.php', false);
+            redirect('vendor_form.php', false);
           } else {
             $session->msg('d',' Sorry failed to updated!');
             redirect('vendor.php', false);
@@ -84,8 +99,8 @@
                   <input type="text" class="form-control" name="offer" value="<?php echo remove_junk(ucwords($vendors['Offer'])); ?>">
             </div>
             <div class="form-group">
-                  <label for="phone" class="control-label">Contact #</label>
-                  <input type="text" class="form-control" name="phone" value="<?php echo remove_junk(ucwords($vendors['Phone'])); ?>">
+                  <label for="phone" class="control-label">Phone Number</label>
+                  <input type="tel" class="form-control" name="phone" value="<?php echo remove_junk(ucwords($vendors['Phone'])); ?>">
             </div>
             <?php if($_SESSION['user_id'] == '1'){?>
             <div class="form-group">
@@ -97,12 +112,11 @@
                 </select>
             </div>
             <?php }?>
-            <div class="form-group clearfix">
-                    <button type="submit" name="update-vendor" class="btn btn-info">Update</button>
+            <div>
+            <button type="submit" name="update-vendor" class="btn btn-info">Update</button></a>
             </div>
-        </form>
         <div>
-        <a href="vendor.php"><button type="submit" name="vendor_approval" class="btn btn-danger">Cancel</button></a>
+        <a href="vendor_form.php"><button type="submit" name="vendor_approval" class="btn btn-danger">Cancel</button></a>
         </div>
       </div>
     </div>

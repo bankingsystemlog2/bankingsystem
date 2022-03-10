@@ -1,7 +1,7 @@
 <?php
   $page_title = 'Vendor Form';
   require_once('includes/load.php');
-  $users_id = current_user()['id'];
+  // $users_id = current_user()['id'];
 ?>
 <link rel="stylesheet" href="datatables.css">
 <?php
@@ -9,57 +9,57 @@
  page_require_level(1);
  $groups = find_all('vendors');
  $users_id = current_user()['id'];
- $result = find_vendor_by_id('vendors',$users_id);
- $is_show = 1;
+//  $result = find_vendor_by_id('vendors',$users_id);
+//  $is_show = 1;
  $all_vendors = find_all_inner('vendors');
 ?>
 <?php
-  if(isset($_POST['applicationform'])){
+//   if(isset($_POST['applicationform'])){
 
-   $req_fields = array('name','address','company','email','item_description','offer','phone','category');
-   validate_fields($req_fields);
+//    $req_fields = array('name','address','company','email','item_description','offer','phone','category');
+//    validate_fields($req_fields);
 
-   if(empty($errors)){
-       $name   = remove_junk($db->escape($_POST['name']));
-       $address   = remove_junk($db->escape($_POST['address']));
-       $company   = remove_junk($db->escape($_POST['company']));
-       $email   = remove_junk($db->escape($_POST['email']));
-       $item_description   = remove_junk($db->escape($_POST['item_description']));
-       $offer   = remove_junk($db->escape($_POST['offer']));
-       $phone   = remove_junk($db->escape($_POST['phone']));
-       $category   = remove_junk($db->escape($_POST['category']));
-        $query = "INSERT INTO vendors (";
-        $query .="Name,Address,Company,Email,item_description,Offer,Phone,category,users_id";
-        $query .=") VALUES (";
-        $query .="'{$name}', '{$address}', '{$company}', '{$email}', '{$item_description}', '{$offer}', '{$phone}', '{$category}', '{$users_id}'";
-        $query .=")";
+//    if(empty($errors)){
+//        $name   = remove_junk($db->escape($_POST['name']));
+//        $address   = remove_junk($db->escape($_POST['address']));
+//        $company   = remove_junk($db->escape($_POST['company']));
+//        $email   = remove_junk($db->escape($_POST['email']));
+//        $item_description   = remove_junk($db->escape($_POST['item_description']));
+//        $offer   = remove_junk($db->escape($_POST['offer']));
+//        $phone   = remove_junk($db->escape($_POST['phone']));
+//        $category   = remove_junk($db->escape($_POST['category']));
+//         $query = "INSERT INTO vendors (";
+//         $query .="Name,Address,Company,Email,item_description,Offer,Phone,category,users_id";
+//         $query .=") VALUES (";
+//         $query .="'{$name}', '{$address}', '{$company}', '{$email}', '{$item_description}', '{$offer}', '{$phone}', '{$category}', '{$users_id}'";
+//         $query .=")";
 
 
         
-        if($db->query($query)){
+//         if($db->query($query)){
           
-          $session->msg('s',"Application form sent! ");
-          // for Audit Log
-          $link = $_SERVER['PHP_SELF'];
-          $link_array = explode('/',$link);
-          $page = end($link_array);
-          $now =  date('Y-m-d H:i:s');
+//           $session->msg('s',"Application form sent! ");
+//           // for Audit Log
+//           // $link = $_SERVER['PHP_SELF'];
+//           // $link_array = explode('/',$link);
+//           // $page = end($link_array);
+//           // $now =  date('Y-m-d H:i:s');
         
-          $sqlAudit = "INSERT INTO `audit_logs`(`module`, `action_taken`, `users_id`, `datetime_created`) values ('{$page }','New added record where vendor is {$name}','{$_SESSION['user_id']}','{$now}' )";
-          $db->query($sqlAudit);
+//           // $sqlAudit = "INSERT INTO `audit_logs`(`module`, `action_taken`, `users_id`, `datetime_created`) values ('{$page }','New added record where vendor is {$name}','{$_SESSION['user_id']}','{$now}' )";
+//           // $db->query($sqlAudit);
 
-          //end AuditLog Insert
-          redirect('vendor_form.php', false);
-        } else {
+//           //end AuditLog Insert
+//           redirect('vendor_form.php', false);
+//         } else {
          
-          $session->msg('d',' Sorry Application form failed to send!');
-          redirect('vendor_form.php', false);
-        }
-   } else {
-     $session->msg("d", $errors);
-      redirect('vendor_form.php',false);
-   }
- }
+//           $session->msg('d',' Sorry Application form failed to send!');
+//           redirect('vendor_form.php', false);
+//         }
+//    } else {
+//      $session->msg("d", $errors);
+//       redirect('vendor_form.php',false);
+//    }
+//  }
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -127,7 +127,7 @@
             </style>
         </head>
         <body>
-        <div class="tab">
+        <!-- <div class="tab">
             <button class="tablinks" onclick="Tab(event, 'ApplicationForm')">Register Application</button>
             <button class="tablinks" onclick="Tab(event, 'ViewData')">View Request</button>
         </div>
@@ -176,9 +176,9 @@
                 </div>
                 
             </form>
-        </div>
+        </div> -->
 
-        <div id="ViewData" class="tabcontent">
+        <div id="ViewData">
             <table class="table table-bordered table-striped" id="myTable">
             <thead>
             <tr>
@@ -257,7 +257,7 @@
         </div>
 
 
-        <script>
+        <!-- <script>
         function Tab(evt, cityName) {
           var i, tabcontent, tablinks;
           tabcontent = document.getElementsByClassName("tabcontent");
@@ -271,7 +271,7 @@
           document.getElementById(cityName).style.display = "block";
           evt.currentTarget.className += " active";
         }
-        </script>
+        </script> -->
         <script>
             // Get the modal
             var modal = document.getElementById("myModal");

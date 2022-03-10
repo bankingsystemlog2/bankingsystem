@@ -6,8 +6,44 @@
 // Checkin What level user has permission to view this page
  page_require_level(1);
 //pull out all user form database
- $data =  getAuditlog('docu_tracking');
+$groups = find_all('docu_tracking');
+$users_id = current_user()['id'];
+$all_vendors = find_all('docu_tracking');
+$data =  getDocuTracking('docu_tracking');
+
+global $db;
+   $id = $_GET['id'];
+   $sql = $db->query("SELECT * FROM docu_tracking WHERE id='{$id}' LIMIT 1");
+          //if(
+            $docu_tracking = $db->fetch_assoc($sql);
+            //return $vendors;
+            
 ?>
+
+<?php
+
+ //update user other info
+ if(isset($_POST['docu_tracking'])) {
+  $req_fields = array('Action','Remarks','Location','Date_Created');
+  //validate_fields($req_fields);
+  
+  if(empty($errors)){
+      
+      $Action   = remove_junk($db->escape($_POST['Action']));
+      $Date_Created   = remove_junk($db->escape(date('Y-m-d', strtotime($_POST['Date_Created']))));
+      $Document_Subject   = remove_junk($db->escape($_POST['Document_Subject']));
+      $Remarks   = remove_junk($db->escape($_POST['Remarks']));
+      $Location   = remove_junk($db->escape($_POST['Location']));
+       $query = "UPDATE docu_tracking SET ";
+       $query .="Action = '{$Action}',Date_Created = '{$Date_Created}',Document_Subject = '{$Document_Subject}',Remarks = '{$Remarks}',Location = '{$Location}'";
+       $query .=" WHERE ";
+       $query .="id = '{$id}'";
+  }
+  
+}
+
+?>
+
 <?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
 <style>
@@ -39,27 +75,21 @@
       <table class="table table-bordered table-striped" id="myTable">
         <thead>
           <tr>
-            <th class="text-center" style="width: 15%;">Date Receive</th>
-            <th>Request By</th>
-            <th class="text-center" style="width: 15%;">Document Date</th>
-            <th>Document Subject</th>
-            <th>Document Sender</th>
-            <th class="text-center" style="width: 15%;">Application Date</th>
-            <th>Application Remarks</th>
-            <th class="text-center" style="width: 15%;">Reference Number</th>
+          <th class="text-center" style="width: 15%;">Location</th>
+            <th>Action</th>
+            <th class="text-center" style="width: 15%;">Name</th>
+            <th class="text-center" style="width: 15%;">Document Subject</th>
+            <th class="text-center" style="width: 15%;">Date Created</th>
           </tr>
         </thead>
         <tbody>
           <?php foreach($data as $a_vendor): ?>
             <tr>
-            <td><?php echo str_replace('.php', '', (ucwords($a_vendor['module'])))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['action_taken']))?></td>
+            <td><?php echo str_replace('.php', '', (ucwords($a_vendor['Location'])))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['Action']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['name']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['datetime_created']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['module']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['action_taken']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['name']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['datetime_created']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['Document_Subject']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['Date_Created']))?></td>
           <?php endforeach;?>
        </tbody>
      </table>

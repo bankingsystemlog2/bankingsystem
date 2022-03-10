@@ -28,7 +28,7 @@
     <link href="dist/css/styles.css" rel="stylesheet" />
     -->
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
 
         
@@ -150,39 +150,39 @@
             <form method="post" action="vendor_form_portal.php?product_id=1" enctype="multipart/form-data" autocomplete="off" > 
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="name">
+                    <input type="text" class="form-control" name="name" placeholder="name" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" name="address" placeholder="address">
+                    <input type="text" class="form-control" name="address" placeholder="address" required>
                 </div>
                 <div class="form-group">
                     <label for="company">Company Name</label>
-                    <input type="text" class="form-control" name ="company"  placeholder="company">
+                    <input type="text" class="form-control" name ="company"  placeholder="company" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control" name ="email"  placeholder="email">
+                    <input type="email" class="form-control" id="email" name ="email"  placeholder="email" required>
                 </div>
                 <div class="form-group">
                     <label for="item_description">Item Description</label>
-                    <textarea type="text" class="form-control" name ="item_description"  placeholder="item description"></textarea>
+                    <textarea type="text" class="form-control" name ="item_description"  placeholder="item description" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="offer">Bidding Price</label>
-                    <input type="number" class="form-control" name ="offer" min="1" max="99999999999" placeholder="Bidding Price">
+                    <input type="number"  class="form-control" name ="offer" min="1" max="99999999999" placeholder="Bidding Price" required>
                 </div>
                 <div class="form-group">
-                <label for="phone">Phone number:</label><br><br>
+                <label for="phone">Phone number:</label>
                  <input type="tel" id="phone" name="phone" placeholder="09*********" required>
                 </div>
                 <div class="form-group">
-                    <label for="upload_file">Upload File (Business Permit,DIT and etc.)</label>
-                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                    <label for="upload_file">Upload Any of These:(Business Permit,DIT and etc.)"PDF FORMAT"</label>
+                    <input type="file" accept="application/pdf" class="form-control" name="fileToUpload" id="fileToUpload" required>
                 </div>
             <div class="form-group">
             <label for="category">Type of Application</label>
-                    <select class="form-control" name="category" placeholder="category">
+                    <select name="category" class="form-control" placeholder="category">
                     <option <?php if('category')  echo 'selected="selected"';?>value="1">Supplier</option>
                     <option <?php if('category')  echo 'selected="selected"';?>value="0">Contractor</option>
                     </select>
@@ -242,10 +242,10 @@
             }
         </script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
-  <script type="text/javascript" src="libs/js/functions.js"></script>
-  </body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="libs/js/functions.js"></script>
+</body>
 </html>
 
 <?php if(isset($db)) { $db->db_disconnect(); } ?>

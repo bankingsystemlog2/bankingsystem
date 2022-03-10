@@ -76,7 +76,7 @@
                 </style>
       <div class="tab">
             <button class="tablinks" onclick="Tab(event, 'vendorTableBodyPanel')">List Of Application</button>
-            <button class="tablinks" onclick="Tab(event, 'Forward')">Forward</button>
+            <button class="tablinks" onclick="Tab(event, 'Forward')">Send Approved Application</button>
         </div>
       <body>
      <div class="tabcontent"  id="vendorTableBodyPanel">
