@@ -36,7 +36,7 @@
         $query .="'{$v_category}', '{$v_model}', '{$v_year}', '{$v_color}', '{$v_regnum}', '{$v_serialnum}', '{$v_capacity}', '{$v_datepur}', '{$v_manu}', '{$v_enginetype}', '{$v_loc}', '{$v_fueltype}', '{$v_fuelcap}', '{$v_license}', '{$v_condition}', '{$v_avail}'";
         $query .=")";
         if($db->query($query)){
-          //sucess
+          //success
           $session->msg('s',"Application form sent! ");
           redirect('fleet_addvehicle.php', false);
         } else {
@@ -140,5 +140,4 @@
       </div>
     </div>
   </div>
-
 <?php include_once('layouts/footer.php'); ?>
