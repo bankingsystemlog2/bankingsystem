@@ -72,7 +72,7 @@
         </head>
         <body>
         <p>Click on the buttons inside the tabbed menu:</p>
-
+        <!-- Vehicle Categories -->
         <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'Car')" id="defaultOpen">Car</button>
             <button class="tablinks" onclick="openCity(event, 'Van')">Van</button>
