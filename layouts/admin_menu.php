@@ -31,7 +31,7 @@
     <?php }?>
 
     <!-- <li><a href="applicationform.php">Vendor Application</a></li> -->
-    <li><a href="vendor_form.php">Vendor Form</a></li>
+    <li><a href="vendor_list.php">Vendor List</a></li>
    </ul>
   </li>
   <li>

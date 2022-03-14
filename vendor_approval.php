@@ -53,14 +53,14 @@
 
 
           //end AuditLog Insert
-            redirect('vendor_form.php', false);
+            redirect('vendor_list.php', false);
           } else {
             $session->msg('d',' Sorry failed to updated!');
-            redirect('vendor.php', false);
+            redirect('vendor_list.php', false);
           }
     } else {
       $session->msg("d", $errors);
-      redirect('vendor.php',false);
+      redirect('vendor_list.php',false);
     }
   }
 ?>
@@ -114,9 +114,7 @@
             <?php }?>
             <div>
             <button type="submit" name="update-vendor" class="btn btn-info">Update</button></a>
-            </div>
-        <div>
-        <a href="vendor_form.php"><button type="submit" name="vendor_approval" class="btn btn-danger">Cancel</button></a>
+            <a href="vendor_list.php"><button type="submit" name="vendor_approval" class="btn btn-danger">Cancel</button></a>
         </div>
       </div>
     </div>

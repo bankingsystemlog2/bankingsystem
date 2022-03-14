@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Vendor Form';
+  $page_title = 'Vendor List';
   require_once('includes/load.php');
   // $users_id = current_user()['id'];
 ?>
@@ -49,15 +49,15 @@
 //           // $db->query($sqlAudit);
 
 //           //end AuditLog Insert
-//           redirect('vendor_form.php', false);
+//           redirect('vendor_list.php', false);
 //         } else {
          
 //           $session->msg('d',' Sorry Application form failed to send!');
-//           redirect('vendor_form.php', false);
+//           redirect('vendor_list.php', false);
 //         }
 //    } else {
 //      $session->msg("d", $errors);
-//       redirect('vendor_form.php',false);
+//       redirect('vendor_list.php',false);
 //    }
 //  }
 ?>
@@ -133,7 +133,7 @@
         </div>
 
         <div id="ApplicationForm" class="tabcontent">
-            <form method="post" action="vendor_form.php" autocomplete="off" > 
+            <form method="post" action="vendor_list.php" autocomplete="off" > 
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" placeholder="name">
@@ -211,9 +211,7 @@
             <td><?php echo remove_junk(ucwords($a_vendor['Company']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['Email']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['item_description']))?></td>
-            <?php if($user['user_level'] === '1'): ?>
             <td><?php echo remove_junk(ucwords($a_vendor['Offer']))?></td>
-            <?php endif;?>
             <td><?php echo remove_junk(ucwords($a_vendor['Phone']))?></td>
             <td>
             <?php if($a_vendor['category'] == 0): ?>
@@ -240,9 +238,10 @@
                     <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
                       <i class="glyphicon glyphicon-pencil"></i>
                     </a>
+                    <?php if($user['user_level'] === '1'): ?>
                     <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
                       <i class="glyphicon glyphicon-remove"></i>
-                    </a>
+                    </a><?php endif; ?>
                     <?php elseif ($a_vendor['statuss'] === '1' || $a_vendor['statuss'] === '2'): ?>
                     <?php endif; ?>
                      
