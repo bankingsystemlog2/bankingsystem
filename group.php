@@ -2,7 +2,7 @@
   $page_title = 'All Group';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
-   page_require_level(3);
+   page_require_level(1);
   $all_groups = find_all('user_groups');
 ?>
 <?php include_once('layouts/header.php'); ?>
@@ -65,22 +65,5 @@
     </div>
   </div>
 </div>
-<!--Modal Fade for Delete panel...
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Delete</h4>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete this data ?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <a href="delete_group.php?id=<?php echo (int)$a_group['id'];?>" class="btn btn-danger">DELETE<a>
-      </div>-->
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+
   <?php include_once('layouts/footer.php'); ?>

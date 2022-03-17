@@ -46,11 +46,11 @@ function validate_fields($var){
 function display_msg($msg =''){
    $output = array();
    if(!empty($msg)) {
-      foreach ($msg as $key => $value) {
-         $output  = "<div class=\"alert alert-{$key}\">";
-         $output .= "<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>";
-         $output .= remove_junk(first_character($value));
-         $output .= "</div>";
+     foreach ($msg as $key => $value) {
+        $output  = "<div class=\"alert alert-{$key} alert-dismissible fade show\" role=\"alert\">";
+        $output .= remove_junk(first_character($value));
+        $output .= "<button type=\"button\" class=\"btn-close\" data-dismiss=\"alert\" aria-label=\"Close\"></button>";
+        $output .= "</div>";
       }
       return $output;
    } else {

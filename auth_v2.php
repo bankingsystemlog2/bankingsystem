@@ -16,14 +16,17 @@ $password = remove_junk($_POST['password']);
            updateLastLogIn($user['id']);
            // redirect user to group home page by user level
            if($user['user_level'] === '1'):
-             $session->msg("s", "Hello ".$user['username'].", Welcome to Banking and finance System");
+             $session->msg("s", "Hello ".$user['username'].", Welcome To Financial Management System..");
              redirect('admin.php',false);
            elseif ($user['user_level'] === '2'):
-              $session->msg("s", "Hello ".$user['username'].", Welcome to Banking and finance System");
-             redirect('special.php',false);
+              $session->msg("s", "Hello ".$user['username'].", Welcome To Financial Management System..");
+             redirect('user_dashboard.php',false);
+             elseif ($user['user_level'] === '3'):
+                $session->msg("s", "Hello ".$user['username'].", Welcome To Financial Management System..");
+               redirect('Logistics2/admin.php',false);
            else:
-              $session->msg("s", "Hello ".$user['username'].", Welcome to Banking and finance System");
-             redirect('home.php',false);
+              $session->msg("s", "Hello ".$user['username'].", Welcome To Financial Management System.");
+             redirect('',false);
            endif;
 
         else:
