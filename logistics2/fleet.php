@@ -1,17 +1,17 @@
 <?php
   $page_title = 'Fleet Management';
-  require_once('includes/load.php');
+  require_once('../includes/load.php');
   $users_id = current_user()['id'];
 ?>
 <?php
 // Checkin What level user has permission to view this page
- page_require_level(1);
+ page_require_level(4);
 //pull out all user form database
  $a_cars = find_all_cars();
  $a_vans = find_all_vans();
  $a_armors = find_all_armor();
 ?>
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('../layouts/header.php'); ?>
 <div class="row">
    <div class="col-md-12">
      <?php echo display_msg($msg); ?>
@@ -314,5 +314,5 @@
     </div>
   </div>
 </div>
-  <?php include_once('layouts/footer.php'); ?>
+  <?php include_once('../layouts/footer.php'); ?>
 

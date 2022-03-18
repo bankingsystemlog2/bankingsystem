@@ -31,7 +31,7 @@
     <!-- Notification Codes For Collection -->
       <?php foreach ($notifCollection as $notifCollection): ?>
       <?php if ($notifCollection['notifCollection']>=1): ?>
-      <span class="badge1" data-badge="<?php echo $notifCollection['notifCollection']; ?>">Collection</span>
+      <span class="badge1" data-badge="<?php echo $notifCollection['notifCollection']; ?>">Fleet Management</span>
     <?php elseif ($notifCollection['notifCollection']==0): ?>
       <span>Collection</span>
     <?php endif; ?>
@@ -48,14 +48,14 @@
     <div class="collapse" id="Collections">
       <ul class="navbar-nav ps-3">
         <li>
-          <a href="ListofLoans.php" class="nav-link px-3">
+          <a href="fleet.php" class="nav-link px-3">
             <span class="me-2"
               ><i class="bi bi-person-lines-fill"></i></span>
 
               <!--Notification for Loans -->
                 <?php foreach ($notifCollectionLoans as $notifCollectionLoans): ?>
                 <?php if ($notifCollectionLoans['LoansNotif']>=1): ?>
-                <span class="badge1" data-badge="<?php echo $notifCollectionLoans['LoansNotif']; ?>">List of Loans</span>
+                <span class="badge1" data-badge="<?php echo $notifCollectionLoans['LoansNotif']; ?>">Vehicle Information</span>
               <?php elseif ($notifCollectionLoans['LoansNotif']==0): ?>
                 <span>List of Loans</span>
               <?php endif; ?>
@@ -65,7 +65,7 @@
           </a>
         </li>
         <li>
-          <a href="ListOfDeposits.php" class="nav-link px-3">
+          <a href="logistics2/fleet.php" class="nav-link px-3">
             <span class="me-2"
               ><i class="bi bi-wallet2"></i
             ></span>
