@@ -21,7 +21,7 @@ $password = remove_junk($_POST['password']);
            elseif ($user['user_level'] === '2'):
               $session->msg("s", "Hello ".$user['username'].", Welcome To Financial Management System..");
              redirect('user_dashboard.php',false);
-             elseif ($user['user_level'] === '3'):
+             elseif ($user['user_level'] === '4'):
                 $session->msg("s", "Hello ".$user['username'].", Welcome To Financial Management System..");
                redirect('Logistics2/admin.php',false);
            else:

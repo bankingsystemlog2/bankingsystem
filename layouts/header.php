@@ -116,6 +116,10 @@
         <!-- User menu -->
       <?php include_once('special_menu.php');?>
 
+    <?php elseif($user['user_level'] === '4'): ?>
+        <!-- Logistics 2 menu -->
+      <?php include_once('log2.php');?>
+
       <?php endif;?>
 
     </nav>
