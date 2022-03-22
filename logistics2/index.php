@@ -1,9 +1,9 @@
 <?php
   ob_start();
-  require_once('includes/load.php');
+  require_once('../includes/log2load.php');
   if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
 ?>
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('../layouts/header.php'); ?>
 <div class="login-page">
     <div class="text-center">
        <h1>Login Panel</h1>
@@ -24,4 +24,4 @@
         </div>
     </form>
 </div>
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('../layouts/footer.php'); ?>

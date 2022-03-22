@@ -1,6 +1,6 @@
 <?php
   $page_title = 'Change Password';
-  require_once('includes/load.php');
+  require_once('../includes/log2load.php');
   // Checkin What level user has permission to view this page
   page_require_level(3);
 ?>
@@ -36,7 +36,7 @@
     }
   }
 ?>
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('../layouts/header.php'); ?>
 <div class="login-page">
     <div class="text-center">
        <h3>Change your password</h3>
@@ -57,4 +57,4 @@
         </div>
     </form>
 </div>
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('../layouts/footer.php'); ?>

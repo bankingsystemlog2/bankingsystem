@@ -1,5 +1,5 @@
 <?php
- require_once('includes/load.php');
+ require_once('../includes/log2load.php');
 if(isset($_REQUEST["urlpath"])){
     // Get parameters
    

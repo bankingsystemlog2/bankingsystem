@@ -1,6 +1,6 @@
 <?php
   $page_title = 'Audit Form';
-  require_once('includes/load.php');
+  require_once('../includes/log2load.php');
    page_require_level(1);
    global $db;
    $id = $_GET['id'];
@@ -46,7 +46,7 @@
   }
 }
 ?>
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('../layouts/header.php'); ?>
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
@@ -108,4 +108,4 @@
 </div>
 
 
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('../layouts/footer.php'); ?>

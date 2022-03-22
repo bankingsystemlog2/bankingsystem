@@ -1,6 +1,6 @@
 <?php
   $page_title = 'Vendor List';
-  require_once('includes/load.php');
+  require_once('../includes/log2load.php');
   // $users_id = current_user()['id'];
 ?>
 <link rel="stylesheet" href="datatables.css">
@@ -61,7 +61,7 @@
 //    }
 //  }
 ?>
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('../layouts/header.php'); ?>
 <div class="row">
    <div class="col-md-12">
      <?php echo display_msg($msg); ?>
@@ -324,4 +324,4 @@
     </div>
   </div>
 </div>
-  <?php include_once('layouts/footer.php'); ?>
+  <?php include_once('../layouts/footer.php'); ?>

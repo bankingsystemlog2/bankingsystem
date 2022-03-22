@@ -1,6 +1,6 @@
 <?php
   $page_title = 'My profile';
-  require_once('includes/load.php');
+  require_once('../includes/log2load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
 ?>
@@ -12,7 +12,7 @@
     $user_p = find_by_id('users',$user_id);
   endif;
 ?>
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('../layouts/header.php'); ?>
 <div class="row">
    <div class="col-md-4">
        <div class="panel profile">
@@ -28,4 +28,4 @@
        </div>
    </div>
 </div>
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('../layouts/footer.php'); ?>

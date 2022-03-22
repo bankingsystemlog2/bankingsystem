@@ -1,6 +1,6 @@
 <?php
   $page_title = 'Fleet Management';
-  require_once('../includes/load.php');
+  require_once('../includes/log2load.php');
   $users_id = current_user()['id'];
 ?>
 <?php
