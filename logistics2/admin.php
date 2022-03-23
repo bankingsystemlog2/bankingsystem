@@ -5,7 +5,7 @@
    page_require_level(4);
 ?>
 <?php
- $c_user          = count_by_id('users');
+ $c_user = count_by_id('users');
 
 ?>
 <?php include_once('../layouts/header.php'); ?>
@@ -31,4 +31,4 @@
 	</a>
 
 
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('../layouts/footer.php'); ?>

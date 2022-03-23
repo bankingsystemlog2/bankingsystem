@@ -1,7 +1,7 @@
 <ul class="navbar-nav">
   <li>
     <div class="text-muted small fw-bold text-uppercase px-3">
-      CORE
+      LOG 2
     </div>
   </li>
   <li>
@@ -33,7 +33,7 @@
       <?php if ($notifCollection['notifCollection']>=1): ?>
       <span class="badge1" data-badge="<?php echo $notifCollection['notifCollection']; ?>">Fleet Management</span>
     <?php elseif ($notifCollection['notifCollection']==0): ?>
-      <span>Collection</span>
+      <span>Fleet Management</span>
     <?php endif; ?>
     <?php endforeach; ?>
     <!-- End of Notifcation Codes -->

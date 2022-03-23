@@ -5,7 +5,7 @@
   //if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
 ?>
 
-<?php include_once('layouts/header_WOsidebar.php'); ?>
+
 <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -16,7 +16,7 @@
            echo ucfirst($user['name']);
             else echo "Banking System";?>
     </title>
-    <link rel="icon" type="image/png" href="libs/favicon.png" sizes="16x16">
+    <!-- <link rel="icon" type="image/png" href="libs/favicon.png" sizes="16x16"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
     <link rel="stylesheet" href="libs/css/main.css?v=<?php echo time(); ?>">
@@ -249,4 +249,4 @@
 </html>
 
 <?php if(isset($db)) { $db->db_disconnect(); } ?>
-
+<?php include_once('../layouts/footer.php'); ?>
