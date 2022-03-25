@@ -1,9 +1,10 @@
 <?php 
-  $page_title = 'Application Form';
+  $page_title = 'Add Vehicle Form';
   require_once('../includes/log2load.php');
   // Checkin What level user has permission to view this page
   // page_require_level(1);
   //sample changes
+  page_require_level(4);
   $groups = find_all('v_info');
   $users_id = current_user()['id'];
 ?>
@@ -51,22 +52,29 @@
  }
 ?>
 <?php include_once('../layouts/header.php'); ?>
-  <?php echo display_msg($msg); ?>
+<!-- Breadcrumb -->
+<nav class="breadcrumbs">
+  <?php if ($user['user_level'] === '4'): ?>
+    <a href="admin.php" class="breadcrumbs__item">Home</a>
+    <a href="fleet.php" class="breadcrumbs__item">Fleet table</a>
+  <?php elseif ($user['user_level'] === '2'): ?>
+   <a href="user_dashboard.php" class="breadcrumbs__item">Home</a>
+  <?php endif; ?>
+  <a href="#checkout" class="breadcrumbs__item is-active">Add Vehicle Form</a>
+</nav>
+<!-- /Breadcrumb -->
   <div class="row">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <strong>
-          <span class="glyphicon glyphicon-th"></span>
-          <span>Add Application</span>
-       </strong>
+  <?php echo display_msg($msg); ?>
+    <div class="col-sm-6 mx-auto">
+      <div class="card-header bg-dark">
+      <span style="color:White"><i class="bi bi-person-plus-fill"></i> Add new vehicle</span>
       </div>
       <div class="panel-body">
         <div class="col-md-6">
           <form method="post" action="fleet_addvehicle.php" autocomplete="off">
             <div class="form-group">
                 <label for="v_category">Category</label>
-                <select class="form-control" name="v_category" placeholder="v_category">
-                  <option <?php echo 'selected="selected"';?>>Choose Category</option>
+                <select class="form-control" name="v_category" placeholder="v_category">                  
                   <option <?php if('v_category');?>value="3">ARMORED VEHICLE</option>
                   <option <?php if('v_category');?>value="2">VAN</option>
                   <option <?php if('v_category');?>value="1">CAR</option>

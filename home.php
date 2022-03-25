@@ -1,6 +1,7 @@
 <?php
   $page_title = 'Home Page';
   require_once('includes/load.php');
+  if(page_require_level(4)){ redirect('logistics2/home.php',false);}
   if (!$session->isUserLoggedIn(true)) { redirect('index.php', false);}
 ?>
 <?php include_once('layouts/header.php'); ?>

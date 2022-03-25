@@ -39,6 +39,9 @@
          <i class="bi bi-printer-fill"></i>
           Print Report
          </button>
+        <div class="text-end">
+          <a href="fleet_addvehicle.php" class="btn btn-info pull-right"> Add New Vehicle</a>
+         </div>
         </div>
       </div>
       <div class="card-body">
