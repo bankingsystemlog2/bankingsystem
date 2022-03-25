@@ -38,8 +38,8 @@
         <ul class="info-menu list-inline list-unstyled">
           <li class="profile">
             <a href="#" data-toggle="dropdown" class="toggle" aria-expanded="false">
-              <!--<img src="../uploads/users/<?php echo $user['image'];?>" alt="user-image" class="img-circle img-inline">-->
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Font_Awesome_5_solid_user-circle.svg/1200px-Font_Awesome_5_solid_user-circle.svg.png" alt="user-image" class="img-circle img-inline">
+              <img src="../uploads/users/<?php echo $user['image'];?>" alt="user-image" class="img-circle img-inline">
+              
               <span><?php echo remove_junk(ucfirst($user['name'])); ?> <i class="caret"></i></span>
             </a>
             <ul class="dropdown-menu">
