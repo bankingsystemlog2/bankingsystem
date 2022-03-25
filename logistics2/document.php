@@ -1,6 +1,6 @@
 <?php
   $page_title = 'Document Tracking';
-  require_once('includes/load.php');
+  require_once('../includes/log2load.php');
 ?>
 <?php
 // Checkin What level user has permission to view this page
@@ -44,7 +44,7 @@ global $db;
 
 ?>
 
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('../layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
 <style>
    #documentTrackingTable{
@@ -118,4 +118,4 @@ $("#myTable").DataTable(
   );
 </script>
 
-  <?php include_once('layouts/footer.php'); ?>
+  <?php include_once('../layouts/footer.php'); ?>

@@ -1,11 +1,11 @@
 <?php
   $page_title = 'Admin Home Page';
-  require_once('includes/load.php');
+  require_once('../includes/log2load.php');
   // Checkin What level user has permission to view this page
-   page_require_level(3);
+   page_require_level(4);
 ?>
 <?php
- $c_user          = count_by_id('users');
+ $c_user = count_by_id('users');
 
 ?>
 <?php include_once('../layouts/header.php'); ?>
@@ -31,4 +31,4 @@
 	</a>
 
 
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('../layouts/footer.php'); ?>

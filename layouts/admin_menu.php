@@ -19,12 +19,12 @@
   </li>
 <!-- All Sub modules Side Nav Bar -->
 
-<!-- Collections -->
+<!-- Fleet Management -->
   <li>
     <a
       class="nav-link px-3 sidebar-link"
       data-bs-toggle="collapse"
-      href="#Collections"
+      href="#Fleet"
     >
     <span class="me-2"><i class="bi bi-book-half"></i></span>
 

@@ -1,11 +1,11 @@
 <?php
   $page_title = 'All Group';
-  require_once('includes/load.php');
+  require_once('../includes/log2load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
   $all_groups = find_all('user_groups');
 ?>
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('../layouts/header.php'); ?>
 <div class="row">
    <div class="col-md-12">
      <?php echo display_msg($msg); ?>
@@ -83,4 +83,4 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-  <?php include_once('layouts/footer.php'); ?>
+  <?php include_once('../layouts/footer.php'); ?>

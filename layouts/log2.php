@@ -1,7 +1,7 @@
 <ul class="navbar-nav">
   <li>
     <div class="text-muted small fw-bold text-uppercase px-3">
-      CORE
+      LOG 2
     </div>
   </li>
   <li>
@@ -33,7 +33,7 @@
       <?php if ($notifCollection['notifCollection']>=1): ?>
       <span class="badge1" data-badge="<?php echo $notifCollection['notifCollection']; ?>">Fleet Management</span>
     <?php elseif ($notifCollection['notifCollection']==0): ?>
-      <span>Collection</span>
+      <span>Fleet Management</span>
     <?php endif; ?>
     <?php endforeach; ?>
     <!-- End of Notifcation Codes -->
@@ -48,7 +48,7 @@
     <div class="collapse" id="Collections">
       <ul class="navbar-nav ps-3">
         <li>
-          <a href="fleet.php" class="nav-link px-3">
+          <a href="logistics2/fleet.php" class="nav-link px-3">
             <span class="me-2"
               ><i class="bi bi-person-lines-fill"></i></span>
 
@@ -57,31 +57,13 @@
                 <?php if ($notifCollectionLoans['LoansNotif']>=1): ?>
                 <span class="badge1" data-badge="<?php echo $notifCollectionLoans['LoansNotif']; ?>">Vehicle Information</span>
               <?php elseif ($notifCollectionLoans['LoansNotif']==0): ?>
-                <span>List of Loans</span>
+                <span>Vehicle Information</span>
               <?php endif; ?>
               <?php endforeach; ?>
             <!--EndNotification for Loans -->
 
           </a>
-        </li>
-        <li>
-          <a href="logistics2/fleet.php" class="nav-link px-3">
-            <span class="me-2"
-              ><i class="bi bi-wallet2"></i
-            ></span>
-
-            <!--Notification for Deposits -->
-              <?php foreach ($notifCollectionDeposits as $notifCollectionDeposits): ?>
-              <?php if ($notifCollectionDeposits['DepositsNotif']>=1): ?>
-              <span class="badge1" data-badge="<?php echo $notifCollectionDeposits['DepositsNotif']; ?>"> List of Deposits</span>
-            <?php elseif ($notifCollectionDeposits['DepositsNotif']==0): ?>
-              <span>List of Deposits</span>
-            <?php endif; ?>
-            <?php endforeach; ?>
-          <!--EndNotification for Deposits -->
-
-          </a>
-        </li>
+        </li>        
         <li>
           <a href="Collections.php" class="nav-link px-3">
             <span class="me-2"

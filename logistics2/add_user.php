@@ -1,6 +1,6 @@
 <?php
   $page_title = 'Add User';
-  require_once('includes/load.php');
+  require_once('../includes/log2load.php');
   // Checkin What level user has permission to view this page
   page_require_level(1);
   $groups = find_all('user_groups');
@@ -37,7 +37,7 @@
    }
  }
 ?>
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('../layouts/header.php'); ?>
   <?php echo display_msg($msg); ?>
   <div class="row">
     <div class="panel panel-default">
@@ -81,4 +81,4 @@
     </div>
   </div>
 
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('../layouts/footer.php'); ?>
