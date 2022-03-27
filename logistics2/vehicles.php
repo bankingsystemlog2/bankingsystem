@@ -4,7 +4,7 @@
 ?>
 <?php
 // Checkin What level user has permission to view this page
- page_require_level(1);
+ page_require_level(4);
 //pull out all user form database
  $all_users = find_all_user();
 ?>
@@ -28,7 +28,7 @@
         <input type="date" name="from_date" id="from_date" class="form-control dateFilter" placeholder="From Date" />
       </div>
       <div class="col-md-2">
-        <input type="date" name="to_date" id="to_date" class="form-control dateFilter" placeholder="To Date" />
+        <input type="text" name="to_date" id="to_date" class="form-control dateFilter" placeholder="To Date" />
       </div>
       <div class="col-md-2">
         <input type="button" name="search" id="btn_search" value="Search" class="btn btn-primary" />

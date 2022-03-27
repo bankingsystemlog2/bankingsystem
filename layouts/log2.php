@@ -78,7 +78,7 @@
 
 <!-- End of Collections -->
 
-<!-- Disbursments -->
+<!-- Vehicle Reservation -->
   <li>
     <a
       class="nav-link px-3 sidebar-link"
@@ -91,9 +91,9 @@
       <?php
       $totalnot=$notifDisburs['roCount']+$notifDisburs['poCount']+$notifDisburs['uCount'];
        if ($totalnot>=1): ?>
-       <span class="badge1" data-badge="<?php echo $totalnot; ?>">Disbursment</span>
+       <span class="badge1" data-badge="<?php echo $totalnot; ?>">Vehicle Reservation</span>
      <?php elseif ($notifCollection['notifCollection']==0): ?>
-      <span>Disbursment</span>
+      <span>Vehicle Reservation</span>
       <?php endif; ?>
       <?php endforeach; ?>
 
@@ -106,11 +106,11 @@
     <div class="collapse" id="Disbursments">
       <ul class="navbar-nav ps-3">
         <li>
-          <a href="Claims_reimbursment.php" class="nav-link px-3">
+          <a href="vehicles.php" class="nav-link px-3">
             <span class="me-2"
               ><i class="bi bi-credit-card-fill"></i
             ></span>
-            <span>Claims & Reimbursment</span>
+            <span>Vehicle Reservation</span>
           </a>
         </li>
         <li>
