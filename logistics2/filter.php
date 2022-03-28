@@ -4,18 +4,21 @@ if(isset($_POST["from_date"], $_POST["to_date"]))
 {  
      $connect = mysqli_connect("localhost", "root", "", "bank");  
      $output = '';  
-     $query = "  
-     SELECT * FROM v_res WHERE res_date NOT '".$_POST["from_date"]."' AND '".$_POST["to_date"]."'  
+     $avail = "  
+     SELECT fleetid FROM v_res WHERE ('".$_POST["from_date"]."'NOT BETWEEN from_date AND to_date) AND ('".$_POST["to_date"]."'NOT BETWEEN from_date AND to_date) AND (from_date NOT BETWEEN '".$_POST["from_date"]."' AND '".$_POST["to_date"]."') AND (from_date NOT BETWEEN '".$_POST["from_date"]."' AND '".$_POST["to_date"]."')
      ";  
+     $query = "
+     SELECT * FROM v_info WHERE ('".$avail."' != fleetid)
+     ";
      $result = mysqli_query($connect, $query);  
      $output .= '  
           <table class="table table-bordered">  
                <tr>  
-                    <th width="5%">ID</th>  
-                    <th width="30%">Customer Name</th>  
-                    <th width="43%">Item</th>  
-                    <th width="10%">Value</th>  
-                    <th width="12%">Order Date</th>  
+                    <th>Model</th>  
+                    <th>Seating Capacity</th>  
+                    <th>Type</th>  
+                    <th>Category</th>  
+                    <th>Registration Number</th>  
                </tr>  
       ';  
      if(mysqli_num_rows($result) > 0)  
@@ -24,11 +27,11 @@ if(isset($_POST["from_date"], $_POST["to_date"]))
           {  
                $output .= '  
                     <tr>  
-                         <td>'. $row["id"] .'</td>  
-                         <td>'. $row[""] .'</td>  
-                         <td>'. $row["order_item"] .'</td>  
-                         <td>'. $row["order_value"] .'</td>  
-                         <td>'. $row["order_date"] .'</td>  
+                         <td>'. $row["v_model"] .'</td>  
+                         <td>'. $row["v_capacity"] .'</td>  
+                         <td>'. $row["v_enginetype"] .'</td>  
+                         <td>'. $row["v_category"] .'</td>  
+                         <td>'. $row["v_regnum"] .'</td>  
                     </tr>  
                ';  
            }  

@@ -48,7 +48,7 @@
     <div class="collapse" id="Collections">
       <ul class="navbar-nav ps-3">
         <li>
-          <a href="logistics2/fleet.php" class="nav-link px-3">
+          <a href="fleet.php" class="nav-link px-3">
             <span class="me-2"
               ><i class="bi bi-person-lines-fill"></i></span>
 

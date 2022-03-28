@@ -86,7 +86,7 @@
             </div>
             <div class="form-group">
                 <label for="v_year">Year</label>
-                <input type="text" class="form-control" name ="v_year"  placeholder="Year Purchased">
+                <input type="text" class="form-control" name ="v_year"  placeholder="Model year">
             </div>
             <div class="form-group">
                 <label for="v_color">Color</label>
@@ -106,15 +106,15 @@
             </div>
             <div class="form-group">
                 <label for="v_datepur">Date of Purchase</label>
-                <input type="text" class="form-control" name ="v_datepur"  placeholder="Date Purchased">
+                <input type="date" class="form-control" name ="v_datepur"  placeholder="Date Purchased">
             </div>
             <div class="form-group">
                 <label for="v_manu">Manufacturer</label>
                 <input type="text" class="form-control" name ="v_manu"  placeholder="Manufacturer">
             </div>
             <div class="form-group">
-                <label for="v_enginetype">Engine Type</label>
-                <input type="text" class="form-control" name ="v_enginetype"  placeholder="Engine Type">
+                <label for="v_enginetype">Transmission</label>
+                <input type="text" class="form-control" name ="v_enginetype"  placeholder="Automatic or Manual">
             </div>
             <div class="form-group">
                 <label for="v_loc">Location of purchase</label>
