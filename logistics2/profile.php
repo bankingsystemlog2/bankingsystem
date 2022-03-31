@@ -2,7 +2,7 @@
   $page_title = 'My profile';
   require_once('../includes/log2load.php');
   // Checkin What level user has permission to view this page
-   page_require_level(3);
+   page_require_level(4);
 ?>
   <?php
   $user_id = (int)$_GET['id'];

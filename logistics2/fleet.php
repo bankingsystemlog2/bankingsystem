@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Accounts Payable';
+  $page_title = 'Vehicle Information';
   require_once('../includes/log2load.php');
   // Checkin What level user has permission to view this page
    page_require_level(4);
@@ -16,7 +16,7 @@
    <a href="admin.php" class="breadcrumbs__item">Home</a>
   <?php endif; ?>
 
-  <a href="#checkout" class="breadcrumbs__item is-active">Fleet Management</a>
+  <a href="#checkout" class="breadcrumbs__item is-active">Vehicle Information</a>
 </nav>
 <!-- /Breadcrumb -->
 

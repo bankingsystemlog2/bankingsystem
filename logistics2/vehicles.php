@@ -39,9 +39,9 @@
       <div class="col-md-3">
         <input type="date" name="to_date" id="to_date" class="form-control dateFilter input2" placeholder="To Date" />
       </div>
-      <div class="col-md-2">
+      <!-- <div class="col-md-2">
         <input type="button" name="search" id="btn_search" value="Search" class="btn btn-primary" />
-      </div>
+      </div> -->
       <div class="row">
       
     </div>
@@ -53,7 +53,7 @@
             <th>Seating Capacity</th>  
             <th>Type</th>  
             <th>Category</th>  
-            <th>Order Date</th>  
+            <th>Registration Number</th>  
           </tr>
         </thead>
         <tbody>

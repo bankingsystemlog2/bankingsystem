@@ -1,7 +1,7 @@
 <?php
   $page_title = 'Edit Submittion';
   require_once('../includes/log2load.php');
-   page_require_level(1);
+   page_require_level(4);
    $vendors = find_vendor_by_id('vendors',current_user('id'));
 ?>
 <?php

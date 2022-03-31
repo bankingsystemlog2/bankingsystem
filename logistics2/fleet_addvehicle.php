@@ -56,7 +56,7 @@
 <nav class="breadcrumbs">
   <?php if ($user['user_level'] === '4'): ?>
     <a href="admin.php" class="breadcrumbs__item">Home</a>
-    <a href="fleet.php" class="breadcrumbs__item">Fleet table</a>
+    <a href="fleet.php" class="breadcrumbs__item">Vehicle Information</a>
   <?php elseif ($user['user_level'] === '2'): ?>
    <a href="user_dashboard.php" class="breadcrumbs__item">Home</a>
   <?php endif; ?>

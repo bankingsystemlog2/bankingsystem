@@ -63,15 +63,7 @@
             <!--EndNotification for Loans -->
 
           </a>
-        </li>        
-        <li>
-          <a href="Collections.php" class="nav-link px-3">
-            <span class="me-2"
-              ><i class="bi bi-collection"></i
-            ></span>
-            <span>All Collections</span>
-          </a>
-        </li>
+        </li>           
       </ul>
     </div>
   </li>
@@ -112,31 +104,7 @@
             ></span>
             <span>Vehicle Reservation</span>
           </a>
-        </li>
-        <li>
-          <a href="procurement.php" class="nav-link px-3">
-            <span class="me-2"
-              ><i class="bi bi-bag"></i
-            ></span>
-            <span>Procurment</span>
-          </a>
-        </li>
-        <li>
-          <a href="admin.php" class="nav-link px-3">
-            <span class="me-2"
-              ><i class="bi bi-cone-striped"></i
-            ></span>
-            <span>Utilities & Expenses</span>
-          </a>
-        </li>
-        <li>
-          <a href="admin.php" class="nav-link px-3">
-            <span class="me-2"
-              ><i class="bi bi-cash"></i
-            ></span>
-            <span>Payroll</span>
-          </a>
-        </li>
+        </li>          
       </ul>
     </div>
   </li>
@@ -150,7 +118,7 @@
         href="#Budgets"
       >
         <span class="me-2"><i class="bi bi-wallet-fill"></i></span>
-        <span>Budget Management</span>
+        <span>Vendor</span>
         <span class="ms-auto">
           <span class="right-icon">
             <i class="bi bi-chevron-down"></i>
@@ -160,35 +128,27 @@
       <div class="collapse" id="Budgets">
         <ul class="navbar-nav ps-3">
           <li>
-            <a href="admin.php" class="nav-link px-3">
+            <a href="vendor.php" class="nav-link px-3">
               <span class="me-2"
                 ><i class="bi bi-file-earmark-post"></i
               ></span>
-              <span>Budget Proposals</span>
+              <span>List of Applicants</span>
             </a>
           </li>
           <li>
-            <a href="admin.php" class="nav-link px-3">
+            <a href="vendor_list.php" class="nav-link px-3">
               <span class="me-2"
                 ><i class="bi bi-cash"></i
               ></span>
-              <span>Budget Releasing</span>
+              <span>Vendor List</span>
             </a>
-          </li>
-          <li>
-            <a href="admin.php" class="nav-link px-3">
-              <span class="me-2"
-                ><i class="bi bi-calendar-check-fill"></i
-              ></span>
-              <span>Settled</span>
-            </a>
-          </li>
+          </li>          
         </ul>
       </div>
     </li>
     <!-- End of Budget Management -->
 
-    <!-- AP & AR Records  -->
+    <!-- Document Tracking  -->
       <li>
         <a
           class="nav-link px-3 sidebar-link"
@@ -196,7 +156,7 @@
           href="#Records"
         >
           <span class="me-2"><i class="bi bi-file-earmark-bar-graph"></i></span>
-          <span>AP & AR Records</span>
+          <span>Document Tracking</span>
           <span class="ms-auto">
             <span class="right-icon">
               <i class="bi bi-chevron-down"></i>
@@ -206,25 +166,17 @@
         <div class="collapse" id="Records">
           <ul class="navbar-nav ps-3">
             <li>
-              <a href="admin.php" class="nav-link px-3">
+              <a href="document.php" class="nav-link px-3">
                 <span class="me-2"
                   ><i class="bi bi-file-earmark-spreadsheet"></i
                 ></span>
-                <span>Accounts Payable Records</span>
+                <span>Tracking</span>
               </a>
-            </li>
-            <li>
-              <a href="AccountsRecievable.php" class="nav-link px-3">
-                <span class="me-2"
-                  ><i class="bi bi-file-earmark-spreadsheet"></i
-                ></span>
-                <span>Accounts Recievable Records</span>
-              </a>
-            </li>
+            </li>            
           </ul>
         </div>
       </li>
-      <!-- End of AP & AR Records -->
+      <!-- End of Document Tracking -->
 
       <!-- General Ledger  -->
         <li>
@@ -234,7 +186,7 @@
             href="#GeneralLedger"
           >
             <span class="me-2"><i class="bi bi-journal-bookmark-fill"></i></span>
-            <span>General Ledger</span>
+            <span>Audit Management</span>
             <span class="ms-auto">
               <span class="right-icon">
                 <i class="bi bi-chevron-down"></i>
@@ -244,21 +196,13 @@
           <div class="collapse" id="GeneralLedger">
             <ul class="navbar-nav ps-3">
               <li>
-                <a href="admin.php" class="nav-link px-3">
+                <a href="audit_form.php" class="nav-link px-3">
                   <span class="me-2"
                     ><i class="bi bi-clipboard-data-fill"></i
                   ></span>
-                  <span>Chart of Accounts</span>
+                  <span>Audit</span>
                 </a>
-              </li>
-              <li>
-                <a href="admin.php" class="nav-link px-3">
-                  <span class="me-2"
-                    ><i class="bi bi-speedometer2"></i
-                  ></span>
-                  <span>Accounts Recievable Records</span>
-                </a>
-              </li>
+              </li>              
             </ul>
           </div>
         </li>

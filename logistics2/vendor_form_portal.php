@@ -1,10 +1,6 @@
 <?php
   ob_start();
-<<<<<<< HEAD
-  require_once('../includes/load.php');
-=======
   require_once('../includes/log2load.php');
->>>>>>> 6f7d438ace8af29aa970a0a5d969c159b66b057e
   $users_id = current_user()['id'];
   //if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
 ?>

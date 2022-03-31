@@ -1,7 +1,7 @@
 <?php
   $page_title = 'Audit Form';
   require_once('../includes/log2load.php');
-   page_require_level(1);
+   page_require_level(4);
    global $db;
    $id = $_GET['id'];
    $sql = $db->query("SELECT * FROM audit WHERE id='{$id}' LIMIT 1");
