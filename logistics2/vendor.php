@@ -8,7 +8,7 @@
 //pull out all user form database
  $all_vendors = find_all_inner('vendors');
 ?>
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
 
 

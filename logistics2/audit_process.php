@@ -46,7 +46,7 @@
   }
 }
 ?>
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading clearfix">

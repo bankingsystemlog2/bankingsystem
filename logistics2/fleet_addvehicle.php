@@ -31,6 +31,7 @@
        $v_license   = remove_junk($db->escape($_POST['v_license']));
        $v_condition   = remove_junk($db->escape($_POST['v_condition']));
        $v_avail   = remove_junk($db->escape($_POST['v_avail'])); 
+       $fleetimg  = remove_junk($db->escape($_POST['fleetimg'])); 
         $query = "INSERT INTO v_info (";
         $query .="v_category,v_model,v_year,v_color,v_regnum,v_serialnum,v_capacity,v_datepur,v_manu,v_enginetype,v_loc,v_fueltype,v_fuelcap,v_license,v_condition,v_avail";
         $query .=") VALUES (";
@@ -51,7 +52,7 @@
    }
  }
 ?>
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
   <?php if ($user['user_level'] === '4'): ?>
@@ -140,9 +141,15 @@
                 <label for="v_avail">Availability</label>
                 <input type="text" class="form-control" name ="v_avail"  placeholder="Availability">
             </div>
+            <div class="input-group">
+              <label for="v_avail">Vehicle Image</label>
+              <span class="input-group-btn">
+                <input type="file" name="fleetimg" multiple="multiple" class="btn btn-primary btn-file"/>
+              </span>
+            </div> 
             <div class="form-group clearfix">
               <button type="submit" name="fleet_addvehicle" class="btn btn-success">Submit</button>              
-            </div>            
+            </div>          
           </form>
         </div>
       </div>

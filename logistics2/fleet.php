@@ -5,7 +5,7 @@
    page_require_level(4);
   $vehicle = find_all('v_info');
 ?>
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
   <?php if ($user['user_level'] === '1'): ?>

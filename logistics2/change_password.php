@@ -36,7 +36,7 @@
     }
   }
 ?>
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
 <div class="login-page">
     <div class="text-center">
        <h3>Change your password</h3>

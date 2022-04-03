@@ -37,7 +37,7 @@
    }
  }
 ?>
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
   <?php echo display_msg($msg); ?>
   <div class="row">
     <div class="panel panel-default">

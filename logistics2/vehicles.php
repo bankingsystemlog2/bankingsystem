@@ -14,7 +14,7 @@
  $all_users = find_all_user();
 ?>
 
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  

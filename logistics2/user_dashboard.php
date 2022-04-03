@@ -5,7 +5,7 @@
    page_require_level(3);
 ?>
 
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
 
 <div class="row">
    <div class="col-md-6">

@@ -8,7 +8,7 @@
 //pull out all user form database
  $data =  getAuditlog('audit_logs');
 ?>
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
 <style>
   #myInput{

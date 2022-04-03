@@ -5,7 +5,7 @@
    page_require_level(4);
   $all_groups = find_all('user_groups');
 ?>
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
 <div class="row">
    <div class="col-md-12">
      <?php echo display_msg($msg); ?>

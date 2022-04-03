@@ -12,7 +12,7 @@
     $user_p = find_by_id('users',$user_id);
   endif;
 ?>
-<?php include_once('../layouts/header.php'); ?>
+<?php include_once('../layouts/log2header.php'); ?>
 <div class="row">
    <div class="col-md-4">
        <div class="panel profile">
