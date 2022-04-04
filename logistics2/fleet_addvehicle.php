@@ -10,42 +10,43 @@
 ?>
 <?php
   if(isset($_POST['fleet_addvehicle'])){
+  
+    $req_fields = array('v_category', 'v_model', 'v_year', 'v_color', 'v_regnum', 'v_serialnum', 'v_capacity', 'v_datepur', 'v_manu', 'v_enginetype', 'v_loc', 'v_fueltype', 'v_fuelcap', 'v_license', 'v_condition', 'v_avail');
+    validate_fields($req_fields);
 
-   $req_fields = array('v_category', 'v_model', 'v_year', 'v_color', 'v_regnum', 'v_serialnum', 'v_capacity', 'v_datepur', 'v_manu', 'v_enginetype', 'v_loc', 'v_fueltype', 'v_fuelcap', 'v_license', 'v_condition', 'v_avail');
-   validate_fields($req_fields);
-
-   if(empty($errors)){
-       $v_category   = remove_junk($db->escape($_POST['v_category']));
-       $v_model   = remove_junk($db->escape($_POST['v_model']));
-       $v_year   = remove_junk($db->escape($_POST['v_year']));
-       $v_color   = remove_junk($db->escape($_POST['v_color']));
-       $v_regnum   = remove_junk($db->escape($_POST['v_regnum']));
-       $v_serialnum   = remove_junk($db->escape($_POST['v_serialnum'])); 
-       $v_capacity   = remove_junk($db->escape($_POST['v_capacity']));
-       $v_datepur   = remove_junk($db->escape($_POST['v_datepur']));
-       $v_manu   = remove_junk($db->escape($_POST['v_manu']));
-       $v_enginetype   = remove_junk($db->escape($_POST['v_enginetype']));
-       $v_loc   = remove_junk($db->escape($_POST['v_loc'])); 
-       $v_fueltype   = remove_junk($db->escape($_POST['v_fueltype']));
-       $v_fuelcap   = remove_junk($db->escape($_POST['v_fuelcap']));
-       $v_license   = remove_junk($db->escape($_POST['v_license']));
-       $v_condition   = remove_junk($db->escape($_POST['v_condition']));
-       $v_avail   = remove_junk($db->escape($_POST['v_avail'])); 
-       $fleetimg  = remove_junk($db->escape($_POST['fleetimg'])); 
-        $query = "INSERT INTO v_info (";
-        $query .="v_category,v_model,v_year,v_color,v_regnum,v_serialnum,v_capacity,v_datepur,v_manu,v_enginetype,v_loc,v_fueltype,v_fuelcap,v_license,v_condition,v_avail";
-        $query .=") VALUES (";
-        $query .="'{$v_category}', '{$v_model}', '{$v_year}', '{$v_color}', '{$v_regnum}', '{$v_serialnum}', '{$v_capacity}', '{$v_datepur}', '{$v_manu}', '{$v_enginetype}', '{$v_loc}', '{$v_fueltype}', '{$v_fuelcap}', '{$v_license}', '{$v_condition}', '{$v_avail}'";
-        $query .=")";
-        if($db->query($query)){
-          //success
-          $session->msg('s',"Application form sent! ");
-          redirect('fleet_addvehicle.php', false);
-        } else {
-          //failed
-          $session->msg('d',' Sorry Application form failed to send!');
-          redirect('fleet_addvehicle.php', false);
-        }
+    if(empty($errors)){
+      if()
+        $v_category   = remove_junk($db->escape($_POST['v_category']));
+        $v_model   = remove_junk($db->escape($_POST['v_model']));
+        $v_year   = remove_junk($db->escape($_POST['v_year']));
+        $v_color   = remove_junk($db->escape($_POST['v_color']));
+        $v_regnum   = remove_junk($db->escape($_POST['v_regnum']));
+        $v_serialnum   = remove_junk($db->escape($_POST['v_serialnum'])); 
+        $v_capacity   = remove_junk($db->escape($_POST['v_capacity']));
+        $v_datepur   = remove_junk($db->escape($_POST['v_datepur']));
+        $v_manu   = remove_junk($db->escape($_POST['v_manu']));
+        $v_enginetype   = remove_junk($db->escape($_POST['v_enginetype']));
+        $v_loc   = remove_junk($db->escape($_POST['v_loc'])); 
+        $v_fueltype   = remove_junk($db->escape($_POST['v_fueltype']));
+        $v_fuelcap   = remove_junk($db->escape($_POST['v_fuelcap']));
+        $v_license   = remove_junk($db->escape($_POST['v_license']));
+        $v_condition   = remove_junk($db->escape($_POST['v_condition']));
+        $v_avail   = remove_junk($db->escape($_POST['v_avail'])); 
+        $fleetimg  = remove_junk($db->escape($_POST['fleetimg'])); 
+          $query = "INSERT INTO v_info (";
+          $query .="v_category,v_model,v_year,v_color,v_regnum,v_serialnum,v_capacity,v_datepur,v_manu,v_enginetype,v_loc,v_fueltype,v_fuelcap,v_license,v_condition,v_avail,fleetimg";
+          $query .=") VALUES (";
+          $query .="'{$v_category}', '{$v_model}', '{$v_year}', '{$v_color}', '{$v_regnum}', '{$v_serialnum}', '{$v_capacity}', '{$v_datepur}', '{$v_manu}', '{$v_enginetype}', '{$v_loc}', '{$v_fueltype}', '{$v_fuelcap}', '{$v_license}', '{$v_condition}', '{$v_avail}','{$fleetimg}'";
+          $query .=")";
+          if($db->query($query)){
+            //success
+            $session->msg('s',"Application form sent! ");
+            redirect('fleet_addvehicle.php', false);
+          } else {
+            //failed
+            $session->msg('d',' Sorry Application form failed to send!');
+            redirect('fleet_addvehicle.php', false);
+          }
    } else {
      $session->msg("d", $errors);
       redirect('fleet_addvehicle.php',false);
@@ -144,7 +145,7 @@
             <div class="input-group">
               <label for="v_avail">Vehicle Image</label>
               <span class="input-group-btn">
-                <input type="file" name="fleetimg" multiple="multiple" class="btn btn-primary btn-file"/>
+                <input type="file" accept=".jpg,.jpeg,.png,.gif" name="fleetimg" multiple="multiple" class="btn btn-primary btn-file"/>
               </span>
             </div> 
             <div class="form-group clearfix">
