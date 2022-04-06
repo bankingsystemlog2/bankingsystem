@@ -10,13 +10,13 @@
 ?>
 <?php
   if(isset($_POST['fleet_addvehicle'])){
-    $fleetimg = $_FILES['fleetimg'];
+    $fleetimg1 = $_FILES['fleetimg'];
 
-    $imgName = $fleetimg['name'];
-    $imgTmpName = $fleetimg['tmp_name'];
-    $imgSize = $fleetimg['size'];
-    $imgError = $fleetimg['error'];
-    $imgType = $fleetimg['type'];
+    $imgName = $fleetimg1['name'];
+    $imgTmpName = $fleetimg1['tmp_name'];
+    $imgSize = $fleetimg1['size'];
+    $imgError = $fleetimg1['error'];
+    $imgType = $fleetimg1['type'];
 
     $imgExt = explode('.', $imgName);
     $imgActualExt = strtolower(end($imgExt));
@@ -27,7 +27,7 @@
 
     if(in_array($imgActualExt, $allowed)){
       if($imgError === 0){
-        if($imgSize < 1000000){
+        if($imgSize <= 100000000){
           if(empty($errors)){
             $v_category   = remove_junk($db->escape($_POST['v_category']));
             $v_model   = remove_junk($db->escape($_POST['v_model']));

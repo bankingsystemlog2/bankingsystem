@@ -78,8 +78,39 @@
             <td><?php echo $row['v_condition']; ?></td>
             <td>
             <button $id =<?php echo $row['fleetid'];?> data-bs-toggle = "modal" data-bs-target = "#exampleModal-<?php echo $row['fleetid'];?>" class="btn btn-info btn-viewReciept"><i class="bi bi-file-earmark-post-fill"></i> Details</a></td>
-              </td>
-             </tr>
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal-<?php echo $row['fleetid'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header bg-secondary">
+                      <h5 class="modal-title" id="exampleModalLabel" style="Color:white">Change password</h5>
+                      <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close">
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      
+                      <form method="post" action="edit_account.php" class="clearfix">
+                      <div class="form-group">
+                            <label for="newPassword" class="control-label"><?php echo $row['v_model'];?></label>
+                            <input type="password" class="form-control" name="new-password" placeholder="New password" required>
+                      </div>
+                      <br>
+                      <div class="form-group">
+                            <label for="oldPassword" class="control-label">Old password</label>
+                            <input type="password" class="form-control" name="old-password" placeholder="Old password" required>
+                      </div>
+                    </div>
+                    <div class="modal-footer bg-secondary">
+                      <input type="hidden" name="id" value="<?php echo (int)$user['id'];?>">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="Submit" name="change_password" class="btn btn-success"><i class="fas fa-check"></i> Change password</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            </tr>
            <?php endforeach; ?>
            </tbody>
          </table>
@@ -87,37 +118,4 @@
       </div>
     </div>
   </div>
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal-<?php echo $row['fleetid'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-secondary">
-          <h5 class="modal-title" id="exampleModalLabel" style="Color:white">Change password</h5>
-          <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close">
-          </button>
-        </div>
-        <div class="modal-body">
-          
-          <form method="post" action="edit_account.php" class="clearfix">
-          <div class="form-group">
-                <label for="newPassword" class="control-label"><?php echo $row['v_model'];?></label>
-                <input type="password" class="form-control" name="new-password" placeholder="New password" required>
-          </div>
-          <br>
-          <div class="form-group">
-                <label for="oldPassword" class="control-label">Old password</label>
-                <input type="password" class="form-control" name="old-password" placeholder="Old password" required>
-          </div>
-        </div>
-        <div class="modal-footer bg-secondary">
-          <input type="hidden" name="id" value="<?php echo (int)$user['id'];?>">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            <button type="Submit" name="change_password" class="btn btn-success"><i class="fas fa-check"></i> Change password</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
 <?php include_once('../layouts/footer.php'); ?>
