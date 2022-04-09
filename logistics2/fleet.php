@@ -74,7 +74,14 @@
             <?php echo "Armored Vehicle";?>
             <?php endif;?>
             </td>
-            <td><?php echo $row['v_avail']; ?></td>
+            <td><?php if($row['v_avail'] === '1'){
+              echo "Available";}
+            elseif($row['v_avail'] === '2'){
+              echo "Unavailable";}
+            elseif($row['v_avail'] === '3'){
+              echo "Under Maintenance";}
+            ?>
+            </td>
             <td><?php echo $row['v_condition']; ?></td>
             <td>
             <button $id =<?php echo $row['fleetid'];?> data-bs-toggle = "modal" data-bs-target = "#exampleModal-<?php echo $row['fleetid'];?>" class="btn btn-info btn-viewReciept"><i class="bi bi-file-earmark-post-fill"></i> Details</a></td>

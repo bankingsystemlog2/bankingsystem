@@ -195,7 +195,6 @@
             <table class="table table-bordered table-striped" id="myTable">
             <thead>
             <tr>
-                <th class="text-center" style="width: 50px;">#</th>
                 <th>Title</th>
                 <th>Section/Department</th>
                 <th class="text-center" style="width: 15%;">Date Created</th>
@@ -211,7 +210,6 @@
             <tbody>
             <?php foreach($all_vendors as $a_vendor): ?>
             <tr>
-            <td class="text-center"><?php echo count_id();?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['title']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['sec_dep']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['date_created']))?></td>
