@@ -64,10 +64,19 @@
         
         if($db->query($query)){
           move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-          $session->msg('s',"Application form sent! ");
-          //end AuditLog Insert
-         // redirect('landing_page.php', false);
-         $message = "Application Sent!";
+          $date = date('Y-m-d H:i:s');
+          $queryy = "INSERT INTO docu_tracking (";
+          $queryy .="Document_Sender,Action,Document_Subject,Location,Date_Created";
+          $queryy .=") VALUES (";
+          $queryy .="'{$users_id}','Add new Applicant $name', '{$target_file}', 'Vendor', '{$date}'";
+          $queryy .=")";
+          if($db->query($queryy)){
+            $session->msg('s',"Application form sent! ");
+
+              //end AuditLog Insert
+            // redirect('landing_page.php', false);
+            $message = "Application Sent!";
+          }
         echo "<script type='text/javascript'>alert('$message');</script>";
         } else {
          

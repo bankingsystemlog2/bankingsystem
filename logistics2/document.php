@@ -75,9 +75,9 @@ global $db;
       <table class="table table-bordered table-striped" id="myTable">
         <thead>
           <tr>
+          <th class="text-center" style="width: 15%;">ID</th>
           <th class="text-center" style="width: 15%;">Location</th>
             <th>Action</th>
-            <th class="text-center" style="width: 15%;">Name</th>
             <th class="text-center" style="width: 15%;">Document Subject</th>
             <th class="text-center" style="width: 15%;">Date Created</th>
           </tr>
@@ -85,9 +85,9 @@ global $db;
         <tbody>
           <?php foreach($data as $a_vendor): ?>
             <tr>
-            <td><?php echo str_replace('.php', '', (ucwords($a_vendor['Location'])))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['Action']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['name']))?></td>
+              <td><?php echo remove_junk(ucwords($a_vendor['Document_Sender']))?></td>
+              <td><?php echo str_replace('.php', '', (ucwords($a_vendor['Location'])))?></td>
+              <td><?php echo remove_junk(ucwords($a_vendor['Action']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['Document_Subject']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['Date_Created']))?></td>
           <?php endforeach;?>

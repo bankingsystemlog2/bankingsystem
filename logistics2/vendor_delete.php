@@ -7,9 +7,9 @@
   $delete_id = delete_by_id('vendors',(int)$_GET['id']);
   if($delete_id){
       $session->msg("s","Submittion deleted.");
-      redirect('vendor_form.php');
+      redirect('vendor copy.php');
   } else {
       $session->msg("d","Deletion failed.");
-      redirect('vendor_form.php');
+      redirect('vendor copy.php');
   }
 ?>

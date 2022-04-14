@@ -612,7 +612,7 @@ function getAuditlog($table){
  }
  function getDocuTracking($table){
   global $db;
-  $sql = "select docu_tracking.Action,users.name,docu_tracking.Document_Subject,docu_tracking.Location,docu_tracking.Date_Created from docu_tracking inner join users on docu_tracking.users_id=users.id";
+  $sql = "SELECT * FROM docu_tracking";
   return find_by_sql($sql);
 
  }
