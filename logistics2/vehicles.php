@@ -10,7 +10,7 @@
 ?>
 <?php  
             $connect = mysqli_connect("localhost", "root", "", "bank");  
-            $from = remove_junk($_POST['from_date']);
+            $from = remove_junk(@$_POST['from_date']);
             $to = remove_junk(@$_POST['to_date']);
             $avail = "  
             SELECT fleetid FROM v_res WHERE ('".$from."'NOT BETWEEN from_date AND to_date) AND ('".$to."'NOT BETWEEN from_date AND to_date) AND (from_date NOT BETWEEN '".$from."' AND '".$to."') AND (from_date NOT BETWEEN '".$from."' AND '".$to."')
