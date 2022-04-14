@@ -108,7 +108,6 @@
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="uploads/users/<?php echo $user['image'];?>" alt="Admin" class="rounded-circle" width="140">
                     <div class="mt-3">
-
                       <form class="form" action="edit_account.php" method="POST" enctype="multipart/form-data">
                       <div class="input-group mb-3">
                         <div class="form-group">
