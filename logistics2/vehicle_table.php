@@ -6,17 +6,17 @@ $error = '';
 $idenifier='';
 $d1;
 $d2;
-if(isset($_POST["query"], $_POST["query1"]))
+if(isset($_POST["fromdate"],$_POST["todate"]))
 {
- $conn = mysqli_connect("localhost", "root", "", "bank"); 
- $to_date = date('Y-m-d', strtotime(mysqli_real_escape_string($conn,trim(@$_POST["query1"]))));
- $from_date = date('Y-m-d', strtotime(mysqli_real_escape_string($conn,trim(@$_POST["query"]))));
+$conn = mysqli_connect("localhost", "root", "", "bank"); 
+$from_date = $_POST["fromdate"];
+$to_date = $_POST["todate"];
  $avail = "  
  SELECT * FROM v_res WHERE 
- ('".$to_date."' BETWEEN from_date AND to_date) OR 
- ('".$from_date."' BETWEEN from_date AND to_date) OR 
- (from_date BETWEEN '".$from_date."' AND '".$to_date."') OR 
- (to_date BETWEEN '".$from_date."' AND '".$to_date."')            
+  ('2022-04-13' BETWEEN from_date AND to_date) OR 
+  ('2022-04-15' BETWEEN from_date AND to_date) OR 
+  (from_date BETWEEN '2022-04-13' AND '2022-04-15') OR 
+  (to_date BETWEEN '2022-04-13' AND '2022-04-15')
  ";
  $result = mysqli_query($conn, $avail);
  $output .= '
