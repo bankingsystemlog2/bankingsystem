@@ -55,25 +55,6 @@
        </strong>
       </div>
       <form action="vehicle_table.php" method="post">
-<script> 
-  $(function () {
-            $("#from_date").datepicker({
-                onSelect: function (date, datepicker) {
-                    if (date != "") {
-                        alert("Selected Date: " + date);
-                    }
-                }
-            });
-        });
-            $("#to_date").datepicker({
-                onSelect: function (date, datepicker) {
-                    if (date != "") {
-                        alert("Selected Date: " + date);
-                    }
-                }
-            });
-        });
-</script> 
         <div class="col-md-4">
           <label for="from_date"></label>
           <input type="date" name="from_date" id="from_date" class="form-control datepicker input" placeholder="From Date" />
@@ -100,52 +81,44 @@
       $(document).ready(function(){
 
       // load_data(); 
-
-      function load_data(fromdate, todate)
-      {
-        $.ajax({
-        url:"vehicle_table.php",
-        method:"POST",
-        data:{fromdate:fromdate, todate:todate},
-        success:function(data)
-        {
-          $('.activity').html(data);
-        }
-        });
-      }
       let to_date = document.querySelector("#to_date");
       let from_date = document.querySelector("#from_date");
-      var search1 = $('#from_date').val();
-      var search = $('#to_date').val();
       to_date.addEventListener("change", stateHandle);
       from_date.addEventListener("change", stateHandle);
       to_date.disabled = true;
-      var fromdate = search.datepicker({  format: 'yyyy-mm-dd'});
-      var todate = search1.datepicker({  format: 'yyyy-mm-dd'});
       function stateHandle() {
       if(document.querySelector("#from_date").value === "") {
           to_date.disabled = true;
           $('.activity').html('');          
         }
-        else {     
+        else {
           if(document.querySelector("#to_date").value === ""){
             to_date.disabled = false;
             $('.activity').html('');
           } 
           else{          
             to_date.disabled = false;
-            load_data(fromdate, todate);
-
+            var fromdate = $('#from_date').val();
+            var todate = $('#to_date').val();
+            if (fromdate != '' && todate != '') {
+              $.ajax({
+                url:"vehicle_table.php",
+                method:"POST",
+                data:{fromdate:fromdate, todate:todate},
+                success:function(data)
+                {
+                  $('.activity').html(data);
+                }
+              });
+            }
+            else {
+              $('.activity').html('no data');
+            }
           }     
           to_date.disabled = false;
           $('.activity').html('');
         } 
-      } 
-      $(document).ready(function(){  
-        $.datepicker.setDefaults({  
-          dateFormat: 'yy-mm-dd'   
-        });  
-      });
+      }
       });
   </script>
 <?php include_once('../layouts/footer.php'); ?>
