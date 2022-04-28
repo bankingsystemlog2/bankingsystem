@@ -33,7 +33,7 @@
   <div class="col-md-12 mb-3">
     <div class="card">
       <div class="card-header">
-        <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Recievables Table</span>
+        <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Fleet Table</span>
         <div class="text-end">
           <button class="btn btn-warning btn-xs-block" type="button">
          <i class="bi bi-printer-fill"></i>

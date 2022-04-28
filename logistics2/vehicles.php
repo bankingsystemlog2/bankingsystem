@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Fleet Management';
+  $page_title = 'Vehicle Reservation';
   require_once('../includes/log2load.php');
 ?>
 <?php
@@ -40,6 +40,19 @@
 //             ?> 
 
 <?php include_once('../layouts/log2header.php'); ?>
+<!-- Breadcrumb -->
+<nav class="breadcrumbs">
+  <?php if ($user['user_level'] === '1'): ?>
+    <a href="../admin.php" class="breadcrumbs__item">Home</a>
+  <?php elseif ($user['user_level'] === '2'): ?>
+   <a href="../user_dashboard.php" class="breadcrumbs__item">Home</a>
+   <?php elseif ($user['user_level'] === '4'): ?>
+   <a href="admin.php" class="breadcrumbs__item">Home</a>
+  <?php endif; ?>
+
+  <a href="#checkout" class="breadcrumbs__item is-active">Vehicle Reservation</a>
+</nav>
+<!-- /Breadcrumb -->
 <div class="row">
    <div class="col-md-12">
      <?php echo display_msg($msg); ?>
@@ -49,22 +62,16 @@
   <div class="col-md-12 mb-3">
     <div class="card">
       <div class="card-header">
-        <strong>
-          <span class="glyphicon glyphicon-th"></span>
-          <span>Vehicle Reservation</span>
-       </strong>
+      <span class="badge rounded-pill bg-success"><i class="bi"></i> Vehicle Reservation</span>
       </div>
       <form action="vehicle_table.php" method="post">
         <div class="col-md-4">
-          <label for="from_date"></label>
+          <label for="from_date">Select start Date</label>
           <input type="date" name="from_date" id="from_date" class="form-control datepicker input" placeholder="From Date" />
         </div>
         <div class="col-md-4">
-          <label for="to_date"></label>
+          <label for="to_date">Select end date</label>
           <input type="date" name="to_date" id="to_date" class="form-control datepicker input2" placeholder="To Date" />
-        </div>
-        <div class="col-md-2">
-          <button data-bs-toggle="modal" name= "button" id= "button" data-bs-target="#exampleModal" type="submit" value="Search" class="btn btn-primary button1" >Search</button>
         </div>
         <div class="activity">
                                          

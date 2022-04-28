@@ -17,7 +17,11 @@ $to_date = $_POST['todate'];
  ";
  $result = mysqli_query($conn, $avail);
  $output .= '
-    <table class="table-responsive">
+    <div class="table-responsive">
+    <table
+            id="example"
+            class="table table-striped data-table"
+            style="width: 100%" >
     <thead>
 
     <tr>
@@ -92,7 +96,9 @@ else
   ';
  echo $error;
 }
-$output .= '</table>';
+$output .= '
+    </table>
+    </div>';
  echo $output;
 
 ?>
