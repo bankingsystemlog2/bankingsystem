@@ -30,7 +30,7 @@ $to_date = $_POST['todate'];
         <th>Type</th>  
         <th>Category</th>  
         <th>Registration Number</th>  
-        <th></th>
+        <th>Click to reserve</th>
     </tr>
     </thead>
  ';
@@ -51,6 +51,7 @@ $to_date = $_POST['todate'];
                 <td>".remove_junk(ucwords($row1['v_enginetype']))."</td>
                 <td>".remove_junk(ucwords($row1['v_category']))."</td>
                 <td>".remove_junk(ucwords($row1['v_regnum']))."</td>
+                <td><button $id =". $row['fleetid']." data-bs-toggle = 'modal' data-bs-target = '#exampleModal-".$row1['fleetid']."' class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Details</a></td>
             </tbody>
                 ";
             }
@@ -75,6 +76,7 @@ $to_date = $_POST['todate'];
                 <td>".remove_junk(ucwords($row1['v_enginetype']))."</td>
                 <td>".remove_junk(ucwords($row1['v_category']))."</td>
                 <td>".remove_junk(ucwords($row1['v_regnum']))."</td>
+                <td><button id =". $row1['fleetid']." data-bs-toggle = 'modal' data-bs-target = '#exampleModal-".$row1['fleetid']."' class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Reserve</a></td>
             </tbody>
                 ";
             }

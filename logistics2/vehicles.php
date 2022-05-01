@@ -8,37 +8,6 @@
 //pull out all user form database
  $all_users = find_all_user();
 // ?>
-// <?php  
-//   if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-//     $connect = mysqli_connect("localhost", "root", "", "bank");  
-//     // $from = remove_junk(@$_POST['from_date']);
-//   //   // $to = remove_junk(@$_POST['to_date']);
-//   // $from = date('Y-m-d', strtotime(mysqli_real_escape_string($connect,trim($_POST["from_date"]))));
-//   // $to = date('Y-m-d', strtotime(mysqli_real_escape_string($connect,trim($_POST["to_date"]))));
-//   $avail = "  
-//   SELECT * FROM v_res WHERE 
-//   ('2022-04-13' BETWEEN from_date AND to_date) OR 
-//   ('2022-04-15' BETWEEN from_date AND to_date) OR 
-//   (from_date BETWEEN '2022-04-13' AND '2022-04-15') OR 
-//   (to_date BETWEEN '2022-04-13' AND '2022-04-15')            
-//   ";  
-//   $result =  mysqli_query($connect, $avail);  
-//   $numrow = mysqli_num_rows($result);
-//   if($numrow>0){
-//     $row1 = mysqli_fetch_array($result);
-//     $query = "SELECT * FROM v_info WHERE `fleetid` NOT LIKE '%".$row1['fleetid']."%'";  
-//     $result1 = mysqli_query($connect, $query); ?>
-//   <?php
-         
-//             }else{
-//               $query = "SELECT * FROM v_info";  
-//               $result1 = mysqli_query($connect, $query); 
-              
-//             }
-//           }
-//             ?> 
-
 <?php include_once('../layouts/log2header.php'); ?>
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
@@ -77,10 +46,8 @@
                                          
         </div>
       </form>
-        <div class="row">
     </div>
-    
-  
+  </div>  
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
