@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2022 at 12:23 PM
+-- Generation Time: May 08, 2022 at 01:45 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -57,7 +57,8 @@ INSERT INTO `audit` (`id`, `title`, `sec_dep`, `date_from`, `date_to`, `Body`, `
 (19, 'Qweasdwa', 'Qwrqwdasdwad', '2022-01-11', '2022-01-19', 'Aweqdasdwad', '0', 3, 'uploads/FORMAT.docx', '2022-01-11'),
 (20, 'Papot', 'Papot', '2022-01-11', '2022-01-19', 'Papot Upload', '0', 3, 'uploads/Energy Pyramid.docx', '2022-01-11'),
 (21, 'Eqwe', 'Rtqweq', '2022-01-11', '2022-01-12', 'Audit Papot', '0', 3, 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(22, 'New', 'New', '2022-02-21', '2022-02-22', 'New', '0', 3, 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20');
+(22, 'New', 'New', '2022-02-21', '2022-02-22', 'New', '0', 3, 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
+(0, 'asdwa', 'asdwad', '2022-04-15', '2022-04-23', 'asd', 'Antigua &amp; Barbuda', 1, 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09');
 
 -- --------------------------------------------------------
 
@@ -528,10 +529,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(10, 'Peter', 'Admin', '134096e12368b9bce038ccac61963716c01fa8ee', 1, 'lsu2olid10.jpg', 1, '2022-03-23 18:16:50'),
+(10, 'Peter', 'Admin', '134096e12368b9bce038ccac61963716c01fa8ee', 1, 'lsu2olid10.jpg', 1, '2022-04-28 19:30:44'),
 (12, 'Mae Ann Caunca', 'User', '12dea96fec20593566ab75692c9949596833adc9', 2, '3gy5cpqg12.jpg', 0, '2022-03-15 20:49:39'),
 (14, 'AnotherAdmin', 'AnotherAdmin11', '8451ba8a14d79753d34cb33b51ba46b4b025eb81', 1, 'no_image.jpg', 1, '2022-03-23 18:24:04'),
-(15, 'Kenneth Bruze', 'kledde', '14e6a4b25bfda81a8808bde13a2046abdfd39d7b', 4, 'no_image.jpg', 1, '2022-03-23 18:02:37');
+(15, 'Kenneth Bruze', 'kledde', '14e6a4b25bfda81a8808bde13a2046abdfd39d7b', 4, 'no_image.jpg', 1, '2022-05-08 19:14:35');
 
 -- --------------------------------------------------------
 
@@ -638,8 +639,18 @@ CREATE TABLE `v_info` (
   `v_fuelcap` varchar(50) CHARACTER SET latin1 NOT NULL,
   `v_license` varchar(100) CHARACTER SET latin1 NOT NULL,
   `v_condition` varchar(100) CHARACTER SET latin1 NOT NULL,
-  `v_avail` int(3) NOT NULL
+  `v_avail` int(3) NOT NULL,
+  `fleetimg` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `v_info`
+--
+
+INSERT INTO `v_info` (`fleetid`, `v_category`, `v_model`, `v_year`, `v_color`, `v_regnum`, `v_serialnum`, `v_capacity`, `v_datepur`, `v_manu`, `v_enginetype`, `v_loc`, `v_fueltype`, `v_fuelcap`, `v_license`, `v_condition`, `v_avail`, `fleetimg`) VALUES
+(7, 3, 'Starex', 2015, 'Gold', '5273423', '1234555', 9, '2017-03-23', 'Hyundai', 'Automatic', 'Baguio City', 'Diesel', '100L', '41231313', 'Good', 1, NULL),
+(8, 3, 'a', 1, 'a', '1', '1', 1, '2022-04-18', 'a', 'a', 'a', 'a', '1', '2', 'good', 1, 'techies.png'),
+(9, 1, 'Civic', 2010, 'gray', '555', '555', 5, '2020-01-01', 'honda', 'manual', 'qc', 'diesel', '100', '55', 'good', 1, '2020-12-12.png');
 
 -- --------------------------------------------------------
 
@@ -651,9 +662,18 @@ CREATE TABLE `v_res` (
   `res_id` int(20) NOT NULL,
   `fleetid` int(20) NOT NULL,
   `emp_id` int(20) NOT NULL,
-  `res_date` date NOT NULL,
-  `status` int(10) NOT NULL
+  `from_date` date NOT NULL,
+  `to_date` date NOT NULL,
+  `location` text NOT NULL,
+  `Remarks` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `v_res`
+--
+
+INSERT INTO `v_res` (`res_id`, `fleetid`, `emp_id`, `from_date`, `to_date`, `location`, `Remarks`) VALUES
+(1, 7, 1, '2022-04-14', '2022-04-15', '1', NULL);
 
 --
 -- Indexes for dumped tables
@@ -867,13 +887,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `v_info`
 --
 ALTER TABLE `v_info`
-  MODIFY `fleetid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `fleetid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `v_res`
 --
 ALTER TABLE `v_res`
-  MODIFY `res_id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `res_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
