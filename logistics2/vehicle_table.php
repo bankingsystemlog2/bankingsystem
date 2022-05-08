@@ -8,6 +8,8 @@ if(isset($_POST['fromdate'],$_POST['todate']))
 $conn = mysqli_connect("localhost", "root", "", "bank"); 
 $from_date = $_POST['fromdate'];
 $to_date = $_POST['todate'];
+$_SESSION['from_date'] = $_POST['fromdate'];
+$_SESSION['to_date'] = $_POST['todate'];
  $avail = "  
  SELECT * FROM v_res WHERE 
   ('".$from_date."' BETWEEN from_date AND to_date) OR 
@@ -17,6 +19,7 @@ $to_date = $_POST['todate'];
  ";
  $result = mysqli_query($conn, $avail);
  $output .= '
+    <form method = "POST" action = "vehicle_reservation_form.php">
     <div class="table-responsive">
     <table
             id="example"
@@ -51,8 +54,8 @@ $to_date = $_POST['todate'];
                 <td>".remove_junk(ucwords($row1['v_enginetype']))."</td>
                 <td>".remove_junk(ucwords($row1['v_category']))."</td>
                 <td>".remove_junk(ucwords($row1['v_regnum']))."</td>
-                <td><button $id =". $row['fleetid']." data-bs-toggle = 'modal' data-bs-target = '#exampleModal-".$row1['fleetid']."' class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Details</a></td>
-            </tbody>
+                <td><a href = 'vehicle_reservation_form.php' name='fleetid' value=".$row1['fleetid']." class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Reserve</a></td>
+                </tbody>
                 ";
             }
         }else{ $error .= '<div class="alert alert-danger border-light alert-dismissible fade show" role="alert">
@@ -76,7 +79,7 @@ $to_date = $_POST['todate'];
                 <td>".remove_junk(ucwords($row1['v_enginetype']))."</td>
                 <td>".remove_junk(ucwords($row1['v_category']))."</td>
                 <td>".remove_junk(ucwords($row1['v_regnum']))."</td>
-                <td><button id =". $row1['fleetid']." data-bs-toggle = 'modal' data-bs-target = '#exampleModal-".$row1['fleetid']."' class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Reserve</a></td>
+                <td><a href = 'vehicle_reservation_form.php' fleetid = ".$row1['fleetid']." class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Reserve</a></td>
             </tbody>
                 ";
             }
@@ -100,7 +103,8 @@ else
 }
 $output .= '
     </table>
-    </div>';
+    </div>
+    </form>';
  echo $output;
 
 ?>

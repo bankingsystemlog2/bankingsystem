@@ -7,6 +7,9 @@
   $groups = find_all('v_res');
   $fleet = find_all('v_info');
   $users_id = current_user()['id'];
+  $fleet_id = $_POST['fleetid'];
+  $from_date = $_SESSION['from_date'];
+  $to_date = $_SESSION['to_date'];
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
@@ -19,15 +22,14 @@
 
    if(empty($errors)){
        $emp_id   = remove_junk($db->escape($_POST['emp_id']));
-       $emp_pos   = remove_junk($db->escape($_POST['emp_pos']));
-       $res_time   = remove_junk($db->escape($_POST['res_time']));
-       $s_date   = remove_junk($db->escape($_POST['s_date']));
-       $r_deadline   = remove_junk($db->escape($_POST['r_deadline']));
+       $fromdate   = remove_junk($db->escape($_POST['from_date']));
+       $todate   = remove_junk($db->escape($_POST['to_date']));
        $fleetid   = remove_junk($db->escape($_POST['fleetid'])); 
+       $remarks   = remove_junk($db->escape($_POST['remarks'])); 
         $query = "INSERT INTO v_res (";
-        $query .="emp_id,emp_pos,res_time,s_date,r_deadline,fleetid";
+        $query .="emp_id,from_date,to_date,fleetid,location,remarks";
         $query .=") VALUES (";
-        $query .="'{$emp_id}', '{$emp_pos}', '{$res_time}', '{$s_date}', '{$r_deadline}', '{$fleetid}'";
+        $query .="'{$emp_id}', '{$fromdate}', '{$todate}', '{$fleetid}','{$location}','{$remarks}'";
         $query .=")";
         if($db->query($query)){
           //sucess
@@ -58,16 +60,16 @@
         <div class="col-md-6">
           <form method="post" action="fleet_addvehicle.php" autocomplete="off">
             <div class="form-group">
-                <label for="v_category">Category</label>
-                <select class="form-control" name="v_category" placeholder="v_category">
-                  <option <?php if('v_category')  echo 'selected="selected"';?>value="3">ARMORED VEHICLE</option>
-                  <option <?php if('v_category')  echo 'selected="selected"';?>value="2">VAN</option>
-                  <option <?php if('v_category')  echo 'selected="selected"';?>value="1">CAR</option>
-                </select>
+              <input type="hidden" class="form-control" name = "from_date" value = <?php echo $from_date; ?>>
             </div>
             <div class="form-group">
-                <label for="v_model">Model</label>
-                <input type="text" class="form-control" name ="v_model"  placeholder="v_model">
+              <input type="hidden" class="form-control" name = "to_date" value = <?php echo $from_date; ?>>
+            </div>
+            <div class="form-group">
+              <input type="hidden" class="form-control" name = "fleetid" value = <?php echo $fleet_id; ?>>
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name ="emp_id"  value = <?php echo $users_id; ?>>
             </div>
             <div class="form-group">
                 <label for="v_year">Year</label>
