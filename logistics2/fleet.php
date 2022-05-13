@@ -86,16 +86,15 @@
             <td>
             <button $id =<?php echo $row['fleetid'];?> data-bs-toggle = "modal" data-bs-target = "#exampleModal-<?php echo $row['fleetid'];?>" class="btn btn-info btn-viewReciept"><i class="bi bi-file-earmark-post-fill"></i> Details</a></td>
               <!-- Modal -->
-              <div class="modal fade" id="exampleModal-<?php echo $row['fleetid'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
+              <div class="modal top fade" id="exampleModal-<?php echo $row['fleetid'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-keyboard="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header bg-secondary">
                       <h5 class="modal-title" id="exampleModalLabel" style="Color:white">Change password</h5>
                       <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close">
                       </button>
                     </div>
-                    <div class="modal-body">
-                      
+                    <div class="modal-body">                      
                       <form method="post" action="edit_account.php" class="clearfix">
                       <div class="form-group">
                             <label for="newPassword" class="control-label"><?php echo $row['v_model'];?></label>
@@ -109,8 +108,26 @@
                     </div>
                     <div class="modal-footer bg-secondary">
                       <input type="hidden" name="id" value="<?php echo (int)$user['id'];?>">
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="Submit" name="change_password" class="btn btn-success"><i class="fas fa-check"></i> Change password</button>
+                      <button type="Submit" name="edit_fleet" class="btn btn-success"><i class="fas fa-check"></i> Edit</button>
+                      <button type="button" name="delete_fleet" data-bs-toggle = "modal" class="btn btn-danger" data-bs-target = "#deleteModal">Delete</button>
+                        <!-- Delete Modal -->
+                        <div class="modal top fade" id="deleteModal">
+                          <div class="modal-dialog modal-l modal-dialog-centered">
+                            <div class="modal-content"> 
+                              <form class="modal-content" action="fleet.php">
+                                <div class="modal-header bg-secondary">
+                                  <div class="container">
+                                    <h1 class="modal-title">Delete Vehicle</h1>
+                                  </div>
+                                </div>
+                                <div class="modal-footer bg-secondary">
+                                  <button type="button" data-bs-dismiss="modal" class="btn btn-success"><i class="fas fa-check"></i>Cancel</button>
+                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
                       </form>
                     </div>
                   </div>

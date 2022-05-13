@@ -36,7 +36,8 @@
        $v_license   = remove_junk($db->escape($_POST['v_license']));
        $v_condition   = remove_junk($db->escape($_POST['v_condition']));
        $v_avail   = remove_junk($db->escape($_POST['v_avail'])); 
-            $sql = "UPDATE v_info SET v_category ='{$v_category}', v_model ='{$v_model}',v_year='{$v_year}',v_color='{$v_color}',v_regnum='{$v_regnum}',v_serialnum='{$v_serialnum}',v_capacity='{$v_capacity}',v_datepur='{$v_datepur}',v_manu='{$v_manu}',v_enginetype='{$v_enginetype}',v_loc='{$v_loc}',v_fueltype='{$v_fueltype}',v_fuelcap='{$v_fuelcap}',v_license='{$v_license}',v_condition='{$v_condition}',v_avail='{$v_avail}' WHERE fleetid='{$fleetid}'";
+       $fleetimg  = remove_junk($db->escape($_POST['fleetimg']))
+            $sql = "UPDATE v_info SET v_category ='{$v_category}', v_model ='{$v_model}',v_year='{$v_year}',v_color='{$v_color}',v_regnum='{$v_regnum}',v_serialnum='{$v_serialnum}',v_capacity='{$v_capacity}',v_datepur='{$v_datepur}',v_manu='{$v_manu}',v_enginetype='{$v_enginetype}',v_loc='{$v_loc}',v_fueltype='{$v_fueltype}',v_fuelcap='{$v_fuelcap}',v_license='{$v_license}',v_condition='{$v_condition}',v_avail='{$v_avail}',fleetimg='{$fleetimg}' WHERE fleetid='{$fleetid}'";
          $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Account Updated ");
@@ -131,6 +132,10 @@
             <div class="form-group">
                 <label for="v_avail">Availability</label>
                 <input type="text" class="form-control" name ="v_avail"  value="<?php echo remove_junk(ucwords($e_fleet['v_avail'])); ?>">
+            </div>
+            <div class="form-group">
+                <label for="v_avail">Vehicle Image</label>
+                <input type="file" accept=".jpg,.jpeg,.png,.gif" multiple="multiple" class="form-control" name ="fleetimg"  value="<?php echo remove_junk(ucwords($e_fleet['fleetimg'])); ?>">
             </div>
             <div class="form-group clearfix">
               <button type="submit" name="update" class="btn btn-info">Submit</button>              

@@ -19,7 +19,7 @@ $_SESSION['to_date'] = $_POST['todate'];
  ";
  $result = mysqli_query($conn, $avail);
  $output .= '
-    <form method = "POST" action = "vehicle_reservation_form.php">
+ <form method="post" action="vehicle_reservation_form.php" >
     <div class="table-responsive">
     <table
             id="example"
@@ -48,13 +48,13 @@ $_SESSION['to_date'] = $_POST['todate'];
             while($row1 = mysqli_fetch_array($result2)){
                 $output .= "
                 <tbody>
-                <tr>
+                <tr> 
                 <td>".remove_junk(ucwords($row1['v_model']))."</td>
                 <td>".remove_junk(ucwords($row1['v_capacity']))."</td>
                 <td>".remove_junk(ucwords($row1['v_enginetype']))."</td>
                 <td>".remove_junk(ucwords($row1['v_category']))."</td>
                 <td>".remove_junk(ucwords($row1['v_regnum']))."</td>
-                <td><a href = 'vehicle_reservation_form.php' name='fleetid' value=".$row1['fleetid']." class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Reserve</a></td>
+                <td><a href = 'vehicle_reservation_form.php?fleetid=".remove_junk(ucwords($row1['fleetid']))."' name = 'fleetid' value ='".remove_junk(ucwords($row1['fleetid']))."'  class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Reserve</a></td>
                 </tbody>
                 ";
             }
@@ -78,10 +78,11 @@ $_SESSION['to_date'] = $_POST['todate'];
                 <td>".remove_junk(ucwords($row1['v_capacity']))."</td>
                 <td>".remove_junk(ucwords($row1['v_enginetype']))."</td>
                 <td>".remove_junk(ucwords($row1['v_category']))."</td>
-                <td>".remove_junk(ucwords($row1['v_regnum']))."</td>
-                <td><a href = 'vehicle_reservation_form.php' fleetid = ".$row1['fleetid']." class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Reserve</a></td>
-            </tbody>
+                <td>".remove_junk(ucwords($row1['v_regnum']))."</td>                
+                <td><a href = 'vehicle_reservation_form.php?fleetid=".$row1['fleetid']."' name = 'fleetid' value = '".remove_junk(ucwords($row1['fleetid']))."' class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Reserve</a></td>
+                </tbody>
                 ";
+                
             }
         }else{ $error .= '<div class="alert alert-danger border-light alert-dismissible fade show" role="alert">
             11111111111No document to track in our database or you input incomplete code
@@ -104,7 +105,8 @@ else
 $output .= '
     </table>
     </div>
-    </form>';
+    </form>
+    ';
  echo $output;
 
 ?>

@@ -33,7 +33,7 @@
       <div class="card-header">
       <span class="badge rounded-pill bg-success"><i class="bi"></i> Vehicle Reservation</span>
       </div>
-      <form action="vehicle_table.php" method="post">
+      <form method="post" action="vehicle_reservation_form.php" >
         <div class="col-md-4">
           <label for="from_date">Select start Date</label>
           <input type="date" name="from_date" id="from_date" class="form-control datepicker input" placeholder="From Date" />
@@ -43,7 +43,7 @@
           <input type="date" name="to_date" id="to_date" class="form-control datepicker input2" placeholder="To Date" />
         </div>
         <div class="activity">
-                                         
+
         </div>
       </form>
     </div>

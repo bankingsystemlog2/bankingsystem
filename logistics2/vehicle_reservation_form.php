@@ -7,7 +7,6 @@
   $groups = find_all('v_res');
   $fleet = find_all('v_info');
   $users_id = current_user()['id'];
-  $fleet_id = $_POST['fleetid'];
   $from_date = $_SESSION['from_date'];
   $to_date = $_SESSION['to_date'];
 ?>
@@ -47,7 +46,9 @@
  }
 ?>
 <?php include_once('../layouts/log2header.php'); ?>
-  <?php echo display_msg($msg); ?>
+  <?php echo display_msg($msg);  
+  if(isset($_GET['fleetid'])){
+  ?>
   <div class="row">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -58,7 +59,8 @@
       </div>
       <div class="panel-body">
         <div class="col-md-6">
-          <form method="post" action="fleet_addvehicle.php" autocomplete="off">
+          <form method="post" action="vehicle_reservation_form.php" autocomplete="off">
+            <?php $fleet_id = $_GET['fleetid'];?>
             <div class="form-group">
               <input type="hidden" class="form-control" name = "from_date" value = <?php echo $from_date; ?>>
             </div>
@@ -72,27 +74,12 @@
                 <input type="hidden" class="form-control" name ="emp_id"  value = <?php echo $users_id; ?>>
             </div>
             <div class="form-group">
-                <label for="v_year">Year</label>
-                <input type="text" class="form-control" name ="v_year"  placeholder="v_year">
+                <label for="v_year">Location</label>
+                <input type="text" class="form-control" name ="v_year"  placeholder="Address">
             </div>
             <div class="form-group">
-                <label for="v_color">Color</label>
-                <input type="text" class="form-control" name ="v_color"  placeholder="v_color">
-            </div>
-            <div class="form-group">
-                <label for="v_regnum">Registration Number</label>
-                <input type="text" class="form-control" name ="v_regnum"  placeholder="v_regnum">
-            </div>
-            <div class="form-group">
-                <label for="v_serialnum">Serial Number</label>
-                <input type="text" class="form-control" name ="v_serialnum"  placeholder="v_serialnum">
-            </div>
-            <div class="form-group">
-                <label for="v_capacity">Maximum Capacity</label>
-                <input type="text" class="form-control" name ="v_capacity"  placeholder="v_capacity">
-            </div>
-            <div class="form-group clearfix">
-              <button type="submit" name="fleet_addvehicle" class="btn btn-success">Submit</button>              
+                <label for="v_color">Remarks</label>
+                <textarea class="form-control" name ="v_color"  placeholder="Additional Informations"></textarea>
             </div>
             
         </form>
@@ -105,36 +92,8 @@
 
     </div>
   </div>
-  <script>  
-      $(document).ready(function(){  
-           $.datepicker.setDefaults({  
-                dateFormat: 'yy-mm-dd'   
-           });  
-           $(function(){  
-                $("#from_date").datepicker();  
-                $("#to_date").datepicker();  
-           });  
-           $('#filter').click(function(){  
-                var from_date = $('#from_date').val();  
-                var to_date = $('#to_date').val();  
-                if(from_date != '' && to_date != '')  
-                {  
-                     $.ajax({  
-                          url:"filter.php",  
-                          method:"POST",  
-                          data:{from_date:from_date, to_date:to_date},  
-                          success:function(data)  
-                          {  
-                               $('#order_table').html(data);  
-                          }  
-                     });  
-                }  
-                else  
-                {  
-                     alert("Please Select Date");  
-                }  
-           });  
-      });  
- </script>
-
+  <?php }
+  else{
+    echo "ERROR!!";
+  }?>
 <?php include_once('../layouts/footer.php'); ?>
