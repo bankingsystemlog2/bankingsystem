@@ -111,7 +111,7 @@
                 <?php echo basename($a_vendor['path_url'])?><i class="glyphicon glyphicon-download"></i>
                 </a>
             </td>
-           <?php if($user['user_level'] === '4'): ?>
+            <?php if($user['user_level'] === '4'): ?>
            <td class="text-center">
              <div class="btn-group">
                 <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">

@@ -102,7 +102,7 @@
                   <label for="phone" class="control-label">Phone Number</label>
                   <input type="tel" class="form-control" name="phone" value="<?php echo remove_junk(ucwords($vendors['Phone'])); ?>">
             </div>
-            <?php if($_SESSION['user_id'] == '1'){?>
+            <?php if($user['user_level'] === '4'): ?>
             <div class="form-group">
               <label for="statuss">Status</label>
                 <select class="form-control" name="statuss">
@@ -111,7 +111,7 @@
                   <option <?php if($vendors['statuss'] === '0') echo 'selected="selected"';?>value="0">Pending</option>
                 </select>
             </div>
-            <?php }?>
+            <?php endif;?>
             <div>
             <button type="submit" name="update-vendor" class="btn btn-info">Update</button></a>
             <a href="vendor copy.php" name="vendor_approval" class="btn btn-danger">Cancel</a>
