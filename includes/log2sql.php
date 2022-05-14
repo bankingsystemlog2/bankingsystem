@@ -617,4 +617,11 @@ function getAuditlog($table){
 
  }
   //===========================================End of Logistics2=======================================================================
-?>
+/*--------------------------------------------------------------*/
+/* Function for find all database table rows by table name
+/*--------------------------------------------------------------*/
+function find_all_audit() {
+  global $db;
+    return find_by_sql("SELECT audit.*, users.name FROM audit INNER JOIN users ON audit.preparedby = users.id");
+}
+

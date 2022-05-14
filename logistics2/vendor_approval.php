@@ -114,7 +114,7 @@
             <?php }?>
             <div>
             <button type="submit" name="update-vendor" class="btn btn-info">Update</button></a>
-            <a href="vendor_list.php"><button type="submit" name="vendor_approval" class="btn btn-danger">Cancel</button></a>
+            <a href="vendor copy.php" name="vendor_approval" class="btn btn-danger">Cancel</a>
         </div>
       </div>
     </div>

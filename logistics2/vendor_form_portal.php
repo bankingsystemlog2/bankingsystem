@@ -183,7 +183,7 @@
                 </div>
                 <div class="form-group">
                 <label for="phone">Phone number:</label>
-                 <input type="tel" id="phone" name="phone" placeholder="09*********" required>
+                 <input type="tel" id="phone" name="phone" placeholder="09*********" maxlength = "11" required>
                 </div>
                 <div class="form-group">
                     <label for="upload_file">Upload Any of These:(Business Permit,DIT and etc.)"PDF FORMAT"</label>

@@ -580,6 +580,7 @@ function catetableExists($tablecate){
     }
   return $category;
 }
+
 function find_all_cars(){
   global $db;
   $sql = "SELECT * FROM v_info WHERE v_category = '1'";

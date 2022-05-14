@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2022 at 01:45 PM
+-- Generation Time: May 14, 2022 at 06:26 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -29,13 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `audit` (
   `id` int(11) NOT NULL,
-  `title` text NOT NULL,
-  `sec_dep` text NOT NULL,
-  `date_from` date NOT NULL,
-  `date_to` date NOT NULL,
-  `Body` text NOT NULL,
+  `asset` text NOT NULL,
+  `stated_amount` int(11) NOT NULL,
+  `actual_amount` int(11) NOT NULL,
   `preparedby` varchar(50) NOT NULL,
-  `status` int(11) NOT NULL,
   `urlpath` varchar(350) NOT NULL,
   `date_created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -44,21 +41,23 @@ CREATE TABLE `audit` (
 -- Dumping data for table `audit`
 --
 
-INSERT INTO `audit` (`id`, `title`, `sec_dep`, `date_from`, `date_to`, `Body`, `preparedby`, `status`, `urlpath`, `date_created`) VALUES
-(10, 'TEST2', 'QWE', '2022-01-12', '2022-01-25', 'QWER', '0', 1, '', '2022-01-11'),
-(11, 'Supplies', 'Warehouse', '2022-01-12', '2022-01-19', 'Stored 150 Facemask', '0', 3, '', '2022-01-11'),
-(12, 'testing', 'testing', '2022-01-11', '2022-01-19', 'testing', '0', 1, '', '2022-01-11'),
-(13, 'Testing', 'Testing', '2022-01-11', '2022-01-19', 'Testing123', '0', 5, '', '2022-01-11'),
-(14, 'testing', 'testing', '2022-01-11', '2022-01-19', 'testing2421', 'Antigua &amp; Barbuda', 2, 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(15, 'testtt', 'testtt', '2022-01-11', '2022-01-12', 'testttt', 'Antigua &amp; Barbuda', 1, 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(16, 'tester', 'tester', '2022-01-11', '2022-01-13', 'tester', 'Armenia', 1, 'uploads/FORMAT.docx', '2022-01-11'),
-(17, 'qsa', 'sa', '2022-01-13', '2022-01-12', 'sa', 'Azerbaijan', 1, 'uploads/helen.jpg', '2022-01-11'),
-(18, 'qwrqw', 'qweqwr', '2022-01-11', '2022-01-20', 'qtqweqwe', 'Lester', 1, 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(19, 'Qweasdwa', 'Qwrqwdasdwad', '2022-01-11', '2022-01-19', 'Aweqdasdwad', '0', 3, 'uploads/FORMAT.docx', '2022-01-11'),
-(20, 'Papot', 'Papot', '2022-01-11', '2022-01-19', 'Papot Upload', '0', 3, 'uploads/Energy Pyramid.docx', '2022-01-11'),
-(21, 'Eqwe', 'Rtqweq', '2022-01-11', '2022-01-12', 'Audit Papot', '0', 3, 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(22, 'New', 'New', '2022-02-21', '2022-02-22', 'New', '0', 3, 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
-(0, 'asdwa', 'asdwad', '2022-04-15', '2022-04-23', 'asd', 'Antigua &amp; Barbuda', 1, 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09');
+INSERT INTO `audit` (`id`, `asset`, `stated_amount`, `actual_amount`, `preparedby`, `urlpath`, `date_created`) VALUES
+(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
+(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
+(12, 'testing', 0, 0, '0', '', '2022-01-11'),
+(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
+(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
+(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
+(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
+(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
+(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
+(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
+(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
+(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14');
 
 -- --------------------------------------------------------
 
@@ -197,9 +196,8 @@ CREATE TABLE `docu_tracking` (
   `id` int(11) NOT NULL,
   `Document_Sender` varchar(150) NOT NULL,
   `Action` varchar(255) NOT NULL,
-  `users_id` int(11) NOT NULL,
   `Document_Subject` varchar(255) NOT NULL,
-  `Remarks` varchar(255) NOT NULL,
+  `Remarks` varchar(255) DEFAULT NULL,
   `Location` varchar(255) NOT NULL,
   `Date_Created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -208,8 +206,11 @@ CREATE TABLE `docu_tracking` (
 -- Dumping data for table `docu_tracking`
 --
 
-INSERT INTO `docu_tracking` (`id`, `Document_Sender`, `Action`, `users_id`, `Document_Subject`, `Remarks`, `Location`, `Date_Created`) VALUES
-(2, 'test', 'send the document to \"page name\"', 10, 'test1', 'test', '\"page name\"', '2022-03-02 07:21:56');
+INSERT INTO `docu_tracking` (`id`, `Document_Sender`, `Action`, `Document_Subject`, `Remarks`, `Location`, `Date_Created`) VALUES
+(4, '15', 'Add new Applicant Lester', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II.pdf', NULL, 'Vendor', '2022-04-14 18:36:01'),
+(5, '15', 'Add new Applicant kenneth', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II (2).pdf', NULL, 'Vendor', '2022-05-14 11:37:16'),
+(6, '15', 'Add new Applicant aaaaa', 'uploads/Q3_WEEK-1-2-edited.pdf', NULL, 'Vendor', '2022-05-14 11:47:18'),
+(7, '15', 'Add new Applicant testkenneth', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II (2).pdf', NULL, 'Vendor', '2022-05-14 11:50:06');
 
 -- --------------------------------------------------------
 
@@ -532,7 +533,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`
 (10, 'Peter', 'Admin', '134096e12368b9bce038ccac61963716c01fa8ee', 1, 'lsu2olid10.jpg', 1, '2022-04-28 19:30:44'),
 (12, 'Mae Ann Caunca', 'User', '12dea96fec20593566ab75692c9949596833adc9', 2, '3gy5cpqg12.jpg', 0, '2022-03-15 20:49:39'),
 (14, 'AnotherAdmin', 'AnotherAdmin11', '8451ba8a14d79753d34cb33b51ba46b4b025eb81', 1, 'no_image.jpg', 1, '2022-03-23 18:24:04'),
-(15, 'Kenneth Bruze', 'kledde', '14e6a4b25bfda81a8808bde13a2046abdfd39d7b', 4, 'no_image.jpg', 1, '2022-05-08 19:14:35');
+(15, 'Kenneth Bruze', 'kledde', '14e6a4b25bfda81a8808bde13a2046abdfd39d7b', 4, 'no_image.jpg', 1, '2022-05-14 09:22:08');
 
 -- --------------------------------------------------------
 
@@ -574,26 +575,27 @@ CREATE TABLE `vendors` (
   `Phone` int(11) NOT NULL,
   `users_id` int(11) UNSIGNED DEFAULT NULL,
   `statuss` int(1) NOT NULL,
-  `category` varchar(20) NOT NULL
+  `category` varchar(20) NOT NULL,
+  `path_url` varchar(350) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `vendors`
 --
 
-INSERT INTO `vendors` (`id`, `product_id`, `Name`, `Address`, `Company`, `Email`, `item_description`, `Offer`, `Phone`, `users_id`, `statuss`, `category`) VALUES
-(60, 0, 'Lester', '123asdawda', 'Adawdasd', 'Wadsd@gmail.com', '', '21312', 2147483647, 10, 1, '0'),
-(62, 0, 'Qwerty', '123asdwqe', 'Asdwdad', 'As@gmail.com', '', '2141213', 12512312, 10, 2, '1'),
-(63, 0, 'Sa', 'Sa', 'Sa', 'Sa@gmail.com', '', '15000', 123, 1, 2, '1'),
-(64, 0, 'sa', 'sa', 'sa', 'sa', '', '12', 21, 1, 0, '0'),
-(65, 0, 'test', '123asdwad', 'dwad', 'test@gmail.com', '', '124123', 0, 1, 0, '1'),
-(74, 12, 'teste', 'asdwata', 'wdasdas', 'teste@gmail.com', '', '125123', 2147483647, NULL, 0, '1'),
-(75, 0, 'lester', 'quezon city', 'asdwad', 'lester@gmail.com', '', '1251231', 5123123, NULL, 0, '1'),
-(77, 0, 'lester', 'asdwad', 'asdwa', 'dasd', '', 'awdasd', 0, 1, 0, '1'),
-(80, 1, 'Test', 'test', 'test', 'test@gmail.com', '', '21315123', 51231123, NULL, 0, '1'),
-(81, 1, 'James', 'Asdawdasd', 'Awdasdwa', 'James@gmail.com', 'Item Description Test', '231251231', 2147483647, NULL, 1, '1'),
-(83, 1, 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 0, NULL, 0, '1'),
-(84, 1, 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 0, 10, 0, '1');
+INSERT INTO `vendors` (`id`, `product_id`, `Name`, `Address`, `Company`, `Email`, `item_description`, `Offer`, `Phone`, `users_id`, `statuss`, `category`, `path_url`) VALUES
+(60, 0, 'Lester', '123asdawda', 'Adawdasd', 'Wadsd@gmail.com', '', '21312', 2147483647, 10, 1, '0', ''),
+(62, 0, 'Qwerty', '123asdwqe', 'Asdwdad', 'As@gmail.com', '', '2141213', 12512312, 10, 2, '1', ''),
+(63, 0, 'Sa', 'Sa', 'Sa', 'Sa@gmail.com', '', '15000', 123, 1, 2, '1', ''),
+(64, 0, 'sa', 'sa', 'sa', 'sa', '', '12', 21, 1, 0, '0', ''),
+(65, 0, 'test', '123asdwad', 'dwad', 'test@gmail.com', '', '124123', 0, 1, 0, '1', ''),
+(74, 12, 'teste', 'asdwata', 'wdasdas', 'teste@gmail.com', '', '125123', 2147483647, NULL, 0, '1', ''),
+(75, 0, 'lester', 'quezon city', 'asdwad', 'lester@gmail.com', '', '1251231', 5123123, NULL, 0, '1', ''),
+(77, 0, 'lester', 'asdwad', 'asdwa', 'dasd', '', 'awdasd', 0, 1, 0, '1', ''),
+(80, 1, 'Test', 'test', 'test', 'test@gmail.com', '', '21315123', 51231123, NULL, 0, '1', ''),
+(81, 1, 'James', 'Asdawdasd', 'Awdasdwa', 'James@gmail.com', 'Item Description Test', '231251231', 2147483647, NULL, 1, '1', ''),
+(83, 1, 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 0, NULL, 0, '1', ''),
+(0, 1, 'testkenneth', '123asd', 'asdqwe', 'asdw@gmail.com', 'asdweqe123', '123123', 2147483647, 15, 0, '1', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II (2).pdf');
 
 -- --------------------------------------------------------
 
@@ -827,7 +829,7 @@ ALTER TABLE `collection_transactions`
 -- AUTO_INCREMENT for table `docu_tracking`
 --
 ALTER TABLE `docu_tracking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `expenses`
