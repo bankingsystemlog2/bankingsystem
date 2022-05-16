@@ -1,17 +1,17 @@
 <?php
   $page_title = 'Vehicle Information';
-  require_once('../includes/log2load.php');
+  require_once('includes/log2load.php');
   // Checkin What level user has permission to view this page
-   page_require_level(4);
+   page_require_level(1);
   $vehicle = find_all('v_info');
 ?>
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
   <?php if ($user['user_level'] === '1'): ?>
-    <a href="../admin.php" class="breadcrumbs__item">Home</a>
+    <a href="admin.php" class="breadcrumbs__item">Home</a>
   <?php elseif ($user['user_level'] === '2'): ?>
-   <a href="../user_dashboard.php" class="breadcrumbs__item">Home</a>
+   <a href="user_dashboard.php" class="breadcrumbs__item">Home</a>
    <?php elseif ($user['user_level'] === '4'): ?>
    <a href="admin.php" class="breadcrumbs__item">Home</a>
   <?php endif; ?>
@@ -142,4 +142,4 @@
       </div>
     </div>
   </div>
-<?php include_once('../layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>

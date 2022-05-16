@@ -19,21 +19,21 @@
   </li>
 <!-- All Sub modules Side Nav Bar -->
 
-<!-- Fleet Management -->
+<!-- Finance -->
   <li>
     <a
       class="nav-link px-3 sidebar-link"
       data-bs-toggle="collapse"
-      href="#Fleet"
+      href="#Collections"
     >
     <span class="me-2"><i class="bi bi-book-half"></i></span>
 
     <!-- Notification Codes For Collection -->
       <?php foreach ($notifCollection as $notifCollection): ?>
       <?php if ($notifCollection['notifCollection']>=1): ?>
-      <span class="badge1" data-badge="<?php echo $notifCollection['notifCollection']; ?>">Collection</span>
+      <span class="badge1" data-badge="<?php echo $notifCollection['notifCollection']; ?>">Finance</span>
     <?php elseif ($notifCollection['notifCollection']==0): ?>
-      <span>Collection</span>
+      <span>Finance</span>
     <?php endif; ?>
     <?php endforeach; ?>
     <!-- End of Notifcation Codes -->
@@ -55,9 +55,9 @@
               <!--Notification for Loans -->
                 <?php foreach ($notifCollectionLoans as $notifCollectionLoans): ?>
                 <?php if ($notifCollectionLoans['LoansNotif']>=1): ?>
-                <span class="badge1" data-badge="<?php echo $notifCollectionLoans['LoansNotif']; ?>">List of Loans</span>
+                <span class="badge1" data-badge="<?php echo $notifCollectionLoans['LoansNotif']; ?>">Collection</span>
               <?php elseif ($notifCollectionLoans['LoansNotif']==0): ?>
-                <span>List of Loans</span>
+                <span>Collection</span>
               <?php endif; ?>
               <?php endforeach; ?>
             <!--EndNotification for Loans -->
@@ -73,9 +73,9 @@
             <!--Notification for Deposits -->
               <?php foreach ($notifCollectionDeposits as $notifCollectionDeposits): ?>
               <?php if ($notifCollectionDeposits['DepositsNotif']>=1): ?>
-              <span class="badge1" data-badge="<?php echo $notifCollectionDeposits['DepositsNotif']; ?>"> List of Deposits</span>
+              <span class="badge1" data-badge="<?php echo $notifCollectionDeposits['DepositsNotif']; ?>">Disbursment</span>
             <?php elseif ($notifCollectionDeposits['DepositsNotif']==0): ?>
-              <span>List of Deposits</span>
+              <span>Disbursment</span>
             <?php endif; ?>
             <?php endforeach; ?>
           <!--EndNotification for Deposits -->
@@ -87,200 +87,92 @@
             <span class="me-2"
               ><i class="bi bi-collection"></i
             ></span>
-            <span>All Collections</span>
+            <span>Budget Management</span>
+          </a>
+        </li>
+        <li>
+          <a href="Collections.php" class="nav-link px-3">
+            <span class="me-2"
+              ><i class="bi bi-collection"></i
+            ></span>
+            <span>AP & AR</span>
+          </a>
+        </li>
+        <li>
+          <a href="Collections.php" class="nav-link px-3">
+            <span class="me-2"
+              ><i class="bi bi-collection"></i
+            ></span>
+            <span>General-Ledger</span>
           </a>
         </li>
       </ul>
     </div>
   </li>
 
-<!-- End of Collections -->
+<!-- End of Finance -->
 
-<!-- Disbursments -->
-  <li>
+<!-- HR1 -->
+ <li>
     <a
       class="nav-link px-3 sidebar-link"
       data-bs-toggle="collapse"
-      href="#Disbursments"
+      href="#HR1"
     >
-      <span class="me-2"><i class="bi bi-receipt"></i></span>
-
-      <?php $totalnot=0; foreach ($notifDisburs as $notifDisburs): ?>
-      <?php
-      $totalnot=$notifDisburs['roCount']+$notifDisburs['poCount']+$notifDisburs['uCount'];
-       if ($totalnot>=1): ?>
-       <span class="badge1" data-badge="<?php echo $totalnot; ?>">Disbursment</span>
-     <?php elseif ($notifCollection['notifCollection']==0): ?>
-      <span>Disbursment</span>
-      <?php endif; ?>
-      <?php endforeach; ?>
-
+    <span class="me-2"><i class="bi bi-book-half"></i></span>
+      <span>HR1</span>
       <span class="ms-auto">
         <span class="right-icon">
           <i class="bi bi-chevron-down"></i>
         </span>
       </span>
     </a>
-    <div class="collapse" id="Disbursments">
+    <div class="collapse" id="HR1">
       <ul class="navbar-nav ps-3">
         <li>
-          <a href="Claims_reimbursment.php" class="nav-link px-3">
+          <a href="HR1/hr1/job-posting.php" class="nav-link px-3">
             <span class="me-2"
-              ><i class="bi bi-credit-card-fill"></i
-            ></span>
-            <span>Claims & Reimbursment</span>
+              ><i class="bi bi-person-lines-fill"></i></span>
+                <span>Recruitment</span>
           </a>
         </li>
         <li>
-          <a href="procurement.php" class="nav-link px-3">
+          <a href="HR1/hr1/qualified-applicants.php" class="nav-link px-3">
             <span class="me-2"
-              ><i class="bi bi-bag"></i
-            ></span>
-            <span>Procurment</span>
+              ><i class="bi bi-file-post"></i></span>
+              <span>Applicant Management</span>
           </a>
         </li>
         <li>
-          <a href="admin.php" class="nav-link px-3">
+          <a href="HR1/hr1/newhire-onboard.php" class="nav-link px-3">
             <span class="me-2"
-              ><i class="bi bi-cone-striped"></i
+              ><i class="bi bi-file-post-fill"></i
             ></span>
-            <span>Utilities & Expenses</span>
+            <span>New Hire Onboard</span>
           </a>
         </li>
         <li>
-          <a href="admin.php" class="nav-link px-3">
+          <a href="HR1/hr1/performance-management.php" class="nav-link px-3">
             <span class="me-2"
-              ><i class="bi bi-cash"></i
+              ><i class="bi bi-collection"></i
             ></span>
-            <span>Payroll</span>
+            <span>Performance Management</span>
+          </a>
+        </li>
+        <li>
+          <a href="HR1/hr1/social-recognition.php" class="nav-link px-3">
+            <span class="me-2"
+              ><i class="bi bi-award"></i
+            ></span>
+            <span>Social Recognition</span>
           </a>
         </li>
       </ul>
     </div>
-  </li>
-  <!-- End of Disbursments -->
+     <li>
 
-  <!-- Budget Management -->
-    <li>
-      <a
-        class="nav-link px-3 sidebar-link"
-        data-bs-toggle="collapse"
-        href="#Budgets"
-      >
-        <span class="me-2"><i class="bi bi-wallet-fill"></i></span>
-        <span>Budget Management</span>
-        <span class="ms-auto">
-          <span class="right-icon">
-            <i class="bi bi-chevron-down"></i>
-          </span>
-        </span>
-      </a>
-      <div class="collapse" id="Budgets">
-        <ul class="navbar-nav ps-3">
-          <li>
-            <a href="admin.php" class="nav-link px-3">
-              <span class="me-2"
-                ><i class="bi bi-file-earmark-post"></i
-              ></span>
-              <span>Budget Proposals</span>
-            </a>
-          </li>
-          <li>
-            <a href="admin.php" class="nav-link px-3">
-              <span class="me-2"
-                ><i class="bi bi-cash"></i
-              ></span>
-              <span>Budget Releasing</span>
-            </a>
-          </li>
-          <li>
-            <a href="admin.php" class="nav-link px-3">
-              <span class="me-2"
-                ><i class="bi bi-calendar-check-fill"></i
-              ></span>
-              <span>Settled</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <!-- End of Budget Management -->
+<!-- HR1 -->
 
-    <!-- AP & AR Records  -->
-      <li>
-        <a
-          class="nav-link px-3 sidebar-link"
-          data-bs-toggle="collapse"
-          href="#Records"
-        >
-          <span class="me-2"><i class="bi bi-file-earmark-bar-graph"></i></span>
-          <span>AP & AR Records</span>
-          <span class="ms-auto">
-            <span class="right-icon">
-              <i class="bi bi-chevron-down"></i>
-            </span>
-          </span>
-        </a>
-        <div class="collapse" id="Records">
-          <ul class="navbar-nav ps-3">
-            <li>
-              <a href="admin.php" class="nav-link px-3">
-                <span class="me-2"
-                  ><i class="bi bi-file-earmark-spreadsheet"></i
-                ></span>
-                <span>Accounts Payable Records</span>
-              </a>
-            </li>
-            <li>
-              <a href="AccountsRecievable.php" class="nav-link px-3">
-                <span class="me-2"
-                  ><i class="bi bi-file-earmark-spreadsheet"></i
-                ></span>
-                <span>Accounts Recievable Records</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <!-- End of AP & AR Records -->
-
-      <!-- General Ledger  -->
-        <li>
-          <a
-            class="nav-link px-3 sidebar-link"
-            data-bs-toggle="collapse"
-            href="#GeneralLedger"
-          >
-            <span class="me-2"><i class="bi bi-journal-bookmark-fill"></i></span>
-            <span>General Ledger</span>
-            <span class="ms-auto">
-              <span class="right-icon">
-                <i class="bi bi-chevron-down"></i>
-              </span>
-            </span>
-          </a>
-          <div class="collapse" id="GeneralLedger">
-            <ul class="navbar-nav ps-3">
-              <li>
-                <a href="admin.php" class="nav-link px-3">
-                  <span class="me-2"
-                    ><i class="bi bi-clipboard-data-fill"></i
-                  ></span>
-                  <span>Chart of Accounts</span>
-                </a>
-              </li>
-              <li>
-                <a href="admin.php" class="nav-link px-3">
-                  <span class="me-2"
-                    ><i class="bi bi-speedometer2"></i
-                  ></span>
-                  <span>Accounts Recievable Records</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-      <!-- End of General Ledger -->
 
  <!-- All Sub modules Side Nav Bar End -->
   <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
@@ -290,7 +182,7 @@
     </div>
   </li>
   <li>
-    <a href="#" class="nav-link px-3">
+    <a href="Charts.php" class="nav-link px-3">
       <span class="me-2"><i class="bi bi-graph-up"></i></span>
       <span>Charts</span>
     </a>

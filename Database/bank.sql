@@ -1,6 +1,6 @@
 /*
 SQLyog Community v13.1.7 (64 bit)
-MySQL - 10.4.22-MariaDB : Database - bank
+MySQL - 10.4.24-MariaDB : Database - bank
 *********************************************************************
 */
 
@@ -15,6 +15,38 @@ MySQL - 10.4.22-MariaDB : Database - bank
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`bank` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
 USE `bank`;
+
+/*Table structure for table `account_list` */
+
+DROP TABLE IF EXISTS `account_list`;
+
+CREATE TABLE `account_list` (
+  `id` int(30) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `description` text NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `account_list` */
+
+insert  into `account_list`(`id`,`name`,`description`,`status`,`delete_flag`,`date_created`,`date_updated`) values 
+(1,'Cash','Cash',1,0,'2022-02-01 10:09:26',NULL),
+(2,'Petty Cash','Petty Cash',1,0,'2022-02-01 10:09:40',NULL),
+(3,'Cash Equivalents','Cash Equivalents',1,0,'2022-02-01 10:09:56',NULL),
+(4,'Accounts Receivable','Accounts Receivable',1,0,'2022-02-01 10:10:22',NULL),
+(5,'Interest Receivable','Interest Receivable',1,0,'2022-02-01 10:10:57',NULL),
+(6,'Office Supplies','Office Supplies',1,0,'2022-02-01 10:11:13',NULL),
+(7,'Accounts Payable','Accounts Payable',1,0,'2022-02-01 10:11:55',NULL),
+(8,'Insurance Payable','Insurance Payable',1,0,'2022-02-01 10:12:07',NULL),
+(9,'Interest Payable','Interest Payable',1,0,'2022-02-01 10:12:20',NULL),
+(10,'Legal Fees Payable','Legal Fees Payable',1,0,'2022-02-01 10:12:35',NULL),
+(11,'Office Salaries Payable','Office Salaries Payable',1,0,'2022-02-01 10:12:51',NULL),
+(12,'Salaries Payable','Salaries Payable',1,0,'2022-02-01 10:13:03',NULL),
+(13,'Wages Payable','Wages Payable',1,0,'2022-02-01 10:13:24',NULL);
 
 /*Table structure for table `budgetreleasing` */
 
@@ -34,9 +66,16 @@ CREATE TABLE `budgetreleasing` (
   KEY `FK_budgetreleasing_s` (`P_Status`),
   KEY `FK_procurmentreleasing` (`P_Code`),
   CONSTRAINT `FK_budgetreleasing_s` FOREIGN KEY (`P_Status`) REFERENCES `status` (`Status_Code`)
-) ENGINE=InnoDB AUTO_INCREMENT=257 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=274 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `budgetreleasing` */
+
+insert  into `budgetreleasing`(`P_ID`,`P_Code`,`P_Department`,`P_Requestor`,`P_Purpose`,`P_Amount`,`P_Date`,`P_Tablename`,`P_Status`) values 
+(269,1001,'HR3','maircor bituin','for buying equipment',250,'2021-10-12','reimbursment',104),
+(270,1002,'HR3','ian james barbosa','for buying machines',3140,'2021-10-12','reimbursment',101),
+(271,101,'Logistics 2','Elvira Barbosa','For purchase of new machines',3000000,'2021-11-30','procurment',101),
+(272,101,'Core 1','ian james barbosa','This Record is a paid through agreed Contract',2340,'2021-12-11','',105),
+(273,102,'Logistics 2','Critina Vargas','For purchase of land',4000000,'2021-11-29','procurment',101);
 
 /*Table structure for table `collection` */
 
@@ -60,7 +99,7 @@ CREATE TABLE `collection` (
 /*Data for the table `collection` */
 
 insert  into `collection`(`Co_Code`,`LS_Account_name`,`A_Number`,`Co_Status`,`LS_Date`,`LS_Address`,`LS_City`,`LS_Country`,`LS_Desc`,`LS_Department`,`LS_Type`) values 
-(101,'ian james barbosa',18011424,102,'2021-12-11','Sanbenisa Garden villas','Quezon city','Philippines','This Record is a paid through agreed Contract','Core 1','Loans'),
+(101,'ian james barbosa',18011424,105,'2021-12-11','Sanbenisa Garden villas','Quezon city','Philippines','This Record is a paid through agreed Contract','Core 1','Loans'),
 (103,'Ellie Barbosa',10999212,102,'2021-12-11','Sanbenisa Garden villas','Quezon City','Philippines','This Record is a paid through agreed Contract','Core 1','Loans'),
 (104,'Cristy Vargas',18013999,102,'2022-01-04','Cloocan kaligayahan villas','Quezon City','Philippines','This Record is a record of deposit by the user','Core 1','Deposits'),
 (105,'Thedore jhon',16052100,102,'2022-01-04','Pasig uranbo villas','Pasig City','Philippines','This Record is a record of deposit by the user','Core 1','Deposits'),
@@ -124,7 +163,7 @@ CREATE TABLE `expenses` (
   `Date` date NOT NULL,
   `Collection` int(200) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `expenses` */
 
@@ -147,7 +186,89 @@ insert  into `expenses`(`Id`,`Expenses`,`Date`,`Collection`) values
 (94,0,'2022-03-11',9170),
 (95,0,'2022-03-11',500020),
 (96,0,'2022-03-12',2340),
-(97,0,'2022-03-15',2340);
+(97,0,'2022-03-15',2340),
+(98,0,'2022-03-27',2340),
+(99,0,'2022-04-01',3040),
+(100,250,'2022-04-01',0),
+(101,0,'2022-04-07',2340),
+(102,250,'2022-04-07',0);
+
+/*Table structure for table `general_journal` */
+
+DROP TABLE IF EXISTS `general_journal`;
+
+CREATE TABLE `general_journal` (
+  `id` int(200) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) NOT NULL,
+  `journal_date` date NOT NULL,
+  `description` text NOT NULL,
+  `user_id` int(200) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `general_journal` */
+
+insert  into `general_journal`(`id`,`code`,`journal_date`,`description`,`user_id`,`date_created`,`date_updated`) values 
+(3,'202202-00001','2022-02-01','Capital',1,'2022-02-01 14:08:50','0000-00-00 00:00:00'),
+(4,'202202-00002','2022-02-01','Sample',1,'2022-02-01 15:55:46','0000-00-00 00:00:00'),
+(5,'202202-00003','2022-02-01','Sample 102',1,'2022-02-01 15:59:34','0000-00-00 00:00:00'),
+(7,'202204-00002','2022-04-01','purchase of new machines',1,'2022-04-01 14:24:02','0000-00-00 00:00:00'),
+(10,'202204-00005','2022-04-01','Purchase a new machine',1,'2022-04-01 15:23:16','0000-00-00 00:00:00'),
+(11,'202204-00006','2022-04-01','water bill',1,'2022-04-01 15:25:51','0000-00-00 00:00:00'),
+(12,'202204-00007','2022-04-01','Purchase a machine',1,'2022-04-01 15:29:37','0000-00-00 00:00:00');
+
+/*Table structure for table `group_list` */
+
+DROP TABLE IF EXISTS `group_list`;
+
+CREATE TABLE `group_list` (
+  `id` int(30) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `description` text NOT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = Debit, 2= Credit',
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0=Inactive, 1= Active',
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = No, 1 = Yes ',
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `group_list` */
+
+insert  into `group_list`(`id`,`name`,`description`,`type`,`status`,`delete_flag`,`date_created`,`date_updated`) values 
+(1,'Assets','The cash, inventory, and other resources you owned.',1,1,0,'2022-02-01 09:56:35','2022-02-01 09:56:58'),
+(2,'Revenue','Cash coming into your business through sales and other types of payments',2,1,0,'2022-02-01 09:57:45',NULL),
+(3,'Expenses','The amount you’re spending on services and other items, like payroll, utility bills, and fees for contractors.',1,1,0,'2022-02-01 09:58:09','2022-02-01 09:59:13'),
+(4,'Liabilities','The money you still owe on loans, debts, and other obligations.',2,1,0,'2022-02-01 09:58:34',NULL),
+(5,'Equity','How much is remaining after you subtract liabilities from assets.',2,1,0,'2022-02-01 09:59:05',NULL),
+(6,'Dividend','Form of income that shareholders of corporations receive for each share of stock that they hold.',1,1,0,'2022-02-01 10:00:13',NULL),
+(7,'Sample101','Sample',1,0,1,'2022-02-01 10:01:35','2022-02-01 10:03:28'),
+(8,'Cash','paid in cash',2,1,0,'2022-04-01 15:05:20',NULL);
+
+/*Table structure for table `journal_items` */
+
+DROP TABLE IF EXISTS `journal_items`;
+
+CREATE TABLE `journal_items` (
+  `journal_id` int(30) NOT NULL,
+  `account_id` int(30) NOT NULL,
+  `group_id` int(30) NOT NULL,
+  `amount` float NOT NULL DEFAULT 0,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `journal_items` */
+
+insert  into `journal_items`(`journal_id`,`account_id`,`group_id`,`amount`,`date_created`) values 
+(3,1,1,15000,'2022-02-01 14:52:56'),
+(3,14,5,15000,'2022-02-01 14:52:56'),
+(4,42,3,5000,'2022-02-01 15:55:46'),
+(4,11,4,5000,'2022-02-01 15:55:46'),
+(5,31,2,5000,'2022-02-01 15:59:34'),
+(5,31,2,3000,'2022-02-01 15:59:34'),
+(5,4,1,8000,'2022-02-01 15:59:34');
 
 /*Table structure for table `obudget` */
 
@@ -163,7 +284,7 @@ CREATE TABLE `obudget` (
 /*Data for the table `obudget` */
 
 insert  into `obudget`(`Id`,`Budget`,`Date`) values 
-(1,3994210,'2021-03-12');
+(1,3993710,'2021-03-12');
 
 /*Table structure for table `procurment` */
 
@@ -188,8 +309,8 @@ CREATE TABLE `procurment` (
 /*Data for the table `procurment` */
 
 insert  into `procurment`(`Co_Code`,`PRO_Requestor`,`PRO_Department`,`Co_Status`,`PRO_Desc`,`PRO_Amount`,`PRO_Date`,`PRO_Supplier`,`PRO_City`,`PRO_Country`,`PRO_Address`) values 
-(101,'Elvira Barbosa','Logistics 2',102,'For purchase of new machines',3000000,'2021-11-30','Hp links','Quezon city','Philippines','san ben calocas kaligayahan'),
-(102,'Critina Vargas','Logistics 2',102,'For purchase of land',4000000,'2021-11-29','Camella','Calocan','Philippines','san ben calocas kaligayahan'),
+(101,'Elvira Barbosa','Logistics 2',101,'For purchase of new machines',3000000,'2021-11-30','Hp links','Quezon city','Philippines','san ben calocas kaligayahan'),
+(102,'Critina Vargas','Logistics 2',101,'For purchase of land',4000000,'2021-11-29','Camella','Calocan','Philippines','san ben calocas kaligayahan'),
 (104,'Allie Adams','Logistics 2',102,'For purchase of new machines',3000000,'2022-01-11','hexa mech tools','Quezon city','Philippines','san bartolome, Q.C.'),
 (105,'Alex Abadi','Logistics 2',102,'For purchase of new machines',3000000,'2022-01-12','Forward machines','Quezon city','Philippines','san bartolome, Q.C.'),
 (106,'Kara Mary','Logistics 2',102,'For purchase of new machines',3000000,'2022-01-13','Vision tools','Calocan City','Philippines','Reparo, Caloocan City'),
@@ -294,13 +415,13 @@ CREATE TABLE `reimbursment` (
 /*Data for the table `reimbursment` */
 
 insert  into `reimbursment`(`Co_Code`,`Co_Source`,`Co_Desc`,`Co_Date`,`Co_Status`,`Co_Purpose`,`Co_Supplier`,`Co_Address`,`Co_City`,`Co_Country`) values 
-(1001,'HR3','maircor bituin','2021-10-12','102','for buying equipment','HP technologies','sanbenisa','Quezon city','philippines'),
-(1002,'HR3','ian james barbosa','2021-10-12','102','for buying machines','intel core','caloocan city, brgy kaligayahan','Caloocan city','philippines'),
-(1003,'HR3','ellie sabinay','2021-10-13','102','for buying food','jollibee corp','caloocan city, brgy kaligayahan','Caloocan city','philippines'),
-(1004,'HR3','melanie cabradilla','2021-10-13','102','for buying food','mang inasa corp','caloocan city, brgy kaligayahan','Caloocan city','philippines'),
-(1005,'HR3','elvira Aliga','2022-01-11','102','for loptop','ASUS','novaliches, quezon city','Quezon city','philippines'),
-(1006,'HR3','Tin Pachoco','2022-01-11','102','for key board','FANTECH','cubao, quezon city','Quezon city','philippines'),
-(1007,'HR3','Theodore jhon valera','2022-01-11','102','for bondpaper','HARD COPY','sampaloc, manila city','Manila city','philippines');
+(1001,'HR3','maircor bituin','2021-10-12','103','for buying equipment','HP technologies','sanbenisa','Quezon city','philippines'),
+(1002,'HR3','ian james barbosa','2021-10-12','101','for buying machines','intel core','caloocan city, brgy kaligayahan.','Caloocan city','philippines'),
+(1003,'HR3','ellie sabinay','2021-10-13','102','for buying food','jollibee corp','caloocan city, brgy kaligayahan.','Caloocan city','philippines'),
+(1004,'HR3','melanie cabradilla','2021-10-13','102','for buying food','mang inasa corp','caloocan city, brgy kaligayahan.','Caloocan city','philippines'),
+(1005,'HR3','elvira Aliga','2022-01-11','102','for loptop','ASUS','novaliches, quezon city.','Quezon city','philippines'),
+(1006,'HR3','Tin Pachoco','2022-01-11','102','for key board','FANTECH','cubao, quezon city.','Quezon city','philippines'),
+(1007,'HR3','Theodore jhon valera','2022-01-11','102','for bondpaper','HARD COPY','sampaloc, manila city.','Manila city','philippines');
 
 /*Table structure for table `status` */
 
@@ -380,16 +501,21 @@ CREATE TABLE `users` (
   `image` varchar(255) DEFAULT 'no_image.jpg',
   `status` int(1) NOT NULL,
   `last_login` datetime DEFAULT NULL,
+  `Department` varchar(255) NOT NULL,
+  `Position` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_level` (`user_level`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`username`,`password`,`user_level`,`image`,`status`,`last_login`) values 
-(10,'Peter','Admin','134096e12368b9bce038ccac61963716c01fa8ee',1,'lsu2olid10.jpg',1,'2022-03-15 20:50:06'),
-(12,'Mae Ann Caunca','User','12dea96fec20593566ab75692c9949596833adc9',2,'3gy5cpqg12.jpg',0,'2022-03-15 20:49:39'),
-(14,'AnotherAdmin','AnotherAdmin11','8451ba8a14d79753d34cb33b51ba46b4b025eb81',1,'no_image.jpg',1,'2022-03-15 00:04:21');
+insert  into `users`(`id`,`name`,`username`,`password`,`user_level`,`image`,`status`,`last_login`,`Department`,`Position`) values 
+(10,'Peter','Finance','134096e12368b9bce038ccac61963716c01fa8ee',1,'lsu2olid10.jpg',1,'2022-04-11 21:39:00','Finance','Manager'),
+(12,'Mae Ann Caunca','User','12dea96fec20593566ab75692c9949596833adc9',2,'3gy5cpqg12.jpg',1,'2022-04-08 10:53:42','Finance','Collection Officer'),
+(14,'AnotherAdmin','SuperAdmin','134096e12368b9bce038ccac61963716c01fa8ee',1,'auj1s3xo14.png',1,'2022-04-08 10:52:50','SuperAdmin','Administrator'),
+(15,'Elvira','HR1','134096e12368b9bce038ccac61963716c01fa8ee',1,'no_image.jpg',1,'2022-03-28 14:34:04','HR1','Manager'),
+(16,'James Ian','Semaj','f90409b98ffb61424a01b4bb718aa602cebd5ee2',2,'no_image.jpg',1,NULL,'Finance','Disbursment officer'),
+(17,'James Ian','Collection manager','134096e12368b9bce038ccac61963716c01fa8ee',1,'no_image.jpg',1,NULL,'Finance','Manager');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

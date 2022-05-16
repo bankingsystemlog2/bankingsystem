@@ -17,6 +17,7 @@ class Session {
   public function login($user_id){
     $_SESSION['user_id'] = $user_id;
   }
+
   private function userLoginSetup()
   {
     if(isset($_SESSION['user_id']))
@@ -27,6 +28,7 @@ class Session {
     }
 
   }
+
   public function logout(){
     unset($_SESSION['user_id']);
   }
@@ -51,6 +53,7 @@ class Session {
       $this->msg;
     }
   }
+
 }
 
 

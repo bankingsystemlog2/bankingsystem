@@ -3,7 +3,7 @@
 
 body{
   --text-color: #00000;
-  --bkg-color: #ffff;
+  --bkg-color: #f0ffff;
 }
 body.light-theme {
     --text-color: #ffff;
@@ -14,11 +14,10 @@ body {
   background: var(--bkg-color);
 }
 
-h1,
-p {
+h1{
   color: var(--text-color);
 }
-h4, h5{
+h4{
   color: var(--text-color);
 }
 button {
@@ -546,9 +545,15 @@ hr .new1forprofile {
 
 /* Css for login page ---------------------------------------------------------*/
 .containerLog{
-  max-width: 440px;
+  max-width: 420px;
   padding: 0 20px;
-  margin: 170px auto;
+  margin: 150px auto;
+}
+@media screen and (min-width: 420px) {
+     .containerLog{
+         margin-left: 400px;
+     }
+
 }
 .wrapperLog{
   width: 100%;
@@ -643,3 +648,94 @@ hr .new1forprofile {
 .formlog .signup-link a:hover{
   text-decoration: underline;
 }
+/* Start Printing of Logs Css */
+.console {
+  position: fixed;
+  font-family: monospace,monospace;
+  color: #fff;
+  width: calc(70% - 3em);
+  max-width: 80%;
+  max-height: calc(70% - 3em);
+  overflow-y: auto;
+  margin: 1em 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 0.5em;
+  box-shadow: 0 0.75em 3em rgba(50, 50, 50, 0.5);
+  z-index: 100;
+  line-height: 1.5;
+}
+
+.console-input {
+  font-family: monospace,monospace;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  min-width: calc(100% - 2em);
+  resize: none;
+}
+
+.console-input:before {
+  content: '> ';
+  color: #FC3565;
+  vertical-align: top;
+}
+
+.output-cmd:before {
+  content: '> ';
+  color: #FC3565;
+  vertical-align: top;
+}
+.output-text:before {
+  content: '> ';
+  color: #5F8787;
+  font-weight: 600 !important;
+  vertical-align: top;
+}
+
+.output-text,
+.output-cmd {
+  width: 100%;
+  display: block;
+}
+
+.console-inner {
+  padding: 0.3em 1.1em;
+}
+
+.output-text,
+.output-cmd {
+  display: block;
+  white-space: pre
+}
+
+#outputs div {
+  opacity: 0.85;
+}
+
+#outputs div div {
+  color: #46f01d;
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+#outputs a {
+  color: #46f01d;
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.console-inner .output-text#ready {
+  color: #3df5b8;
+  font-style: italic;
+  opacity: 0.75;
+}
+/* End of Printing of Logs Css */

@@ -1,11 +1,11 @@
 <?php
   $page_title = 'User Home Page';
-  require_once('../includes/log2load.php');
+  require_once('includes/log2load.php');
   // Checkin What level user has permission to view this page
-   page_require_level(3);
+   page_require_level(2);
 ?>
 
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 
 <div class="row">
    <div class="col-md-6">
@@ -29,4 +29,4 @@
 	
 
 
-<?php include_once('../layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>

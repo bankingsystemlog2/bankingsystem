@@ -1,20 +1,20 @@
 <?php
   $page_title = 'Vehicle Reservation';
-  require_once('../includes/log2load.php');
+  require_once('includes/log2load.php');
 ?>
 <?php
 // Checkin What level user has permission to view this page
- page_require_level(4);
+ page_require_level(1);
 //pull out all user form database
  $all_users = find_all_user();
 // ?>
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
   <?php if ($user['user_level'] === '1'): ?>
-    <a href="../admin.php" class="breadcrumbs__item">Home</a>
+    <a href="admin.php" class="breadcrumbs__item">Home</a>
   <?php elseif ($user['user_level'] === '2'): ?>
-   <a href="../user_dashboard.php" class="breadcrumbs__item">Home</a>
+   <a href="user_dashboard.php" class="breadcrumbs__item">Home</a>
    <?php elseif ($user['user_level'] === '4'): ?>
    <a href="admin.php" class="breadcrumbs__item">Home</a>
   <?php endif; ?>
@@ -95,5 +95,5 @@
       }
       });
   </script>
-<?php include_once('../layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>
   

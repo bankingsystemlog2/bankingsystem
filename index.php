@@ -1,9 +1,35 @@
 <?php
   ob_start();
   require_once('includes/load.php');
-  if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
+  if($session->isUserLoggedIn(true)) {
+
+    $current_user = current_user();
+
+    $userlevel=$current_user['user_level'];
+    $userDept=$current_user['Department'];
+
+   switch ([$userlevel, $userDept]) {
+     case ['1', 'SuperAdmin']:
+      redirect('home.php', false);
+       break;
+
+       case ['1', 'Finance'];
+       redirect('Finance/home.php', false);
+         break;
+         
+        case ['1', 'HR1'];
+         redirect('HR1/hr1/manager.php', false);
+          break;
+
+     default:
+
+       break;
+   }
+  }
 ?>
 <?php include_once('layouts/header.php'); ?>
+
+
 
 <div class="container containerLog">
       <?php echo display_msg($msg); ?>
@@ -25,6 +51,6 @@
           <div class="signup-link">All rights reserved. <a href="#">AABank</a></div>
         </form>
       </div>
-    </div>
+  </div>
 
 <?php include_once('layouts/footer.php'); ?>

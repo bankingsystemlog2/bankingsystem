@@ -1,16 +1,16 @@
-<?php 
+<?php
 include 'activitylog.inc.php';
 if($_SERVER['REQUEST_METHOD'] === "POST"){
     $number = $_POST['number'];
 
     if($number !=5){
         $log = "User entered incorrect number ($number)";
-        logger($log);
+        activitylog($log);
         echo "$number is incorrect";
     }
     else{
         $log = "User entered correct number ($number)";
-        logger($log);
+        activitylog($log);
         echo "$number is correct";
     }
 }

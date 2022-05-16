@@ -1,9 +1,9 @@
 <?php
   $page_title = 'Home Page';
-  require_once('../includes/log2load.php');
-  if (!$session->isUserLoggedIn(true)) { redirect('../index.php', false);}
+  require_once('includes/log2load.php');
+  if (!$session->isUserLoggedIn(true)) { redirect('index.php', false);}
 ?>
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 <div class="row homePage">
   <div class="col-md-12">
     <?php echo display_msg($msg); ?>
@@ -20,4 +20,4 @@
     </div>
  </div>
 </div>
-<?php include_once('../layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>

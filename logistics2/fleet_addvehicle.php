@@ -1,10 +1,10 @@
 <?php 
   $page_title = 'Add Vehicle Form';
-  require_once('../includes/log2load.php');
+  require_once('includes/log2load.php');
   // Checkin What level user has permission to view this page
   // page_require_level(1);
   //sample changes
-  page_require_level(4);
+  page_require_level(1);
   $groups = find_all('v_info');
   $users_id = current_user()['id'];
 ?>
@@ -73,10 +73,10 @@
     }
  }
 ?>
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
-  <?php if ($user['user_level'] === '4'): ?>
+  <?php if ($user['user_level'] === '1'): ?>
     <a href="admin.php" class="breadcrumbs__item">Home</a>
     <a href="fleet.php" class="breadcrumbs__item">Vehicle Information</a>
   <?php elseif ($user['user_level'] === '2'): ?>
@@ -198,4 +198,4 @@
       </div>
     </div>
   </div>
-<?php include_once('../layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>

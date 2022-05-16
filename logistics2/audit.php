@@ -1,14 +1,14 @@
 <?php
   $page_title = 'Audit Management';
-  require_once('../includes/log2load.php');
+  require_once('includes/log2load.php');
 ?>
 <?php
 // Checkin What level user has permission to view this page
- page_require_level(4);
+ page_require_level(1);
 //pull out all user form database
  $data =  getAuditlog('audit_logs');
 ?>
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
 <style>
   #myInput{
@@ -80,4 +80,4 @@
     }
   );
 </script>
-  <?php include_once('../layouts/footer.php'); ?>
+  <?php include_once('layouts/footer.php'); ?>

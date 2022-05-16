@@ -1,7 +1,7 @@
 <?php
   $page_title = 'Vendor Application Form';
-  require_once('../includes/log2load.php');
-   page_require_level(4);
+  require_once('includes/log2load.php');
+   page_require_level(1);
    global $db;
    $id = $_GET['id'];
    $sql = $db->query("SELECT * FROM vendors WHERE id='{$id}' LIMIT 1");
@@ -65,7 +65,7 @@
   }
 ?>
 
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
@@ -102,7 +102,7 @@
                   <label for="phone" class="control-label">Phone Number</label>
                   <input type="tel" class="form-control" name="phone" value="<?php echo remove_junk(ucwords($vendors['Phone'])); ?>">
             </div>
-            <?php if($user['user_level'] === '4'): ?>
+            <?php if($user['user_level'] === '1'): ?>
             <div class="form-group">
               <label for="statuss">Status</label>
                 <select class="form-control" name="statuss">
@@ -122,4 +122,4 @@
 </div>
 
 
-<?php include_once('../layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>

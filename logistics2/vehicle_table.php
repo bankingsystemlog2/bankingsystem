@@ -1,6 +1,6 @@
 <?php
 //fetch.php
-require_once('../includes/log2load.php');
+require_once('includes/log2load.php');
 $output = '';
 $error = '';
 if(isset($_POST['fromdate'],$_POST['todate']))

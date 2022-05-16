@@ -35,7 +35,7 @@
       <div class="card-header">
         <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i>User management Table</span>
          <div class="text-end">
-          <a href="add_user.php" class="btn btn-info pull-right"> Add New User</a>
+          <a href="add_user.php" class="btn btn-info pull-right"> Add New Admin</a>
          </div>
       </div>
       <div class="card-body">
@@ -55,48 +55,26 @@
           </tr>
         </thead>
         <tbody>
-        <?php foreach($all_users as $a_user): ?>
-          <?php if ($a_user['user_level']===$user['user_level'] && $a_user['username']===$user['username']): ?>
-            <tr>
-             <td><?php echo count_id();?></td>
-             <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
-             <td><?php echo remove_junk(ucwords($a_user['username']))?></td>
-             <td><?php echo remove_junk(ucwords($a_user['group_name']))?></td>
-             <td>
-             <?php if($a_user['status'] === '1'): ?>
-              <span class="badge rounded-pill bg-success"><?php echo "Active"; ?></span>
-            <?php else: ?>
-              <span class="badge rounded-pill bg-danger"><?php echo "Deactive"; ?></span>
-            <?php endif;?>
-             </td>
-             <td><?php echo read_date($a_user['last_login'])?></td>
-              <td> <span class="badge rounded-pill bg-warning">You</span> </td>
-            </tr>
-          <?php elseif ($a_user['user_level']===$user['user_level']): ?>
-            <tr>
-             <td><?php echo count_id();?></td>
-             <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
-             <td><?php echo remove_junk(ucwords($a_user['username']))?></td>
-             <td><?php echo remove_junk(ucwords($a_user['group_name']))?></td>
-             <td>
-             <?php if($a_user['status'] === '1'): ?>
-              <span class="badge rounded-pill bg-success"><?php echo "Active"; ?></span>
-            <?php else: ?>
-              <span class="badge rounded-pill bg-danger"><?php echo "Deactive"; ?></span>
-            <?php endif;?>
-             </td>
-             <td><?php echo read_date($a_user['last_login'])?></td>
-               <div class="btn-group">
-                <td>
-                  <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                    <i class="bi bi-pencil-fill"></i>
-                 </a>
-                  </td>
-                  </div>
-            </tr>
-            <?php else: ?>
+          <?php foreach($all_users as $a_user): ?>
+            <?php if ($a_user['user_level']===$user['user_level'] && $a_user['username']===$user['username']): ?>
               <tr>
-               <td class="text-center"><?php echo count_id();?></td>
+               <td><?php echo count_id();?></td>
+               <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
+               <td><?php echo remove_junk(ucwords($a_user['username']))?></td>
+               <td><?php echo remove_junk(ucwords($a_user['group_name']))?></td>
+               <td>
+               <?php if($a_user['status'] === '1'): ?>
+                <span class="badge rounded-pill bg-success"><?php echo "Active"; ?></span>
+              <?php else: ?>
+                <span class="badge rounded-pill bg-danger"><?php echo "Deactive"; ?></span>
+              <?php endif;?>
+               </td>
+               <td><?php echo read_date($a_user['last_login'])?></td>
+                <td> <span class="badge rounded-pill bg-primary">You</span> </td>
+              </tr>
+            <?php elseif ($a_user['user_level']===$user['user_level'] && $a_user['Position']===$user['Position']): ?>
+              <tr>
+               <td><?php echo count_id();?></td>
                <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
                <td><?php echo remove_junk(ucwords($a_user['username']))?></td>
                <td><?php echo remove_junk(ucwords($a_user['group_name']))?></td>
@@ -110,17 +88,34 @@
                <td><?php echo read_date($a_user['last_login'])?></td>
                  <div class="btn-group">
                   <td>
-                    <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                      <i class="bi bi-pencil-fill"></i>
-                   </a>
-                   <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                   <i class="bi bi-eraser-fill"></i>
-                   </a>
+                   <span class="badge rounded-pill bg-danger">No Authority</span>
                     </td>
                     </div>
               </tr>
-          <?php endif; ?>
-        <?php endforeach;?>
+              <?php else: ?>
+                  <tr>
+                   <td class="text-center"><?php echo count_id();?></td>
+                   <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
+                   <td><?php echo remove_junk(ucwords($a_user['username']))?></td>
+                   <td><?php echo remove_junk(ucwords($a_user['group_name']))?></td>
+                   <td>
+                   <?php if($a_user['status'] === '1'): ?>
+                    <span class="badge rounded-pill bg-success"><?php echo "Active"; ?></span>
+                  <?php else: ?>
+                    <span class="badge rounded-pill bg-danger"><?php echo "Deactive"; ?></span>
+                  <?php endif;?>
+                   </td>
+                   <td><?php echo read_date($a_user['last_login'])?></td>
+                     <div class="btn-group">
+                      <td>
+                        <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
+                          <i class="bi bi-pencil-fill"></i>
+                       </a>
+                        </td>
+                        </div>
+                  </tr>
+            <?php endif; ?>
+          <?php endforeach;?>
        </tbody>
        <tfoot>
          <tr>

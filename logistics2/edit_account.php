@@ -1,7 +1,7 @@
 <?php
   $page_title = 'Edit Account';
-  require_once('../includes/log2load.php');
-   page_require_level(4);
+  require_once('includes/log2load.php');
+   page_require_level(1);
 ?>
 <?php
 //update user image
@@ -42,7 +42,7 @@
     }
   }
 ?>
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 <div class="row">
   <div class="col-md-12">
     <?php echo display_msg($msg); ?>
@@ -105,4 +105,4 @@
 </div>
 
 
-<?php include_once('../layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>

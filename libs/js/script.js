@@ -85,11 +85,37 @@ charts2.forEach(function (chart) {
 //End of Chart Codes------------------------------------------------------------
 
 //For tables Code---------------------------------------------------------------
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+//Reports Table-----------------------------------------------------------------
 $(document).ready(function () {
-  $("#example").each(function (_, table) {
-    $(table).DataTable();
-  });
+  $('#ReportsModal').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', {
+                  extend: 'print',
+                  customize: function ( win ) {
+                      $(win.document.body)
+                          .css( 'font-size', '10pt' )
+                          .prepend(
+                              '<img src="http://datatables.net/media/images/logo-fade.png" style="position:absolute; top:0; left:0;" />'
+                          );
+
+                      $(win.document.body).find( 'table' )
+                          .addClass( 'compact' )
+                          .css( 'font-size', 'inherit' );
+                  },
+                  messageTop: function(){
+                   var printTitle = 'This section provides a detailed copy of all electronic records. A service provided by DTKnetwork service Inc.';
+                   return printTitle
+               }
+              }
+        ]
+    });
 });
+//End of Reports Table-----------------------------------------------------------------
+
 //End tables Code---------------------------------------------------------------
 
 //Script for changing background-----------------------------------------------
@@ -117,4 +143,4 @@ btn.addEventListener("click", function () {
   }
   localStorage.setItem("theme", theme);
 });
-//End of for changing background-----------------------------------------------
+//End of for changing background

@@ -5,12 +5,15 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" href="libs/images/logo4.PNG" type="image/icon type">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"/>
   <!-- All Bootstrap Links -->
       <link rel="stylesheet" href="libs/css/bootstrap.min.css" />
       <link rel="stylesheet" href="libs/css/dataTables.bootstrap5.min.css" />
+      <link rel="stylesheet" href="libs/css/buttons.dataTables.min.css"/>
       <link rel="stylesheet" href="libs/css/style.css" />
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+      <script src="libs/js/SweetAlert/sweetalert.min.js"></script>
 
   <!-- End of Links -->
 
@@ -19,7 +22,7 @@
            echo remove_junk($page_title);
             elseif(!empty($user))
            echo ucfirst($user['name']);
-            else echo "Finance Management System";?>
+            else echo "Banking and Finance System";?>
     </title>
   </head>
   <body>
@@ -104,21 +107,26 @@
 <div class="offcanvas offcanvas-start bg-dark sidebar-nav" tabindex="-1" id="sidebar">
 <div class="offcanvas-body p-0">
 <nav class="navbar-dark">
-      <?php if($user['user_level'] === '1'): ?>
-        <!-- admin menu -->
+       <!--  Super Admin -->
+      <?php if($user['user_level'] === '1' && $user['Department'] === 'SuperAdmin'): ?>
+        <!-- Super admin menu -->
       <?php include_once('admin_menu.php');?>
+       <!-- End of Super Admin -->
 
-    <?php elseif($user['user_level'] === '2'): ?>
-        <!-- Special user -->
-      <?php include_once('user_menu.php');?>
+       <!-- Department admin  -->
+     <?php elseif($user['user_level'] === '1' && $user['Department'] === 'Finance'): ?>
+     <!-- Department admin menu -->
+      <?php include_once('Finance_Admin.php');?>
+
+   <?php elseif($user['user_level'] === '2' && $user['Department'] === 'Finance' ): ?>
+        <!-- Department user menu -->
+    <?php include_once('Finance_user_menu.php');?>
+
+
 
     <?php elseif($user['user_level'] === '3'): ?>
         <!-- User menu -->
       <?php include_once('special_menu.php');?>
-
-    <?php elseif($user['user_level'] === '4'): ?>
-        <!-- Logistics 2 menu -->
-      <?php include_once('log2.php');?>
 
       <?php endif;?>
 

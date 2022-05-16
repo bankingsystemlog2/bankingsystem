@@ -21,19 +21,9 @@
         <div class="imageforprofile d-flex flex-column justify-content-center align-items-center"> <button class="btn btn-light btnforprofile"> <img src="uploads/users/<?php echo $user_p['image'];?>" height="95" width="100" alt="Avatar"/></button>
           <span class="nameforprofile mt-3"><?php echo first_character($user_p['name']); ?></span>
             <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-
-              <!-- Code For UserLevel-->
-            <?php $user_level=$user_p['user_level'];?>
-            <?php if ($user_level==1):?>
-            <span class="idd1 iddforprofile">Admin</span><span><i class="fa fa-copy"></i></span>
-            <?php elseif ($user_level==2):?>
-             <span class="idd1 iddforprofile">Employee</span><span><i class="fa fa-copy"></i></span>
-           <?php elseif ($user_level==3):?>
-            <span class="idd1 iddforprofile"></span><span><i class="fa fa-copy"></i></span>
-            <?php endif;?>
-            <!-- End of Code For UserLevel-->
-
+                <span class="idd1 iddforprofile"><?php echo first_character($user_p['Position']); ?></span>
               </div>
+
               <?php if( $user_p['id'] === $user['id']):?>
               <div class=" d-flex mt-2"> <a href="edit_account.php" class="btn btn-success btn1forprofile" >Edit Profile</a></div>
                <?php endif;?>

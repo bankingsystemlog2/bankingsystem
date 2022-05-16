@@ -1,6 +1,22 @@
 
 </div>
 </div>
+<?php if(isset($_SESSION['status']) && $_SESSION['status'] !='')
+  {
+      ?>
+        <script type="text/javascript">
+          swal({
+          title: "<?php echo $_SESSION['status']; ?>",
+          //text: "You clicked the button!",
+          icon: "<?php echo $_SESSION['status_code'];  ?>",
+          button: "done",
+          });
+        </script>
+      <?php
+      unset($_SESSION['status']);
+      unset($_SESSION['status_code']);
+  }
+   ?>
 </main>
     <!-- All Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -11,8 +27,14 @@
     <script src="./libs/js/jquery-3.5.1.js"></script>
     <script src="./libs/js/jquery.dataTables.min.js"></script>
     <script src="./libs/js/dataTables.bootstrap5.min.js"></script>
+    <script src="./libs/js/dataTables.buttons.min.js"></script>
+    <script src="./libs/js/pdfmake.min.js"></script>
+    <script src="./libs/js/vfs_fonts.js"></script>
+    <script src="./libs/js/buttons.html5.min.js"></script>
+    <script src="./libs/js/buttons.print.min.js"></script>
+    <script src="./libs/js/jszip.min.js"></script>
     <script src="./libs/js/script.js"></script>
-   <!-- End of Script Links -->
+    <!-- End of Script Links -->
 
   </body>
 </html>

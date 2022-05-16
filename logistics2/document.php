@@ -1,10 +1,10 @@
 <?php
   $page_title = 'Document Tracking';
-  require_once('../includes/log2load.php');
+  require_once('includes/log2load.php');
 ?>
 <?php
 // Checkin What level user has permission to view this page
- page_require_level(4);
+ page_require_level(1);
 //pull out all user form database
 $groups = find_all('docu_tracking');
 $users_id = current_user()['id'];
@@ -44,7 +44,7 @@ global $db;
 
 ?>
 
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
 <style>
    #documentTrackingTable{
@@ -118,4 +118,4 @@ $("#myTable").DataTable(
   );
 </script>
 
-  <?php include_once('../layouts/footer.php'); ?>
+  <?php include_once('layouts/footer.php'); ?>

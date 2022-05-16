@@ -69,19 +69,7 @@ function redirect($url, $permanent = false)
 
     exit();
 }
-/*--------------------------------------------------------------*/
-/* Function for find out total saleing price, buying price and profit
-/*--------------------------------------------------------------*/
-function total_price($totals){
-   $sum = 0;
-   $sub = 0;
-   foreach($totals as $total ){
-     $sum += $total['total_saleing_price'];
-     $sub += $total['total_buying_price'];
-     $profit = $sum - $sub;
-   }
-   return array($sum,$profit);
-}
+
 /*--------------------------------------------------------------*/
 /* Function for Readable date time
 /*--------------------------------------------------------------*/
@@ -116,6 +104,21 @@ function randString($length = 5)
    $str .= $cha[mt_rand(0,strlen($cha))];
   return $str;
 }
+/*-------------------------------------------*/
+//For deleting Accounts in account_list...
+/*-----------------------------------------*/
+function delete_account(){
+  extract($_POST);
+  $del = $this->conn->query("UPDATE `account_list` set delete_flag = 1 where id = '{$id}'");
+  if($del){
+    $resp['status'] = 'success';
+    $this->settings->set_flashdata('success'," Account has been deleted successfully.");
 
+  }else{
+    $resp['status'] = 'failed';
+    $resp['error'] = $this->conn->error;
+  }
+  return json_encode($resp);
+}
 
 ?>

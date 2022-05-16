@@ -1,23 +1,23 @@
 <?php
   $page_title = 'Vendor Portal';
-  require_once('../includes/log2load.php');
+  require_once('includes/log2load.php');
 // Checkin What level user has permission to view this page
   
 //pull out all user form database
    
   ?>
   <?php
-  page_require_level(4);
+  page_require_level(1);
   $all_vendors = find_all_inner('vendors');
   ?>
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
   <?php if ($user['user_level'] === '1'): ?>
-    <a href="../admin.php" class="breadcrumbs__item">Home</a>
+    <a href="admin.php" class="breadcrumbs__item">Home</a>
   <?php elseif ($user['user_level'] === '2'): ?>
-   <a href="../user_dashboard.php" class="breadcrumbs__item">Home</a>
+   <a href="user_dashboard.php" class="breadcrumbs__item">Home</a>
    <?php elseif ($user['user_level'] === '4'): ?>
    <a href="admin.php" class="breadcrumbs__item">Home</a>
   <?php endif; ?>
@@ -71,7 +71,7 @@
                 <th> Category </th>
                 <th> Status </th>
                 <th> Files </th>
-                <?php if($user['user_level'] === '4'): ?>
+                <?php if($user['user_level'] === '1'): ?>
             <th>Actions</th>
             <?php endif;?>
              </tr>
@@ -111,7 +111,7 @@
                 <?php echo basename($a_vendor['path_url'])?><i class="glyphicon glyphicon-download"></i>
                 </a>
             </td>
-            <?php if($user['user_level'] === '4'): ?>
+            <?php if($user['user_level'] === '1'): ?>
            <td class="text-center">
              <div class="btn-group">
                 <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
@@ -132,4 +132,4 @@
   </div>
 </div>
 
-<?php include_once('../layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>

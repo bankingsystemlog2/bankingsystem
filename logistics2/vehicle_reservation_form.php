@@ -1,6 +1,6 @@
 <?php
   $page_title = 'Reservation Form';
-  require_once('../includes/log2load.php');
+  require_once('includes/log2load.php');
   // Checkin What level user has permission to view this page
   // page_require_level(1);
   //sample changes
@@ -45,7 +45,7 @@
    }
  }
 ?>
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
   <?php echo display_msg($msg);  
   if(isset($_GET['fleetid'])){
   ?>
@@ -96,4 +96,4 @@
   else{
     echo "ERROR!!";
   }?>
-<?php include_once('../layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>

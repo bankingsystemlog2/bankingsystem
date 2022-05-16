@@ -1,14 +1,14 @@
 <?php
   $page_title = 'Vendor Portal';
-  require_once('../includes/log2load.php');
+  require_once('includes/log2load.php');
 ?>
 <?php
 // Checkin What level user has permission to view this page
- page_require_level(4);
+ page_require_level(1);
 //pull out all user form database
  $all_vendors = find_all_inner('vendors');
 ?>
-<?php include_once('../layouts/log2header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
 
 
@@ -222,4 +222,4 @@
   );
 
 </script>
-  <?php include_once('../layouts/footer.php'); ?>
+  <?php include_once('layouts/footer.php'); ?>

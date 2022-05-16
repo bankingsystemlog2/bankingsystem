@@ -1,0 +1,140 @@
+<?php
+  $page_title = 'Edit Employee';
+  require_once('includes/load.php');
+  // Checkin What level user has permission to view this page
+   page_require_level(2);
+   $Table="collection";
+   $row=Recievables();
+?>
+<?php include_once('layouts/header.php'); ?>
+<!-- Breadcrumb -->
+<nav class="breadcrumbs">
+  <?php if ($user['user_level'] === '1'): ?>
+    <a href="admin.php" class="breadcrumbs__item">Home</a>
+  <?php elseif ($user['user_level'] === '2'): ?>
+   <a href="user_dashboard.php" class="breadcrumbs__item">Home</a>
+  <?php endif; ?>
+
+  <a href="applicant-list.php" class="breadcrumbs__item">Employee List</a>
+  <a href="#checkout" class="breadcrumbs__item is-active">Edit Employee</a>
+</nav>
+<!-- /Breadcrumb -->
+
+<!-- Data table start -->
+<div class="row">
+  <!-- Notification div -->
+  <div class="row">
+     <div class="col-md-12">
+       <?php echo display_msg($msg); ?>
+     </div>
+  </div>
+  <!-- End Notification div -->
+
+  <?php
+  $applid = mysqli_real_escape_string($conn, $_GET['id']);
+
+  $query = mysqli_query($conn, "SELECT * FROM applicantl WHERE app_id = {$applid}");
+  $row = mysqli_fetch_array($query);
+  ?>
+
+  <div class="col-md-12 mb-3">
+    <div class="card">
+      <div class="card-header">
+        <span class="badge rounded-pill bg-success"><i class="bi bi-pencil"></i> Edit Employee</span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card-box">
+              <form action="update-applicant.php" method="POST">
+                <input type="hidden" name="app_id" value="<?php echo $row['app_id']; ?>" class="form-control">
+                <div class="form-group row">
+                  <label class="col-form-label col-md-4">Employee ID</label>
+                    <div class="col-md-8">
+                      <input type="text" value="<?php echo $row['app_aid']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Firstname</label>
+                    <div class="col-md-8">
+                      <input type="text" value="<?php echo $row['app_fname']; ?>" class="form-control" >
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Middlename</label>
+                    <div class="col-md-8">
+                      <input type="text" value="<?php echo $row['app_mname']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Lastname</label>
+                    <div class="col-md-8">
+                      <input type="text" value="<?php echo $row['app_lname']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Birthdate</label>
+                    <div class="col-md-8">
+                      <input type="date" value="<?php echo $row['app_bdate']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Gender</label>
+                    <div class="col-md-8">
+                      <input type="text" value="<?php echo $row['app_gender']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Address</label>
+                    <div class="col-md-8">
+                      <input type="text" value="<?php echo $row['app_address']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Contact</label>
+                    <div class="col-md-8">
+                      <input type="number" value="<?php echo $row['app_contact']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Email</label>
+                    <div class="col-md-8">
+                      <input type="email" value="<?php echo $row['app_email']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Applying For</label>
+                    <div class="col-md-8">
+                      <input type="text" value="<?php echo $row['app_for']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Status</label>
+                    <div class="col-md-8">
+                      <input type="text" value="<?php echo $row['app_status']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-4">Date of Application</label>
+                    <div class="col-md-8">
+                      <input type="text" value="<?php echo $row['app_adate']; ?>" class="form-control" disabled>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="form-group row mt-10">
+                    <label class="col-form-label col-md-4"></label>
+                    <div class="col-md-8">
+                      <button type="submit" name="updappaprovd" class="btn btn-success text-white">Approved</button>
+                      <button type="submit" name="updreject" class="btn btn-danger text-white">Reject</button>
+                      <a href="applicant-list.php" class="btn btn-secondary text-white" data-dismiss="modal">Back</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<?php include_once('layouts/footer.php'); ?>

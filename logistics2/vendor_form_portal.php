@@ -1,6 +1,6 @@
 <?php
   ob_start();
-  require_once('../includes/log2load.php');
+  require_once('includes/log2load.php');
   $users_id = current_user()['id'];
   //if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
 ?>
@@ -186,7 +186,7 @@
                  <input type="tel" id="phone" name="phone" placeholder="09*********" maxlength = "11" required>
                 </div>
                 <div class="form-group">
-                    <label for="upload_file">Upload Any of These:(Business Permit,DIT and etc.)"PDF FORMAT"</label>
+                    <label for="upload_file">Upload Any of These:(Business Permit,DIT and etc.)</label>
                     <input type="file" accept="application/pdf" class="form-control" name="fileToUpload" id="fileToUpload" required>
                 </div>
             <div class="form-group">
@@ -258,4 +258,4 @@
 </html>
 
 <?php if(isset($db)) { $db->db_disconnect(); } ?>
-<?php include_once('../layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>
