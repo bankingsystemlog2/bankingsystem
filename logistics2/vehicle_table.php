@@ -28,8 +28,8 @@ $_SESSION['to_date'] = $_POST['todate'];
     <thead>
 
     <tr>
-        <th>'.$to_date.'Model</th>  
-        <th>'.$from_date.'Seating Capacity</th>  
+        <th>Model</th>  
+        <th>Seating Capacity</th>  
         <th>Type</th>  
         <th>Category</th>  
         <th>Registration Number</th>  
@@ -71,13 +71,25 @@ $_SESSION['to_date'] = $_POST['todate'];
         $result1 = mysqli_query($conn, $query);
         if(mysqli_num_rows($result1)>0){
             while($row1 = mysqli_fetch_array($result1)){
+                if($row1['v_category'] == 1){
+                    $vehicle = "Car";
+                }
+                elseif($row1['v_category'] == 2){
+                    $vehicle = "Van";
+                }
+                elseif($row1['v_category'] == 3){
+                    $vehicle = "Armored Vehicle";
+                }
+                else{
+                    $vehicle = "Undefined";
+                }
                 $output .= "
                 <tbody>
                 <tr>
                 <td>".remove_junk(ucwords($row1['v_model']))."</td>
                 <td>".remove_junk(ucwords($row1['v_capacity']))."</td>
                 <td>".remove_junk(ucwords($row1['v_enginetype']))."</td>
-                <td>".remove_junk(ucwords($row1['v_category']))."</td>
+                <td>". $vehicle ."</td>
                 <td>".remove_junk(ucwords($row1['v_regnum']))."</td>                
                 <td><a href = 'vehicle_reservation_form.php?fleetid=".$row1['fleetid']."' name = 'fleetid' value = '".remove_junk(ucwords($row1['fleetid']))."' class='btn btn-info btn-viewReciept'><i class='bi bi-file-earmark-post-fill'></i> Reserve</a></td>
                 </tbody>

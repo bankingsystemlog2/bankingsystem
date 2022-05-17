@@ -25,18 +25,7 @@
       href="#Collections"
     >
     <span class="me-2"><i class="bi bi-book-half"></i></span>
-
-   
-      <?php foreach ($notifCollection as $notifCollection): ?>
-      <?php if ($notifCollection['notifCollection']>=1): ?>
-      <span class="badge1" data-badge="<?php echo $notifCollection['notifCollection']; ?>">Fleet Management</span>
-    <?php elseif ($notifCollection['notifCollection']==0): ?>
       <span>Fleet Management</span>
-    <?php endif; ?>
-    <?php endforeach; ?>
-   
-
-
       <span class="ms-auto">
         <span class="right-icon">
           <i class="bi bi-chevron-down"></i>
@@ -49,17 +38,7 @@
           <a href="fleet.php" class="nav-link px-3">
             <span class="me-2"
               ><i class="bi bi-person-lines-fill"></i></span>
-
-             
-                <?php foreach ($notifCollectionLoans as $notifCollectionLoans): ?>
-                <?php if ($notifCollectionLoans['LoansNotif']>=1): ?>
-                <span class="badge1" data-badge="<?php echo $notifCollectionLoans['LoansNotif']; ?>">Vehicle Information</span>
-              <?php elseif ($notifCollectionLoans['LoansNotif']==0): ?>
-                <span>Vehicle Information</span>
-              <?php endif; ?>
-              <?php endforeach; ?>
-            
-
+            <span>Vehicle Information</span>
           </a>
         </li>           
       </ul>
@@ -73,17 +52,7 @@
       href="#Disbursments"
     >
       <span class="me-2"><i class="bi bi-receipt"></i></span>
-
-      <?php $totalnot=0; foreach ($notifDisburs as $notifDisburs): ?>
-      <?php
-      $totalnot=$notifDisburs['roCount']+$notifDisburs['poCount']+$notifDisburs['uCount'];
-       if ($totalnot>=1): ?>
-       <span class="badge1" data-badge="<?php echo $totalnot; ?>">Vehicle Reservation</span>
-     <?php elseif ($notifCollection['notifCollection']==0): ?>
-      <span>Vehicle Reservation</span>
-      <?php endif; ?>
-      <?php endforeach; ?>
-
+        <span>Vehicle Reservation</span>
       <span class="ms-auto">
         <span class="right-icon">
           <i class="bi bi-chevron-down"></i>

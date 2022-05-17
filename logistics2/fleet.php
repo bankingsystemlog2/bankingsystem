@@ -95,19 +95,11 @@
                       </button>
                     </div>
                     <div class="modal-body">                      
-                      <form method="post" action="edit_account.php" class="clearfix">
-                      <div class="form-group">
-                            <label for="newPassword" class="control-label"><?php echo $row['v_model'];?></label>
-                            <input type="password" class="form-control" name="new-password" placeholder="New password" required>
-                      </div>
-                      <br>
-                      <div class="form-group">
-                            <label for="oldPassword" class="control-label">Old password</label>
-                            <input type="password" class="form-control" name="old-password" placeholder="Old password" required>
-                      </div>
+                      <form method="post" action="edit_fleet.php" class="clearfix">
+                      
                     </div>
                     <div class="modal-footer bg-secondary">
-                      <input type="hidden" name="id" value="<?php echo (int)$user['id'];?>">
+                      <input type="hidden" name="id" value="<?php echo $row['fleetid'];?>">
                       <button type="Submit" name="edit_fleet" class="btn btn-success"><i class="fas fa-check"></i> Edit</button>
                       <button type="button" name="delete_fleet" data-bs-toggle = "modal" class="btn btn-danger" data-bs-target = "#deleteModal">Delete</button>
                         <!-- Delete Modal -->

@@ -5,7 +5,7 @@
    page_require_level(1);
 ?>
 <?php
-  $e_fleet = find_by_idf('v_info',(int)$_GET['id']);
+  $e_fleet = find_by_idf('v_info',(int)$_POST['id']);
   $groups  = find_all('user_groups');
   if(!$e_fleet){
     $session->msg("d","Missing user id.");
@@ -36,8 +36,8 @@
        $v_license   = remove_junk($db->escape($_POST['v_license']));
        $v_condition   = remove_junk($db->escape($_POST['v_condition']));
        $v_avail   = remove_junk($db->escape($_POST['v_avail'])); 
-       $fleetimg  = remove_junk($db->escape($_POST['fleetimg']))
-            $sql = "UPDATE v_info SET v_category ='{$v_category}', v_model ='{$v_model}',v_year='{$v_year}',v_color='{$v_color}',v_regnum='{$v_regnum}',v_serialnum='{$v_serialnum}',v_capacity='{$v_capacity}',v_datepur='{$v_datepur}',v_manu='{$v_manu}',v_enginetype='{$v_enginetype}',v_loc='{$v_loc}',v_fueltype='{$v_fueltype}',v_fuelcap='{$v_fuelcap}',v_license='{$v_license}',v_condition='{$v_condition}',v_avail='{$v_avail}',fleetimg='{$fleetimg}' WHERE fleetid='{$fleetid}'";
+       $fleetimg  = remove_junk($db->escape($_POST['fleetimg']));
+          $sql = "UPDATE v_info SET v_category ='{$v_category}', v_model ='{$v_model}',v_year='{$v_year}',v_color='{$v_color}',v_regnum='{$v_regnum}',v_serialnum='{$v_serialnum}',v_capacity='{$v_capacity}',v_datepur='{$v_datepur}',v_manu='{$v_manu}',v_enginetype='{$v_enginetype}',v_loc='{$v_loc}',v_fueltype='{$v_fueltype}',v_fuelcap='{$v_fuelcap}',v_license='{$v_license}',v_condition='{$v_condition}',v_avail='{$v_avail}',fleetimg='{$fleetimg}' WHERE fleetid='{$fleetid}'";
          $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Account Updated ");
@@ -64,7 +64,7 @@
         </strong>
        </div>
        <div class="panel-body">
-          <form method="post" action="edit_fleet.php?id=<?php echo (int)$e_fleet['fleetid'];?>" class="clearfix">
+          <form method="post" action="edit_fleet.php" class="clearfix">
           <div class="form-group">
                 <label for="v_category" class="control-label">Category</label>
                 <select class="form-control" name="v_category" value="<?php echo remove_junk(ucwords($e_fleet['v_category'])); ?>">
@@ -99,7 +99,7 @@
             </div>
             <div class="form-group">
                 <label for="v_datepur">Date of Purchase</label>
-                <input type="text" class="form-control" name ="v_datepur"  value="<?php echo remove_junk(ucwords($e_fleet['v_datepur'])); ?>">
+                <input type="date" class="form-control" name ="v_datepur"  value='<?php echo $e_fleet["v_datepur"]?>'>
             </div>
             <div class="form-group">
                 <label for="v_manu">Manufacturer</label>

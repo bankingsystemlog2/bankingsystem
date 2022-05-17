@@ -7,6 +7,7 @@
   $groups = find_all('v_res');
   $fleet = find_all('v_info');
   $users_id = current_user()['id'];
+  $user_name = current_user()['name'];
   $from_date = $_SESSION['from_date'];
   $to_date = $_SESSION['to_date'];
 ?>
@@ -25,6 +26,7 @@
        $todate   = remove_junk($db->escape($_POST['to_date']));
        $fleetid   = remove_junk($db->escape($_POST['fleetid'])); 
        $remarks   = remove_junk($db->escape($_POST['remarks'])); 
+       $location   = remove_junk($db->escape($_POST['location'])); 
         $query = "INSERT INTO v_res (";
         $query .="emp_id,from_date,to_date,fleetid,location,remarks";
         $query .=") VALUES (";
@@ -46,6 +48,20 @@
  }
 ?>
 <?php include_once('layouts/header.php'); ?>
+<!-- Breadcrumb -->
+<nav class="breadcrumbs">
+  <?php if ($user['user_level'] === '1'): ?>
+    <a href="admin.php" class="breadcrumbs__item">Home</a>
+  <?php elseif ($user['user_level'] === '2'): ?>
+   <a href="user_dashboard.php" class="breadcrumbs__item">Home</a>
+   <?php elseif ($user['user_level'] === '4'): ?>
+   <a href="admin.php" class="breadcrumbs__item">Home</a>
+  <?php endif; ?>
+  <a href="vehicles.php" class="breadcrumbs__item">Vehicle Reservation</a>
+
+  <a href="#checkout" class="breadcrumbs__item is-active">Reservation Form</a>
+</nav>
+<!-- /Breadcrumb -->
   <?php echo display_msg($msg);  
   if(isset($_GET['fleetid'])){
   ?>
@@ -65,7 +81,7 @@
               <input type="hidden" class="form-control" name = "from_date" value = <?php echo $from_date; ?>>
             </div>
             <div class="form-group">
-              <input type="hidden" class="form-control" name = "to_date" value = <?php echo $from_date; ?>>
+              <input type="hidden" class="form-control" name = "to_date" value = <?php echo $to_date; ?>>
             </div>
             <div class="form-group">
               <input type="hidden" class="form-control" name = "fleetid" value = <?php echo $fleet_id; ?>>
@@ -74,18 +90,30 @@
                 <input type="hidden" class="form-control" name ="emp_id"  value = <?php echo $users_id; ?>>
             </div>
             <div class="form-group">
+                <label for="from_date">From date</label>
+              <input type="text" class="form-control" name = "samplefrom_date" value = <?php echo $from_date; ?> readonly>
+            </div>
+            <div class="form-group">
+                <label for="to_date">To date</label>
+              <input type="text" class="form-control" name = "sampleto_date" value = <?php echo $to_date; ?> readonly>
+            </div>
+            <div class="form-group">
+                <label for="v_year">Vehicle ID</label>
+              <input type="text" class="form-control" name = "samplefleetid" value = <?php echo $fleet_id; ?> readonly>
+            </div>
+            <div class="form-group">
                 <label for="v_year">Location</label>
-                <input type="text" class="form-control" name ="v_year"  placeholder="Address">
+                <input type="text" class="form-control" name ="location"  placeholder="Address">
             </div>
             <div class="form-group">
                 <label for="v_color">Remarks</label>
-                <textarea class="form-control" name ="v_color"  placeholder="Additional Informations"></textarea>
+                <textarea class="form-control" name ="remarks"  placeholder="Additional Informations"></textarea>
             </div>
             
         </form>
         
-        <a href="admin.php"><button type="submit" name="fleet_addvehicle" class="btn btn-danger">Home</button></a>
-        <a href="applicant_edit.php"><button type="submit" name="fleet_addvehicle" class="btn btn-success">edit submittion</button></a>
+        <a href="vehicles.php"><button type="submit" name="fleet_addvehicle" class="btn btn-danger">Cancel</button></a>
+        <a href="applicant_edit.php"><button type="submit" name="fleet_addvehicle" class="btn btn-success">Reserve Vehicle</button></a>
         </div>
 
       </div>

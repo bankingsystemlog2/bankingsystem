@@ -30,17 +30,14 @@
 <div class="row">
   <div class="col-md-12 mb-3">
     <div class="card">
-      <div class="card-header">
-      <span class="badge rounded-pill bg-success"><i class="bi"></i> Vehicle Reservation</span>
-      </div>
       <form method="post" action="vehicle_reservation_form.php" >
         <div class="col-md-4">
           <label for="from_date">Select start Date</label>
-          <input type="date" name="from_date" id="from_date" class="form-control datepicker input" placeholder="From Date" />
+          <input required type="date" name="from_date" id="from_date" class="form-control datepicker input" placeholder="From Date" min="<?php echo date('Y-m-d'); ?>" />
         </div>
         <div class="col-md-4">
           <label for="to_date">Select end date</label>
-          <input type="date" name="to_date" id="to_date" class="form-control datepicker input2" placeholder="To Date" />
+          <input type="date" name="to_date" id="to_date" class="form-control datepicker input2" placeholder="To Date" min="<?php echo date('Y-m-d'); ?>" />
         </div>
         <div class="activity">
 

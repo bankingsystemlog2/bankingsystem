@@ -6,6 +6,7 @@
 ?>
 <?php
  $c_user = count_by_id('users');
+ $username = current_user()['name'];
 
 ?>
 <?php include_once('layouts/header.php'); ?>
