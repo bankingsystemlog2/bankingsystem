@@ -26,7 +26,7 @@
     validate_fields($req_fields);
     if($fileSize <= 100000000){
       $fileNameNew = uniqid('',true).".".$fileActualExt;
-      $fileDestination = '../uploads/'.$fileNameNew;
+      $fileDestination = 'uploads/'.$fileNameNew;
       move_uploaded_file($fileTmpName, $fileDestination);
       if(empty($errors)){
         $v_category   = remove_junk($db->escape($_POST['v_category']));

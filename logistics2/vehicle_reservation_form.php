@@ -15,10 +15,8 @@
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <?php
-  if(isset($_POST['vehicle_reservation_form'])){
+  if(isset($_POST['vehicle_reserve'])){
 
-   $req_fields = array('emp_id,res_time,s_date,r_deadline');
-   validate_fields($req_fields);
 
    if(empty($errors)){
        $emp_id   = remove_junk($db->escape($_POST['emp_id']));
@@ -35,7 +33,7 @@
         if($db->query($query)){
           //sucess
           $session->msg('s',"Application form sent! ");
-          redirect('fleet_addvehicle.php', false);
+          redirect('vehicles.php', false);
         } else {
           //failed
           $session->msg('d',' Sorry Application form failed to send!');
@@ -75,7 +73,7 @@
       </div>
       <div class="panel-body">
         <div class="col-md-6">
-          <form method="post" action="vehicle_reservation_form.php" autocomplete="off">
+          <form method="POST" action="vehicle_reservation_form.php" autocomplete="off">
             <?php $fleet_id = $_GET['fleetid'];?>
             <div class="form-group">
               <input type="hidden" class="form-control" name = "from_date" value = <?php echo $from_date; ?>>
@@ -110,11 +108,11 @@
                 <textarea class="form-control" name ="remarks"  placeholder="Additional Informations"></textarea>
             </div>
             
-        </form>
         
-        <a href="vehicles.php"><button type="submit" name="fleet_addvehicle" class="btn btn-danger">Cancel</button></a>
-        <a href="applicant_edit.php"><button type="submit" name="fleet_addvehicle" class="btn btn-success">Reserve Vehicle</button></a>
+        <a href="vehicles.php"><button type="button" name="fleet_addvehicle" class="btn btn-danger">Cancel</button></a>
+        <button type="submit" name="vehicle_reserve" class="btn btn-success">Reserve Vehicle</button></a>
         </div>
+        </form>
 
       </div>
 

@@ -616,6 +616,11 @@ function getAuditlog($table){
   return find_by_sql($sql);
 
  }
+ function find_all_reserved(){
+  global $db;
+  $sql = "SELECT v_res.* , v_info.*, users.* FROM v_res JOIN v_info ON v_res.fleetid = v_info.fleetid JOIN users ON v_res.emp_id = users.id";
+  return find_by_sql($sql);
+ }
   //===========================================End of Logistics2=======================================================================
 /*--------------------------------------------------------------*/
 /* Function for find all database table rows by table name

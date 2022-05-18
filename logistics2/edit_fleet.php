@@ -5,21 +5,18 @@
    page_require_level(1);
 ?>
 <?php
-  $e_fleet = find_by_idf('v_info',(int)$_POST['id']);
+  $e_fleet = find_by_idf('v_info',(int)$_POST['fleetid']);
   $groups  = find_all('user_groups');
   if(!$e_fleet){
-    $session->msg("d","Missing user id.");
-    redirect('users.php');
+    redirect('fleet.php');
   }
 ?>
 
 <?php
 //Update User basic info
   if(isset($_POST['update'])) {
-    $req_fields = array('v_category','v_model','v_year');
-    validate_fields($req_fields);
     if(empty($errors)){
-      $fleetid = (int)$e_fleet['fleetid'];
+      $fleetid = remove_junk($db->escape($_POST['fleetid']));
         $v_category   = remove_junk($db->escape($_POST['v_category']));
        $v_model   = remove_junk($db->escape($_POST['v_model']));
        $v_year   = remove_junk($db->escape($_POST['v_year']));
@@ -41,14 +38,14 @@
          $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Account Updated ");
-            redirect('edit_fleet.php?id='.(int)$e_fleet['fleetid'], false);
+            redirect('fleet.php', false);
           } else {
             $session->msg('d',' Sorry failed to updated!');
-            redirect('edit_fleet.php?id='.(int)$e_fleet['fleetid'], false);
+            redirect('edit_fleet.php?id='.(int)$_POST['fleetid'], false);
           }
     } else {
       $session->msg("d", $errors);
-      redirect('edit_user.php?id='.(int)$e_user['id'],false);
+      redirect('edit_fleet.php?id='.(int)$_POST['fleetid'],false);
     }
   }
 ?>
@@ -65,7 +62,10 @@
        </div>
        <div class="panel-body">
           <form method="post" action="edit_fleet.php" class="clearfix">
-          <div class="form-group">
+            <div class="form-group">
+                <input type="hidden" class="form-control" name ="fleetid"  value="<?php echo remove_junk(ucwords($e_fleet['fleetid'])); ?>">
+            </div>
+            <div class="form-group">
                 <label for="v_category" class="control-label">Category</label>
                 <select class="form-control" name="v_category" value="<?php echo remove_junk(ucwords($e_fleet['v_category'])); ?>">
                   <option <?php if($e_fleet['v_category'] === '3')  echo 'selected="selected"';?>value="3">ARMORED VEHICLE</option>

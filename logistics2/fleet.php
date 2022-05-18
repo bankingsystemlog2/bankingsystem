@@ -5,6 +5,7 @@
    page_require_level(1);
   $vehicle = find_all('v_info');
 ?>
+<link rel="stylesheet" href="datatables.css">
 <?php include_once('layouts/header.php'); ?>
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
@@ -87,10 +88,10 @@
             <button $id =<?php echo $row['fleetid'];?> data-bs-toggle = "modal" data-bs-target = "#exampleModal-<?php echo $row['fleetid'];?>" class="btn btn-info btn-viewReciept"><i class="bi bi-file-earmark-post-fill"></i> Details</a></td>
               <!-- Modal -->
               <div class="modal top fade" id="exampleModal-<?php echo $row['fleetid'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-keyboard="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header bg-secondary">
-                      <h5 class="modal-title" id="exampleModalLabel" style="Color:white">Change password</h5>
+                      <h5 class="modal-title" id="exampleModalLabel" style="Color:white">Vehicle Information</h5>
                       <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close">
                       </button>
                     </div>
@@ -98,28 +99,33 @@
                       <form method="post" action="edit_fleet.php" class="clearfix">
                       
                     </div>
-                    <div class="modal-footer bg-secondary">
-                      <input type="hidden" name="id" value="<?php echo $row['fleetid'];?>">
-                      <button type="Submit" name="edit_fleet" class="btn btn-success"><i class="fas fa-check"></i> Edit</button>
-                      <button type="button" name="delete_fleet" data-bs-toggle = "modal" class="btn btn-danger" data-bs-target = "#deleteModal">Delete</button>
-                        <!-- Delete Modal -->
-                        <div class="modal top fade" id="deleteModal">
-                          <div class="modal-dialog modal-l modal-dialog-centered">
-                            <div class="modal-content"> 
-                              <form class="modal-content" action="fleet.php">
-                                <div class="modal-header bg-secondary">
-                                  <div class="container">
-                                    <h1 class="modal-title">Delete Vehicle</h1>
-                                  </div>
-                                </div>
-                                <div class="modal-footer bg-secondary">
-                                  <button type="button" data-bs-dismiss="modal" class="btn btn-success"><i class="fas fa-check"></i>Cancel</button>
-                                  <button type="submit" class="btn btn-danger">Delete</button>
-                                </div>
-                              </form>
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-md-4"><img src="uploads/<?php echo $row['fleetimg']; ?>" height='150' /></div>
+                        <div class="col-md-4 ml-auto">
+                          <h6>Category:</h6><p><?php if($row['v_category'] == 1){echo "car";} elseif($row['v_category'] == 2){echo "Van";} elseif($row['v_category'] == 3){echo "Armored Vehicle";} else{echo "Undefined";}?> </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 ml-auto"><h5><?php echo $row['v_model'];?></h5></div>
+                        <div class="col-md-2 ml-auto">.col-md-2 .ml-auto</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 ml-auto">.col-md-6 .ml-auto</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-9">
+                          Level 1: .col-sm-9
+                          <div class="row">
+                            <div class="col-8 col-sm-6">
+                              Level 2: .col-8 .col-sm-6
+                            </div>
+                            <div class="col-4 col-sm-6">
+                              Level 2: .col-4 .col-sm-6
                             </div>
                           </div>
                         </div>
+                      </div>
                       </form>
                     </div>
                   </div>

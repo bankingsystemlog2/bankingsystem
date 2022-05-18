@@ -120,7 +120,7 @@
         </head>
         <body>
         <div class="tab">
-            <button class="tablinks" onclick="Tab(event, 'ApplicationForm')">Fill-up Audit</button>
+            <button class="tablinks"  onclick="Tab(event, 'ApplicationForm')" id="defaultOpen">Fill-up Audit</button>
             <button class="tablinks" onclick="Tab(event, 'ViewData')">View Audit</button>
         </div>
 
@@ -195,6 +195,7 @@
 
 
         <script>
+        document.getElementById("defaultOpen").click();
         function Tab(evt, cityName) {
           var i, tabcontent, tablinks;
           tabcontent = document.getElementsByClassName("tabcontent");
