@@ -198,7 +198,10 @@
       Addons
     </div>
   </li>
-  
+  <a href="job-portal/index.php" class="nav-link px-3">
+      <span class="me-2"><i class="bi bi-mic"></i></span>
+      <span>PORTAL</span>
+    </a>
   <a href="create-anouncement.php" class="nav-link px-3">
       <span class="me-2"><i class="bi bi-mic"></i></span>
       <span>Announcement</span>

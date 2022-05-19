@@ -1,11 +1,7 @@
 <?php
-  ob_start();
-  require_once('includes/log2load.php');
-  $users_id = current_user()['id'];
-  //if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
+
+require_once('includes/log2load.php');
 ?>
-
-
 <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -35,11 +31,10 @@
   </head>
   <body>
   <?php
-   $product_id = $_GET['product_id'];
+   $product_id = $_POST['product_id'];
   if(isset($_POST['applicationform'])){
    
-   $req_fields = array('name','address','company','email','item_description','offer','phone','category');
-   validate_fields($req_fields);
+    $product_id = $_POST['product_id'];
    $target_dir = "uploads/";
    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
    $uploadOk = 1;
@@ -90,9 +85,6 @@
  }
 ?>
   <div class="row">
-   <div class="col-md-12">
-     <?php echo display_msg($msg); ?>
-   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
@@ -156,7 +148,10 @@
         <body>
        <div id="ApplicationForm" class="panel-body">
 
-            <form method="post" action="vendor_form_portal.php?product_id=1" enctype="multipart/form-data" autocomplete="off" > 
+            <form method="post" action="vendor_form_portal.php" enctype="multipart/form-data" > 
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="product_id" value=<?php echo $product_id;?>>
+                </div>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" placeholder="name" required>
