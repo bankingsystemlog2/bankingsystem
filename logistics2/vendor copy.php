@@ -12,6 +12,7 @@
   ?>
 <?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
+
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
   <?php if ($user['user_level'] === '1'): ?>
@@ -40,15 +41,15 @@
   <div class="col-md-12 mb-3">
     <div class="card">
       <div class="card-header">
-        <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Recievables Table</span>
+        <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Vendor Portal</span>
         <div class="text-end">
           <button class="btn btn-warning btn-xs-block" type="button">
          <i class="bi bi-printer-fill"></i>
           Print Report
          </button>
-        <div class="text-end">
+        <!-- <div class="text-end">
           <a href="fleet_addvehicle.php" class="btn btn-info pull-right"> View Approved List</a>
-         </div>
+         </div> -->
         </div>
       </div>
       <div class="card-body">
@@ -79,7 +80,7 @@
         <tbody>
         <?php foreach($all_vendors as $a_vendor): ?>
           <tr>
-           <td class="text-center"><?php echo count_id();?></td>
+           <td class="text-center"><?php echo $a_vendor['id'];?></td>
            <td><?php echo remove_junk(ucwords($a_vendor['product_name']))?></td>
            <td><?php echo remove_junk(ucwords($a_vendor['Name']))?></td>
            <td><?php echo remove_junk(ucwords($a_vendor['Address']))?></td>
@@ -114,12 +115,33 @@
             <?php if($user['user_level'] === '1'): ?>
            <td class="text-center">
              <div class="btn-group">
-                <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
+                <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-pencil"></i>
                   <i class="glyphicon glyphicon-pencil"></i>
                </a>
-                <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                  <i class="glyphicon glyphicon-remove"></i>
-                </a>
+               <button data-bs-toggle = "modal" data-bs-target = "#exampleModal-<?php echo $a_vendor['id'];?>" class="btn btn-warning"><i class="bi bi-file-earmark-post-fill"></i> Delete</a></td>
+                <div class="modal top fade" id="exampleModal-<?php echo $a_vendor['id'];?>">
+                          <div class="modal-dialog modal-l modal-dialog-centered">
+                            <div class="modal-content"> 
+                              <form class="modal-content" action="vendor_delete.php" method="post">
+                                <div class="modal-header bg-secondary">
+                                  <div class="container">
+                                    <h1 class="modal-title">Are you sure?</h1>
+                                  </div>
+                                </div>
+                                <div class="modal-body">                                  
+                                    <h5>Do You Want To Delete This Application?</h5>
+                                </div>
+                                <div class="modal-footer bg-secondary">
+                                  <div>
+                                    <input type="hidden" class = "form-control" name="i_d" value=<?php echo $a_vendor['id'];?>>
+                                  </div>
+                                  <button type="button" data-bs-dismiss="modal" class="btn btn-success"><i class="fas fa-check"></i>Cancel</button>
+                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
                 </div>
            </td>
            <?php endif;?>

@@ -61,72 +61,6 @@
 //    }
 //  }
 ?>
-<?php include_once('layouts/header.php'); ?>
-<div class="row">
-   <div class="col-md-12">
-     <?php echo display_msg($msg); ?>
-   </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        <strong>
-          <span class="glyphicon glyphicon-th"></span>
-          <span>Vendor</span>
-       </strong>
-         
-      </div>
-     <div class="panel-body">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-            <style>
-                body {font-family: Arial;}
-
-                /* Style the tab */
-                .tab {
-                    overflow: hidden;
-                    border: 1px solid #ccc;
-                    background-color: #f1f1f1;
-                }
-
-                /* Style the buttons inside the tab */
-                .tab button {
-                    background-color: inherit;
-                    float: left;
-                    border: none;
-                    outline: none;
-                    cursor: pointer;
-                    padding: 14px 16px;
-                    transition: 0.3s;
-                    font-size: 17px;
-                }
-
-                /* Change background color of buttons on hover */
-                .tab button:hover {
-                    background-color: #ddd;
-                }
-
-                /* Create an active/current tablink class */
-                .tab button.active {
-                    background-color: #ccc;
-                }
-
-                /* Style the tab content */
-                .tabcontent {
-                    display: none;
-                    padding: 6px 12px;
-                    border: 1px solid #ccc;
-                    border-top: none;
-                }
-                /* Table Scroll */
-                #ViewData{
-                    overflow-x: auto;
-
-                 }
-            </style>
-        </head>
-        <body>
         <!-- <div class="tab">
             <button class="tablinks" onclick="Tab(event, 'ApplicationForm')">Register Application</button>
             <button class="tablinks" onclick="Tab(event, 'ViewData')">View Request</button>
@@ -177,9 +111,92 @@
                 
             </form>
         </div> -->
+<?php include_once('layouts/header.php'); ?>
+<link rel="stylesheet" href="datatables.css">
+<style>
+@media print{
+	#button{
+		display: none; !important;
+	}
+  #example_length{
+		display: none; !important;
+	}
+  #example_filter{
+		display: none; !important;
+	}
+  .topNavBar{
+    display: none; !important;
+  }
+  #example_info{
+    display: none; !important;
+  }
+  #example_previous{
+    display: none; !important;
+  }
+  #example_next{
+    display: none; !important;
+  }
+  .page-link{
+    display: none; !important;
+  }
+	.breadcrumbs{
+		display: none; !important;
+	}
+  table{
+    zoom: 80%;
+  }
+}
+@page {
+       /* auto is the initial value */
+    size: auto%;
+    margin: 0;  /* this affects the margin in the printer settings */
+}
 
-        <div id="ViewData">
-            <table class="table table-bordered table-striped" id="myTable">
+
+</style>
+<!-- Breadcrumb -->
+<nav class="breadcrumbs">
+  <?php if ($user['user_level'] === '1'): ?>
+    <a href="admin.php" class="breadcrumbs__item">Home</a>
+  <?php elseif ($user['user_level'] === '2'): ?>
+   <a href="user_dashboard.php" class="breadcrumbs__item">Home</a>
+   <?php elseif ($user['user_level'] === '4'): ?>
+   <a href="admin.php" class="breadcrumbs__item">Home</a>
+  <?php endif; ?>
+
+  <a href="#checkout" class="breadcrumbs__item is-active">List Of Applicant</a>
+</nav>
+<!-- /Breadcrumb -->
+
+<!-- Data table start -->
+<div class="row">
+  <!-- Notification div -->
+  <div class="row">
+     <div class="col-md-12">
+       <?php echo display_msg($msg); ?>
+     </div>
+     
+  </div>
+  <!-- End Notification div -->
+  
+  <div class="col-md-12 mb-3">
+    <div class="card">
+      <div class="card-header">
+        <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Vendor Portal</span>
+        <div class="text-end">
+        <div class="text-end">
+        <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
+        <!-- <div class="text-end">
+          <a href="fleet_addvehicle.php" class="btn btn-info pull-right"> View Approved List</a>
+         </div> -->
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            id="example"
+            class="table table-striped data-table"
+            style="width: 100%" >
             <thead>
             <tr>
                 <th class="text-center" style="width: 50px;">#</th>
@@ -237,12 +254,12 @@
             <td class="text-center">
                 <div class="btn-group">
                   <?php if ($a_vendor['statuss'] === '0'): ?>
-                    <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                      <i class="glyphicon glyphicon-pencil"></i>
+                    <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-pencil"></i>
+                  <i class="glyphicon glyphicon-pencil"></i>
                     </a>
                     <?php if($user['user_level'] === '1'): ?>
-                    <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                      <i class="glyphicon glyphicon-remove"></i>
+                    <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>"class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="bi bi-trash"></i>
+                  <i class="glyphicon glyphicon-remove"></i>
                     </a><?php endif; ?>
                     <?php elseif ($a_vendor['statuss'] === '1' || $a_vendor['statuss'] === '2'): ?>
                     <?php endif; ?>
@@ -273,7 +290,7 @@
           evt.currentTarget.className += " active";
         }
         </script> -->
-        <script>
+        <!-- <script>
             // Get the modal
             var modal = document.getElementById("myModal");
 
@@ -299,8 +316,8 @@
                 modal.style.display = "none";
               }
             }
-        </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        </script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="datatables.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -320,7 +337,7 @@
     }
   );
 
-</script>
+</script> -->
         </body>
      </div>
     </div>

@@ -31,7 +31,9 @@ require_once('includes/log2load.php');
   </head>
   <body>
   <?php
+  $users_id = current_user()['id'];
    $product_id = $_POST['product_id'];
+   $product_name = $_POST['product_name'];
   if(isset($_POST['applicationform'])){
    
     $product_id = $_POST['product_id'];
@@ -69,10 +71,11 @@ require_once('includes/log2load.php');
             $session->msg('s',"Application form sent! ");
 
               //end AuditLog Insert
-            // redirect('landing_page.php', false);
-            $message = "Application Sent!";
+            redirect('job-portal/index.php', false);
+            // $message = "Application Sent!";
           }
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        // echo "<script type='text/javascript'>alert('$message');</script>";
+
         } else {
          
           $session->msg('d',' Sorry Application form failed to send!');
@@ -151,6 +154,10 @@ require_once('includes/log2load.php');
             <form method="post" action="vendor_form_portal.php" enctype="multipart/form-data" > 
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="product_id" value=<?php echo $product_id;?>>
+                </div>
+                <div class="form-group">
+                    <label for="name">Item Name</label>
+                    <input type="text" class="form-control" value=<?php echo $product_name;?> readonly>
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>

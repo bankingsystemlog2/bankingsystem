@@ -12,8 +12,8 @@ $all_vendors = find_all('docu_tracking');
 $data =  getDocuTracking('docu_tracking');
 
 global $db;
-   $id = $_GET['id'];
-   $sql = $db->query("SELECT * FROM docu_tracking WHERE id='{$id}' LIMIT 1");
+   
+   $sql = $db->query("SELECT * FROM docu_tracking LIMIT 1");
           //if(
             $docu_tracking = $db->fetch_assoc($sql);
             //return $vendors;
@@ -46,34 +46,87 @@ global $db;
 
 <?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
+
 <style>
-   #documentTrackingTable{
-     overflow-x:auto;
-   }
-  #myInput{
-    margin-bottom: 15px;
-    float: right;
-    border-color: #2B547E;
+@media print{
+	#button{
+		display: none; !important;
+	}
+  #example_length{
+		display: none; !important;
+	}
+  #example_filter{
+		display: none; !important;
+	}
+  .topNavBar{
+    display: none; !important;
   }
-#myTable:hover:not(.active) {background-color: #ddd;}
+  #example_info{
+    display: none; !important;
+  }
+  #example_previous{
+    display: none; !important;
+  }
+  #example_next{
+    display: none; !important;
+  }
+  .page-link{
+    display: none; !important;
+  }
+	.breadcrumbs{
+		display: none; !important;
+	}
+}
+@page {
+    size: auto;   /* auto is the initial value */
+    margin: 0;  /* this affects the margin in the printer settings */
+}
 </style>
+
+
+<!-- Breadcrumb -->
+<nav class="breadcrumbs">
+  <?php if ($user['user_level'] === '1'): ?>
+    <a href="admin.php" class="breadcrumbs__item">Home</a>
+  <?php elseif ($user['user_level'] === '2'): ?>
+   <a href="user_dashboard.php" class="breadcrumbs__item">Home</a>
+   <?php elseif ($user['user_level'] === '4'): ?>
+   <a href="admin.php" class="breadcrumbs__item">Home</a>
+  <?php endif; ?>
+
+  <a href="#checkout" class="breadcrumbs__item is-active">Document Tracking</a>
+</nav>
+<!-- /Breadcrumb -->
+
+<!-- Data table start -->
 <div class="row">
-   <div class="col-md-12">
-     <?php echo display_msg($msg); ?>
-   </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        <strong>
-          <span class="glyphicon glyphicon-th"></span>
-          <span>Document Tracking</span>
-       </strong>
+  <!-- Notification div -->
+  <div class="row">
+     <div class="col-md-12">
+       <?php echo display_msg($msg); ?>
+     </div>
+     
+  </div>
+  <!-- End Notification div -->
+  
+  <div class="col-md-12 mb-3">
+    <div class="card">
+      <div class="card-header">
+        <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Document Tracking</span>
+        <div class="text-end">
+        <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
+        <!-- <div class="text-end">
+          <a href="flee t_addvehicle.php" class="btn btn-info pull-right"> View Approved List</a>
+         </div> -->
+        </div>
       </div>
-      <div class="panel-body" id="documentTrackingTable">
-      <table class="table table-bordered table-striped" id="myTable">
-        <thead>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            id="example"
+            class="table table-striped data-table"
+            style="width: 100%" >
+            <thead>
           <tr>
           <th class="text-center" style="width: 15%;">ID</th>
           <th class="text-center" style="width: 15%;">Location</th>
@@ -97,7 +150,7 @@ global $db;
     </div>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="datatables.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -116,6 +169,6 @@ $("#myTable").DataTable(
         ]
     }
   );
-</script>
+</script> -->
 
   <?php include_once('layouts/footer.php'); ?>

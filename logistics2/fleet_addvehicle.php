@@ -109,7 +109,7 @@
             </div>
             <div class="form-group">
                 <label for="v_year">Year model</label>
-                <input type="number" maxLength = "4" class="form-control" value = "2000"name ="v_year"  placeholder="Model year">
+                <input type="tel" maxlength = "4" class="form-control" value = "2000"name ="v_year"  placeholder="Model year">
             </div>
             <div class="form-group">
                 <label for="v_color">Color</label>

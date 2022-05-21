@@ -88,16 +88,17 @@ $row = $result->num_rows;
              <h3><?php echo ucfirst($sup['product_name']) ; ?></h3> 
            </div>
            <div class="col-xl-11 mx-auto mt-4">
-            <h5> Job Description</h5>
+            <h5>Item Description</h5>
            </div>
            <div class="col-xl-11 mx-auto mt-2">
-            <p><?php echo $sup['product_description'] ; ?></p>
+            <h5><?php echo $sup['product_description'] ; ?></h5>
            </div>
            <div class="col-xl-11 mx-auto mt-4">
            <div class="col-xl-11 mx-auto mt-4 mb-3" >
              <form  method="POST" action="../vendor_form_portal.php">
              <div class="form-group">
               <input type="hidden" class="form-control" name = "product_id" value = <?php echo $sup['product_id']; ?>>
+              <input type="hidden" class="form-control" name = "product_name" value = <?php echo $sup['product_name']; ?>>
               <button type="submit" class="col-sm-3 btn btn-success btn-sm " >Apply</button>
             </div>
           </form>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2022 at 07:41 PM
+-- Generation Time: May 21, 2022 at 07:37 PM
 -- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- PHP Version: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -367,6 +367,70 @@ INSERT INTO `audit` (`id`, `asset`, `stated_amount`, `actual_amount`, `preparedb
 (22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
 (0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
 (0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
+(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
+(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
+(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
+(12, 'testing', 0, 0, '0', '', '2022-01-11'),
+(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
+(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
+(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
+(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
+(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
+(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
+(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
+(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
+(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
+(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
+(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
+(12, 'testing', 0, 0, '0', '', '2022-01-11'),
+(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
+(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
+(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
+(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
+(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
+(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
+(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
+(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
+(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
+(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
+(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
+(12, 'testing', 0, 0, '0', '', '2022-01-11'),
+(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
+(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
+(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
+(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
+(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
+(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
+(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
+(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
+(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
+(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
+(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
+(12, 'testing', 0, 0, '0', '', '2022-01-11'),
+(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
+(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
+(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
+(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
+(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
+(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
+(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
+(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
+(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
+(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
 (0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14');
 
 -- --------------------------------------------------------
@@ -388,6 +452,104 @@ CREATE TABLE `audit_logs` (
 --
 
 INSERT INTO `audit_logs` (`id`, `module`, `action_taken`, `users_id`, `datetime_created`) VALUES
+(1, 'Vendor', 'User 1 Added new application form', 10, '2021-12-18 15:50:39'),
+(2, 'vendor_delete.php', 'Delete a records where id is 53', 1, '2021-12-18 23:12:52'),
+(3, 'vendor_delete.php', 'Delete a records where id is 55', 1, '2021-12-23 21:18:41'),
+(4, 'vendor_delete.php', 'Delete a records where id is 56', 1, '2021-12-23 21:26:59'),
+(5, 'vendor_delete.php', 'Delete a records where id is 57', 1, '2021-12-23 21:27:22'),
+(6, 'vendor_delete.php', 'Delete a records where id is 58', 1, '2021-12-23 21:31:33'),
+(7, 'vendor_delete.php', 'Delete a records where id is 59', 1, '2021-12-23 21:31:51'),
+(8, 'fleet_addvehicle.php', 'New added record where model is asd', 1, '2021-12-27 20:17:16'),
+(9, 'vendor_form.php', 'New added record where vendor is lester', 10, '2021-12-27 20:42:15'),
+(10, 'vendor_approval.php', ' Record has been approved where vendor is Lester', 1, '2021-12-27 21:04:10'),
+(11, 'vendor_approval.php', ' Record has been approved where vendor is Lester', 1, '2021-12-27 21:17:18'),
+(12, 'vendor_form.php', 'New added record where vendor is qwerty', 10, '2021-12-27 21:19:09'),
+(13, 'vendor_approval.php', ' Record has been Update where vendor is Qwerty', 1, '2021-12-27 21:19:33'),
+(14, 'vendor_delete.php', 'Delete a records where id is 61', 1, '2022-01-07 17:15:45'),
+(15, 'vendor_form.php', 'New added record where vendor is sa', 1, '2022-01-10 17:27:23'),
+(16, 'vendor_form.php', 'New added record where vendor is sa', 1, '2022-01-10 17:29:01'),
+(17, 'vendor_form.php', 'New added record where vendor is test', 1, '2022-01-10 17:30:07'),
+(18, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 18:07:49'),
+(19, 'vendor_approval.php', ' Record has been Update where vendor is Sa', 1, '2022-01-10 20:30:04'),
+(20, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 20:30:22'),
+(21, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 20:30:26'),
+(22, 'vendor_form.php', 'New added record where vendor is lester', 1, '2022-01-11 15:00:37'),
+(23, 'vendor_approval.php', ' Record has been Update where vendor is Testing', 1, '2022-01-11 15:43:20'),
+(1, 'Vendor', 'User 1 Added new application form', 10, '2021-12-18 15:50:39'),
+(2, 'vendor_delete.php', 'Delete a records where id is 53', 1, '2021-12-18 23:12:52'),
+(3, 'vendor_delete.php', 'Delete a records where id is 55', 1, '2021-12-23 21:18:41'),
+(4, 'vendor_delete.php', 'Delete a records where id is 56', 1, '2021-12-23 21:26:59'),
+(5, 'vendor_delete.php', 'Delete a records where id is 57', 1, '2021-12-23 21:27:22'),
+(6, 'vendor_delete.php', 'Delete a records where id is 58', 1, '2021-12-23 21:31:33'),
+(7, 'vendor_delete.php', 'Delete a records where id is 59', 1, '2021-12-23 21:31:51'),
+(8, 'fleet_addvehicle.php', 'New added record where model is asd', 1, '2021-12-27 20:17:16'),
+(9, 'vendor_form.php', 'New added record where vendor is lester', 10, '2021-12-27 20:42:15'),
+(10, 'vendor_approval.php', ' Record has been approved where vendor is Lester', 1, '2021-12-27 21:04:10'),
+(11, 'vendor_approval.php', ' Record has been approved where vendor is Lester', 1, '2021-12-27 21:17:18'),
+(12, 'vendor_form.php', 'New added record where vendor is qwerty', 10, '2021-12-27 21:19:09'),
+(13, 'vendor_approval.php', ' Record has been Update where vendor is Qwerty', 1, '2021-12-27 21:19:33'),
+(14, 'vendor_delete.php', 'Delete a records where id is 61', 1, '2022-01-07 17:15:45'),
+(15, 'vendor_form.php', 'New added record where vendor is sa', 1, '2022-01-10 17:27:23'),
+(16, 'vendor_form.php', 'New added record where vendor is sa', 1, '2022-01-10 17:29:01'),
+(17, 'vendor_form.php', 'New added record where vendor is test', 1, '2022-01-10 17:30:07'),
+(18, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 18:07:49'),
+(19, 'vendor_approval.php', ' Record has been Update where vendor is Sa', 1, '2022-01-10 20:30:04'),
+(20, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 20:30:22'),
+(21, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 20:30:26'),
+(22, 'vendor_form.php', 'New added record where vendor is lester', 1, '2022-01-11 15:00:37'),
+(23, 'vendor_approval.php', ' Record has been Update where vendor is Testing', 1, '2022-01-11 15:43:20'),
+(1, 'Vendor', 'User 1 Added new application form', 10, '2021-12-18 15:50:39'),
+(2, 'vendor_delete.php', 'Delete a records where id is 53', 1, '2021-12-18 23:12:52'),
+(3, 'vendor_delete.php', 'Delete a records where id is 55', 1, '2021-12-23 21:18:41'),
+(4, 'vendor_delete.php', 'Delete a records where id is 56', 1, '2021-12-23 21:26:59'),
+(5, 'vendor_delete.php', 'Delete a records where id is 57', 1, '2021-12-23 21:27:22'),
+(6, 'vendor_delete.php', 'Delete a records where id is 58', 1, '2021-12-23 21:31:33'),
+(7, 'vendor_delete.php', 'Delete a records where id is 59', 1, '2021-12-23 21:31:51'),
+(8, 'fleet_addvehicle.php', 'New added record where model is asd', 1, '2021-12-27 20:17:16'),
+(9, 'vendor_form.php', 'New added record where vendor is lester', 10, '2021-12-27 20:42:15'),
+(10, 'vendor_approval.php', ' Record has been approved where vendor is Lester', 1, '2021-12-27 21:04:10'),
+(11, 'vendor_approval.php', ' Record has been approved where vendor is Lester', 1, '2021-12-27 21:17:18'),
+(12, 'vendor_form.php', 'New added record where vendor is qwerty', 10, '2021-12-27 21:19:09'),
+(13, 'vendor_approval.php', ' Record has been Update where vendor is Qwerty', 1, '2021-12-27 21:19:33'),
+(14, 'vendor_delete.php', 'Delete a records where id is 61', 1, '2022-01-07 17:15:45'),
+(15, 'vendor_form.php', 'New added record where vendor is sa', 1, '2022-01-10 17:27:23'),
+(16, 'vendor_form.php', 'New added record where vendor is sa', 1, '2022-01-10 17:29:01'),
+(17, 'vendor_form.php', 'New added record where vendor is test', 1, '2022-01-10 17:30:07'),
+(18, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 18:07:49'),
+(19, 'vendor_approval.php', ' Record has been Update where vendor is Sa', 1, '2022-01-10 20:30:04'),
+(20, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 20:30:22'),
+(21, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 20:30:26'),
+(22, 'vendor_form.php', 'New added record where vendor is lester', 1, '2022-01-11 15:00:37'),
+(23, 'vendor_approval.php', ' Record has been Update where vendor is Testing', 1, '2022-01-11 15:43:20'),
+(24, 'vendor_delete.php', 'Delete a records where id is 76', 1, '2022-01-11 17:52:12'),
+(25, 'vendor_delete.php', 'Delete a records where id is 78', 1, '2022-01-11 17:52:14'),
+(1, 'Vendor', 'User 1 Added new application form', 10, '2021-12-18 15:50:39'),
+(2, 'vendor_delete.php', 'Delete a records where id is 53', 1, '2021-12-18 23:12:52'),
+(3, 'vendor_delete.php', 'Delete a records where id is 55', 1, '2021-12-23 21:18:41'),
+(4, 'vendor_delete.php', 'Delete a records where id is 56', 1, '2021-12-23 21:26:59'),
+(5, 'vendor_delete.php', 'Delete a records where id is 57', 1, '2021-12-23 21:27:22'),
+(6, 'vendor_delete.php', 'Delete a records where id is 58', 1, '2021-12-23 21:31:33'),
+(7, 'vendor_delete.php', 'Delete a records where id is 59', 1, '2021-12-23 21:31:51'),
+(8, 'fleet_addvehicle.php', 'New added record where model is asd', 1, '2021-12-27 20:17:16'),
+(9, 'vendor_form.php', 'New added record where vendor is lester', 10, '2021-12-27 20:42:15'),
+(10, 'vendor_approval.php', ' Record has been approved where vendor is Lester', 1, '2021-12-27 21:04:10'),
+(11, 'vendor_approval.php', ' Record has been approved where vendor is Lester', 1, '2021-12-27 21:17:18'),
+(12, 'vendor_form.php', 'New added record where vendor is qwerty', 10, '2021-12-27 21:19:09'),
+(13, 'vendor_approval.php', ' Record has been Update where vendor is Qwerty', 1, '2021-12-27 21:19:33'),
+(14, 'vendor_delete.php', 'Delete a records where id is 61', 1, '2022-01-07 17:15:45'),
+(15, 'vendor_form.php', 'New added record where vendor is sa', 1, '2022-01-10 17:27:23'),
+(16, 'vendor_form.php', 'New added record where vendor is sa', 1, '2022-01-10 17:29:01'),
+(17, 'vendor_form.php', 'New added record where vendor is test', 1, '2022-01-10 17:30:07'),
+(18, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 18:07:49'),
+(19, 'vendor_approval.php', ' Record has been Update where vendor is Sa', 1, '2022-01-10 20:30:04'),
+(20, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 20:30:22'),
+(21, 'vendor_approval.php', ' Record has been Update where vendor is Lesterr', 1, '2022-01-10 20:30:26'),
+(22, 'vendor_form.php', 'New added record where vendor is lester', 1, '2022-01-11 15:00:37'),
+(23, 'vendor_approval.php', ' Record has been Update where vendor is Testing', 1, '2022-01-11 15:43:20'),
+(24, 'vendor_delete.php', 'Delete a records where id is 76', 1, '2022-01-11 17:52:12'),
+(25, 'vendor_delete.php', 'Delete a records where id is 78', 1, '2022-01-11 17:52:14'),
+(26, 'vendor_delete.php', 'Delete a records where id is 79', 1, '2022-01-11 17:52:17'),
+(27, 'vendor_approval.php', ' Record has been Update where vendor is James', 1, '2022-01-11 18:03:20'),
 (1, 'Vendor', 'User 1 Added new application form', 10, '2021-12-18 15:50:39'),
 (2, 'vendor_delete.php', 'Delete a records where id is 53', 1, '2021-12-18 23:12:52'),
 (3, 'vendor_delete.php', 'Delete a records where id is 55', 1, '2021-12-23 21:18:41'),
@@ -948,7 +1110,23 @@ INSERT INTO `docu_tracking` (`id`, `Document_Sender`, `Action`, `Document_Subjec
 (5, '15', 'Add new Applicant kenneth', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II (2).pdf', '', 'Vendor', '2022-05-14 11:37:16'),
 (6, '15', 'Add new Applicant aaaaa', 'uploads/Q3_WEEK-1-2-edited.pdf', '', 'Vendor', '2022-05-14 11:47:18'),
 (7, '15', 'Add new Applicant testkenneth', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II (2).pdf', '', 'Vendor', '2022-05-14 11:50:06'),
-(8, '33', 'Add new Applicant dexter', 'uploads/11562-Anonymized manuscript-21230-3-10-20190222.pdf', '', 'Vendor', '2022-05-14 23:32:29');
+(8, '33', 'Add new Applicant dexter', 'uploads/11562-Anonymized manuscript-21230-3-10-20190222.pdf', '', 'Vendor', '2022-05-14 23:32:29'),
+(9, '', 'Add new Applicant kleddde9999', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-19 16:20:27'),
+(10, '', 'Add new Applicant Janina Fruta', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-21 11:59:33'),
+(11, '', 'Add new Applicant eunice', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', NULL, 'Vendor', '2022-05-21 17:52:37'),
+(12, '', 'Add new Applicant jasmine', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-21 17:56:48'),
+(13, '', 'Add new Applicant testing', 'uploads/Document Tracking.pdf', NULL, 'Vendor', '2022-05-21 17:58:22'),
+(14, '', 'Add new Applicant lagay', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-21 18:00:59'),
+(15, '', 'Add new Applicant hahah', 'uploads/Q3_WEEK-1-2-edited.pdf', NULL, 'Vendor', '2022-05-21 18:02:14'),
+(16, '', 'Add new Applicant kjasjksakj', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', NULL, 'Vendor', '2022-05-21 18:07:43'),
+(17, '', 'Add new Applicant jsjkdjkajkd', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', NULL, 'Vendor', '2022-05-21 18:13:46'),
+(18, '', 'Add new Applicant dedelete', 'uploads/James-resume.pdf', NULL, 'Vendor', '2022-05-21 18:24:33'),
+(19, '', 'Add new Applicant practice', 'uploads/Q3_WEEK-1-2-edited.pdf', NULL, 'Vendor', '2022-05-21 18:29:48'),
+(20, '', 'Add new Applicant kkkkk', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', NULL, 'Vendor', '2022-05-21 18:31:06'),
+(21, '', 'Add new Applicant jjjj', 'uploads/James-resume.pdf', NULL, 'Vendor', '2022-05-21 18:32:32'),
+(22, '', 'Add new Applicant trytry', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-21 23:39:04'),
+(23, '', 'Add new Applicant testing', 'uploads/Document Tracking (1).pdf', NULL, 'Vendor', '2022-05-21 23:49:03'),
+(24, '33', 'Add new Applicant has', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II.pdf', NULL, 'Vendor', '2022-05-22 00:05:37');
 
 -- --------------------------------------------------------
 
@@ -2095,7 +2273,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_description`, `Date_Created`) VALUES
-(1, 'facemask', 'standard quality', '2022-01-10 10:49:35');
+(1, 'facemask', 'standard quality', '2022-01-10 10:49:35'),
+(3, 'toothpaste', 'For fresh breathe', '2022-05-19 16:25:58'),
+(4, 'bondpaper', 'long 2 boxes', '2022-05-19 16:29:01');
 
 -- --------------------------------------------------------
 
@@ -2496,6 +2676,33 @@ INSERT INTO `student_loan` (`id`, `fullname`, `phone_no`, `email`, `address`, `n
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `supplier_user`
+--
+
+CREATE TABLE `supplier_user` (
+  `vendor_fname` varchar(150) NOT NULL,
+  `vendor_mi` varchar(150) NOT NULL,
+  `vendor_lname` varchar(150) NOT NULL,
+  `vendor_email` varchar(150) NOT NULL,
+  `vendor_cell` int(11) NOT NULL,
+  `vendor_pass` varchar(150) NOT NULL,
+  `vendor_bday` date NOT NULL,
+  `vendor_gender` varchar(150) NOT NULL,
+  `vendor_cstatus` varchar(150) NOT NULL,
+  `vendor_religion` varchar(150) NOT NULL,
+  `vendor_address` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `supplier_user`
+--
+
+INSERT INTO `supplier_user` (`vendor_fname`, `vendor_mi`, `vendor_lname`, `vendor_email`, `vendor_cell`, `vendor_pass`, `vendor_bday`, `vendor_gender`, `vendor_cstatus`, `vendor_religion`, `vendor_address`) VALUES
+('Kenneth', 'Mabansay', 'Ledde', 'leedskenneth12@gmail.com', 2147483647, 'Kledde0909-', '1999-07-25', 'Male', 'Single', 'Catholic', 'Caloocan City');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tblleaves`
 --
 
@@ -2675,7 +2882,7 @@ INSERT INTO `users` (`id`, `employee_id`, `name`, `username`, `password`, `user_
 (30, 30330048, 'cassey', 'core1admin', 'befec8e9b702b405874234f4302edb490d8b3896', 1, 'no_image.jpg', 1, '2022-05-17 14:56:43', 'core1', 'core1 manager'),
 (31, 30330049, 'dexter', 'core2admin', '236523049e73125e47db32656e78279cb22272e3', 1, 'no_image.jpg', 1, '2022-05-06 03:37:41', 'core2', 'core2 admin'),
 (32, 30330050, 'bless lopez', 'adminlogistic1', '178e4d75b6dace0e3ce9bdc72fac98d642dd0f92', 1, 'no_image.jpg', 1, '2022-05-15 00:34:24', 'logistic1', 'logistic1 manager'),
-(33, 30330051, 'janina mamaril', 'logistic2admin', 'a98e4a5eb71069c6d73969aa38800fba2617d933', 1, 'no_image.jpg', 1, '2022-05-17 18:30:23', 'logistic2', 'logistic_manager');
+(33, 30330051, 'janina mamaril', 'logistic2admin', 'a98e4a5eb71069c6d73969aa38800fba2617d933', 1, 'no_image.jpg', 1, '2022-05-22 01:02:51', 'logistic2', 'logistic_manager');
 
 -- --------------------------------------------------------
 
@@ -2733,11 +2940,35 @@ INSERT INTO `vendors` (`id`, `product_id`, `Name`, `Address`, `Company`, `Email`
 (74, 12, 'teste', 'asdwata', 'wdasdas', 'teste@gmail.com', '', '125123', 2147483647, 0, 0, '1', ''),
 (75, 0, 'lester', 'quezon city', 'asdwad', 'lester@gmail.com', '', '1251231', 5123123, 0, 0, '1', ''),
 (77, 0, 'lester', 'asdwad', 'asdwa', 'dasd', '', 'awdasd', 0, 1, 0, '1', ''),
-(80, 1, 'Test', 'test', 'test', 'test@gmail.com', '', '21315123', 51231123, 0, 0, '1', ''),
-(81, 1, 'James', 'Asdawdasd', 'Awdasdwa', 'James@gmail.com', 'Item Description Test', '231251231', 2147483647, 0, 1, '1', ''),
-(83, 1, 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 0, 0, 0, '1', ''),
-(0, 1, 'testkenneth', '123asd', 'asdqwe', 'asdw@gmail.com', 'asdweqe123', '123123', 2147483647, 15, 0, '1', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II (2).pdf'),
-(0, 1, 'dexter', '4123dasd', 'asdwqewe123', '2asdasd@gmail.com', 'asdwad', '131212', 2147483647, 33, 0, '1', 'uploads/11562-Anonymized manuscript-21230-3-10-20190222.pdf');
+(78, 1, 'kkkkk', 'kkkkk', 'kkkkk', 'kkk@gmail.com', 'kkkkk', '2131313', 1231312312, 0, 0, '1', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf'),
+(88, 1, 'trytry', 'trytry', 'trytry', 'trytry@gmail.com', 'trytry', '1231', 2147483647, 0, 0, '1', 'uploads/Cynthia_qtp.pdf'),
+(89, 3, 'testing', 'try', 'try', 'try@gmail.com', 'trytry', '312312313', 2147483647, 0, 0, '1', 'uploads/Document Tracking (1).pdf'),
+(90, 1, 'has', 'has', 'hsa', 'has@gmail.com', 'hasaha', '9912', 2147483647, 33, 0, '1', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendor_request_tbl`
+--
+
+CREATE TABLE `vendor_request_tbl` (
+  `id` int(11) NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `mname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `req_type` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `date_of_request` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vendor_request_tbl`
+--
+
+INSERT INTO `vendor_request_tbl` (`id`, `fname`, `mname`, `lname`, `position`, `department`, `req_type`, `status`, `date_of_request`) VALUES
+(1, 'Vhon Lester', 'Bunao', 'Partosa', 'HR1_Manager', 'LOGISTIC1', 'Vendor Request', 'Pending', '2022-05-19 19:22:02');
 
 -- --------------------------------------------------------
 
@@ -2852,9 +3083,8 @@ CREATE TABLE `v_info` (
 --
 
 INSERT INTO `v_info` (`fleetid`, `v_category`, `v_model`, `v_year`, `v_color`, `v_regnum`, `v_serialnum`, `v_capacity`, `v_datepur`, `v_manu`, `v_enginetype`, `v_loc`, `v_fueltype`, `v_fuelcap`, `v_license`, `v_condition`, `v_avail`, `fleetimg`) VALUES
-(7, 3, 'Starex', 2015, 'Gold', '5273423', '1234555', 9, '2017-03-23', 'Hyundai', 'Automatic', 'Baguio City', 'Diesel', '100L', '41231313', 'Good', 1, ''),
-(8, 3, 'a', 1, 'a', '1', '1', 1, '2022-04-18', 'a', 'a', 'a', 'a', '1', '2', 'good', 1, 'techies.png'),
-(9, 1, 'Civic', 2010, 'gray', '555', '555', 5, '2020-01-01', 'honda', 'manual', 'qc', 'diesel', '100', '55', 'good', 1, '2020-12-12.png');
+(7, 3, 'Starex', 2015, 'Gold', '5273423', '1234555', 9, '2017-03-23', 'Hyundai', 'Automatic', 'Baguio City', 'Diesel', '100L', '41231313', 'Good', 1, 'Project Scope.png'),
+(8, 3, 'a', 1, 'a', '1', '1', 1, '2022-04-18', 'a', 'a', 'a', 'a', '1', '2', 'good', 1, 'avatar.png');
 
 -- --------------------------------------------------------
 
@@ -2877,7 +3107,9 @@ CREATE TABLE `v_res` (
 --
 
 INSERT INTO `v_res` (`res_id`, `fleetid`, `emp_id`, `from_date`, `to_date`, `location`, `Remarks`) VALUES
-(1, 7, 1, '2022-04-14', '2022-04-15', '1', '');
+(1, 7, 1, '2022-04-14', '2022-04-15', '1', ''),
+(2, 8, 33, '2022-05-20', '2022-05-21', 'Camarin', 'Secret Secret Secret Secret Secret Secret Secret Secret Secret '),
+(3, 7, 33, '2022-05-20', '2022-05-22', 'Quezon City', 'Hahahahahahaha');
 
 --
 -- Indexes for dumped tables
@@ -3294,6 +3526,12 @@ ALTER TABLE `procurment`
   ADD KEY `FK_procurment` (`Co_Status`);
 
 --
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`);
+
+--
 -- Indexes for table `promoted`
 --
 ALTER TABLE `promoted`
@@ -3430,6 +3668,12 @@ ALTER TABLE `user_groups`
   ADD UNIQUE KEY `group_level` (`group_level`);
 
 --
+-- Indexes for table `vendors`
+--
+ALTER TABLE `vendors`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `visitorpolicy`
 --
 ALTER TABLE `visitorpolicy`
@@ -3459,7 +3703,8 @@ ALTER TABLE `v_info`
 --
 ALTER TABLE `v_res`
   ADD PRIMARY KEY (`res_id`),
-  ADD KEY `fleetid` (`fleetid`);
+  ADD KEY `fleetid` (`fleetid`),
+  ADD KEY `id` (`emp_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -3607,7 +3852,7 @@ ALTER TABLE `deployment`
 -- AUTO_INCREMENT for table `docu_tracking`
 --
 ALTER TABLE `docu_tracking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `education_background`
@@ -3850,6 +4095,12 @@ ALTER TABLE `procurment`
   MODIFY `Co_Code` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `promoted`
 --
 ALTER TABLE `promoted`
@@ -3964,6 +4215,12 @@ ALTER TABLE `users`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
+-- AUTO_INCREMENT for table `vendors`
+--
+ALTER TABLE `vendors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+
+--
 -- AUTO_INCREMENT for table `visitorpolicy`
 --
 ALTER TABLE `visitorpolicy`
@@ -3979,13 +4236,13 @@ ALTER TABLE `visitor_registration`
 -- AUTO_INCREMENT for table `v_info`
 --
 ALTER TABLE `v_info`
-  MODIFY `fleetid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `fleetid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `v_res`
 --
 ALTER TABLE `v_res`
-  MODIFY `res_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `res_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

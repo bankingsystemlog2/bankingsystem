@@ -4,7 +4,7 @@
    page_require_level(1);
 ?>
 <?php
-  $delete_id = delete_by_idf('v_info',(int)$_GET['id']);
+  $delete_id = delete_by_idf('v_info',$_POST['delete_fleet']);
   if($delete_id){
       $session->msg("s","Submittion deleted.");
       redirect('fleet.php');

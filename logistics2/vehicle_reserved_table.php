@@ -12,6 +12,42 @@
  $all_vendors = find_all_audit();
 ?>
 <?php include_once('layouts/header.php'); ?>
+<style>
+@media print{
+	#button{
+		display: none; !important;
+	}
+  #example_length{
+		display: none; !important;
+	}
+  #example_filter{
+		display: none; !important;
+	}
+  .topNavBar{
+    display: none; !important;
+  }
+  #example_info{
+    display: none; !important;
+  }
+  #example_previous{
+    display: none; !important;
+  }
+  #example_next{
+    display: none; !important;
+  }
+  .page-link{
+    display: none; !important;
+  }
+	.breadcrumbs{
+		display: none; !important;
+	}
+}
+@page {
+       /* auto is the initial value */
+    size: auto%;
+    margin: 0;  /* this affects the margin in the printer settings */
+}
+</style>
 <!-- Data table start -->
 <div class="row">
 
@@ -26,9 +62,13 @@
   <div class="col-md-12 mb-3">
     <div class="card">
       <div class="card-header">
-        <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Complain Table</span>
-      </div>
-      <div class="card-body">
+        <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Reserved Table</span>
+      
+      <div class="text-end">
+        <div class="text-end">
+        <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
+</div>
+        <div class="card-body">
         <div class="table-responsive">
           <table
             id="example"
@@ -42,7 +82,6 @@
                 <th>To date</th>
                 <th>Location</th>
                 <th>Remarks</th>
-                <th>buttons</th>
               </tr>
             </thead>
             <tbody>
@@ -55,14 +94,6 @@
                     <td><?php echo remove_junk(ucfirst($res['to_date'])); ?></td>
                     <td><?php echo remove_junk(ucfirst($res['location'])); ?></td>
                     <td><?php echo remove_junk(ucfirst($res['Remarks'])); ?></td>
-						    
-                    <td class="text-center">
-                      <div class="btn-group">
-                         <a href="edit_visitor.php?id" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-pencil"></i></a>      
-                      <a href="delete_complain.php?id" class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="bi bi-trash"></i></a>
-                      <a href="delete_contractrequest.php?id" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
-                      </div>
-                    </td>
 
                 </tr>       
             <?php endforeach; ?>

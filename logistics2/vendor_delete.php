@@ -4,7 +4,7 @@
    page_require_level(1);
 ?>
 <?php
-  $delete_id = delete_by_id('vendors',(int)$_GET['id']);
+  $delete_id = delete_by_id('vendors',(int)$_POST['i_d']);
   if($delete_id){
       $session->msg("s","Submittion deleted.");
       redirect('vendor copy.php');

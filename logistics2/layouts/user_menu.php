@@ -1,11 +1,11 @@
 <ul class="navbar-nav">
   <li>
     <div class="text-muted small fw-bold text-uppercase px-3">
-    ADMINISTRATIVE
+      LOGISTIC 2
     </div>
   </li>
   <li>
-    <a href="user_dashboard.php" class="nav-link px-3 active">
+    <a href="admin.php" class="nav-link px-3 active">
       <span class="me-2"><i class="bi bi-speedometer2"></i></span>
       <span>Dashboard</span>
     </a>
@@ -18,17 +18,14 @@
     </div>
   </li>
 <!-- All Sub modules Side Nav Bar -->
-
-<!-- legal management -->
-  <li>
+<li>
     <a
       class="nav-link px-3 sidebar-link"
       data-bs-toggle="collapse"
-      href="#Collections">
-	
-	
-    <span class="me-2"><i class="bi bi-folder-minus"></i></span> 
-      <span>Legal Management</span>
+      href="#Collections"
+    >
+    <span class="me-2"><i class="bi bi-book-half"></i></span>
+      <span>Fleet Management</span>
       <span class="ms-auto">
         <span class="right-icon">
           <i class="bi bi-chevron-down"></i>
@@ -38,121 +35,107 @@
     <div class="collapse" id="Collections">
       <ul class="navbar-nav ps-3">
         <li>
-          <a href="contract-admin staff.php" class="nav-link px-3">
+          <a href="fleet.php" class="nav-link px-3">
             <span class="me-2"
-              ><i class="bi bi-person-lines-fill"></i></span>             
-                <span>Contracts</span>
-				</a>
-				</li>
-		
-		
-        <li>
-          <a href="regulation-admin staff.php" class="nav-link px-3">
-            <span class="me-2"
-              ><i class="bi bi-wallet2"></i
-            ></span>      
-              <span>Rules and Regulation</span>           
+              ><i class="bi bi-person-lines-fill"></i></span>
+            <span>Vehicle Information</span>
           </a>
-        </li>
-		
-		<li>
-          <a href="Customer_loan.php" class="nav-link px-3">
-            <span class="me-2"
-              ><i class="bi bi-collection"></i
-            ></span>
-            <span>Customer Loans</span>
-          </a>
-		  
-		  <li>
-          <a href="complains.php" class="nav-link px-3">
-            <span class="me-2"
-              ><i class="bi bi-collection"></i
-            ></span>
-            <span>Complains</span>
-          </a>
-		  
-		  <li>
-         
-	
-		
-		<box-icon name='user-detail' type='solid' ></box-icon>
-     
+        </li>           
       </ul>
     </div>
   </li>
-
-<!-- End of legal management -->
-
-<!-- document management -->
+<!-- start of vehicle reservation -->
   <li>
     <a
       class="nav-link px-3 sidebar-link"
       data-bs-toggle="collapse"
       href="#Disbursments"
     >
-      <span class="me-2"><i class="bi-folder"></i></span>
-      <span>Document Management</span>
+      <span class="me-2"><i class="bi bi-receipt"></i></span>
+        <span>Vehicle Reservation</span>
       <span class="ms-auto">
         <span class="right-icon">
           <i class="bi bi-chevron-down"></i>
         </span>
       </span>
     </a>
-	
-	
-	
     <div class="collapse" id="Disbursments">
       <ul class="navbar-nav ps-3">
         <li>
-          <a href="filestoring.php" class="nav-link px-3">
+          <a href="vehicles.php" class="nav-link px-3">
             <span class="me-2"
-              ><i class="bi-archive"></i></span>
-            <span>File Storing</span>
+              ><i class="bi bi-credit-card-fill"></i
+            ></span>
+            <span>Vehicle Reservation</span>
           </a>
-        </li>
-		
-		
+        </li>          
+      </ul>
+    </div>
+    <div class="collapse" id="Disbursments">
+      <ul class="navbar-nav ps-3">
         <li>
-          <a href="procurement.php" class="nav-link px-3">
+          <a href="vehicle_reserved_table.php" class="nav-link px-3">
             <span class="me-2"
-              ><i class="bi-file-text"></i></span>
-            <span>Document Request</span>
+              ><i class="bi bi-credit-card-fill"></i
+            ></span>
+            <span>Reservation Table</span>
           </a>
-        </li>
-		
-		
-		
-        <li>
-          <a href="admin.php" class="nav-link px-3">
-            <span class="me-2"
-              ><i class="bi-journal-check"></i></span>
-            <span>Document Approval</span>
-          </a>
-        </li>
-		
-        <li>
-          <a href="contract.php" class="nav-link px-3">
-            <span class="me-2"
-              ><i class="bi-arrow-repeat"></i></span>
-            <span>In & Out Going Documents</span>
-          </a>
-        </li>
+        </li>          
       </ul>
     </div>
   </li>
-  <!-- End of Document Management -->
+
+<!-- End of vehicle reservation -->
+
+<!-- start of vendor -->
+  <li>
+      <a
+        class="nav-link px-3 sidebar-link"
+        data-bs-toggle="collapse"
+        href="#Budgets"
+      >
+        <span class="me-2"><i class="bi bi-wallet-fill"></i></span>
+        <span>Vendor</span>
+        <span class="ms-auto">
+          <span class="right-icon">
+            <i class="bi bi-chevron-down"></i>
+          </span>
+        </span>
+      </a>
+      <div class="collapse" id="Budgets">
+        <ul class="navbar-nav ps-3">
+          <!-- <li>
+            <a href="vendor copy.php" class="nav-link px-3">
+              <span class="me-2"
+                ><i class="bi bi-file-earmark-post"></i
+              ></span>
+              <span>List of Applicants</span>
+            </a>
+          </li> -->
+          <li>
+            <a href="vendor_list.php" class="nav-link px-3">
+              <span class="me-2"
+                ><i class="bi bi-cash"></i
+              ></span>
+              <span>Vendor List</span>
+            </a>
+          </li>          
+        </ul>
+      </div>
+    </li>
+  <!-- End of vendor -->
   
   
   
-  <!-- visitor management -->
+  <!-- start of document tracking -->
       <li>
         <a
           class="nav-link px-3 sidebar-link"
           data-bs-toggle="collapse"
           href="#Records"
         >
-          <span class="me-2"><i class="bi-person-circle"></i></span>
-          <span>Visitor Mangement</span>
+          <span class="me-2"><i class="bi bi-file-earmark-bar-graph"></i></span>
+          <span>Document Tracking</span>
           <span class="ms-auto">
             <span class="right-icon">
               <i class="bi bi-chevron-down"></i>
@@ -162,123 +145,76 @@
         <div class="collapse" id="Records">
           <ul class="navbar-nav ps-3">
             <li>
-              <a href="visitorinformation.php" class="nav-link px-3">
-                <span class="me-2"
-                  ><i class="bi-person-lines-fill"></i></span>
-                <span>Visitor Information</span>
-              </a>
-            </li>
-			
-            <li>
-              <a href="VisitorBlacklisted.php" class="nav-link px-3">
-                <span class="me-2"
-                  ><i class="bi-person-x-fill"></i></span>
-                <span>Blacklist Person</span>
-              </a>
-            </li>
-			
-			
-			<li>
-              <a href="monitoring visitor.php" class="nav-link px-3">
-                <span class="me-2"
-                  ><i class="bi-person-bounding-box"></i></span>
-                <span>Monitoring Visitor</span>
-              </a>
-            </li>
-			
-			<li>
-              <a href="policyvisitor.php" class="nav-link px-3">
-                <span class="me-2"
-                  ><i class="bi-clipboard"></i></span>
-                <span>Visitor Policy</span>
-              </a>
-            </li>
-			
-			<li>
-			
-			
-             <!-- <a href="AccountsRecievable.php" class="nav-link px-3">-->
+              <a href="document.php" class="nav-link px-3">
                 <span class="me-2"
                   ><i class="bi bi-file-earmark-spreadsheet"></i
                 ></span>
-                <span>Total of Visitor</span>
+                <span>Tracking</span>
               </a>
-            </li>
+            </li>            
           </ul>
         </div>
       </li>
-      <!-- End of visitor management-->
+      <!-- End of document tracking-->
 
-  <!-- Facility Management -->
-    <li>
-      <a
-        class="nav-link px-3 sidebar-link"
-        data-bs-toggle="collapse"
-        href="#Budgets"
-      >
-        <span class="me-2"><i class="bi-building"></i></span>
-        <span>Facility Management</span>
-        <span class="ms-auto">
-          <span class="right-icon">
-            <i class="bi bi-chevron-down"></i>   
-          </span>
-        </span>
-      </a>
-      <div class="collapse" id="Budgets">
-        <ul class="navbar-nav ps-3">
-          <li>
-            <a href="facilities.php" class="nav-link px-3">
-              <span class="me-2"
-                ><i class="bi bi-file-earmark-post"></i
-              ></span>
-              <span>Facilities</span>
-            </a>
-          </li>
-		  
-		  
-		  
-          <li>
-            <a href="equipment.php" class="nav-link px-3">
-              <span class="me-2"
-                ><i class="bi bi-cash"></i
-              ></span>
-              <span>Equipment</span>
-            </a>
-          </li>
-		  
-		  
-          <li>
-            <a href="admin.php" class="nav-link px-3">
-              <span class="me-2"
-                ><i class="bi bi-calendar-check-fill"></i
-              ></span>
-              <span>Report</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <!-- End of facility Management -->
-  
-  
+  <!-- start of audit -->
+      <!-- <li>
+          <a
+            class="nav-link px-3 sidebar-link"
+            data-bs-toggle="collapse"
+            href="#GeneralLedger"
+          >
+            <span class="me-2"><i class="bi bi-journal-bookmark-fill"></i></span>
+            <span>Audit Management</span>
+            <span class="ms-auto">
+              <span class="right-icon">
+                <i class="bi bi-chevron-down"></i>
+              </span>
+            </span>
+          </a>
+          <div class="collapse" id="GeneralLedger">
+            <ul class="navbar-nav ps-3">
+              <li>
+                <a href="audit_form.php" class="nav-link px-3">
+                  <span class="me-2"
+                    ><i class="bi bi-clipboard-data-fill"></i
+                  ></span>
+                  <span>Audit</span>
+                </a>
+              </li>              
+            </ul>
+          </div>
+        </li> -->
+    <!-- End of audit -->
+
+    
+
+      
+
+ <!-- All Sub modules Side Nav Bar End -->
+  <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
+  <li>
     <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
       Addons
     </div>
   </li>
-  <li>
-    <a href="#" class="nav-link px-3">
-      <span class="me-2"><i class="bi bi-graph-up"></i></span>
-      <span>Charts</span>
+  <a href="job-portal/index.php" class="nav-link px-3">
+      <span class="me-2"><i class="bi bi-mic"></i></span>
+      <span>PORTAL</span>
     </a>
-  </li>
-  <li>
-    <a href="#" class="nav-link px-3">
-      <span class="me-2"><i class="bi bi-table"></i></span>
-      <span>Tables</span>
+  <a href="create-anouncement.php" class="nav-link px-3">
+      <span class="me-2"><i class="bi bi-mic"></i></span>
+      <span>Announcement</span>
     </a>
+  
     <a href="users.php" class="nav-link px-3">
       <span class="me-2"><i class="bi bi-people-fill"></i></span>
       <span>Manage Users</span>
+    </a>
+	
+	<a href="backupdata.php" class="nav-link px-3">
+      <span class="me-2"><i class="bi bi-files"></i></span>
+      <span>Backup Database</span>
     </a>
     <a href="" class="nav-link px-3">
       <span class="me-2"><i class="bi bi-clock-fill"></i></span>

@@ -3,45 +3,315 @@
 require_once('includes/load.php');
 if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
 
+$namePattern = "/^[a-zA-z ]+$/";
+$emailPattern = "/^[a-zA-z\d\._]+@[a-zA-z]+\.[a-zA-z]+$/";
 
-    if(isset($_POST['submit'])){
-        if(empty($errors)){
-            $v_category   = remove_junk($db->escape($_POST['first_name']));
-            $v_model   = remove_junk($db->escape($_POST['middle_name']));
-            $v_year   = remove_junk($db->escape($_POST['last_name']));
-            $v_color   = remove_junk($db->escape($_POST['email']));
-            $v_regnum   = remove_junk($db->escape($_POST['contact']));
-            $v_serialnum   = remove_junk($db->escape($_POST['password'])); 
-            $v_capacity   = remove_junk($db->escape($_POST['bday']));
-            $v_datepur   = remove_junk($db->escape($_POST['gender']));
-            $v_manu   = remove_junk($db->escape($_POST['civil_status']));
-            $v_enginetype   = remove_junk($db->escape($_POST['religion']));
-            $v_loc   = remove_junk($db->escape($_POST['address'])); 
-              $query = "INSERT INTO supplier_user (`vendor_fname`, `vendor_mi`, `vendor_lname`, `vendor_email`, `vendor_cell`, `vendor_pass`, `vendor_bday`, `vendor_gender`, `vendor_cstatus`, `vendor_religion`, `vendor_address`) VALUES";
-              $query .="('{$v_category}', '{$v_model}', '{$v_year}', '{$v_color}', '{$v_regnum}', '{$v_serialnum}', '{$v_capacity}', '{$v_datepur}', '{$v_manu}', '{$v_enginetype}', '{$v_loc}'";
-              $query .=")";
-              if($db->query($query)){
-                //success
-                $session->msg('s',"Application form sent! ");
-                redirect('search.php', false);
-              } 
-              else {
-                //failed
-                $session->msg('d',' Sorry Application form failed to send!');
-                redirect('register.php', true);
+$error="";
+
+$fnamef = "";
+$lnamef = "";
+$mnamef = "";
+$emailf ="";
+$passf = "";
+$contf = "";
+$agef = "";
+$genderf = "";
+$civilf = "";
+$addf = "";
+$elemf = "";
+$hsf = "";
+$hsf2 = "";
+$colf = "";   
+$coursef = "";
+$religionf = "";
+
+
+      if(isset($_POST['submit'])){
+          
+          if(!empty($_POST['read'])){
+
+        $fnamef = $_POST['first_name'];
+        $lnamef = $_POST['last_name'];
+        $mnamef = $_POST['middle_name'];
+        $emailf = $_POST['email'];
+        $passf = $_POST['password'];
+        $contf = $_POST['contact'];
+        $genderf = $_POST['gender'];
+        $civilf = $_POST['civil_status'];
+        $addf = $_POST['address'];
+        $elemf = $_POST['educ_elem'];
+        $hsf = $_POST['educ_hs'];
+        $hsf2 = $_POST['educ_hs2'];
+        $colf = $_POST['educ_college'];
+        $bdayf = $_POST['bday'];
+        $coursef = $_POST['course'];
+        $religionf = $_POST['religion'];
+      
+
+
+
+
+            $fname = trim($_POST['first_name']);
+            $lname = trim($_POST['last_name']);
+            $mname = trim($_POST['middle_name']);
+            $email = trim($_POST['email']);
+            $pass = trim($_POST['password']);
+            $cont = trim($_POST['contact']);       
+            $gender = trim($_POST['gender']);
+            $gender = remove_junk($db->escape($gender));
+            $civil_status =trim($_POST['civil_status']);
+            $civil_status = remove_junk($db->escape($civil_status));
+            $add = trim($_POST['address']);
+            $elem = trim($_POST['educ_elem']);
+            $hs = trim($_POST['educ_hs']);
+            $hs2 = trim($_POST['educ_hs2']);
+            $col = trim($_POST['educ_college']);
+            $course = trim($_POST['course']);
+            $bday = trim($_POST['bday']);
+            $today = date("Y-m-d");
+            $agec = date_diff(date_create($bday),date_create($today));
+            $age = $agec->format('%y');
+            $rel= $_POST['religion'];
+            
+
+       
+           
+
+
+
+            if(empty($course)){
+                $error = "Course can't be empty.";
+            }elseif(strlen($course) > 100){
+            $error = "Name of course is too long.";
+            }else{
+                $course = remove_junk($db->escape($course));
+            }
+
+
+            if(empty($col)){
+                $error = "Name of school can't be empty.";
+            }elseif(strlen($col) > 100){
+            $error = "Name of school is too long.";
+            }else{
+                $college = remove_junk($db->escape($col));
+            }
+
+            if(empty($hs2)){
+                $error = "Senior high school can't be empty.";
+            }elseif(strlen($hs2) > 100){
+            $error = "Name of school is too long.";
+            }else{
+                $senior_high_school = remove_junk($db->escape($hs));
+            }
+
+            if(empty($hs)){
+                $error = "Junior high school can't be empty.";
+            }elseif(strlen($hs) > 100){
+            $error = "Name of school is too long.";
+            }else{
+                $high_school = remove_junk($db->escape($hs));
+            }
+
+            if(empty($elem)){
+                $error = "Elementary can't be empty.";
+            }elseif(strlen($elem) > 100){
+            $error = "Name of school is too long.";
+            }else{
+                $elementary = remove_junk($db->escape($elem));
+            }
+
+
+            if(empty($add)){
+                $error = "Address can't be empty.";
+            }elseif(strlen($add) > 150){
+            $error = "Address is too long.";
+            }else{
+                $address = remove_junk($db->escape($add));
+            }
+
+             if(empty($rel)){
+                $error = "Religion can't be empty.";
+            }elseif(strlen($rel) > 50){
+            $error = "Religion is too long.";
+             }elseif(!preg_match($namePattern, $rel)){
+                $error = "Invalid religion name.";
+            }else{
+                $religion = remove_junk($db->escape($rel));
+            }
+
+
+            if((int)$age <= 17){
+                $error = "Too young";
+            }elseif ((int)$age > 63) {
+                $error = "Too old";
+            }else{
+                $b_day = remove_junk($db->escape($bday));
+
+            }
+
+            if(empty($bday)){
+                $error = " Set your birthday.";
+            }
+
+        if(empty($pass)){
+            $error = "Password can't be empty.";
+        }elseif(strlen($pass)<=7){
+            $error = "Password must be 8 character and above.";
+        }elseif(!preg_match("#[0-9]+#", $pass)){
+            $error = "Password must contain numbers";
+        }elseif(!preg_match("#[A-Z]+#", $pass)){
+            $error = "Password must contain Capital Letters.";
+        }elseif(!preg_match("/[\'^£$%&*()}{@#~?><>!.,|=_+¬-]/", $pass)){
+            $error = "Password must contain special characters.";
+        }else{
+            $password = remove_junk($db->escape($pass));
+            $password= sha1($password);
+        }
+
+       if(empty($cont)){
+            $error = "Contact number can't be empty.";
+       }elseif (!preg_match("/[0-9]/", $cont)) {
+            $error = "Invalid cellphone number";
+       }elseif (strlen($cont) != 11) {
+            $error = "Invalid cellphone number";
+       }else{
+            $contact = remove_junk($db->escape($cont));
+       }
+
+       if(empty($email)){
+            $error = "E-mail can't be empty.";
+       }elseif(!preg_match($emailPattern, $email)){
+            $error = "Invalid E-mail";
+       }else{
+            $e_mail = remove_junk($db->escape($email));
+            $vkey = md5(time().$e_mail);
+       }
+
+
+       if(empty($lname)){
+            $error = "Last name can't be empty.";
+        }elseif(strlen($lname) > 50){
+            $error = "Last name is too long.";
+        }elseif(!preg_match($namePattern,$lname)){
+            $error = "Invalid  last tname.";
+        }else{
+            $l_name = remove_junk($db->escape($lname));
+        }
+
+        if(empty($mname)){
+            $error = "Middle name can't be empty.";
+        }elseif(strlen($mname) > 50){
+            $error = "Middle name is too long.";
+        }elseif(!preg_match($namePattern,$mname)){
+            $error = "Invalid  Middle name.";
+        }else{
+            $m_name = remove_junk($db->escape($mname));
+        }
+
+
+         if(empty($fname)){
+            $error = "First name can't be empty.";
+        }elseif(strlen($fname) > 50){
+            $error = "First name is too long.";
+        }elseif(!preg_match($namePattern,$fname)){
+            $error = "Invalid  first tname.";
+        }else{
+            $f_name = remove_junk($db->escape($fname));
+        }
+
+
+      if(empty($error)){
+
+        $query = "SELECT * FROM applicants WHERE email = '$e_mail';";
+        $result = $db->query($query);
+            $email = $result->num_rows;
+
+            if($email<1){ 
+
+
+            
+
+        $query = "INSERT INTO applicants (first_name,middle_name,last_name,email,password,contact_number,";
+        $query .= "birth_date,age,gender,civil_status,religion,address) values ('$f_name','$m_name','$l_name','$e_mail','$password'";
+        $query .= ",'$contact','$b_day','$age','$gender','$civil_status','$religion','$address');";
+        if($db->query($query)){
+            $query = "SELECT applicant_id FROM applicants WHERE email = '$e_mail';";
+        if($result = $db->query($query)){
+            $id = $result->fetch_assoc();
+            $app = $id['applicant_id'];
+         $query = "INSERT INTO education_background (elementary,junior_high_school,senior_high_school,applicant_id) values ";
+         $query .= "('$elementary','$high_school','$senior_high_school','$app');";
+        
+       
+        if($db->query($query)){
+
+            $query = "SELECT applicant_id FROM applicants WHERE email = '$e_mail';";
+            $result = $db->query($query);
+            $id = $result->fetch_assoc();
+            $applicant_id = $id['applicant_id'];
+
+        $query = "INSERT INTO college (applicant_id,name_of_school,course) values ('$applicant_id','$college','$course'); " ;
+
+        if($db->query($query)){
+
+            $query = "INSERT INTO account_verification (applicant_id,vkey,verified) values ('$applicant_id','$vkey','0'); " ;
+            if($db->query($query)){
+            $to_email = $e_mail;
+            $subject = "Email Verification";
+            $body = "Click the link to verify your email <br>";
+            $body .= '<a href="obms.online/HR1/portal/job-portal/verify.php?vkey='.$vkey.'">Verify Email</a>';
+            $headers = "From:  bankingandfinance@obms.online \r\n";
+            $headers .= "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        }
+
+if (mail($to_email, $subject, $body, $headers)) {
+      $session->msg('s',' A verification email was sent please check your inbox');
+          redirect('login.php', false);
+}else{
+
+     $session->msg('s',' theres something wrong');
+          redirect('login.php', false);
+}
+
+          
+
+
+   
+    
+      }
+
               }
           }
-          else {
-            $session->msg("d", $errors);
-            redirect('register.php?1',true);
-         }
+        } else {
+          //failed
+         $error = "failed";
+        }
+    }else{
+
+        $session->msg('d',' Email already used.');
+          redirect('register.php', false);
+    }
 }
+
+      
+
+          }else{
+              
+               $session->msg('d',' You must agree to the terms and conditions.');
+          redirect('register.php', false);
+              
+              
+              
+              
+          }
+  
    
 
 
 
 
-
+}
 
 
 
@@ -231,7 +501,7 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
                                     </div>
                                 </div>
 
-                                <!-- <div class="form-group row mb-3">
+                                <div class="form-group row mb-3">
                                     <div class="col-md-12 col-form-label text-center">
 
                                     	<h2>Educational Attainment</h2>
@@ -278,7 +548,7 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
                                         <textarea type="text" id="educ3" class="form-control border border-dark" name="course"></textarea>
                                         <input type="hidden" value="<?php echo $coursef; ?>" id="col" >
                                     </div>
-                                </div> -->
+                                </div>
 
                             <!--       <div class="form-group row mb-3">
                                     <div class="col-md-12 col-form-label text-center">
@@ -347,9 +617,29 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
 </body>
 	
 	
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://www.google.com/recaptcha/api.js"></script>
 
     <script type="text/javascript">
+
+        var elem = document.getElementById('elem').value;
+        var hs = document.getElementById('hs').value;
+        var col = document.getElementById('col').value;
+        var add = document.getElementById('add').value;
+        
+        var educ1 = document.getElementById('educ1');
+        var educ2 = document.getElementById('educ2');
+        var educ3 = document.getElementById('educ3');
+        var addr = document.getElementById('address');
+        
+
+        educ1.value = elem;
+        educ2.value = hs;
+        educ3.value = col;
+        addr.value = add;
+        
+
+
         function show(){ 
          var x = document.getElementById("password");
         if (x.type === "password") {

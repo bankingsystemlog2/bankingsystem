@@ -21,7 +21,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <script src="js/sweetalert/sweetalert2.min.js"></script>
-        
+        <div class="row">
     </head>
     <body>
        <nav class="navbar navbar-expand-lg navbar-light bg-primary static-top">
@@ -29,7 +29,17 @@
     <a class="navbar-brand text-white" href="index.php">
       Banking and Finance
     </a>
-   
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white " aria-current="page" href="register.php">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="login.php">login</a>
+        </li> 
       <!--  <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
@@ -57,7 +67,7 @@
                                     <div class="col">
                                        
                                     </div>
-                                    <div class="col-my-12"><a href="register.php" class="btn btn-primary btn-lg">Apply now</a>
+                                    <div class="col-my-12"><a href="search.php" class="btn btn-primary btn-lg">Apply now</a>
                                     </div>
                                 </div>
                                
