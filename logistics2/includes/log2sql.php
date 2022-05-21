@@ -621,6 +621,17 @@ function getAuditlog($table){
   $sql = "SELECT v_res.* , v_info.*, users.* FROM v_res JOIN v_info ON v_res.fleetid = v_info.fleetid JOIN users ON v_res.emp_id = users.id";
   return find_by_sql($sql);
  }
+ function current_sup(){
+  static $current_sup;
+  global $db;
+  if(!$current_sup){
+     if(isset($_SESSION['sup_id'])):
+         $user_id = intval($_SESSION['sup_id']);
+         $current_sup = find_by_id('supplier_user',$user_id);
+    endif;
+  }
+return $current_sup;
+}
   //===========================================End of Logistics2=======================================================================
 /*--------------------------------------------------------------*/
 /* Function for find all database table rows by table name

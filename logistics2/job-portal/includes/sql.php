@@ -9,7 +9,7 @@ function find_all($table) {
    if(tableExists($table))
    {
      return find_by_sql("SELECT * FROM ".$db->escape($table));
-   }
+   }  
 }
 /*--------------------------------------------------------------*/
 /* Function for Perform queries
@@ -29,23 +29,7 @@ function find_by_id($table,$id)
   global $db;
   $id = (int)$id;
     if(tableExists($table)){
-          $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE applicant_id='{$db->escape($id)}' LIMIT 1");
-          if($result = $db->fetch_assoc($sql))
-            return $result;
-          else
-            return null;
-     }
-}
-
-
-
-
-function find_by_job_id($table,$id)
-{
-  global $db;
-  $id = (int)$id;
-    if(tableExists($table)){
-          $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE job_id='{$db->escape($id)}' LIMIT 1");
+          $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE id='{$db->escape($id)}' LIMIT 1");
           if($result = $db->fetch_assoc($sql))
             return $result;
           else
@@ -97,17 +81,17 @@ function tableExists($table){
  /* Login with the data provided in $_POST,
  /* coming from the login form.
 /*--------------------------------------------------------------*/
-  function authenticate($email, $password) {
+  function authenticate($username='', $password='') {
     global $db;
-    $email = $db->escape($email);
+    $username = $db->escape($username);
     $password = $db->escape($password);
-    $sql  = sprintf("SELECT applicant_id,email,password FROM applicants WHERE email ='%s' LIMIT 1", $email);
+    $sql  = sprintf("SELECT id,username,password,user_level FROM users WHERE username ='%s' LIMIT 1",$username);
     $result = $db->query($sql);
     if($db->num_rows($result)){
       $user = $db->fetch_assoc($result);
       $password_request = sha1($password);
       if($password_request === $user['password'] ){
-        return $user['applicant_id'];
+        return $user['id'];
       }
     }
    return false;
@@ -141,9 +125,9 @@ function tableExists($table){
       static $current_user;
       global $db;
       if(!$current_user){
-         if(isset($_SESSION['applicant_id'])):
-             $user_id = intval($_SESSION['applicant_id']);
-             $current_user = find_by_id('applicants',$user_id);
+         if(isset($_SESSION['user_id'])):
+             $user_id = intval($_SESSION['user_id']);
+             $current_user = find_by_id('users',$user_id);
         endif;
       }
     return $current_user;
@@ -163,27 +147,18 @@ function tableExists($table){
       $result = find_by_sql($sql);
       return $result;
   }
-
-
-  function find_all_jobs(){
-      global $db;
-      $results = array();
-      $sql = "SELECT * FROM job_vacancy ORDER BY job_id ASC";
-      $result = find_by_sql($sql);
-      return $result;
-  }
   /*--------------------------------------------------------------*/
   /* Function to update the last log in of a user
   /*--------------------------------------------------------------*/
 
-  function updateLastLogIn($user_id)
-  {
-    global $db;
+ function updateLastLogIn($user_id)
+	{
+		global $db;
     $date = make_date();
-    $sql = "UPDATE applicants SET last_login='{$date}' WHERE applicant_id ='{$user_id}' LIMIT 1";
+    $sql = "UPDATE users SET last_login='{$date}' WHERE id ='{$user_id}' LIMIT 1";
     $result = $db->query($sql);
     return ($result && $db->affected_rows() === 1 ? true : false);
-  }
+	}
 
   /*--------------------------------------------------------------*/
   /* Find all Group name
@@ -221,7 +196,7 @@ function tableExists($table){
            $session->msg('d','This level user has been band!');
            redirect('home.php', false);
       //cheackin log in User level and Require level is Less than or equal to
-     elseif($current_user['user_level'] == (int)$require_level):
+     elseif($current_user['user_level'] <= (int)$require_level):
               return true;
       else:
             $session->msg("d", "Sorry! you dont have permission to view the page.");
@@ -229,371 +204,428 @@ function tableExists($table){
         endif;
 
      }
-   /*--------------------------------------------------------------*/
-   /* Function for Finding all product name
-   /* JOIN with categorie  and media database table
-   /*--------------------------------------------------------------*/
-  function join_product_table(){
-     global $db;
-     $sql  =" SELECT p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,c.name";
-    $sql  .=" AS categorie,m.file_name AS image";
-    $sql  .=" FROM products p";
-    $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
-    $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
-    $sql  .=" ORDER BY p.id ASC";
-    return find_by_sql($sql);
+
+
+    /*==================================Ian James Codes===========================================================*/
+
+    /*display all users*/
+     function allusers_Find(){
+         global $db;
+           $sql = "SELECT u.*, g.* FROM users u LEFT JOIN user_groups g ON g.group_level=u.user_level ORDER BY u.name ASC;" or die($mysqli->error);
+         return find_by_sql($sql);
+       }
+
+       /*--------------------------------------------------------------*/
+       /* select Collection
+       /*--------------------------------------------------------------*/
+       function  underReleasing(){
+         global $db;
+         $sql = "SELECT p.*, s.Name AS status FROM budgetreleasing p LEFT JOIN STATUS s ON s.Status_Code = p.P_Status WHERE p.P_Tablename='proposals';" or die($mysqli->error);
+         return find_by_sql($sql);
+       }
+
+
+        /*--------------------------------------------------------------*/
+        /* select notification for Collection
+        /*--------------------------------------------------------------*/
+        function  notification_Collection(){
+          global $db;
+          $sql = "SELECT count(*) as notifCollection FROM collection WHERE Co_Status='102';" or die($mysqli->error);
+          return find_by_sql($sql);
+        }
+
+  /*Sub notifications -----------------------------------------------------------*/
+        /*--------------------------------------------------------------*/
+        /* notification for Loans
+        /*--------------------------------------------------------------*/
+      function  notification_Loans(){
+          global $db;
+          $sql = "SELECT count(*) as LoansNotif FROM collection WHERE LS_Type='Loans';" or die($mysqli->error);
+          return find_by_sql($sql);
+        }
+        /*--------------------------------------------------------------*/
+        /* notification for Loans
+        /*--------------------------------------------------------------*/
+        function  notification_deposits(){
+          global $db;
+          $sql = "SELECT count(*) as DepositsNotif FROM collection WHERE LS_Type='deposits';" or die($mysqli->error);
+
+          return find_by_sql($sql);
+        }
+  /*End of Sub notifications -----------------------------------------------------------*/
+
+          /*--------------------------------------------------------------*/
+          /* select notification for Disbursment
+          /*--------------------------------------------------------------*/
+        function  notification_Disbursment(){
+            global $db;
+            $sql = "SELECT (select COUNT(*) from reimbursment WHERE Co_Status='102') as roCount, (select COUNT(*) from procurment WHERE Co_Status='102') as poCount, (select COUNT(*) from uexpenses WHERE Co_Status='102') as uCount;" or die($mysqli->error);
+            return find_by_sql($sql);
+          }
+
+          /*--------------------------------------------------------------*/
+          /* select notification for Budget
+          /*--------------------------------------------------------------*/
+        function  notification_Budget(){
+            global $db;
+            $sql = "SELECT count(*) as NewNotif FROM budgetreleasing WHERE P_Status='101';" or die($mysqli->error);
+            return find_by_sql($sql);
+          }
+
+
+           /*--------------------------------------------------------------*/
+           /* select Collection
+           /*--------------------------------------------------------------*/
+           function  Settled(){
+             global $db;
+             $sql = "SELECT p.*, s.Name AS status FROM budgetreleasing p LEFT JOIN STATUS s ON s.Status_Code = p.P_Status;" or die($mysqli->error);
+             return find_by_sql($sql);
+           }
+
+           /*--------------------------------------------------------------*/
+           /* select calling all savings
+           /*--------------------------------------------------------------*/
+           function  Collection_Savings(){
+             global $db;
+             $sql = "SELECT p.*, s.Name as status FROM collection p LEFT JOIN status s ON s.Status_Code = p.Co_Status WHERE p.LS_Type='Loans' AND p.Co_Status='102';" or die($mysqli->error);
+
+             return find_by_sql($sql);
+           }
+           /*--------------------------------------------------------------*/
+           /* select calling all deposits
+           /*--------------------------------------------------------------*/
+           function  Collection_deposits(){
+             global $db;
+             $sql = "SELECT p.*, s.Name as status FROM collection p LEFT JOIN status s ON s.Status_Code = p.Co_Status WHERE p.LS_Type='deposits' AND p.Co_Status='102';;" or die($mysqli->error);
+
+             return find_by_sql($sql);
+           }
+           /*--------------------------------------------------------------*/
+           /* select calling all Budget
+           /*--------------------------------------------------------------*/
+           function Budget(){
+             global $db;
+             $sql = "SELECT * FROM obudget" or die($mysqli->error);
+
+             return find_by_sql($sql);
+           }
+           /*--------------------------------------------------------------*/
+           /* select sum of Expenses
+           /*--------------------------------------------------------------*/
+           function Expenses(){
+             global $db;
+             $sql = "SELECT Date, SUM(Expenses) as Expenses, SUM(Collection) as Collection FROM expenses;" or die($mysqli->error);
+
+
+             return find_by_sql($sql);
+           }
+
+
+           /*--------------------------------------------------------------*/
+           /* select sum of Expenses
+           /*--------------------------------------------------------------*/
+           function collections(){
+             global $db;
+             $sql = "SELECT * FROM collection WHERE Co_Status = '105';" or die($mysqli->error);
+
+
+             return find_by_sql($sql);
+           }
+
+
+
+
+
+           /*--------------------------------------------------------------*/
+           /* select all processed payables
+           /*--------------------------------------------------------------*/
+           function  Payables(){
+             $Status='Name';
+              global $db;
+             $sql  ="SELECT b.*,r.$Status";
+            $sql  .=" AS $Status";
+             $sql  .=" FROM budgetreleasing b";
+             $sql  .=" LEFT JOIN status r ON r.Status_Code = b.P_Status WHERE P_Status='104'";
+            return find_by_sql($sql);
+           }
+           /*--------------------------------------------------------------*/
+           /* select all processed payables
+           /*--------------------------------------------------------------*/
+           function  Recievables(){
+             $Status='Name';
+              global $db;
+             $sql  ="SELECT b.P_Code,b.P_Department,b.P_Requestor,b.P_Purpose,b.P_Amount,b.P_Date,b.P_Tablename,r.$Status";
+            $sql  .=" AS $Status";
+             $sql  .=" FROM budgetreleasing b";
+             $sql  .=" LEFT JOIN status r ON r.Status_Code = b.P_Status WHERE P_Status='105'";
+            return find_by_sql($sql);
+           }
+           /*--------------------------------------------*/
+            /* Function for Finding all Procurment
+            /* JOIN with Status database table
+            /*--------------------------------------------------------------*/
+           function join_procurment_table(){
+              global $db;
+              $sql  =" SELECT p.Co_Code,p.PRO_Requestor,p.PRO_Department,p.PRO_Desc,p.PRO_Amount,p.PRO_Date,s.Name";
+              $sql  .=" AS Status";
+             $sql  .=" FROM procurment p";
+             $sql  .=" LEFT JOIN status s ON s.Status_Code = p.Co_Status";
+             return find_by_sql($sql);
+            }
+              /*--------------------------------------------------------------*/
+              /* Function for Finding all Joint name
+              /* JOIN with Status database table
+              /*--------------------------------------------------------------*/
+              function join_reimbursment_table(){
+                 global $db;
+                 $sql  =" SELECT p.Co_Code,p.Co_Desc,p.Co_Source,p.Co_Date,p.Co_Purpose,s.Name";
+                 $sql  .=" AS Status";
+                $sql  .=" FROM reimbursment p";
+                $sql  .=" LEFT JOIN status s ON s.Status_Code = p.Co_Status";
+                return find_by_sql($sql);
+               }
+
+               /*--------------------------------------------------------------*/
+               /* Function for Finding all Joint status
+               /* JOIN with reimbursment database table
+               /*--------------------------------------------------------------*/
+               function join_tables_table(){
+                 $Status='Name';
+                  global $db;
+                 $sql  =" SELECT b.P_Code,b.P_Department,b.P_Requestor,b.P_Purpose,b.P_Amount,b.P_Date,b.P_Tablename,r.$Status";
+                  $sql  .=" AS $Status";
+                 $sql  .=" FROM budgetreleasing b";
+                 $sql  .=" LEFT JOIN status r ON r.Status_Code = b.P_Status";
+                 return find_by_sql($sql);
+                }
+
+                /*--------------------------------------------------------------*/
+                /* Function for Finding all Joint status
+                /* JOIN with Utilities database table
+                /*--------------------------------------------------------------*/
+                function join_utilities_table(){
+                  $Status='Name';
+                   global $db;
+                   $sql  =" SELECT u.Co_Code,u.UE_Department,u.UE_Requestor,u.UE_Date,u.UE_date,u.UE_Desc,u.Co_Status, r.$Status";
+                   $sql  .=" AS Status";
+                  $sql  .=" FROM uexpenses u";
+                  $sql  .=" LEFT JOIN status r ON r.Status_Code = u.Co_Status";
+                  return find_by_sql($sql);
+                 }
+
+
+                 /*--------------------------------------------------------------*/
+                 /* Function for Finding Proposals
+                 /* JOIN with status database table
+                 /*--------------------------------------------------------------*/
+                 function Proposals_table(){
+                    global $db;
+                    $sql  =" SELECT p.*, r.Name";
+                    $sql  .=" AS Status";
+                   $sql  .=" FROM proposals p";
+                   $sql  .=" LEFT JOIN status r ON r.Status_Code = p.Co_Status WHERE Co_Status='102'";
+                   return find_by_sql($sql);
+                  }
+
+           /*--------------------------------------------------------------*/
+           /* Finding all tables for Details in disbursment
+           /*--------------------------------------------------------------*/
+           function find_table($table,$name)
+           {
+             global $db;
+             $name = $name;
+               if(tableExists($table)){
+                     $sql = $db->query("SELECT p.*, s.Name, SUM(d.PU_Total) as Co_Amount FROM $table p LEFT JOIN status s ON s.Status_Code = p.Co_Status LEFT JOIN purchases d ON d.Co_Code = p.Co_Code Where  p.Co_Code='$name'");
+                     if($result = $db->fetch_assoc($sql))
+                       return $result;
+                       else
+                      return null;
+                }
+           }
+
+           /*--------------------------------------------------------------*/
+           /* Finding all tables for Details in disbursment
+           /*--------------------------------------------------------------*/
+           function find_Proposal($table,$name)
+           {
+             global $db;
+             $name = $name;
+               if(tableExists($table)){
+                     $sql = $db->query("SELECT * FROM $table WHERE Co_Code='$name';");
+                     if($result = $db->fetch_assoc($sql))
+                       return $result;
+                       else
+                      return null;
+                }
+           }
+           /*--------------------------------------------------------------*/
+           /* Finding all tables all Details in Collection
+           /*--------------------------------------------------------------*/
+           function  collection($table, $name){
+             global $db;
+            $sql = $db->query("SELECT p.*, s.Name FROM $table p LEFT JOIN status s ON s.Status_Code = p.Co_Status WHERE p.Co_Code='$name';");
+              if($result = $db->fetch_assoc($sql))
+                     return $result;
+                       else
+                      return null;
+                }
+
+                /*--------------------------------------------------------------*/
+                /* Finding all purchase orders
+                /*--------------------------------------------------------------*/
+                function find_purchase_orders($table, $name)
+                {
+                  global $db;
+                 $sql  ="SELECT p.Co_Code, s.* FROM $table p LEFT JOIN purchases s ON s.Co_Code = p.Co_Code  Where p.Co_Code='$name';";
+                 return find_by_sql($sql);
+                }
+                /*--------------------------------------------------------------*/
+                /* Finding all Collection Transactions
+                /*--------------------------------------------------------------*/
+                function  find_collection_transactions($table, $name){
+                  global $db;
+                  $sql = "SELECT p.*, d.*  FROM $table p LEFT JOIN collection_transactions d ON d.A_Number = p.A_Number Where  p.A_Number = '$name';" or die($mysqli->error);
+
+                  return find_by_sql($sql);
+                }
+
+
+  //===========================================End of Ian James Codes=======================================================================
+  //===========================================Start of Logistics2=======================================================================
+  function find_all_inner($table) {
+    global $db;
+    if(tableExists($table))
+    {
+      return find_by_sql("SELECT * FROM ".$db->escape($table). " inner join product on vendors.product_id = product.product_id");
+    }
+  }
+  /*--------------------------------------------------------------*/
+/* Function for find specific vendor by userid
+/*--------------------------------------------------------------*/
+function find_vendor_by_id($table,$id)
+{
+  global $db;
+  $id = (int)$id;
+    if(tableExists($table)){
+          $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE users_id='{$db->escape($id)}' LIMIT 1");
+          if($result = $db->fetch_assoc($sql))
+            return $result;
+          else
+            return null;
+     }
+}
+/*--------------------------------------------------------------*/
+/* Function for find specific vehicle by category
+/*--------------------------------------------------------------*/
+function find_vehicle_by_cate($table,$id)
+{
+  global $db;
+  $id = (int)$id;
+    if(catetableExists($table)){
+          $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE users_id='{$db->escape($id)}' LIMIT 1");
+          if($result = $db->fetch_assoc($sql))
+            return $result;
+          else
+            return null;
+     }
+}
+function find_by_idf($table,$id)
+{
+  global $db;
+  $id = (int)$id;
+    if(tableExists($table)){
+          $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE fleetid='{$db->escape($id)}' LIMIT 1");
+          if($result = $db->fetch_assoc($sql))
+            return $result;
+          else
+            return null;
+     }
+}
+function delete_by_idf($table,$id)
+{
+  global $db;
+  if(tableExists($table))
+   {
+    $sql = "DELETE FROM ".$db->escape($table);
+    $sql .= " WHERE fleetid=". $db->escape($id);
+    $sql .= " LIMIT 1";
+    $db->query($sql);
+    return ($db->affected_rows() === 1) ? true : false;
    }
-   //==================================================================================================================
-   /*--------------------------------------------------------------*/
-   /* Function for Finding all item name
-   /* JOIN with category  and media database table
-   /*--------------------------------------------------------------*/
-  function join_cookery_table(){
-    global $db;
-    $sql  =" SELECT k.id,k.serialno,k.name,k.quantity,k.description,k.media_id,k.date_time,k.damage_item,k.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM cookery k";
-   $sql  .=" LEFT JOIN categories c ON c.id = k.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = k.media_id";
-   $sql  .=" ORDER BY k.id ASC";
-   return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-   /* Function for Finding all item name
-   /* JOIN with category  and media database table
-   /*--------------------------------------------------------------*/
-   function join_foodbev_table(){
-    global $db;
-    $sql  =" SELECT f.id,f.serialno,f.name,f.quantity,f.description,f.media_id,f.date_time,f.damage_item,f.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM foodbev f";
-   $sql  .=" LEFT JOIN categories c ON c.id = f.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = f.media_id";
-   $sql  .=" ORDER BY f.id ASC";
-   return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-   /* Function for Finding all item name
-   /* JOIN with category  and media database table
-   /*--------------------------------------------------------------*/
-   function join_pastry_table(){
-    global $db;
-    $sql  =" SELECT p.id,p.serialno,p.name,p.quantity,p.description,p.media_id,p.date_time,p.damage_item,p.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM pastry p";
-   $sql  .=" LEFT JOIN categories c ON c.id = p.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
-   $sql  .=" ORDER BY p.id ASC";
-   return find_by_sql($sql);
-  }
-
+}
 /*--------------------------------------------------------------*/
-   /* Function for Finding all item name
-   /* JOIN with category  and media database table
-   /*--------------------------------------------------------------*/
-   function join_bartending_table(){
-    global $db;
-    $sql  =" SELECT b.id,b.serialno,b.name,b.brand,b.quantity,b.date_time,b.expiry_date,b.description,b.media_id,b.damage_item,b.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM bartending b";
-   $sql  .=" LEFT JOIN categories c ON c.id = b.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = b.media_id";
-   $sql  .=" ORDER BY b.id ASC";
-   return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-   /* Function for Finding all item name
-   /* JOIN with category  and media database table
-   /*--------------------------------------------------------------*/
-   function join_housekeeping_table(){
-    global $db;
-    $sql  =" SELECT h.id,h.serialno,h.name,h.quantity,h.date_time,h.description,h.media_id,h.damage_item,h.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM housekeeping h";
-   $sql  .=" LEFT JOIN categories c ON c.id = h.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = h.media_id";
-   $sql  .=" ORDER BY h.id ASC";
-   return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-   /* Function for Finding all item name
-   /* JOIN with category  and media database table
-   /*--------------------------------------------------------------*/
-   function join_frontoffices_table(){
-    global $db;
-    $sql  =" SELECT o.id,o.serialno,o.name,o.quantity,o.date_time,o.description,o.media_id,o.damage_item,o.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM frontoffices o";
-   $sql  .=" LEFT JOIN categories c ON c.id = o.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = o.media_id";
-   $sql  .=" ORDER BY o.id ASC";
-   return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-   /* Function for Finding all item name
-   /* JOIN with category  and media database table
-   /*--------------------------------------------------------------*/
-   function join_barista_table(){
-    global $db;
-    $sql  =" SELECT t.id,t.serialno,t.name,t.brand,t.quantity,t.date_time,t.expiry_date,t.description,t.media_id,t.damage_item,t.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM barista t";
-   $sql  .=" LEFT JOIN categories c ON c.id = t.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = t.media_id";
-   $sql  .=" ORDER BY t.id ASC";
-   return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-   /* Function for Fetching activity log
-   /* JOIN with activitylog and user database table
-   /*--------------------------------------------------------------*/
-   function join_activitylog_table(){
-    global $db;
-    $sql  =" SELECT a.id,a.name,a.action,a.quantity_added,a.ip,a.updated_at,a.purchase_date";
-   $sql  .=" FROM activitylog a";
-   $sql  .=" ORDER BY a.id DESC";
-   return find_by_sql($sql);
-  }
-
+/* Determine if database catetable exists
 /*--------------------------------------------------------------*/
-  /* Function for Display Recent Cookery Item Added
-  /*--------------------------------------------------------------*/
-  function find_recent_cookery_added($limit){
-    global $db;
-    $sql  =" SELECT k.id,k.serialno,k.name,k.quantity,k.description,k.media_id,k.date_time,k.damage_item,k.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM cookery k";
-   $sql  .=" LEFT JOIN categories c ON c.id = k.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = k.media_id";
-    $sql  .= " ORDER BY k.id DESC LIMIT ".$db->escape((int)$limit);
-    return find_by_sql($sql);
-  }
-
-
-  /*--------------------------------------------------------------*/
-  /* Function for Display Recent Food & Beverages Item Added
-  /*--------------------------------------------------------------*/
-  function find_recent_foodbev_added($limit){
-    global $db;
-    $sql  =" SELECT f.id,f.serialno,f.name,f.quantity,f.description,f.media_id,f.date_time,f.damage_item,f.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM foodbev f";
-   $sql  .=" LEFT JOIN categories c ON c.id = f.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = f.media_id";
-    $sql  .= " ORDER BY f.id DESC LIMIT ".$db->escape((int)$limit);
-    return find_by_sql($sql);
-  }
-
-
-  /*--------------------------------------------------------------*/
-  /* Function for Display Recent Bread & Pastry Item Added
-  /*--------------------------------------------------------------*/
-  function find_recent_pastry_added($limit){
-    global $db;
-    $sql  =" SELECT p.id,p.serialno,p.name,p.quantity,p.description,p.media_id,p.date_time,p.damage_item,p.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM pastry p";
-   $sql  .=" LEFT JOIN categories c ON c.id = p.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
-    $sql  .= " ORDER BY p.id DESC LIMIT ".$db->escape((int)$limit);
-    return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-  /* Function for Display Recent Bartending Item Added
-  /*--------------------------------------------------------------*/
-  function find_recent_bartending_added($limit){
-    global $db;
-    $sql  =" SELECT b.id,b.serialno,b.name,b.brand,b.quantity,b.date_time,b.expiry_date,b.description,b.media_id,b.damage_item,b.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM bartending b";
-   $sql  .=" LEFT JOIN categories c ON c.id = b.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = b.media_id";
-    $sql  .= " ORDER BY b.id DESC LIMIT ".$db->escape((int)$limit);
-    return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-  /* Function for Display Recent Housekeeping Item Added
-  /*--------------------------------------------------------------*/
-  function find_recent_housekeeping_added($limit){
-    global $db;
-    $sql  =" SELECT h.id,h.serialno,h.name,h.quantity,h.description,h.media_id,h.date_time,h.damage_item,h.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM housekeeping h";
-   $sql  .=" LEFT JOIN categories c ON c.id = h.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = h.media_id";
-    $sql  .= " ORDER BY h.id DESC LIMIT ".$db->escape((int)$limit);
-    return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-  /* Function for Display Recent Front Offices Item Added
-  /*--------------------------------------------------------------*/
-  function find_recent_frontoffices_added($limit){
-    global $db;
-    $sql  =" SELECT o.id,o.serialno,o.name,o.quantity,o.description,o.media_id,o.date_time,o.damage_item,o.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM frontoffices o";
-   $sql  .=" LEFT JOIN categories c ON c.id = o.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = o.media_id";
-    $sql  .= " ORDER BY o.id DESC LIMIT ".$db->escape((int)$limit);
-    return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-  /* Function for Display Recent Barista Item Added
-  /*--------------------------------------------------------------*/
-  function find_recent_barista_added($limit){
-    global $db;
-    $sql  =" SELECT t.id,t.serialno,t.name,t.brand,t.quantity,t.date_time,t.expiry_date,t.description,t.media_id,t.damage_item,t.remarks,c.name";
-   $sql  .=" AS category,m.file_name AS image";
-   $sql  .=" FROM barista t";
-   $sql  .=" LEFT JOIN categories c ON c.id = t.category_id";
-   $sql  .=" LEFT JOIN media m ON m.id = t.media_id";
-    $sql  .= " ORDER BY t.id DESC LIMIT ".$db->escape((int)$limit);
-    return find_by_sql($sql);
-  }
-
-
-
-  //==================================================================================================================
-
-  /*--------------------------------------------------------------*/
-  /* Function for Finding all product name
-  /* Request coming from ajax.php for auto suggest
-  /*--------------------------------------------------------------*/
-
-   function find_product_by_title($product_name){
-     global $db;
-     $p_name = remove_junk($db->escape($product_name));
-     $sql = "SELECT name FROM products WHERE name like '%$p_name%' LIMIT 5";
-     $result = find_by_sql($sql);
-     return $result;
-   }
-
-  /*--------------------------------------------------------------*/
-  /* Function for Finding all product info by product title
-  /* Request coming from ajax.php
-  /*--------------------------------------------------------------*/
-  function find_all_product_info_by_title($title){
-    global $db;
-    $sql  = "SELECT * FROM products ";
-    $sql .= " WHERE name ='{$title}'";
-    $sql .=" LIMIT 1";
-    return find_by_sql($sql);
-  }
-
-  /*--------------------------------------------------------------*/
-  /* Function for Update product quantity
-  /*--------------------------------------------------------------*/
-  function update_product_qty($qty,$p_id){
-    global $db;
-    $qty = (int) $qty;
-    $id  = (int)$p_id;
-    $sql = "UPDATE products SET quantity=quantity -'{$qty}' WHERE id = '{$id}'";
-    $result = $db->query($sql);
-    return($db->affected_rows() === 1 ? true : false);
-
-  }
-  /*--------------------------------------------------------------*/
-  /* Function for Display Recent product Added
-  /*--------------------------------------------------------------*/
- function find_recent_product_added($limit){
-   global $db;
-   $sql   = " SELECT p.id,p.name,p.sale_price,p.media_id,c.name AS categorie,";
-   $sql  .= "m.file_name AS image FROM products p";
-   $sql  .= " LEFT JOIN categories c ON c.id = p.categorie_id";
-   $sql  .= " LEFT JOIN media m ON m.id = p.media_id";
-   $sql  .= " ORDER BY p.id DESC LIMIT ".$db->escape((int)$limit);
-   return find_by_sql($sql);
- }
- /*--------------------------------------------------------------*/
- /* Function for Find Highest saleing Product
- /*--------------------------------------------------------------*/
- function find_higest_saleing_product($limit){
-   global $db;
-   $sql  = "SELECT p.name, COUNT(s.product_id) AS totalSold, SUM(s.qty) AS totalQty";
-   $sql .= " FROM sales s";
-   $sql .= " LEFT JOIN products p ON p.id = s.product_id ";
-   $sql .= " GROUP BY s.product_id";
-   $sql .= " ORDER BY SUM(s.qty) DESC LIMIT ".$db->escape((int)$limit);
-   return $db->query($sql);
- }
- /*--------------------------------------------------------------*/
- /* Function for find all sales
- /*--------------------------------------------------------------*/
- function find_all_sale(){
-   global $db;
-   $sql  = "SELECT s.id,s.qty,s.price,s.date,p.name";
-   $sql .= " FROM sales s";
-   $sql .= " LEFT JOIN products p ON s.product_id = p.id";
-   $sql .= " ORDER BY s.date DESC";
-   return find_by_sql($sql);
- }
- /*--------------------------------------------------------------*/
- /* Function for Display Recent sale
- /*--------------------------------------------------------------*/
-function find_recent_sale_added($limit){
+function catetableExists($tablecate){
   global $db;
-  $sql  = "SELECT s.id,s.qty,s.price,s.date,p.name";
-  $sql .= " FROM sales s";
-  $sql .= " LEFT JOIN products p ON s.product_id = p.id";
-  $sql .= " ORDER BY s.date DESC LIMIT ".$db->escape((int)$limit);
+  $table_exit = $db->query('SHOW TABLES FROM '.DB_NAME.' LIKE "'.$db->escape($table).'"');
+      if($table_exit) {
+        if($db->num_rows($table_exit) > 0)
+              return true;
+         else
+              return false;
+      }
+  }
+  /*--------------------------------------------------------------*/
+  /* Find current log in user by session id
+  /*--------------------------------------------------------------*/
+  function category(){
+    static $category;
+    global $db;
+    if(!$category){
+       if(isset($_SESSION['v_category'])):
+           $v_category = intval($_SESSION['v_category']);
+           $cate = find_by_cate('users',$v_category);
+      endif;
+    }
+  return $category;
+}
+function find_all_cars(){
+  global $db;
+  $sql = "SELECT * FROM v_info WHERE v_category = '1'";
+  $result = find_by_sql($sql);
+  $datas = array();
+  return $result;
+
+}
+function find_all_vans(){
+  global $db;
+  $sql = "SELECT * FROM v_info WHERE v_category = '2'";
+  $result = find_by_sql($sql);
+  $datas = array();
+  return $result;
+
+}
+function find_all_armor(){
+  global $db;
+  $sql = "SELECT * FROM v_info WHERE v_category = '3'";
+  $result = find_by_sql($sql);
+  $datas = array();
+  return $result;
+
+}
+function getAuditlog($table){
+  global $db;
+  $sql = "select audit_logs.module,audit_logs.action_taken,users.name,audit_logs.datetime_created from audit_logs inner join users on audit_logs.users_id=users.id";
   return find_by_sql($sql);
-}
-/*--------------------------------------------------------------*/
-/* Function for Generate sales report by two dates
-/*--------------------------------------------------------------*/
-function find_sale_by_dates($start_date,$end_date){
+
+ }
+ function getDocuTracking($table){
   global $db;
-  $start_date  = date("Y-m-d", strtotime($start_date));
-  $end_date    = date("Y-m-d", strtotime($end_date));
-  $sql  = "SELECT s.date, p.name,p.sale_price,p.buy_price,";
-  $sql .= "COUNT(s.product_id) AS total_records,";
-  $sql .= "SUM(s.qty) AS total_sales,";
-  $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price,";
-  $sql .= "SUM(p.buy_price * s.qty) AS total_buying_price ";
-  $sql .= "FROM sales s ";
-  $sql .= "LEFT JOIN products p ON s.product_id = p.id";
-  $sql .= " WHERE s.date BETWEEN '{$start_date}' AND '{$end_date}'";
-  $sql .= " GROUP BY DATE(s.date),p.name";
-  $sql .= " ORDER BY DATE(s.date) DESC";
-  return $db->query($sql);
-}
-/*--------------------------------------------------------------*/
-/* Function for Generate Daily sales report
-/*--------------------------------------------------------------*/
-function  dailySales($year,$month){
-  global $db;
-  $sql  = "SELECT s.qty,";
-  $sql .= " DATE_FORMAT(s.date, '%Y-%m-%e') AS date,p.name,";
-  $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price";
-  $sql .= " FROM sales s";
-  $sql .= " LEFT JOIN products p ON s.product_id = p.id";
-  $sql .= " WHERE DATE_FORMAT(s.date, '%Y-%m' ) = '{$year}-{$month}'";
-  $sql .= " GROUP BY DATE_FORMAT( s.date,  '%e' ),s.product_id";
+  $sql = "select docu_tracking.Action,users.name,docu_tracking.Document_Subject,docu_tracking.Location,docu_tracking.Date_Created from docu_tracking inner join users on docu_tracking.users_id=users.id";
   return find_by_sql($sql);
-}
-/*--------------------------------------------------------------*/
-/* Function for Generate Monthly sales report
-/*--------------------------------------------------------------*/
-function  monthlySales($year){
+
+ }
+ function current_sup(){
+  static $current_sup;
   global $db;
-  $sql  = "SELECT s.qty,";
-  $sql .= " DATE_FORMAT(s.date, '%Y-%m-%e') AS date,p.name,";
-  $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price";
-  $sql .= " FROM sales s";
-  $sql .= " LEFT JOIN products p ON s.product_id = p.id";
-  $sql .= " WHERE DATE_FORMAT(s.date, '%Y' ) = '{$year}'";
-  $sql .= " GROUP BY DATE_FORMAT( s.date,  '%c' ),s.product_id";
-  $sql .= " ORDER BY date_format(s.date, '%c' ) ASC";
-  return find_by_sql($sql);
+  if(!$current_sup){
+     if(isset($_SESSION['sup_id'])):
+         $user_id = intval($_SESSION['sup_id']);
+         $current_sup = find_by_id('supplier_user',$user_id);
+    endif;
+  }
+return $current_sup;
 }
+  //===========================================End of Logistics2=======================================================================
 ?>

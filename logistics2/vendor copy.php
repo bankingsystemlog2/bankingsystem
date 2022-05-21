@@ -12,7 +12,45 @@
   ?>
 <?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
-
+<style>
+@media print{
+	#button{
+		display: none; !important;
+	}
+  #example_length{
+		display: none; !important;
+	}
+  #example_filter{
+		display: none; !important;
+	}
+  .topNavBar{
+    display: none; !important;
+  }
+  #example_info{
+    display: none; !important;
+  }
+  #example_previous{
+    display: none; !important;
+  }
+  #example_next{
+    display: none; !important;
+  }
+  .page-link{
+    display: none; !important;
+  }
+	.breadcrumbs{
+		display: none; !important;
+	}
+  table{
+    zoom: 80%;
+  }
+}
+@page {
+       /* auto is the initial value */
+    size: auto%;
+    margin: 0;  /* this affects the margin in the printer settings */
+}
+</style>
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
   <?php if ($user['user_level'] === '1'): ?>
@@ -43,10 +81,8 @@
       <div class="card-header">
         <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Vendor Portal</span>
         <div class="text-end">
-          <button class="btn btn-warning btn-xs-block" type="button">
-         <i class="bi bi-printer-fill"></i>
-          Print Report
-         </button>
+        <div class="text-end">
+        <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
         <!-- <div class="text-end">
           <a href="fleet_addvehicle.php" class="btn btn-info pull-right"> View Approved List</a>
          </div> -->

@@ -49,7 +49,7 @@ $row = $result->num_rows;
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
-      
+    <?php  if ($session->isUserLoggedIn(true)){ ?>
        <nav class="navbar navbar-expand-lg navbar-light bg-primary static-top">
   <div class="container">
     <a class="navbar-brand text-white" href="index.php">
@@ -58,7 +58,31 @@ $row = $result->num_rows;
    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-   
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+       
+
+        
+       <li class="nav-item dropdown">
+
+         <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="index.php">Home</a>
+        </li>
+          <a class="nav-link dropdown-toggle text-white" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Account
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="profile.php?id=<?php echo $_SESSION['applicant_id']; ?>">Profile</a></li>
+            <li><a class="dropdown-item" href="edit-profile.php?id=<?php echo $_SESSION['applicant_id']; ?>
+              ">Edit profile</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li> 
+            <li><a class="dropdown-item" href="logout.php">Logout</a></li> 
+          </ul>
+        </li>
+      </ul>
+    </div>
     
 
 
@@ -135,7 +159,10 @@ $row = $result->num_rows;
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-       
+        <?php  }else{  $session->msg('d','Please login...');
+            redirect('login.php', false); }
+
+            ?>
         
     
 

@@ -7,41 +7,39 @@ $password = $db->escape($_POST['password']);
 
 if(empty($errors)){
 
-$sql = "SELECT * FROM applicants WHERE email = '$username'";
-     $result = $db->query($sql);
-     $applicant_id = $result->fetch_assoc();
-     $id = $applicant_id['applicant_id'];
-     $sql = "SELECT * FROM account_verification WHERE applicant_id = '$id'";
-     $result = $db->query($sql);
-     $verified = $result->fetch_assoc();
+$sql = "SELECT * FROM supplier_user WHERE vendor_email = '$username' AND vendor_pass = '$password'";
+$result = $db->query($sql);
+$sup = $result->fetch_assoc();
+if($sup > 0){
+//      $result = $db->query($sql);
+//      $applicant_id = $result->fetch_assoc();
+//      $id = $applicant_id['id'];
+//      $result = $db->query($sql);
+//      $verified = $result->fetch_assoc();
 
- if($verified['verified']>0){   
-  $user_id = authenticate($username, $password);
-  if($user_id){
-     
+//  if($verified['verified']>0){   
+  $user_id = $sup['id'];
+//   if($user_id){
+     $_SESSION['sup_id'] = $user_id;
     //create session with id
      $session->login($user_id);
     //Update Sign in time
      updateLastLogIn($user_id);
 
-
+   
      $session->msg("s", "Login success");
-     redirect('home.php', false);
+     redirect('search.php', false);
      
 
   }else{
     $session->msg("d", "Sorry Username/Password incorrect.");
     redirect('login.php',false);
-  } }else{
+   }}else{
 
   $session->msg("d", "verify your email to continue ");
    redirect('login.php',false);
 }
 
-}else{
-   $session->msg("d", $errors);
-   redirect('login.php',false);
-}
 
 
 ?>

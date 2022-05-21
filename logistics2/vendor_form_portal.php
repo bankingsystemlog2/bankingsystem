@@ -31,7 +31,8 @@ require_once('includes/log2load.php');
   </head>
   <body>
   <?php
-  $users_id = current_user()['id'];
+  $id = find_all('supplier_user');
+  $users_id = current_sup()['id'];
    $product_id = $_POST['product_id'];
    $product_name = $_POST['product_name'];
   if(isset($_POST['applicationform'])){

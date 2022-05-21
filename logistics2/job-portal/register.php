@@ -110,9 +110,9 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
                     <div class="col-xl-7">
                     <div class="text-center mt-5 mb-5"><h2>Register</h2></div>
                     <div class="row">
-                    	   
 
-                             <?php echo display_msg($msg);  ?>
+                             <?php echo display_msg($msg);
+                    	   $error = "";  ?>
                             <?php if(strlen($error) >0){  
                             
 
@@ -132,21 +132,21 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
                                 <div class="form-group row mb-3">
                                     <label for="first_name" class="col-md-3 col-form-label text-md-right">First name</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="first_name" class="form-control border border-dark" name="first_name" value="<?php echo $fnamef; ?>">
+                                        <input type="text" id="first_name" class="form-control border border-dark" name="first_name">
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
                                     <label for="middle_name" class="col-md-3 col-form-label text-md-right">Middle </label>
                                     <div class="col-md-6">
-                                        <input type="text" id="middle_name"  class="form-control border border-dark" name="middle_name" value="<?php echo $mnamef; ?>">
+                                        <input type="text" id="middle_name"  class="form-control border border-dark" name="middle_name">
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
                                     <label for="last_name" class="col-md-3 col-form-label text-md-right">Last name</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="last_name" class="form-control border border-dark" name="last_name" value="<?php echo $lnamef; ?>">
+                                        <input type="text" id="last_name" class="form-control border border-dark" name="last_name">
                                         
                                     </div>
                                     
@@ -155,21 +155,21 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
                                 <div class="form-group row mb-3">
                                     <label for="email" class="col-md-3 col-form-label text-md-right">E-mail</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="email" class="form-control border border-dark" name="email" value="<?php echo $emailf; ?>">
+                                        <input type="text" id="email" class="form-control border border-dark" name="email" >
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
                                     <label for="contact" class="col-md-3 col-form-label text-md-right">Cellphone no.</label>
                                     <div class="col-md-6">
-                                        <input type="text" min="11" max="11" id="contact" class="form-control border border-dark" name="contact" value="<?php echo $contf; ?>">
+                                        <input type="text" min="11" max="11" id="contact" class="form-control border border-dark" name="contact">
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
                                     <label for="password" class="col-md-3 col-form-label text-md-right">Password</label>
                                     <div class="col-md-6">
-                                        <input type="password" id="password" name="password" class="form-control border border-dark" value="<?php echo $passf; ?>">
+                                        <input type="password" id="password" name="password" class="form-control border border-dark">
                                         <input type="checkbox" onclick="show()" class="mt-2" > show password </br>
                                         <span><i>password must contain a-Z,0-9,#!-&^</i></span>
                                     </div>
@@ -180,7 +180,7 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
                                     <label  class="col-md-3 col-form-label text-md-right">Birth date</label>
                                     <div class="col-md-6">
                                         
-                                        <input type="date" value="<?php echo $bdayf; ?>" id="bday" name="bday"class="form-control border border-dark " >
+                                        <input type="date"  id="bday" name="bday"class="form-control border border-dark " >
 
                                     
                                 </div>
@@ -191,8 +191,8 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
                                 <div class="col-md-6 mt-2">
                                     <select name="gender">
 					     			
-                                       <option value="Male" <?php echo ($genderf == "Male")? 'Selected' : '' ?> >Male</option>
-                                       <option value="Female" <?php echo ($genderf == "Female")? 'Selected' : '' ?> >Female</option>
+                                       <option value="Male"  >Male</option>
+                                       <option value="Female" >Female</option>
 					     			
                                     </select>
 					   				</div>
@@ -204,10 +204,10 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
                                 <div class="col-md-6 mt-2">
                                     <select name="civil_status">
                                     
-                                       <option value="Single" <?php echo ($civilf == "Single")? 'Selected' : '' ?> >Single</option>
-                                       <option value="Married" <?php echo ($civilf == "Married")? 'Selected' : '' ?> >Married</option>
-                                         <option value="Seperated" <?php echo ($civilf == "Seperated")? 'Selected' : '' ?> >Seperated</option>
-                                        <option value="Widowed" <?php echo ($civilf == "Widowed")? 'Selected' : '' ?> >Widowed</option>
+                                       <option value="Single"  >Single</option>
+                                       <option value="Married"  >Married</option>
+                                         <option value="Seperated"  >Seperated</option>
+                                        <option value="Widowed"  >Widowed</option>
                                     
                                     </select>
 
@@ -218,7 +218,7 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
                                 <div class="form-group row mb-3">
                                     <label for="address" class="col-md-3 col-form-label text-md-right">Religion</label>
                                     <div class="col-md-6">
-                                        <input type="text"  class="form-control border border-dark" name="religion" value="<?php echo $religionf; ?>">
+                                        <input type="text"  class="form-control border border-dark" name="religion">
                                         
                                     </div>
                                 </div>
@@ -227,7 +227,7 @@ if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
                                     <label for="address" class="col-md-3 col-form-label text-md-right">Address</label>
                                     <div class="col-md-6">
                                         <textarea type="text" id="address" class="form-control border border-dark" name="address"></textarea>
-                                        <input type="hidden" value="<?php echo $addf; ?>" id="add" >
+                                        
                                     </div>
                                 </div>
 

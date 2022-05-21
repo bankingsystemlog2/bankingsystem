@@ -1,7 +1,9 @@
 <?php
   ob_start();
   require_once('includes/load.php');
-  $id = current_user();
+  $users_id = current_sup()['id'];
+  $groups = find_all('vendors');
+  $all_vendors = find_all_inner('vendors');
   ?>
 
 <!DOCTYPE html>
@@ -41,19 +43,21 @@
 
         
        <li class="nav-item dropdown">
-
+       <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="search.php">Apply</a>
+        </li>
          <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="home.php">Home</a>
         </li>
-          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <!-- <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Account
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="profile.php?id=<?php echo $id['applicant_id']; ?>">Profile</a></li>
             
               <hr class="dropdown-divider">
-            </li> 
-            <li><a class="dropdown-item" href="logout.php">Logout</a></li> 
+            </li>  -->
+            <li><a class="nav-link active text-white" aria-current="page" href="logout.php">Logout</a></li> 
           </ul>
         </li>
       </ul>
@@ -61,8 +65,79 @@
   </div>
 </nav>
 
+<div class="card-body">
+        <div class="table-responsive">
+          <table
+            id="example"
+            class="table table-striped data-table"
+            style="width: 100%" >
+            <thead>
+            <tr>
+                <th class="text-center" style="width: 50px;">#</th>
+                <th>Product Name</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th class="text-center" style="width: 15%;">Company Name</th>
+                <th class="text-center" style="width: 15%;">Email</th>
+                <th class="text-center" style="width: 15%;">Item Description</th>
+                <th class="text-center" style="width: 15%;">Bidding Price</th>
+                <th class="text-center" style="width: 15%;">Contact #</th>
+                <th class="text-center" style="width: 15%;">Category</th>
+                <th class="text-center" style="width: 10%;">Status</th>
+                <th class="text-center" style="width: 100px;">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach($all_vendors as $a_vendor): ?>
+            <?php if($a_vendor['users_id'] == $users_id){ ?>
+            <tr>
+            <td class="text-center"><?php echo count_id();?></td>
+           <td><?php echo remove_junk(ucwords($a_vendor['product_name']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['Name']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['Address']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['Company']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['Email']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['item_description']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['Offer']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['Phone']))?></td>
+            <td>
+            <?php if($a_vendor['category'] == 0): ?>
+                <span class="label label-success"><?php echo "Contractor"; ?></span>
+                <?php elseif($a_vendor['category'] == 1):?>
+                <span class="label label-danger"><?php echo "Supplier"; ?></span>
+                <?php endif;?>
+            </td>
+            <td>
+            <?php if($a_vendor['statuss'] === '1'): ?>
+                <span class="label label-success"><?php echo "Approved"; ?></span>
+                <?php elseif($a_vendor['statuss'] === '0'): ?>
+                <span class="label label-default"><?php echo "Pending"; ?></span>
+                <?php elseif($a_vendor['statuss'] === '2'): ?>
+                <span class="label label-danger"><?php echo "Rejected"; ?></span>
+            <?php else: ?>
+                <span class="label label-danger"><?php echo "Error"; ?></span>
+            <?php endif;?>
+            </td>
+            <td class="text-center">
+              <form action = "../vendor_delete copy.php" method = "post">
+              <div>
+                <input type="hidden" name="i_d" value="<?php echo $a_vendor['id'];?>">
+              </div>
+                <div class="btn-group">
+                    <button type="submit"class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="bi bi-trash"></i>
+                  <i class="glyphicon glyphicon-remove"></i>
+                </div>
+            </form>
+            </td>
+            </tr>
+            <?php }?>
+            <?php endforeach;?>
+        </tbody>
+        </table>
+        </div>
+  </div>
 
-<?php 
+<!-- <?php 
 $user = $id['applicant_id'];
   
   
@@ -82,7 +157,7 @@ $user = $id['applicant_id'];
 
 
 
-?>
+?> -->
 
 
 
@@ -106,45 +181,7 @@ $user = $id['applicant_id'];
       <div class="col-md-5 mt-2 mb-2" style="margin: auto;">
 <?php echo display_msg($msg);  ?>
 </div>
-<?php if($row>0){   
-    do{
-?>
 
-
-       <div class="col-xl-11 mx-auto mt-3 mb-5 rounded-3 " style="border-left: 5px solid #0076Be;">
-
-              <form method="post" action="apply.php">
-            <div class="col-xl-11 mt-2 mx-auto text-primary">
-             <h3><?php echo ucfirst(str_replace('_',' ',$posii['pos_name'])) ; ?></h3> 
-             <input type="hidden" name="job_title" value="<?php echo $posii['pos_name'] ?>">
-           </div>
-           <div class="col-xl-11 mx-auto mt-4">
-            <h5> Job Description</h5>
-           </div>
-           <div class="col-xl-11 mx-auto mt-2">
-            <p><?php echo $posii['job_desc']; ?></p>
-           </div>
-           <div class="col-xl-11 mx-auto mt-4">
-            <h5> Job Qualification</h5>
-           </div>
-            <div class="col-xl-11 mx-auto mt-2">
-            <p><?php echo $posii['job_quali'];   ?></p>
-           </div>
-           <input type="hidden" name="job_id" value="<?php echo $posii['job_id'] ; ?>">
-           <div class="col-xl-11 mx-auto mt-4 mb-3" >
-            <form class="">
-              <button type="submit" name="apply" class="col-sm-3 btn btn-success btn-sm " >Apply</button>
-            
-           </div>
-                 
-              </form>
-
-            </div> 
-
-
-          <?php }while($posii = $result->fetch_assoc()); } ?>
-        
-  </div>
 </div>
 
 
