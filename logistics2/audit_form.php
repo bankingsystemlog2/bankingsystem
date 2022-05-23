@@ -11,37 +11,26 @@
 // $result = find_vendor_by_id('audit',$users_id);
  $is_show = 1;
  $all_vendors = find_all_audit();
+ $all_auditor = find_all_auditor();
+ $all_assets = find_all('assets');
 ?>
 <?php
   if(isset($_POST['applicationform'])){
     header('Content-Type: text/plain; charset=utf-8');
 
-   $req_fields = array('asset','stated_amount','actual_amount');
-   validate_fields($req_fields);
-   $target_dir = "uploads/";
-   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-   $uploadOk = 1;
-   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-
    if(empty($errors)){
        $asset   = remove_junk($db->escape($_POST['asset']));
-       $stated_amount   = remove_junk($db->escape($_POST['stated_amount']));
-       $actual_amount   = remove_junk($db->escape($_POST['actual_amount']));
-       $datecreated   =  date('Y-m-d');
-       // remove_junk($db->escape(date('Y-m-d', strtotime($_POST['date_created']))));
+       $datecreated = remove_junk($db->escape(date('Y-m-d', strtotime($_POST['date_planned']))));
        $preparedby   = remove_junk($db->escape($_POST['auditor']));
         $query = "INSERT INTO audit (";
-        $query .="asset,stated_amount,actual_amount,date_created,preparedby,urlpath";
+        $query .="asset,date_created,preparedby,status";
         $query .=") VALUES (";
-        $query .="'{$asset}', '{$stated_amount}','{$actual_amount}', '{$datecreated}', '{$preparedby}','{$target_file}'";
+        $query .="'{$asset}', '{$datecreated}', '{$preparedby}','1'";
         $query .=")";
 
 
     
         if($db->query($query)){
-          move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-          $session->msg('s',"Data has been save! ");
           redirect('audit_form.php', false);
         } else {
          
@@ -119,43 +108,69 @@
             </style>
         </head>
         <body>
-        <div class="tab">
-            <button class="tablinks"  onclick="Tab(event, 'ApplicationForm')" id="defaultOpen">Fill-up Audit</button>
+        <div class="tab" id="tabs1">
+            <button class="tablinks" onclick="Tab(event, 'ApplicationForm')" >Fill-up Audit</button>
             <button class="tablinks" onclick="Tab(event, 'ViewData')">View Audit</button>
+            <button class="tablinks" onclick="Tab(event, 'processaudit')"id="defaultOpen">Audit on process</button>
+
         </div>
 
         <div id="ApplicationForm" class="tabcontent">
             <form method="post" action="audit_form.php" autocomplete="off" enctype="multipart/form-data"> 
+            <div class="form-group">
+              <label for="asset">Task</label>
+                <select class="form-control" name="asset">
+                  <option disable selected value> -- select task -- </option>         
+                  <option value="Purchases">Purchases</option>
+                  <option value="Reimbursment">Reimbursement</option>
+                  <option value="Payroll">Payroll</option>
+                  <option value="Income">Income</option>
+                  <option value="Expenses">Expenses</option>
+                  <option value="Facility">Facility</option>
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="asset">Auditor</label>
+                <select class="form-control" name="auditor">
+                  <option disable selected value> -- select auditor -- </option>         
+                  <?php foreach($all_auditor as $audit):?>
+                  <option value="<?php echo $audit['employee_id'];?>"><?php echo $audit['first_name']," ",$audit['last_name'];?></option>
+                  <?php endforeach;?>
+                </select>
+            </div>
                 <div class="form-group">
-                    <label for="title">Asset</label>
-                    <input type="text" class="form-control" name="asset" placeholder="Item Name">
+                    <label for="date_created">Planned audit date</label>
+                    <input type="date" class="form-control" name ="date_planned"  placeholder="date created">
                 </div>
-                <div class="form-group">
-                    <label for="stated_amount">Stated Amount</label>
-                    <input type="number" class="form-control" name="stated_amount" placeholder="Amount stated in finance">
-                </div>
-                <div class="form-group">
-                    <label for="actual_amount">Actual Amount</label>
-                    <input type="number" class="form-control" name="actual_amount" placeholder="Total amount checked">
-                </div>
-                <div class="form-group" hidden>
-                    <label for="date_created">Date Created</label>
-                    <input type="date" class="form-control" name ="date_created"  placeholder="date created">
-                </div>                
-                <div class="form-group">
-                    <input type="hidden" class="form-control" name="auditor" value ="<?php echo $users_id; ?>">
-                </div>
-                <div class="form-group">
-                    <label for="upload_file">Upload File</label>
-                    <input type="file" accept="application/pdf" class="form-control" name="fileToUpload" id="fileToUpload">
-                </div>                
                     <div class="form-group clearfix">
-            <?php?> 
                 <button type="submit" name="applicationform" style="float: right;" class="btn btn-success">Submit</button>
                 <?php?>
                 </div>
                 
             </form>
+        </div>
+
+
+        <div id="processaudit" class="tabcontent">
+        <table class="table table-bordered table-striped" id="myTable"><thead>
+              <tr>
+                <th>Task</th>
+                <th>Auditor</th>
+                <th>Actual Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php foreach($all_vendors as $a_vendor): ?>
+            <tr>
+            <td><?php echo remove_junk(ucwords($a_vendor['asset']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['date_created']))?></td>
+            <td><?php echo $a_vendor['first_name']," ",$a_vendor['last_name'];?></td>
+            
+            
+            </tr>
+            <?php endforeach;?>
+             </tbody>
+        </table>
         </div>
                 
             </form>
@@ -163,6 +178,46 @@
 
         <div id="ViewData" class="tabcontent">
             <table class="table table-bordered table-striped" id="myTable">
+            <style>
+@media print{
+	#button{
+		display: none; !important;
+	}
+  #example_length{
+		display: none; !important;
+	}
+  #example_filter{
+		display: none; !important;
+	}
+  .topNavBar{
+    display: none; !important;
+  }
+  #example_info{
+    display: none; !important;
+  }
+  #example_previous{
+    display: none; !important;
+  }
+  #example_next{
+    display: none; !important;
+  }
+  .page-link{
+    display: none; !important;
+  }
+	.breadcrumbs{
+		display: none; !important;
+	}
+}
+@page {
+       /* auto is the initial value */
+    size: auto%;
+    margin: 0;  /* this affects the margin in the printer settings */
+}
+</style>
+<div class="text-end">
+        <div class="text-end">
+        <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
+</div>
             <thead>
             <tr>
                 <th>Item Name</th>
@@ -236,26 +291,6 @@
                 modal.style.display = "none";
               }
             }
-        </script>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="datatables.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-<script>
-  $("#myTable").DataTable(
-    {
-        dom: 'Bfrtip',
-        buttons: [
-            'csv', 'excel', 'pdf', 'print'
-        ]
-    }
-  );
 </script>
         </body>
      </div>

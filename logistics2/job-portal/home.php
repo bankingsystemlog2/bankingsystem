@@ -118,16 +118,32 @@
                 <span class="label label-danger"><?php echo "Error"; ?></span>
             <?php endif;?>
             </td>
-            <td class="text-center">
-              <form action = "../vendor_delete copy.php" method = "post">
-              <div>
+            <td>
                 <input type="hidden" name="i_d" value="<?php echo $a_vendor['id'];?>">
-              </div>
-                <div class="btn-group">
-                    <button type="submit"class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="bi bi-trash"></i>
-                  <i class="glyphicon glyphicon-remove"></i>
+              <button data-bs-toggle = "modal" data-bs-target = "#exampleModal-<?php echo $a_vendor['id'];?>" class="btn btn-warning"><i class="bi bi-file-earmark-post-fill"></i> Delete</a></td>
+              <div class="modal top fade" id="exampleModal-<?php echo $a_vendor['id'];?>">
+                <div class="modal-dialog modal-l modal-dialog-centered">
+                  <div class="modal-content"> 
+                    <form class="modal-content" action="../vendor_delete copy.php" method="post">
+                      <div class="modal-header bg-secondary">
+                        <div class="container">
+                          <h1 class="modal-title">Are you sure?</h1>
+                        </div>
+                      </div>
+                      <div class="modal-body">                                  
+                          <h5>Do You Want To Delete This Application?</h5>
+                      </div>
+                      <div class="modal-footer bg-secondary">
+                        <div>
+                          <input type="hidden"name="i_d" value=<?php echo $a_vendor['id'];?>>
+                        </div>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-success"><i class="fas fa-check"></i>Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-            </form>
+              </div>
             </td>
             </tr>
             <?php }?>

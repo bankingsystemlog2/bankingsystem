@@ -632,12 +632,33 @@ function getAuditlog($table){
   }
 return $current_sup;
 }
+function find_all_au() {
+  global $db;
+    return find_by_sql("SELECT * FROM employees WHERE pos_id = 38");
+}
+function find_all_auditor() {
+  global $db;
+    return find_by_sql("SELECT * FROM employees WHERE pos_id = 38");
+}
   //===========================================End of Logistics2=======================================================================
 /*--------------------------------------------------------------*/
 /* Function for find all database table rows by table name
 /*--------------------------------------------------------------*/
 function find_all_audit() {
   global $db;
-    return find_by_sql("SELECT audit.*, users.name FROM audit INNER JOIN users ON audit.preparedby = users.id");
+    return find_by_sql("SELECT * FROM audit INNER JOIN employees ON audit.preparedby = employees.employee_id WHERE audit.status = 1");
 }
+function find_audit($user){
+  global $db;
+    return find_by_sql("SELECT * FROM audit INNER JOIN employees ON audit.preparedby = employees.employee_id WHERE audit.status = ".$user);
+}
+function find_employee_audit($user){
+  global $db;
+    return find_by_sql("SELECT * FROM employees INNER JOIN users ON employees.employee_id = users.employee_id WHERE users.id = ".$user);
+}
+function audit_employee_id($employee){
+  global $db;
+    return find_by_sql("SELECT * FROM audit WHERE employee_id = ".$employee);
+}
+
 
