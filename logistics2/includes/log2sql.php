@@ -670,6 +670,18 @@ function find_all_contractor() {
     return find_by_sql("SELECT * FROM contractor_request join employees on contractor_request.employee_id = employees.employee_id JOIN users on employees.employee_id = users.employee_id WHERE contractor_request.request_stat = 'Pending'");
   }
 }
+function find_all_approval_interview() {
+  global $db;
+  {
+    return find_by_sql("SELECT * FROM contractor_form WHERE vendors_status ='Pending'");
+  }
+}
+function find_all_approval_contractor() {
+  global $db;
+  {
+    return find_by_sql("SELECT * FROM contractor_form WHERE vendors_status ='Approved'");
+  }
+}
   //===========================================End of Logistics2=======================================================================
 /*--------------------------------------------------------------*/
 /* Function for find all database table rows by table name
@@ -689,6 +701,10 @@ function find_employee_audit($user){
 function audit_employee_id($employee){
   global $db;
     return find_by_sql("SELECT * FROM audit WHERE employee_id = ".$employee);
+}
+function id_find($table,$id){
+  global $db;
+    return find_by_sql("SELECT * FROM ".$table." WHERE id = ".$id);
 }
 
 

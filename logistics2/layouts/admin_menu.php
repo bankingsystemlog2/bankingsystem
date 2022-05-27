@@ -167,7 +167,7 @@
       <div class="collapse" id="ii">
         <ul class="navbar-nav ps-3">
         <li>
-            <a href="vendor copy.php" class="nav-link px-3 sidebar-link">
+            <a href="contractor_list.php" class="nav-link px-3 sidebar-link">
               <span class="me-3"
                 ><i class="bi bi-calendar"></i
               ></span>
@@ -175,7 +175,7 @@
             </a>
           </li>
           <li >
-    <a href="bidding.php"class="nav-link px-3 sidebar-link " >
+    <a href="approval_interview.php"class="nav-link px-3 sidebar-link " >
        <span><i class="bi bi-people"></i></span>
       <span style="margin: 5px;">Approval for Interview</span>
     </a>

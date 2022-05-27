@@ -46,9 +46,9 @@ require_once('includes/log2load.php');
        $vendors_email   = remove_junk($db->escape($_POST['vendors_email']));
        $vendors_category   = remove_junk($db->escape($_POST['vendors_category']));
         $query = "INSERT INTO contractor_form (";
-        $query .="vendors_fname,vendors_mi,vendors_lname,vendors_address,vendors_contact,vendors_email,vendors_category,vendors_pathurl,users_id";
+        $query .="vendors_fname,vendors_mi,vendors_lname,vendors_address,vendors_contact,vendors_email,vendors_category,vendors_status,contractor_status,vendor_pathurl";
         $query .=") VALUES (";
-        $query .="'{$fname}','{$vendors_mi}', '{$lname}', '{$vendors_address}', '{$vendors_contact}', '{$vendors_email}', '0', '{$target_file}', '{$users_id}'";
+        $query .="'{$fname}','{$vendors_mi}', '{$lname}', '{$vendors_address}', '{$vendors_contact}', '{$vendors_email}', '0', 'Pending','Pending', '{$target_file}'";
         $query .=")";
 
 
@@ -148,27 +148,27 @@ require_once('includes/log2load.php');
             <form method="post" action="vendor_form_portal_copy.php" enctype="multipart/form-data" >
                 <div class="form-group">
                     <label for="vendors_fname">First Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="first name" required>
+                    <input type="text" class="form-control" name="vendors_fname" placeholder="first name" required>
                 </div>
                 <div class="form-group">
                     <label for="vendors_mi">Middle Initial</label>
-                    <input type="text" class="form-control" name="name" placeholder="middle initial" required>
+                    <input type="text" class="form-control" name="vendors_mi" placeholder="middle initial" required>
                 </div>
                 <div class="form-group">
                     <label for="vendors_lname">Last Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="last name" required>
+                    <input type="text" class="form-control" name="vendors_lname" placeholder="last name" required>
                 </div>
                 <div class="form-group">
                     <label for="vendors_address">Address</label>
-                    <input type="text" class="form-control" name="address" placeholder="address" required>
+                    <input type="text" class="form-control" name="vendors_address" placeholder="address" required>
                 </div>
                 <div class="form-group">
                 <label for="vendors_contact">Phone number:</label>
-                 <input type="tel" class="form-control" id="phone" name="phone" placeholder="09*********" maxlength = "11" required>
+                 <input type="tel" class="form-control" id="phone" name="vendors_contact" placeholder="09*********" maxlength = "11" required>
                 </div>
                 <div class="form-group">
                     <label for="vendors_email">Email</label>
-                    <input type="email" class="form-control" id="email" name ="email"  placeholder="email" required>
+                    <input type="email" class="form-control" id="email" name ="vendors_email"  placeholder="email" required>
                 </div>
                 <div class="form-group">
                     <label for="upload_file">RESUME</label>

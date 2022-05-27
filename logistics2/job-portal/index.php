@@ -1,6 +1,9 @@
 <?php
   ob_start();
   require_once('includes/load.php');
+  $show = "SELECT * FROM contractor_request WHERE request_stat = 'Approved'";
+  $conn = mysqli_connect("localhost", "root","","bank");
+  $result = mysqli_query($conn, $show);
   if($session->isUserLoggedIn(true)) { redirect('home.php', false);}
   ?>
 
@@ -68,8 +71,9 @@
                                        
                                     </div>
                                     <div class="col-my-12"><a href="search.php" class="btn btn-primary btn-lg">For Supplier</a>
+                                    <?php if(mysqli_num_rows($result)>0){?>
                                     <a href="../vendor_form_portal_copy.php"  class="btn btn-primary btn-lg">For Contractor</a>
-
+                                    <?php }?>
                                     </div>
                                 </div>
                                

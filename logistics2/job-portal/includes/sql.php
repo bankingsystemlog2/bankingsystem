@@ -10,6 +10,12 @@ function find_all($table) {
    {
      return find_by_sql("SELECT * FROM ".$db->escape($table));
    }  
+}function find_all1($table) {
+  global $db;
+  if(tableExists($table))
+  {
+    return find_by_sql("SELECT * FROM ".$db->escape($table)." WHERE request_stat = 'Approved'");
+  }  
 }
 /*--------------------------------------------------------------*/
 /* Function for Perform queries

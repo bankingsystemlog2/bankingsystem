@@ -74,6 +74,10 @@
       </div>
       <div class="panel-body">
           <form method="post" action="bidding_approval.php?id=<?php echo (int)$vendors['id'];?>" class="clearfix">
+          <!-- <div class="form-group">
+            <label for="name">Product Name</label>
+            <input type="name" class="form-control" name="name" value="<?php echo remove_junk(ucwords($allvendors['product_name'])); ?> "readonly>
+          </div> -->
             <div class="form-group">
                   <label for="name" class="control-label">Name</label>
                   <input type="name" class="form-control" name="name" value="<?php echo remove_junk(ucwords($vendors['Name'])); ?>"readonly>
@@ -102,7 +106,6 @@
                   <label for="phone" class="control-label">Phone Number</label>
                   <input type="tel" class="form-control" name="phone" value="<?php echo remove_junk(ucwords($vendors['Phone'])); ?>"readonly>
             </div>
-            <?php if($user['user_level'] === '1'): ?>
             <div class="form-group">
               <label for="bidding_status">Status</label>
                 <select class="form-control" name="bidding_status">
@@ -111,7 +114,6 @@
                   <option <?php if($vendors['bidding_status'] === '0') echo 'selected="selected"';?>value="0">Pending</option>
                 </select>
             </div>
-            <?php endif;?>
             <div>
               <br>
             <button type="submit" name="update-vendor" class="btn btn-info">Update</button></a>
