@@ -12,7 +12,7 @@
 
 
 
-$sql = " SELECT * FROM product";
+$sql = "SELECT * FROM vendor_request_tbl join product on vendor_request_tbl.product_id = product.product_id JOIN users on vendor_request_tbl.user_id = users.id WHERE vendor_request_tbl.status = 'Approved'";
 $result = $db->query($sql);
 $sup = $result->fetch_assoc();
 $row = $result->num_rows;

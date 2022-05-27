@@ -112,14 +112,14 @@
               <span>List of Applicants</span>
             </a>
           </li> -->
-          <li>
-            <a href="vendor_list.php" class="nav-link px-3">
+          <!-- <li>
+            <a href="vendor_request.php" class="nav-link px-3">
               <span class="me-2"
                 ><i class="bi bi-cash"></i
               ></span>
-              <span>Vendor List</span>
+              <span>Vendor Request</span>
             </a>
-          </li>          
+          </li>           -->
         </ul>
       </div>
     </li>

@@ -86,9 +86,115 @@
   </li>
 
 <!-- End of vehicle reservation -->
+<li>
+      <a
+        class="nav-link px-3 sidebar-link"
+        data-bs-toggle="collapse"
+        href="#Applicantmanagement"
+      >
+        <span class="me-3"><i class="bi bi-people"></i></span>
+        <span>Vendor</span>
+        <span class="ms-auto">
+          <span class="right-icon" style="margin-left: 3px;">
+            <i class="bi bi-chevron-down"></i>
+          </span>
+        </span>
+      </a>
+      <!-- supplier -->
+      <div class="collapse" id="Applicantmanagement">
+
+<ul>
+  <li>
+      <a
+        class="nav-link px-2 sidebar-link"
+        data-bs-toggle="collapse"
+        href="#i"
+      >
+        <span class="me-3"><i class="bi bi-file-post"></i></span>
+        <span>Supplier</span>
+        <span class="ms-auto">
+          <span class="right-icon" style="margin-left: 3px;">
+            <i class="bi bi-chevron-down"></i>
+          </span>
+        </span>
+      </a>
+      <div class="collapse" id="i">
+        <ul class="navbar-nav ps-3">
+          <li>
+            <a href="vendor copy.php" class="nav-link px-3 sidebar-link">
+              <span class="me-3"
+                ><i class="bi bi-calendar"></i
+              ></span>
+              <span>List of Applicant</span>
+            </a>
+          </li>
+          <li >
+    <a href="bidding.php"class="nav-link px-3 sidebar-link " >
+       <span><i class="bi bi-people"></i></span>
+      <span style="margin: 5px;">Bidding</span>
+    </a>
+
+ </li>
+ <li>
+            <a href="vendor_request.php" class="nav-link px-3 sidebar-link">
+              <span class="me-3"
+                ><i class="bi bi-calendar"></i
+              ></span>
+              <span>Supplier Request</span>
+            </a>
+          </li>
+</div>
+
+</ul>
+<!-- end supplier -->
+<div class="collapse" id="Applicantmanagement">
+
+<ul>
+  <li>
+      <a
+        class="nav-link px-2 sidebar-link"
+        data-bs-toggle="collapse"
+        href="#ii"
+      >
+        <span class="me-3"><i class="bi bi-file-post"></i></span>
+        <span>Contractor</span>
+        <span class="ms-auto">
+          <span class="right-icon" style="margin-left: 3px;">
+            <i class="bi bi-chevron-down"></i>
+          </span>
+        </span>
+      </a>
+      <div class="collapse" id="ii">
+        <ul class="navbar-nav ps-3">
+        <li>
+            <a href="vendor copy.php" class="nav-link px-3 sidebar-link">
+              <span class="me-3"
+                ><i class="bi bi-calendar"></i
+              ></span>
+              <span>List of Applicant</span>
+            </a>
+          </li>
+          <li >
+    <a href="bidding.php"class="nav-link px-3 sidebar-link " >
+       <span><i class="bi bi-people"></i></span>
+      <span style="margin: 5px;">Approval for Interview</span>
+    </a>
+
+ </li>
+ <li>
+            <a href="contractor_request.php" class="nav-link px-3 sidebar-link">
+              <span class="me-3"
+                ><i class="bi bi-calendar"></i
+              ></span>
+              <span>Contractor Request</span>
+            </a>
+          </li>
+</div>
+</ul>
+
 
 <!-- start of vendor -->
-  <li>
+  <!-- <li>
       <a
         class="nav-link px-3 sidebar-link"
         data-bs-toggle="collapse"
@@ -109,20 +215,36 @@
               <span class="me-2"
                 ><i class="bi bi-file-earmark-post"></i
               ></span>
-              <span>List of Applicants</span>
+              <span>List of Applicants (Supplier)</span>
             </a>
           </li>
-          <!-- <li>
-            <a href="vendor_list.php" class="nav-link px-3">
+          <a href="bidding.php" class="nav-link px-3">
               <span class="me-2"
-                ><i class="bi bi-cash"></i
+                ><i class="bi bi-file-earmark-post"></i
               ></span>
-              <span>Vendor List</span>
+              <span>Bidding</span>
             </a>
-          </li>           -->
+          </li> 
+          <li>
+            <a href="vendor_request.php" class="nav-link px-3">
+              <span class="me-2"
+                ><i class="bi bi-file-earmark-post"></i
+              ></span>
+              <span>Supplier Request</span>
+            </a>
+          </li> 
+          <a href="contractor_request.php" class="nav-link px-3">
+              <span class="me-2"
+                ><i class="bi bi-file-earmark-post"></i
+              ></span>
+              <span>Contractor Request</span>
+            </a>
+          </li> 
+          <li>
+                       
         </ul>
       </div>
-    </li>
+    </li> -->
   <!-- End of vendor -->
   
   
@@ -200,7 +322,7 @@
   </li>
   <a href="job-portal/index.php" class="nav-link px-3">
       <span class="me-2"><i class="bi bi-mic"></i></span>
-      <span>SUPPLIER PORTAL</span>
+      <span>SUPPLIER/CONTRACTOR PORTAL</span>
     </a>
   <a href="create-anouncement.php" class="nav-link px-3">
       <span class="me-2"><i class="bi bi-mic"></i></span>

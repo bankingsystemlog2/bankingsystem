@@ -640,6 +640,36 @@ function find_all_auditor() {
   global $db;
     return find_by_sql("SELECT * FROM employees WHERE pos_id = 38");
 }
+function find_all_bidding() {
+  global $db;
+  {
+    return find_by_sql("SELECT * FROM vendors inner join product on vendors.product_id = product.product_id WHERE vendors.bidding_status = 0 ");
+  }
+}
+function find_all_approve() {
+  global $db;
+  {
+    return find_by_sql("SELECT * FROM vendors inner join product on vendors.product_id = product.product_id WHERE vendors.bidding_status = 1 ");
+  }
+}
+function vendor_request_pending() {
+  global $db;
+  {
+    return find_by_sql("SELECT * FROM vendor_request_tbl join product on vendor_request_tbl.product_id = product.product_id JOIN users on vendor_request_tbl.user_id = users.id WHERE vendor_request_tbl.status = 'Pending'");
+  }
+}
+function vendor_request_tbl() {
+  global $db;
+  {
+    return find_by_sql("SELECT * FROM vendor_request_tbl join product on vendor_request_tbl.product_id = product.product_id JOIN users on vendor_request_tbl.user_id = users.id WHERE vendor_request_tbl.status = 'Pending'");
+  }
+}
+function find_all_contractor() {
+  global $db;
+  {
+    return find_by_sql("SELECT * FROM contractor_request join employees on contractor_request.employee_id = employees.employee_id JOIN users on employees.employee_id = users.employee_id WHERE contractor_request.request_stat = 'Pending'");
+  }
+}
   //===========================================End of Logistics2=======================================================================
 /*--------------------------------------------------------------*/
 /* Function for find all database table rows by table name

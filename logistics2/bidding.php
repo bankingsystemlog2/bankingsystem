@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Vendor Portal';
+  $page_title = 'Supplier Bidding';
   require_once('includes/log2load.php');
 // Checkin What level user has permission to view this page
   
@@ -8,7 +8,7 @@
   ?>
   <?php
   page_require_level(1);
-  $all_vendors = find_all_approve();
+  $all_vendors = find_all_bidding();
   ?>
 <?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
@@ -61,7 +61,7 @@
    <a href="admin.php" class="breadcrumbs__item">Home</a>
   <?php endif; ?>
 
-  <a href="#checkout" class="breadcrumbs__item is-active">List Of Applicant</a>
+  <a href="#checkout" class="breadcrumbs__item is-active">For Bidding</a>
 </nav>
 <!-- /Breadcrumb -->
 
@@ -106,7 +106,7 @@
                 <th>  Bidding Price </th>
                 <th> Contact # </th>
                 <th> Category </th>
-                <th> Status </th>
+                <th> Bidding Status </th>
                 <th> Files </th>
                 <?php if($user['user_level'] === '1'): ?>
             <th>Actions</th>
@@ -133,11 +133,11 @@
             <?php endif;?>
            </td>
            <td>
-           <?php if($a_vendor['statuss'] === '1'): ?>
+           <?php if($a_vendor['bidding_status'] === '1'): ?>
             <span class="label label-success"><?php echo "Approved"; ?></span>
-            <?php elseif($a_vendor['statuss'] === '0'): ?>
+            <?php elseif($a_vendor['bidding_status'] === '0'): ?>
             <span class="label label-default"><?php echo "Pending"; ?></span>
-            <?php elseif($a_vendor['statuss'] === '2'): ?>
+            <?php elseif($a_vendor['bidding_status'] === '2'): ?>
             <span class="label label-danger"><?php echo "Rejected"; ?></span>
           <?php else: ?>
             <span class="label label-danger"><?php echo "Error"; ?></span>
@@ -151,14 +151,14 @@
             <?php if($user['user_level'] === '1'): ?>
            <td class="text-center">
              <div class="btn-group">
-                <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-pencil"></i>
+                <a href="bidding_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-pencil"></i>
                   <i class="glyphicon glyphicon-pencil"></i>
                </a>
                <!-- <button data-bs-toggle = "modal" data-bs-target = "#exampleModal-<?php echo $a_vendor['id'];?>" class="btn btn-danger"><i class="bi bi-file-earmark-post-fill"></i> Delete</a></td>
                 <div class="modal top fade" id="exampleModal-<?php echo $a_vendor['id'];?>">
                           <div class="modal-dialog modal-l modal-dialog-centered">
                             <div class="modal-content"> 
-                              <form class="modal-content" action="vendor_delete.php" method="post">
+                              <form class="modal-content" action="bidding_delete.php" method="post">
                                 <div class="modal-header bg-secondary">
                                   <div class="container">
                                     <h1 class="modal-title">Are you sure?</h1>
@@ -177,8 +177,8 @@
                               </form>
                             </div>
                           </div>
-                        </div>
-                </div> -->
+                        </div> -->
+                </div>
            </td>
            <?php endif;?>
           </tr>

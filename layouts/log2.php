@@ -136,11 +136,11 @@
             </a>
           </li>
           <li>
-            <a href="vendor_list.php" class="nav-link px-3">
+            <a href="vendor_request.php" class="nav-link px-3">
               <span class="me-2"
-                ><i class="bi bi-cash"></i
+                ><i class="bi bi-file-earmark-post"></i
               ></span>
-              <span>Vendor List</span>
+              <span>Request</span>
             </a>
           </li>          
         </ul>

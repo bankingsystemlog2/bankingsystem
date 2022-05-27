@@ -31,31 +31,24 @@ require_once('includes/log2load.php');
   </head>
   <body>
   <?php
-  $id = find_all('supplier_user');
-  $users_id = current_sup()['id'];
-   $product_id = $_POST['product_id'];
-   $product_name = $_POST['product_name'];
   if(isset($_POST['applicationform'])){
-   
-    $product_id = $_POST['product_id'];
    $target_dir = "uploads/";
    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
    $uploadOk = 1;
    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
    if(empty($errors)){
       
-       $name   = remove_junk($db->escape($_POST['name']));
-       $address   = remove_junk($db->escape($_POST['address']));
-       $company   = remove_junk($db->escape($_POST['company']));
-       $email   = remove_junk($db->escape($_POST['email']));
-       $item_description   = remove_junk($db->escape($_POST['item_description']));
-       $offer   = remove_junk($db->escape($_POST['offer']));
-       $phone   = remove_junk($db->escape($_POST['phone']));
-       $category   = remove_junk($db->escape($_POST['category']));
-        $query = "INSERT INTO vendors (";
-        $query .="product_id,Name,Address,Company,Email,item_description,Offer,Phone,category,path_url,users_id";
+       $fname   = remove_junk($db->escape($_POST['vendors_fname']));
+       $vendors_mi  = remove_junk($db->escape($_POST['vendors_mi']));
+       $lname   = remove_junk($db->escape($_POST['vendors_lname']));
+       $vendors_address   = remove_junk($db->escape($_POST['vendors_address']));
+       $vendors_contact   = remove_junk($db->escape($_POST['vendors_contact']));
+       $vendors_email   = remove_junk($db->escape($_POST['vendors_email']));
+       $vendors_category   = remove_junk($db->escape($_POST['vendors_category']));
+        $query = "INSERT INTO contractor_form (";
+        $query .="vendors_fname,vendors_mi,vendors_lname,vendors_address,vendors_contact,vendors_email,vendors_category,vendors_pathurl,users_id";
         $query .=") VALUES (";
-        $query .="'{$product_id}','{$name}', '{$address}', '{$company}', '{$email}', '{$item_description}', '{$offer}', '{$phone}', '1', '{$target_file}', '{$users_id}'";
+        $query .="'{$fname}','{$vendors_mi}', '{$lname}', '{$vendors_address}', '{$vendors_contact}', '{$vendors_email}', '0', '{$target_file}', '{$users_id}'";
         $query .=")";
 
 
@@ -96,7 +89,7 @@ require_once('includes/log2load.php');
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Supplier Application</span>
+          <span>Contractor Application</span>
        </strong>
          
       </div>
@@ -152,44 +145,33 @@ require_once('includes/log2load.php');
         <body>
        <div id="ApplicationForm" class="panel-body">
 
-            <form method="post" action="vendor_form_portal.php" enctype="multipart/form-data" > 
+            <form method="post" action="vendor_form_portal_copy.php" enctype="multipart/form-data" >
                 <div class="form-group">
-                    <input type="hidden" class="form-control" name="product_id" value=<?php echo $product_id;?>>
+                    <label for="vendors_fname">First Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="first name" required>
                 </div>
                 <div class="form-group">
-                    <label for="name">Item Name</label>
-                    <input type="text" class="form-control" value=<?php echo $product_name;?> readonly>
+                    <label for="vendors_mi">Middle Initial</label>
+                    <input type="text" class="form-control" name="name" placeholder="middle initial" required>
                 </div>
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="name" required>
+                    <label for="vendors_lname">Last Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="last name" required>
                 </div>
                 <div class="form-group">
-                    <label for="address">Address</label>
+                    <label for="vendors_address">Address</label>
                     <input type="text" class="form-control" name="address" placeholder="address" required>
                 </div>
                 <div class="form-group">
-                    <label for="company">Company Name</label>
-                    <input type="text" class="form-control" name ="company"  placeholder="company" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name ="email"  placeholder="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="item_description">Item Description</label>
-                    <textarea type="text" class="form-control" name ="item_description"  placeholder="item description" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="offer">Bidding Price</label>
-                    <input type="number"  class="form-control" name ="offer" min="1" max="99999999999" placeholder="Bidding Price" required>
-                </div>
-                <div class="form-group">
-                <label for="phone">Phone number:</label>
+                <label for="vendors_contact">Phone number:</label>
                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="09*********" maxlength = "11" required>
                 </div>
                 <div class="form-group">
-                    <label for="upload_file">Upload Any of These:(Business Permit,DIT and etc.)</label>
+                    <label for="vendors_email">Email</label>
+                    <input type="email" class="form-control" id="email" name ="email"  placeholder="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="upload_file">RESUME</label>
                     <input type="file" accept="application/pdf" class="form-control" name="fileToUpload" id="fileToUpload" required>
                 </div>
                 <div class="form-group clearfix">

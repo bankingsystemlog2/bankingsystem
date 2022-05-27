@@ -7,11 +7,9 @@
 <?php
 // Checkin What level user has permission to view this page
  page_require_level(1);
- $groups = find_all('vendors');
- $users_id = current_user()['id'];
 //  $result = find_vendor_by_id('vendors',$users_id);
 //  $is_show = 1;
- $all_vendors = find_all_inner('vendors');
+ $all_vendors = find_all_contractor();
 ?>
 <?php
 //   if(isset($_POST['applicationform'])){
@@ -113,7 +111,7 @@
         </div> -->
 <?php include_once('layouts/header.php'); ?>
 <link rel="stylesheet" href="datatables.css">
-<style>
+<!-- <style>
 @media print{
 	#button{
 		display: none; !important;
@@ -153,7 +151,7 @@
 }
 
 
-</style>
+</style> -->
 <!-- Breadcrumb -->
 <nav class="breadcrumbs">
   <?php if ($user['user_level'] === '1'): ?>
@@ -164,7 +162,7 @@
    <a href="admin.php" class="breadcrumbs__item">Home</a>
   <?php endif; ?>
 
-  <a href="#checkout" class="breadcrumbs__item is-active">List Of Applicant</a>
+  <a href="#checkout" class="breadcrumbs__item is-active">List Of Request</a>
 </nav>
 <!-- /Breadcrumb -->
 
@@ -183,14 +181,14 @@
     <div class="card">
       <div class="card-header">
         <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Vendor Portal</span>
-        <div class="text-end">
+        <!-- <div class="text-end">
         <div class="text-end">
         <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
-        <!-- <div class="text-end">
+         <div class="text-end">
           <a href="fleet_addvehicle.php" class="btn btn-info pull-right"> View Approved List</a>
          </div> -->
-        </div>
-      </div>
+        <!-- </div>
+      </div> -->
       <div class="card-body">
         <div class="table-responsive">
           <table
@@ -199,76 +197,34 @@
             style="width: 100%" >
             <thead>
             <tr>
-                <th class="text-center" style="width: 50px;">#</th>
-                <th>Product Name</th>
                 <th>Name</th>
-                <th>Address</th>
-                <th class="text-center" style="width: 15%;">Company Name</th>
-                <th class="text-center" style="width: 15%;">Email</th>
-                <th class="text-center" style="width: 15%;">Item Description</th>
-                <?php if($user['user_level'] === '1'): ?>
-                <th class="text-center" style="width: 15%;">Bidding Price</th>
-                <?php endif;?>
-                <th class="text-center" style="width: 15%;">Contact #</th>
-                <th class="text-center" style="width: 15%;">Category</th>
-                <th class="text-center" style="width: 10%;">Status</th>
-                <?php if($user['user_level'] === '1'): ?>
+                <th>Position</th>
+                <th class="text-center" style="width: 15%;">Request Type</th>
+                <th class="text-center" style="width: 15%;">Remarks</th>
+                <th class="text-center" style="width: 15%;">Date Requested</th>
                 <th class="text-center" style="width: 100px;">Actions</th>
-                <?php endif;?>
             </tr>
             </thead>
             <tbody>
             <?php foreach($all_vendors as $a_vendor): ?>
-            <?php if($a_vendor['users_id'] == $users_id){ ?>
             <tr>
-            <td class="text-center"><?php echo count_id();?></td>
-           <td><?php echo remove_junk(ucwords($a_vendor['product_name']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['Name']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['Address']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['Company']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['Email']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['item_description']))?></td>
-			<?php if($user['user_level'] === '1'): ?>
-            <td><?php echo remove_junk(ucwords($a_vendor['Offer']))?></td>
-			<?php endif;?>
-            <td><?php echo remove_junk(ucwords($a_vendor['Phone']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['name']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['pos_id']))?></td>
+            <td><?php echo "Contractor"?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['remarks']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['date']))?></td>
             <td>
-            <?php if($a_vendor['category'] == 0): ?>
-                <span class="label label-success"><?php echo "Contractor"; ?></span>
-                <?php elseif($a_vendor['category'] == 1):?>
-                <span class="label label-danger"><?php echo "Supplier"; ?></span>
-                <?php endif;?>
-            </td>
-            <td>
-            <?php if($a_vendor['statuss'] === '1'): ?>
-                <span class="label label-success"><?php echo "Approved"; ?></span>
-                <?php elseif($a_vendor['statuss'] === '0'): ?>
-                <span class="label label-default"><?php echo "Pending"; ?></span>
-                <?php elseif($a_vendor['statuss'] === '2'): ?>
-                <span class="label label-danger"><?php echo "Rejected"; ?></span>
-            <?php else: ?>
-                <span class="label label-danger"><?php echo "Error"; ?></span>
-            <?php endif;?>
-            </td>
-            <?php if($user['user_level'] === '1'): ?>
-            <td class="text-center">
                 <div class="btn-group">
-                  <?php if ($a_vendor['statuss'] === '0'): ?>
-                    <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-pencil"></i>
-                  <i class="glyphicon glyphicon-pencil"></i>
+                    <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-check">Approved and Post</i>
+                  <i class="glyphicon glyphicon-ok"></i>
                     </a>
-                    <?php if($user['user_level'] === '1'): ?>
-                    <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>"class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="bi bi-trash"></i>
-                  <i class="glyphicon glyphicon-remove"></i>
-                    </a><?php endif; ?>
-                    <?php elseif ($a_vendor['statuss'] === '1' || $a_vendor['statuss'] === '2'): ?>
-                    <?php endif; ?>
-                     
+                    <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="fa fa-close">x Decline</i>
+                  <i class="glyphicon glyphicon-close"></i>
+            </a>
                 </div>
             </td>
-            <?php endif;?>
             </tr>
-            <?php }?>
+            <?php ?>
             <?php endforeach;?>
         </tbody>
         </table>

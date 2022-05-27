@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Vendor Application Form';
+  $page_title = 'Bidding Approval';
   require_once('includes/log2load.php');
    page_require_level(1);
    global $db;
@@ -23,8 +23,8 @@
              $item_description   = remove_junk($db->escape($_POST['item_description']));
              $offer   = remove_junk($db->escape($_POST['offer']));
              $phone   = remove_junk($db->escape($_POST['phone']));
-             $statuss   = remove_junk($db->escape($_POST['statuss'])); 
-             $sql = "UPDATE vendors SET name ='{$name}', address ='{$address}', company ='{$company}', email ='{$email}', item_description ='{$item_description}', offer ='{$offer}', phone ='{$phone}', statuss='{$statuss}' WHERE id ='{$id}'";
+             $statuss   = remove_junk($db->escape($_POST['bidding_status'])); 
+             $sql = "UPDATE vendors SET name ='{$name}', address ='{$address}', company ='{$company}', email ='{$email}', item_description ='{$item_description}', offer ='{$offer}', phone ='{$phone}', bidding_status='{$statuss}' WHERE id ='{$id}'";
              $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Application updated ");
@@ -53,14 +53,14 @@
 
 
           //end AuditLog Insert
-            redirect('vendor copy.php', false);
+            redirect('bidding.php', false);
           } else {
             $session->msg('d',' Sorry failed to updated!');
-            redirect('vendor copy.php', false);
+            redirect('bidding.php', false);
           }
     } else {
       $session->msg("d", $errors);
-      redirect('vendor copy.php',false);
+      redirect('bidding.php',false);
     }
   }
 ?>
@@ -73,7 +73,7 @@
         <span>Application Form</span>
       </div>
       <div class="panel-body">
-          <form method="post" action="vendor_approval.php?id=<?php echo (int)$vendors['id'];?>" class="clearfix">
+          <form method="post" action="bidding_approval.php?id=<?php echo (int)$vendors['id'];?>" class="clearfix">
             <div class="form-group">
                   <label for="name" class="control-label">Name</label>
                   <input type="name" class="form-control" name="name" value="<?php echo remove_junk(ucwords($vendors['Name'])); ?>"readonly>
@@ -104,18 +104,18 @@
             </div>
             <?php if($user['user_level'] === '1'): ?>
             <div class="form-group">
-              <label for="statuss">Status</label>
-                <select class="form-control" name="statuss">
-                  <option <?php if($vendors['statuss'] === '1') echo 'selected="selected"';?>value="1">Approved</option>
-                  <option <?php if($vendors['statuss'] === '2') echo 'selected="selected"';?>value="2">Rejected</option>
-                  <option <?php if($vendors['statuss'] === '0') echo 'selected="selected"';?>value="0">Pending</option>
+              <label for="bidding_status">Status</label>
+                <select class="form-control" name="bidding_status">
+                  <option <?php if($vendors['bidding_status'] === '1') echo 'selected="selected"';?>value="1">Approved</option>
+                  <option <?php if($vendors['bidding_status'] === '2') echo 'selected="selected"';?>value="2">Rejected</option>
+                  <option <?php if($vendors['bidding_status'] === '0') echo 'selected="selected"';?>value="0">Pending</option>
                 </select>
             </div>
             <?php endif;?>
             <div>
               <br>
             <button type="submit" name="update-vendor" class="btn btn-info">Update</button></a>
-            <a href="vendor copy.php" name="vendor_approval" class="btn btn-danger">Cancel</a>
+            <a href="bidding.php" name="vendor_approval" class="btn btn-danger">Cancel</a>
         </div>
       </div>
     </div>

@@ -67,7 +67,9 @@
                                     <div class="col">
                                        
                                     </div>
-                                    <div class="col-my-12"><a href="search.php" class="btn btn-primary btn-lg">Apply now</a>
+                                    <div class="col-my-12"><a href="search.php" class="btn btn-primary btn-lg">For Supplier</a>
+                                    <a href="../vendor_form_portal_copy.php"  class="btn btn-primary btn-lg">For Contractor</a>
+
                                     </div>
                                 </div>
                                

@@ -84,7 +84,6 @@
                 <th class="text-center" style="width: 15%;">Contact #</th>
                 <th class="text-center" style="width: 15%;">Category</th>
                 <th class="text-center" style="width: 10%;">Status</th>
-                <th class="text-center" style="width: 100px;">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -118,7 +117,7 @@
                 <span class="label label-danger"><?php echo "Error"; ?></span>
             <?php endif;?>
             </td>
-            <td>
+            <!-- <td>
                 <input type="hidden" name="i_d" value="<?php echo $a_vendor['id'];?>">
               <button data-bs-toggle = "modal" data-bs-target = "#exampleModal-<?php echo $a_vendor['id'];?>" class="btn btn-warning"><i class="bi bi-file-earmark-post-fill"></i> Delete</a></td>
               <div class="modal top fade" id="exampleModal-<?php echo $a_vendor['id'];?>">
@@ -144,7 +143,7 @@
                   </div>
                 </div>
               </div>
-            </td>
+            </td> -->
             </tr>
             <?php }?>
             <?php endforeach;?>
