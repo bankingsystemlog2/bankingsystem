@@ -19,9 +19,9 @@
     header('Content-Type: text/plain; charset=utf-8');
 
    if(empty($errors)){
-       $asset   = remove_junk($db->escape($_POST['asset']));
-       $datecreated = remove_junk($db->escape(date('Y-m-d', strtotime($_POST['date_planned']))));
-       $preparedby   = remove_junk($db->escape($_POST['auditor']));
+        $asset   = remove_junk($db->escape($_POST['asset']));
+        $datecreated = remove_junk($db->escape(date('Y-m-d', strtotime($_POST['date_planned']))));
+        $preparedby   = remove_junk($db->escape($_POST['auditor']));
         $query = "INSERT INTO audit (";
         $query .="asset,date_created,preparedby,status";
         $query .=") VALUES (";
@@ -63,48 +63,48 @@
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
             <style>
-                body {font-family: Arial;}
+              body {font-family: Arial;}
 
-                /* Style the tab */
-                .tab {
-                    overflow: hidden;
-                    border: 1px solid #ccc;
-                    background-color: #f1f1f1;
-                }
+              /* Style the tab */
+              .tab {
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+              }
 
-                /* Style the buttons inside the tab */
-                .tab button {
-                    background-color: inherit;
-                    float: left;
-                    border: none;
-                    outline: none;
-                    cursor: pointer;
-                    padding: 14px 16px;
-                    transition: 0.3s;
-                    font-size: 17px;
-                }
+              /* Style the buttons inside the tab */
+              .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+              }
 
-                /* Change background color of buttons on hover */
-                .tab button:hover {
-                    background-color: #ddd;
-                }
+              /* Change background color of buttons on hover */
+              .tab button:hover {
+                background-color: #ddd;
+              }
 
-                /* Create an active/current tablink class */
-                .tab button.active {
-                    background-color: #ccc;
-                }
+              /* Create an active/current tablink class */
+              .tab button.active {
+                background-color: #ccc;
+              }
 
-                /* Style the tab content */
-                .tabcontent {
-                    display: none;
-                    padding: 6px 12px;
-                    border: 1px solid #ccc;
-                    border-top: none;
-                }
-                /* Table Scroll */
-                #ViewData{
-                    overflow-x: auto;
-                }
+              /* Style the tab content */
+              .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+              }
+              /* Table Scroll */
+              #ViewData{
+                overflow-x: auto;
+              }
             </style>
         </head>
         <body>
@@ -140,7 +140,7 @@
             </div>
                 <div class="form-group">
                     <label for="date_created">Planned audit date</label>
-                    <input type="date" class="form-control" name ="date_planned"  placeholder="date created">
+                    <input type="date" class="form-control" name ="date_planned"  placeholder="date created"><br>
                 </div>
                     <div class="form-group clearfix">
                 <button type="submit" name="applicationform" style="float: right;" class="btn btn-success">Submit</button>
@@ -214,18 +214,18 @@
     margin: 0;  /* this affects the margin in the printer settings */
 }
 </style>
-<div class="text-end">
-        <div class="text-end">
-        <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
-</div>
+  <div class="text-end">
+    <div class="text-end">
+    <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
+  </div>
             <thead>
             <tr>
-                <th>Item Name</th>
-                <th>Stated Amount</th>
-                <th>Actual Amount</th>
-                <th class="text-center" style="width: 15%;">Date Created</th>
-                <th class="text-center" style="width: 15%;">Auditor</th>
-                <th class="text-center" style="width: 15%;">File Uploaded</th>
+              <th>Item Name</th>
+              <th>Stated Amount</th>
+              <th>Actual Amount</th>
+              <th class="text-center" style="width: 15%;">Date Created</th>
+              <th class="text-center" style="width: 15%;">Auditor</th>
+              <th class="text-center" style="width: 15%;">File Uploaded</th>
             </tr>
             </thead>
             <tbody>
@@ -250,48 +250,48 @@
 
 
         <script>
-        document.getElementById("defaultOpen").click();
-        function Tab(evt, cityName) {
-          var i, tabcontent, tablinks;
-          tabcontent = document.getElementsByClassName("tabcontent");
-          for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+          document.getElementById("defaultOpen").click();
+          function Tab(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
           }
-          tablinks = document.getElementsByClassName("tablinks");
-          for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-          }
-          document.getElementById(cityName).style.display = "block";
-          evt.currentTarget.className += " active";
-        }
         </script>
         <script>
-            // Get the modal
-            var modal = document.getElementById("myModal");
+          // Get the modal
+          var modal = document.getElementById("myModal");
 
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
+          // Get the button that opens the modal
+          var btn = document.getElementById("myBtn");
 
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
+          // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName("close")[0];
 
-            // When the user clicks the button, open the modal 
-            btn.onclick = function() {
-              modal.style.display = "block";
-            }
+          // When the user clicks the button, open the modal 
+          btn.onclick = function() {
+            modal.style.display = "block";
+          }
 
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
+          // When the user clicks on <span> (x), close the modal
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+            if (event.target == modal) {
               modal.style.display = "none";
             }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-              if (event.target == modal) {
-                modal.style.display = "none";
-              }
-            }
-</script>
+          }
+        </script>
         </body>
      </div>
     </div>

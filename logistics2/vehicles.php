@@ -33,14 +33,14 @@
       <form method="post" action="vehicle_reservation_form.php" >
         <div class="col-md-4">
           <label for="from_date">Select start Date</label>
-          <input required type="date" name="from_date" id="from_date" class="form-control datepicker input" placeholder="From Date" min="<?php echo date('Y-m-d'); ?>" />
+          <input required type="date" name="from_date" id="from_date" class="form-control datepicker input" placeholder="From Date" min="<?php echo date('Y-m-d',time() + 86400); ?>" />
         </div>
         <div class="col-md-4">
           <label for="to_date">Select end date</label>
-          <input type="date" name="to_date" id="to_date" class="form-control datepicker input2" placeholder="To Date" min="<?php echo date('Y-m-d'); ?>" />
+          <input type="date" name="to_date" id="to_date" class="form-control datepicker input2" placeholder="To Date" min="<?php echo date('Y-m-d',time() + 86400); ?>" />
         </div>
         <div class="activity">
-
+          
         </div>
       </form>
     </div>

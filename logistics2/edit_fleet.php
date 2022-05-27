@@ -30,11 +30,10 @@
        $v_loc   = remove_junk($db->escape($_POST['v_loc'])); 
        $v_fueltype   = remove_junk($db->escape($_POST['v_fueltype']));
        $v_fuelcap   = remove_junk($db->escape($_POST['v_fuelcap']));
-       $v_license   = remove_junk($db->escape($_POST['v_license']));
        $v_condition   = remove_junk($db->escape($_POST['v_condition']));
        $v_avail   = remove_junk($db->escape($_POST['v_avail'])); 
        $fleetimg  = remove_junk($db->escape($_POST['fleetimg']));
-          $sql = "UPDATE v_info SET v_category ='{$v_category}', v_model ='{$v_model}',v_year='{$v_year}',v_color='{$v_color}',v_regnum='{$v_regnum}',v_serialnum='{$v_serialnum}',v_capacity='{$v_capacity}',v_datepur='{$v_datepur}',v_manu='{$v_manu}',v_enginetype='{$v_enginetype}',v_loc='{$v_loc}',v_fueltype='{$v_fueltype}',v_fuelcap='{$v_fuelcap}',v_license='{$v_license}',v_condition='{$v_condition}',v_avail='{$v_avail}',fleetimg='{$fleetimg}' WHERE fleetid='{$fleetid}'";
+          $sql = "UPDATE v_info SET v_category ='{$v_category}', v_model ='{$v_model}',v_year='{$v_year}',v_color='{$v_color}',v_regnum='{$v_regnum}',v_serialnum='{$v_serialnum}',v_capacity='{$v_capacity}',v_datepur='{$v_datepur}',v_manu='{$v_manu}',v_enginetype='{$v_enginetype}',v_loc='{$v_loc}',v_fueltype='{$v_fueltype}',v_fuelcap='{$v_fuelcap}',v_condition='{$v_condition}',v_avail='{$v_avail}',fleetimg='{$fleetimg}' WHERE fleetid='{$fleetid}'";
          $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Account Updated ");
@@ -84,10 +83,6 @@
             <div class="form-group">
                 <label for="v_color">Color</label>
                 <input type="text" class="form-control" name ="v_color"  value="<?php echo remove_junk(ucwords($e_fleet['v_color'])); ?>">
-            </div>
-            <div class="form-group">
-                <label for="v_regnum">Registration Number</label>
-                <input type="text" class="form-control" name ="v_regnum"  value="<?php echo remove_junk(ucwords($e_fleet['v_regnum'])); ?>">
             </div>
             <div class="form-group">
                 <label for="v_serialnum">Serial Number</label>

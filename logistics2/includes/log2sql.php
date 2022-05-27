@@ -681,6 +681,10 @@ function find_all_approval_contractor() {
   {
     return find_by_sql("SELECT * FROM contractor_form WHERE vendors_status ='Approved'");
   }
+
+function specific_auditor($user) {
+  global $db;
+  return find_by_sql("SELECT * FROM audit INNER JOIN employees ON audit.preparedby = employees.employee_id WHERE audit.preparedby = ".$user);
 }
   //===========================================End of Logistics2=======================================================================
 /*--------------------------------------------------------------*/
@@ -696,11 +700,11 @@ function find_audit($user){
 }
 function find_employee_audit($user){
   global $db;
-    return find_by_sql("SELECT * FROM employees INNER JOIN users ON employees.employee_id = users.employee_id WHERE users.id = ".$user);
+    return find_by_sql("SELECT * FROM employees INNER JOIN users ON employees.employee_id = users.employee_id WHERE users.id = ".$user );
 }
 function audit_employee_id($employee){
   global $db;
-    return find_by_sql("SELECT * FROM audit WHERE employee_id = ".$employee);
+    return find_by_sql("SELECT * FROM audit WHERE preparedby = ".$employee);
 }
 function id_find($table,$id){
   global $db;

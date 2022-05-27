@@ -138,7 +138,7 @@ global $db;
         <tbody>
           <?php foreach($data as $a_vendor): ?>
             <tr>
-              <td><?php echo remove_junk(ucwords($a_vendor['Document_Sender']))?></td>
+             <td><?php echo $a_vendor['id'] ,$a_vendor['Document_Sender']?></td>
               <td><?php echo str_replace('.php', '', (ucwords($a_vendor['Location'])))?></td>
               <td><?php echo remove_junk(ucwords($a_vendor['Action']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['Document_Subject']))?></td>

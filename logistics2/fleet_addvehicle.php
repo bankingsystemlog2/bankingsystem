@@ -22,8 +22,6 @@
     $fileActualExt = strtolower(end($fileExt));
 
     $allowed = array('jpg','jpeg','png','gif');
-    $req_fields = array('v_category', 'v_model', 'v_year', 'v_color', 'v_regnum', 'v_serialnum', 'v_capacity', 'v_datepur', 'v_manu', 'v_enginetype', 'v_loc', 'v_fueltype', 'v_fuelcap', 'v_license', 'v_condition', 'v_avail');
-    validate_fields($req_fields);
     if($fileSize <= 100000000){
       $fileNameNew = uniqid('',true).".".$fileActualExt;
       $fileDestination = 'uploads/'.$fileNameNew;
@@ -42,14 +40,13 @@
         $v_loc   = remove_junk($db->escape($_POST['v_loc'])); 
         $v_fueltype   = remove_junk($db->escape($_POST['v_fueltype']));
         $v_fuelcap   = remove_junk($db->escape($_POST['v_fuelcap']));
-        $v_license   = remove_junk($db->escape($_POST['v_license']));
         $v_condition   = remove_junk($db->escape($_POST['v_condition']));
         $v_avail   = remove_junk($db->escape($_POST['v_avail'])); 
         $fleetimg  = remove_junk($db->escape($_POST['fleetimg'])); 
           $query = "INSERT INTO v_info (";
-          $query .="v_category,v_model,v_year,v_color,v_regnum,v_serialnum,v_capacity,v_datepur,v_manu,v_enginetype,v_loc,v_fueltype,v_fuelcap,v_license,v_condition,v_avail,fleetimg";
+          $query .="v_category,v_model,v_year,v_color,v_regnum,v_serialnum,v_capacity,v_datepur,v_manu,v_enginetype,v_loc,v_fueltype,v_fuelcap,v_condition,v_avail,fleetimg";
           $query .=") VALUES (";
-          $query .="'{$v_category}', '{$v_model}', '{$v_year}', '{$v_color}', '{$v_regnum}', '{$v_serialnum}', '{$v_capacity}', '{$v_datepur}', '{$v_manu}', '{$v_enginetype}', '{$v_loc}', '{$v_fueltype}', '{$v_fuelcap}', '{$v_license}', '{$v_condition}', '{$v_avail}','{$fleetimg}'";
+          $query .="'{$v_category}', '{$v_model}', '{$v_year}', '{$v_color}', '{$v_regnum}', '{$v_serialnum}', '{$v_capacity}', '{$v_datepur}', '{$v_manu}', '{$v_enginetype}', '{$v_loc}', '{$v_fueltype}', '{$v_fuelcap}', '{$v_condition}', '{$v_avail}','{$fleetimg}'";
           $query .=")";
           if($db->query($query)){
             //success
@@ -93,10 +90,10 @@
       </div>
       <div class="panel-body">
         <div class="col-md-6">
-          <form method="post" action="fleet_addvehicle.php" autocomplete="off">
+          <form method="post" action="fleet_addvehicle.php" autocomplete="off" >
             <div class="form-group">
                 <label for="v_category">Category</label>
-                <select class="form-control" name="v_category" placeholder="v_category">         
+                <select class="form-control" name="v_category" placeholder="v_category" required>         
                   <option disable selected value> -- select an option -- </option>         
                   <option <?php if('v_category');?>value="3">ARMORED VEHICLE</option>
                   <option <?php if('v_category');?>value="2">VAN</option>
@@ -105,39 +102,39 @@
             </div>
             <div class="form-group">
                 <label for="v_model">Model</label>
-                <input type="text" class="form-control" name ="v_model"  placeholder="Car Model">
+                <input type="text" class="form-control" name ="v_model"  placeholder="Car Model" required>
             </div>
             <div class="form-group">
                 <label for="v_year">Year model</label>
-                <input type="tel" maxlength = "4" class="form-control" value = "2000"name ="v_year"  placeholder="Model year">
+                <input type="tel" maxlength = "4" class="form-control" value = "2000"name ="v_year"  placeholder="Model year" required>
             </div>
             <div class="form-group">
                 <label for="v_color">Color</label>
-                <input type="text" class="form-control" name ="v_color"  placeholder="Car Color">
+                <input type="text" class="form-control" name ="v_color"  placeholder="Car Color" required>
             </div>
             <div class="form-group">
                 <label for="v_regnum">Registration Number</label>
-                <input type="text" class="form-control" name ="v_regnum"  placeholder="Registration Number">
+                <input type="text" class="form-control" name ="v_regnum"  placeholder="Registration Number" required>
             </div>
             <div class="form-group">
                 <label for="v_serialnum">Serial Number</label>
-                <input type="text" class="form-control" name ="v_serialnum"  placeholder="Serial Number">
+                <input type="text" class="form-control" name ="v_serialnum"  placeholder="Serial Number" required>
             </div>
             <div class="form-group">
                 <label for="v_capacity">Maximum Capacity</label>
-                <input type="number" class="form-control" name ="v_capacity"  placeholder="Car Capacity">
+                <input type="number" class="form-control" name ="v_capacity"  placeholder="Car Capacity" required>
             </div>
             <div class="form-group">
                 <label for="v_datepur">Date of Purchase</label>
-                <input type="date" class="form-control" name ="v_datepur"  placeholder="Date Purchased">
+                <input type="date" class="form-control" name ="v_datepur"  placeholder="Date Purchased" required>
             </div>
             <div class="form-group">
                 <label for="v_manu">Manufacturer</label>
-                <input type="text" class="form-control" name ="v_manu"  placeholder="Manufacturer">
+                <input type="text" class="form-control" name ="v_manu"  placeholder="Manufacturer" required>
             </div>
             <div class="form-group">
                 <label for="v_enginetype">Transmission</label>
-                <select class="form-control" name ="v_enginetype"  placeholder="Automatic or Manual">
+                <select class="form-control" name ="v_enginetype"  placeholder="Automatic or Manual" required>
                   <option disable selected value> -- select an option -- </option>
                   <option value="Automatic">Automatic</option>
                   <option value="Manual">Manual</option>
@@ -145,11 +142,11 @@
             </div>
             <div class="form-group">
                 <label for="v_loc">Location of purchase</label>
-                <input type="text" class="form-control" name ="v_loc"  placeholder="Location of purchase">
+                <input type="text" class="form-control" name ="v_loc"  placeholder="Location of purchase" required>
             </div>
             <div class="form-group">
                 <label for="v_fueltype">Fuel Type</label>
-                <select class="form-control" name ="v_fueltype"  placeholder="Fuel Type">
+                <select class="form-control" name ="v_fueltype"  placeholder="Fuel Type" required>
                   <option disable selected value> -- select an option -- </option>
                   <option value="Gasoline">Gasoline</option>
                   <option value="Diesel">Diesel</option>
@@ -159,15 +156,11 @@
             </div>
             <div class="form-group">
                 <label for="v_fuelcap">Fuel Capacity</label>
-                <input type="text" class="form-control" name ="v_fuelcap"  placeholder="Fuel Capacity">
-            </div>
-            <div class="form-group">
-                <label for="v_license">License</label>
-                <input type="text" class="form-control" name ="v_license"  placeholder="License">
+                <input type="text" class="form-control" name ="v_fuelcap"  placeholder="Fuel Capacity" required>
             </div>
             <div class="form-group">
                 <label for="v_condition">Condition</label>
-                <select class="form-control" name ="v_condition"  placeholder="Car Condition">
+                <select class="form-control" name ="v_condition"  placeholder="Car Condition" required>
                   <option disable selected value> -- select an option -- </option>
                   <option value="Excellent">Excellent</option>
                   <option value="Good">Good</option>
@@ -177,7 +170,7 @@
             </div>
             <div class="form-group">
                 <label for="v_avail">Availability</label>
-                <select class="form-control" name ="v_avail"  placeholder="Availability">
+                <select class="form-control" name ="v_avail"  placeholder="Availability" required>
                   <option disable selected value> -- select an option -- </option>
                   <option value="1">Available</option>
                   <option value="2">Unavailable</option>

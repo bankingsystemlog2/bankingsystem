@@ -5,8 +5,10 @@
   // page_require_level(1);
   //sample changes
   $user_id = current_user()['id'];
-  $employee = find_employee_audit($user_id);
-  $audit = audit_employee_id($employee['employee_id']);
+  $conn = mysqli_connect("localhost", "root", "", "bank");
+  $employees = "SELECT * FROM employees INNER JOIN users ON employees.employee_id = users.employee_id WHERE users.id = ".$user_id;
+  $employees1 = mysqli_query($conn, $employees);
+  $employee = mysqli_fetch_array($employees1);
 ?>
 <?php
   if(isset($_POST['applicationform'])){
