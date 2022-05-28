@@ -26,7 +26,7 @@
              $phone   = remove_junk($db->escape($_POST['phone']));
              $statuss   = remove_junk($db->escape($_POST['bidding_status'])); 
              $biddingdate   = $_POST['biddingdate']; 
-             $body = "Good Day $name your application is approved. Bidding date is $biddingdate";
+             $body = "Good Day $name your application is approved. Bidding date is on $biddingdate So See you there !";
              $sql = "UPDATE vendors SET name ='{$name}', address ='{$address}', company ='{$company}', email ='{$email}', item_description ='{$item_description}', offer ='{$offer}', phone ='{$phone}', bidding_status='{$statuss}' WHERE id ='{$id}'";
              $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
@@ -58,8 +58,8 @@
           //end AuditLog Insert
           if($statuss==1){
             include 'testemail.php';
-            redirect('bidding.php', false);
           }
+          redirect('bidding.php', false);
           } else {
             $session->msg('d',' Sorry failed to updated!');
             redirect('bidding.php', false);

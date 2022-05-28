@@ -24,7 +24,7 @@
              $offer   = remove_junk($db->escape($_POST['offer']));
              $phone   = remove_junk($db->escape($_POST['phone']));
              $statuss   = remove_junk($db->escape($_POST['statuss']));
-             $body = "Congratulations $name you are now the supplier of $productname in our Company"; 
+             $body = "Congratulations $name you are now the supplier of $productname in our Company!"; 
              $sql = "UPDATE vendors SET name ='{$name}', address ='{$address}', company ='{$company}', email ='{$email}', item_description ='{$item_description}', offer ='{$offer}', phone ='{$phone}', statuss='{$statuss}' WHERE id ='{$id}'";
              $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
