@@ -217,14 +217,49 @@
             <td><?php echo remove_junk(ucwords($a_vendor['remarks']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['date']))?></td>
             <td>
-                <div class="btn-group">
-                    <button type="submit" name="contractor_approve" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-check">Approved and Post</i>
-                  <i class="glyphicon glyphicon-ok"></i>
-                    </a>
-                    <button type="submit" name="contractor_reject" class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="fa fa-close">x Decline</i>
-                  <i class="glyphicon glyphicon-close"></i>
-            </a>
-                </div>
+            <input type="hidden" name="con_id" value= "<?php echo $a_vendor['con_id'];?>">
+              <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#ModalApprove-<?php echo $a_vendor['con_id'];?>">Approved and Post</i>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDecline-<?php echo $a_vendor['con_id'];?>">Decline</button>
+<div class="modal fade" id="ModalApprove-<?php echo $a_vendor['con_id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+     <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you Sure ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       <div class="modal-body">
+        Do you want to Approved and Post this Request?
+       </div>
+        <form method="post" action="contractor_button_approve.php">
+       <div class="modal-footer">
+        <input type="hidden" name="con_id" value= "<?php echo $a_vendor['con_id'];?>">
+       <button type="submit" name= "contractor_approve" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-check">Approved and Post</i></a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalDecline-<?php echo $a_vendor['con_id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+     <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you Sure ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       <div class="modal-body">
+       Do you want to Declined this Request?
+       </div>
+        <form method="post" action="contractor_button_approve.php">
+       <div class="modal-footer">
+              <input type="hidden" name="con_id" value= "<?php echo $a_vendor['con_id'];?>">
+       <button type="submit" name="contractor_reject" class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="fa fa-close">Decline</i>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+            </form>
+    </div>
+  </div>
+</div>
             </td>
             </tr>
             <?php ?>
@@ -232,6 +267,22 @@
         </tbody>
         </table>
         </div>
+                <!-- <div class="btn-group">
+              <input type="hidden" name="con_id" value= "<?php echo $a_vendor['con_id'];?>">
+                    <button type="submit" name="contractor_approve" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-check">Approved and Post</i>
+                  <i class="glyphicon glyphicon-ok"></i>
+                    </a>
+                    <button type="submit" name="contractor_reject" class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="bi bi-x-square-fill"></i>x Decline</i>
+                  <i class="glyphicon glyphicon-close"></i>
+            </a>
+                </div>
+            </td>
+            </tr>
+            
+        </tbody>
+        </table>
+        </form>
+        </div> -->
 
 
         <!-- <script>

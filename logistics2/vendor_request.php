@@ -186,7 +186,7 @@
       
       <div class="card-body">
         <div class="table-responsive">
-        <form method="post" action="contractor_button_approve.php">
+        <form method="post" action="vendor_button_approve.php">
           <table
             id="example"
             class="table table-striped data-table"
@@ -212,16 +212,10 @@
             <td><?php echo remove_junk(ucwords($a_vendor['req_type']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['date_of_request']))?></td>
               <td>
-              <button type="button" class="btn btn-sm btn-success"data-bs-toggle="modal" data-bs-target="#ModalApprove">Approved and Post</i>
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDecline">Decline</button>
-            </td>
-            </tr>
-            <?php ?>
-            <?php endforeach;?>
-        </tbody>
-        </table>
-        </div>
- <div class="modal fade" id="ModalApprove" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <input type="hidden" name="con_id" value= "<?php echo $a_vendor['ven_id'];?>">
+              <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#ModalApprove-<?php echo $a_vendor['ven_id'];?>">Approved and Post</i>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDecline-<?php echo $a_vendor['ven_id'];?>">Decline</button>
+<div class="modal fade" id="ModalApprove-<?php echo $a_vendor['ven_id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
      <div class="modal-content">
       <div class="modal-header">
@@ -231,14 +225,17 @@
        <div class="modal-body">
         Do you want to Approved and Post this Request?
        </div>
+        <form method="post" action="vendor_button_approve.php">
        <div class="modal-footer">
-       <button type="submit" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-check">Approved and Post</i></a>
+        <input type="hidden" name="con_id" value= "<?php echo $a_vendor['ven_id'];?>">
+       <button type="submit" name= "vendor_approve" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-check">Approved and Post</i></a>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
+        </form>
     </div>
   </div>
 </div>
-<div class="modal fade" id="ModalDecline" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ModalDecline-<?php echo $a_vendor['ven_id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
      <div class="modal-content">
       <div class="modal-header">
@@ -248,13 +245,24 @@
        <div class="modal-body">
        Do you want to Declined this Request?
        </div>
+        <form method="post" action="vendor_button_approve.php">
        <div class="modal-footer">
+              <input type="hidden" name="con_id" value= "<?php echo $a_vendor['ven_id'];?>">
        <button type="submit" name="vendor_reject" class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="fa fa-close">Decline</i>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
+            </form>
     </div>
   </div>
 </div>
+            </td>
+            </tr>
+            <?php ?>
+            <?php endforeach;?>
+        </tbody>
+        </table>
+        </div>
+ 
         <!-- <script>
         function Tab(evt, cityName) {
           var i, tabcontent, tablinks;

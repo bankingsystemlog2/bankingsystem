@@ -8,8 +8,8 @@ $groups = vendor_request_tbl();
  <?php
  if(isset($_POST['vendor_approve'])){
     if(empty($errors)){
-    $statuss   = remove_junk($db->escape($_POST['status'])); 
-    $sql= "UPDATE vendor_request_tbl SET status='Approved'";
+      $id = $_POST['con_id'];
+    $sql= "UPDATE vendor_request_tbl SET status='Approved' WHERE ven_id = '$id'";
     $result = $db->query($sql);
     if($result && $db->affected_rows() === 1){
         $session->msg('s',"The Request have been Approved and Posted ");
@@ -22,11 +22,11 @@ $groups = vendor_request_tbl();
 } 
 elseif(isset($_POST['vendor_reject'])){
     if(empty($errors)){
-    $statuss   = remove_junk($db->escape($_POST['status'])); 
-    $sql= "UPDATE vendor_request_tbl SET status='Rejected'";
+      $id = $_POST['con_id'];
+    $sql= "UPDATE vendor_request_tbl SET status='Rejected' WHERE ven_id = '$id'";
     $result = $db->query($sql);
     if($result && $db->affected_rows() === 1){
-        $session->msg('s',"The Request have been Approved and Posted ");
+        $session->msg('s',"The Request have been Rejected ");
  }
  redirect('vendor_request.php', false);
 } else {
