@@ -56,8 +56,10 @@
 
 
           //end AuditLog Insert
+          if($statuss==1){
             include 'testemail.php';
             redirect('bidding.php', false);
+          }
           } else {
             $session->msg('d',' Sorry failed to updated!');
             redirect('bidding.php', false);
