@@ -81,6 +81,7 @@
       <div class="card-header">
         <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Vendor Portal</span>
         <div class="text-end">
+        <button id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Set Schedule for Bidding</button>
         <div class="text-end">
         <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
         <!-- <div class="text-end">
@@ -151,7 +152,7 @@
             <?php if($user['user_level'] === '1'): ?>
            <td class="text-center">
              <div class="btn-group">
-                <a href="bidding_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-pencil"></i>
+                <a href="bidding_approval.php?id=<?php echo (int)$a_vendor['id'];?>&isapproval=True" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-pencil"></i>
                   <i class="glyphicon glyphicon-pencil"></i>
                </a>
                <!-- <button data-bs-toggle = "modal" data-bs-target = "#exampleModal-<?php echo $a_vendor['id'];?>" class="btn btn-danger"><i class="bi bi-file-earmark-post-fill"></i> Delete</a></td>

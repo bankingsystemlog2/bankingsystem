@@ -670,6 +670,12 @@ function find_all_contractor() {
     return find_by_sql("SELECT * FROM contractor_request join employees on contractor_request.employee_id = employees.employee_id JOIN users on employees.employee_id = users.employee_id WHERE contractor_request.request_stat = 'Pending'");
   }
 }
+function contractor_request() {
+  global $db;
+  {
+    return find_by_sql("SELECT * FROM contractor_request");
+  }
+}
 function find_all_approval_interview() {
   global $db;
   {
@@ -681,7 +687,7 @@ function find_all_approval_contractor() {
   {
     return find_by_sql("SELECT * FROM contractor_form WHERE vendors_status ='Approved'");
   }
-
+}
 function specific_auditor($user) {
   global $db;
   return find_by_sql("SELECT * FROM audit INNER JOIN employees ON audit.preparedby = employees.employee_id WHERE audit.preparedby = ".$user);

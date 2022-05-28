@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2022 at 07:37 PM
+-- Generation Time: May 27, 2022 at 04:32 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -286,152 +286,63 @@ INSERT INTO `archive_visitor_registration` (`id`, `last_name`, `first_name`, `mi
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `assets`
+--
+
+CREATE TABLE `assets` (
+  `Co_Code` int(200) NOT NULL,
+  `As_name` varchar(200) NOT NULL,
+  `As_description` varchar(200) NOT NULL,
+  `As_Amount` int(200) NOT NULL,
+  `As_date` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `assets`
+--
+
+INSERT INTO `assets` (`Co_Code`, `As_name`, `As_description`, `As_Amount`, `As_date`) VALUES
+(1, 'Buildings', 'this asset is owned by the company', 180000, '2022-05-05 12:12:49'),
+(2, 'Machineries', 'this asset is owned by the company', 30000, '2022-05-05 12:12:54'),
+(3, 'Land', 'this asset is owned by the company', 190000, '2022-05-05 12:13:59');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `audit`
 --
 
 CREATE TABLE `audit` (
   `id` int(11) NOT NULL,
-  `asset` text NOT NULL,
-  `stated_amount` int(11) NOT NULL,
-  `actual_amount` int(11) NOT NULL,
-  `preparedby` varchar(50) NOT NULL,
-  `urlpath` varchar(350) NOT NULL,
-  `date_created` date NOT NULL
+  `asset` varchar(1000) NOT NULL,
+  `preparedby` int(11) NOT NULL,
+  `date_created` date NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `audit`
 --
 
-INSERT INTO `audit` (`id`, `asset`, `stated_amount`, `actual_amount`, `preparedby`, `urlpath`, `date_created`) VALUES
-(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
-(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
-(12, 'testing', 0, 0, '0', '', '2022-01-11'),
-(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
-(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
-(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
-(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
-(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
-(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
-(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
-(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
-(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
-(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
-(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
-(12, 'testing', 0, 0, '0', '', '2022-01-11'),
-(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
-(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
-(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
-(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
-(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
-(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
-(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
-(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
-(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
-(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
-(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
-(12, 'testing', 0, 0, '0', '', '2022-01-11'),
-(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
-(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
-(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
-(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
-(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
-(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
-(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
-(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
-(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
-(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
-(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
-(12, 'testing', 0, 0, '0', '', '2022-01-11'),
-(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
-(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
-(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
-(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
-(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
-(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
-(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
-(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
-(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
-(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
-(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
-(12, 'testing', 0, 0, '0', '', '2022-01-11'),
-(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
-(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
-(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
-(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
-(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
-(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
-(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
-(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
-(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
-(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
-(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
-(12, 'testing', 0, 0, '0', '', '2022-01-11'),
-(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
-(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
-(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
-(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
-(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
-(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
-(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
-(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
-(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
-(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
-(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
-(12, 'testing', 0, 0, '0', '', '2022-01-11'),
-(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
-(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
-(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
-(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
-(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
-(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
-(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
-(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
-(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14'),
-(10, 'TEST2', 0, 0, '0', '', '2022-01-11'),
-(11, 'Supplies', 0, 0, '0', '', '2022-01-11'),
-(12, 'testing', 0, 0, '0', '', '2022-01-11'),
-(13, 'Testing', 0, 0, '0', '', '2022-01-11'),
-(14, 'testing', 0, 0, 'Antigua &amp; Barbuda', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(15, 'testtt', 0, 0, 'Antigua &amp; Barbuda', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(16, 'tester', 0, 0, 'Armenia', 'uploads/FORMAT.docx', '2022-01-11'),
-(17, 'qsa', 0, 0, 'Azerbaijan', 'uploads/helen.jpg', '2022-01-11'),
-(18, 'qwrqw', 0, 0, 'Lester', 'uploads/CONCEPTUAL FRAMEWORK.docx', '2022-01-11'),
-(19, 'Qweasdwa', 0, 0, '0', 'uploads/FORMAT.docx', '2022-01-11'),
-(20, 'Papot', 0, 0, '0', 'uploads/Energy Pyramid.docx', '2022-01-11'),
-(21, 'Eqwe', 0, 0, '0', 'uploads/Andrea Villamor.docx', '2022-01-11'),
-(22, 'New', 0, 0, '0', 'uploads/VILLAMOR, JOHN LESTER VERSOZA eRenewal Form.pdf', '2022-02-20'),
-(0, 'asdwa', 0, 0, 'Antigua &amp; Barbuda', 'uploads/f1ab1be4-2405-48ff-a3db-72897667443f.jpg', '2022-04-09'),
-(0, 'try', 1233, 3132, '', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', '2022-05-14'),
-(0, 'try1', 332, 332, '15', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', '2022-05-14');
+INSERT INTO `audit` (`id`, `asset`, `preparedby`, `date_created`, `status`) VALUES
+(4, '1', 30330071, '2022-05-25', 0),
+(11, 'Purchases', 30330071, '2022-05-20', 0),
+(12, 'Facility', 30330072, '2022-05-25', 1),
+(13, 'Payroll', 30330071, '2022-05-27', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auditor_tasks`
+--
+
+CREATE TABLE `auditor_tasks` (
+  `id` int(11) NOT NULL,
+  `auditor` varchar(1000) NOT NULL,
+  `filepath` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `task` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -648,6 +559,17 @@ INSERT INTO `audit_logs` (`id`, `module`, `action_taken`, `users_id`, `datetime_
 (25, 'vendor_delete.php', 'Delete a records where id is 78', 1, '2022-01-11 17:52:14'),
 (26, 'vendor_delete.php', 'Delete a records where id is 79', 1, '2022-01-11 17:52:17'),
 (27, 'vendor_approval.php', ' Record has been Update where vendor is James', 1, '2022-01-11 18:03:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `audit_task`
+--
+
+CREATE TABLE `audit_task` (
+  `id` int(11) NOT NULL,
+  `audit_task` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -954,6 +876,54 @@ INSERT INTO `contract` (`con_id`, `con_eid`, `con_type`, `con_detail`, `con_from
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contractor_form`
+--
+
+CREATE TABLE `contractor_form` (
+  `id` int(11) NOT NULL,
+  `vendors_fname` varchar(150) NOT NULL,
+  `vendors_mi` varchar(15) NOT NULL,
+  `vendors_lname` varchar(150) NOT NULL,
+  `vendors_address` varchar(150) NOT NULL,
+  `vendors_email` varchar(150) NOT NULL,
+  `vendors_contact` int(11) NOT NULL,
+  `vendors_status` varchar(150) NOT NULL,
+  `vendor_pathurl` varchar(300) NOT NULL,
+  `vendors_category` varchar(150) NOT NULL,
+  `contractor_status` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contractor_form`
+--
+
+INSERT INTO `contractor_form` (`id`, `vendors_fname`, `vendors_mi`, `vendors_lname`, `vendors_address`, `vendors_email`, `vendors_contact`, `vendors_status`, `vendor_pathurl`, `vendors_category`, `contractor_status`) VALUES
+(7, 'kenneth', 'V', 'Brce', 'Sadasda', 'Ksds@gmail.com', 2147483647, 'Approved', 'uploads/Document Tracking (1).pdf', '0', 'Approved');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contractor_request`
+--
+
+CREATE TABLE `contractor_request` (
+  `id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `request_stat` varchar(150) NOT NULL,
+  `remarks` varchar(150) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contractor_request`
+--
+
+INSERT INTO `contractor_request` (`id`, `employee_id`, `request_stat`, `remarks`, `date`) VALUES
+(1, 30330028, 'Approved', 'experience in something chuchu', '2022-05-27');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `contract_signing`
 --
 
@@ -994,6 +964,36 @@ INSERT INTO `core1files` (`id`, `req_id`, `title`, `Body`, `preparedby`, `urlpat
 (32, 55, ' Memorandum Aggrement', 'fafaf', 'Admin', 'contract/SOCIAL-MEDIA-ADDICTION.docx', '2022-05-13', '', '2022-05-14', '2022-05-20', '2'),
 (33, 55, ' Memorandum Aggrement', 'fafaf', 'Admin', 'contract/SOCIAL-MEDIA-ADDICTION.docx', '2022-05-13', 'CORE1', '2022-05-14', '2022-05-20', 'Downloaded'),
 (34, 55, ' Memorandum Aggrement', 'fafaf', 'Staff', 'contract/SOCIAL-MEDIA-ADDICTION.docx', '2022-05-13', 'CORE1', '2022-05-21', '2022-05-22', 'Downloaded');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department_expenses`
+--
+
+CREATE TABLE `department_expenses` (
+  `id` int(200) NOT NULL,
+  `Expenses` varchar(200) NOT NULL,
+  `Total` int(200) NOT NULL,
+  `Comments` varchar(200) NOT NULL,
+  `Co_Code` int(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `department_expenses`
+--
+
+INSERT INTO `department_expenses` (`id`, `Expenses`, `Total`, `Comments`, `Co_Code`) VALUES
+(1, 'Collection Costs', 75000, 'This includes expenditures for hiring a collection agency. Some contracts and regulations prescribe liquidated damages for collection costs.', 1100),
+(2, 'Computer Hardware and Software', 200000, 'For aquiring of hardware and software', 1100),
+(3, 'Maintenance and Licenses', 150000, 'For mentainance memberships', 1100),
+(4, 'Non- Capital Equipment', 40000, 'equipment or other physical assets with an acquisition cost of 35,000 to 80,000', 1100),
+(5, 'Furniture', 25000, 'Office/Department Amenities', 1100),
+(6, 'Athletic Fund', 60000, 'Department Activities', 1100),
+(7, 'Office Supplies', 45000, 'Department office supplies', 1100),
+(8, 'Machinery and Equipment', 150000, 'Department Equipment', 1100),
+(9, 'Insurance', 400000, 'Department Insurance Costs', 1100),
+(10, 'Emergency Fund', 350000, 'A budget set aside as a financial safety net for future mishaps or unexpected expenses', 1100);
 
 -- --------------------------------------------------------
 
@@ -1126,7 +1126,22 @@ INSERT INTO `docu_tracking` (`id`, `Document_Sender`, `Action`, `Document_Subjec
 (21, '', 'Add new Applicant jjjj', 'uploads/James-resume.pdf', NULL, 'Vendor', '2022-05-21 18:32:32'),
 (22, '', 'Add new Applicant trytry', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-21 23:39:04'),
 (23, '', 'Add new Applicant testing', 'uploads/Document Tracking (1).pdf', NULL, 'Vendor', '2022-05-21 23:49:03'),
-(24, '33', 'Add new Applicant has', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II.pdf', NULL, 'Vendor', '2022-05-22 00:05:37');
+(24, '33', 'Add new Applicant has', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II.pdf', NULL, 'Vendor', '2022-05-22 00:05:37'),
+(25, '2', 'Add new Applicant jester', 'uploads/sustainability-13-05311.pdf', NULL, 'Vendor', '2022-05-22 02:58:56'),
+(26, '2', 'Add new Applicant carry', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-22 03:34:39'),
+(27, '2', 'Add new Applicant lester', 'uploads/Document Tracking (1).pdf', NULL, 'Vendor', '2022-05-22 04:02:08'),
+(28, '2', 'Add new Applicant hot', 'uploads/Document Tracking (1).pdf', NULL, 'Vendor', '2022-05-22 04:05:42'),
+(29, '2', 'Add new Applicant jean', 'uploads/74bcedc08847b858c278fd60d10a732d.pdf', NULL, 'Vendor', '2022-05-26 19:44:41'),
+(30, '2', 'Add new Applicant ermac', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-26 19:51:01'),
+(31, '2', 'Add new Applicant tahanlangit', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-26 19:55:58'),
+(32, '2', 'Add new Applicant jasd', 'uploads/Document Tracking.pdf', NULL, 'Vendor', '2022-05-26 19:57:36'),
+(33, '2', 'Add new Applicant Andrew', 'uploads/Document Tracking.pdf', NULL, 'Vendor', '2022-05-27 12:18:05'),
+(34, '', 'Add new Applicant ', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-27 18:33:22'),
+(35, '', 'Add new Applicant ', 'uploads/Document Tracking (1).pdf', NULL, 'Vendor', '2022-05-27 18:36:34'),
+(36, '', 'Add new Applicant ', 'uploads/Document Tracking (1).pdf', NULL, 'Vendor', '2022-05-27 18:39:10'),
+(37, '', 'Add new Applicant ', 'uploads/Cynthia_qtp.pdf', NULL, 'Vendor', '2022-05-27 20:30:02'),
+(38, '', 'Add new Applicant ', 'uploads/11562-Anonymized manuscript-21230-3-10-20190222.pdf', NULL, 'Vendor', '2022-05-27 21:06:07'),
+(39, '', 'Add new Applicant ', 'uploads/Document Tracking (1).pdf', NULL, 'Vendor', '2022-05-27 21:15:45');
 
 -- --------------------------------------------------------
 
@@ -1182,6 +1197,8 @@ CREATE TABLE `employees` (
   `first_name` varchar(500) NOT NULL,
   `middle_name` varchar(500) NOT NULL,
   `last_name` varchar(500) NOT NULL,
+  `pos_id` int(11) NOT NULL,
+  `dept_id` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `birth_date` date NOT NULL,
   `age` int(10) NOT NULL,
@@ -1199,26 +1216,28 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`employee_id`, `first_name`, `middle_name`, `last_name`, `email`, `birth_date`, `age`, `gender`, `civil_status`, `religion`, `contact_number`, `address`, `designation`, `department`, `date_hired`) VALUES
-(1, 'Super', 'Owner', 'Admin', '', '0000-00-00', 0, '', '', '', '', '', 'SuperAdmin', 'Administration', '0000-00-00'),
-(30330028, 'aldrich', 'lim', 'ramos', 'darryl917deleon@gmail.com', '1997-12-30', 24, 'Male', 'Single', 'catholic', '2147483647', 'maysan valenzuela city', 'Social Recognition', 'HR1', '2022-03-20'),
-(30330029, 'miguel', 'luna', 'bucao', 'miguelbucao@gmail.com', '1998-02-14', 24, 'Male', 'Single', 'catholic', '2147483647', 'brgy concepcion gulayan Malabon City', 'HR1 manager', 'HR1', '2022-03-22'),
-(30330030, 'alvin', 'barruga', 'vidal', 'alvinvidal@gmail.com', '1996-12-11', 25, 'Male', 'Single', 'catholic', '2147483647', 'brgy concepcion gulayan malabon city', 'Performance Management', 'HR1', '2022-04-02'),
-(30330035, 'benjie', 'toledo', 'cruz', 'benjtol@gmail.com', '1993-01-03', 29, 'Male', 'Single', 'Catholic', '2147483647', 'Masinag Antipolo City', 'Recruitment', 'HR1', '2022-04-08'),
-(30330036, 'maria', 'luna', 'juana', 'miguelbucao@gmail.com', '1998-02-14', 24, 'Male', 'Single', 'catholic', '2147483647', 'brgy concepcion gulayan Malabon City', 'New Hire Onboard', 'HR1', '2022-04-13'),
-(30330037, 'james', 'carter', 'ian', 'ianjames@gmail.com', '2000-12-25', 21, 'male', 'single', 'catholic', '5', 'quezon city', 'Finance Manager', 'Finance', '2018-04-16'),
-(30330038, 'eric', 'siga', 'cabrillos', 'cabrilloseric@gmail.com', '2000-06-19', 21, 'male', 'single', 'catholic', '09537496312', 'quezon city', 'Applicant Management', 'HR1', '2020-07-23'),
-(30330039, 'ian', 'lebron', 'james', 'james@gmail.com', '1999-05-07', 22, 'male', 'single', 'catholic', '09573658263', 'quezon city', 'Disbursment officer', 'Finance', '2017-09-18'),
-(30330041, 'mae', 'ann', 'caunca', 'cauncamae@gmail.com', '2001-04-23', 21, 'female', 'married', 'catholic', '09123456778', 'quezon city', 'Collection officer', 'Finance', '2021-02-19'),
-(30330042, 'peter', 'fly', 'pan', 'peterpan@gmail.com', '1997-06-06', 24, 'male', 'single', 'catholic', '09237538475', 'quezon city', 'Finance Manager', 'Finance', '2017-05-19'),
-(30330043, 'dexter', 'a.', 'gabule', 'lilgabs08@gmail.com', '1999-08-11', 22, 'male', 'single', 'catholic', '09098374504', 'talisay street', 'administrative Manager', 'adminitrative', '2022-04-30'),
-(30330044, 'julius', 'a.', 'talion', 'lilgabs08@gmail.com', '1999-11-01', 22, 'male', 'single', 'catholic', '09098374504', 'sapphire', 'administrative staff', 'administrative', '2022-04-30'),
-(30330046, 'julius', 'julius', 'talion', 'taliom@gmail.com', '2000-05-16', 21, 'male', 'single', 'catholic', '09583759534', 'quezon city', 'HR4 Manager', 'HR4', '2021-04-18'),
-(30330047, 'Paul', 'B', 'Din', 'pauldin0416@gmail.com', '2000-04-16', 22, 'Male', 'Single', 'Catholic', '09991760132', 'Mulawinan Valenzuela', 'HR1 Manager', 'Recruitment', '2022-05-03'),
-(30330048, 'Lea', 'b.', 'Cassey', 'lilgabs08@gmail.com', '1999-08-11', 22, 'female', 'single', 'catholic', '09098374504', 'afafafaffaf', 'core1 manager', 'core1', '0000-00-00'),
-(30330049, 'netoy', 'f', 'netoy', 'lilgabs08@gmail.com', '1999-08-11', 22, 'male', 'single', 'catholic', '09098374504', 'fafafafafafafafa', 'core2admin', 'core2', '0000-00-00'),
-(30330050, 'justin', 'b.', 'Lopez', 'lilgabs08@gmail.com', '1999-08-11', 22, 'female', 'single', 'catholic', '09098374504', 'dadadadadadadad', 'logistic1 manager', 'logistic1', '2022-05-06'),
-(30330051, 'janina', 'v', 'mamaril', 'janina@gmial.com', '1999-08-11', 22, 'female', 'single', 'catholic', '09098374504', 'dadadsg', 'logistic_manager', 'logistic2', '2022-04-30');
+INSERT INTO `employees` (`employee_id`, `first_name`, `middle_name`, `last_name`, `pos_id`, `dept_id`, `email`, `birth_date`, `age`, `gender`, `civil_status`, `religion`, `contact_number`, `address`, `designation`, `department`, `date_hired`) VALUES
+(1, 'Super', 'Owner', 'Admin', 0, 0, '', '0000-00-00', 0, '', '', '', '', '', 'SuperAdmin', 'Administration', '0000-00-00'),
+(30330028, 'aldrich', 'lim', 'ramos', 0, 0, 'darryl917deleon@gmail.com', '1997-12-30', 24, 'Male', 'Single', 'catholic', '2147483647', 'maysan valenzuela city', 'Social Recognition', 'HR1', '2022-03-20'),
+(30330029, 'miguel', 'luna', 'bucao', 0, 0, 'miguelbucao@gmail.com', '1998-02-14', 24, 'Male', 'Single', 'catholic', '2147483647', 'brgy concepcion gulayan Malabon City', 'HR1 manager', 'HR1', '2022-03-22'),
+(30330030, 'alvin', 'barruga', 'vidal', 0, 0, 'alvinvidal@gmail.com', '1996-12-11', 25, 'Male', 'Single', 'catholic', '2147483647', 'brgy concepcion gulayan malabon city', 'Performance Management', 'HR1', '2022-04-02'),
+(30330035, 'benjie', 'toledo', 'cruz', 0, 0, 'benjtol@gmail.com', '1993-01-03', 29, 'Male', 'Single', 'Catholic', '2147483647', 'Masinag Antipolo City', 'Recruitment', 'HR1', '2022-04-08'),
+(30330036, 'maria', 'luna', 'juana', 0, 0, 'miguelbucao@gmail.com', '1998-02-14', 24, 'Male', 'Single', 'catholic', '2147483647', 'brgy concepcion gulayan Malabon City', 'New Hire Onboard', 'HR1', '2022-04-13'),
+(30330037, 'james', 'carter', 'ian', 0, 0, 'ianjames@gmail.com', '2000-12-25', 21, 'male', 'single', 'catholic', '5', 'quezon city', 'Finance Manager', 'Finance', '2018-04-16'),
+(30330038, 'eric', 'siga', 'cabrillos', 0, 0, 'cabrilloseric@gmail.com', '2000-06-19', 21, 'male', 'single', 'catholic', '09537496312', 'quezon city', 'Applicant Management', 'HR1', '2020-07-23'),
+(30330039, 'ian', 'lebron', 'james', 0, 0, 'james@gmail.com', '1999-05-07', 22, 'male', 'single', 'catholic', '09573658263', 'quezon city', 'Disbursment officer', 'Finance', '2017-09-18'),
+(30330041, 'mae', 'ann', 'caunca', 0, 0, 'cauncamae@gmail.com', '2001-04-23', 21, 'female', 'married', 'catholic', '09123456778', 'quezon city', 'Collection officer', 'Finance', '2021-02-19'),
+(30330042, 'peter', 'fly', 'pan', 0, 0, 'peterpan@gmail.com', '1997-06-06', 24, 'male', 'single', 'catholic', '09237538475', 'quezon city', 'Finance Manager', 'Finance', '2017-05-19'),
+(30330043, 'dexter', 'a.', 'gabule', 0, 0, 'lilgabs08@gmail.com', '1999-08-11', 22, 'male', 'single', 'catholic', '09098374504', 'talisay street', 'administrative Manager', 'adminitrative', '2022-04-30'),
+(30330044, 'julius', 'a.', 'talion', 0, 0, 'lilgabs08@gmail.com', '1999-11-01', 22, 'male', 'single', 'catholic', '09098374504', 'sapphire', 'administrative staff', 'administrative', '2022-04-30'),
+(30330046, 'julius', 'julius', 'talion', 0, 0, 'taliom@gmail.com', '2000-05-16', 21, 'male', 'single', 'catholic', '09583759534', 'quezon city', 'HR4 Manager', 'HR4', '2021-04-18'),
+(30330047, 'Paul', 'B', 'Din', 0, 0, 'pauldin0416@gmail.com', '2000-04-16', 22, 'Male', 'Single', 'Catholic', '09991760132', 'Mulawinan Valenzuela', 'HR1 Manager', 'Recruitment', '2022-05-03'),
+(30330048, 'Lea', 'b.', 'Cassey', 0, 0, 'lilgabs08@gmail.com', '1999-08-11', 22, 'female', 'single', 'catholic', '09098374504', 'afafafaffaf', 'core1 manager', 'core1', '0000-00-00'),
+(30330049, 'netoy', 'f', 'netoy', 0, 0, 'lilgabs08@gmail.com', '1999-08-11', 22, 'male', 'single', 'catholic', '09098374504', 'fafafafafafafafa', 'core2admin', 'core2', '0000-00-00'),
+(30330050, 'justin', 'b.', 'Lopez', 0, 0, 'lilgabs08@gmail.com', '1999-08-11', 22, 'female', 'single', 'catholic', '09098374504', 'dadadadadadadad', 'logistic1 manager', 'logistic1', '2022-05-06'),
+(30330051, 'janina', 'v', 'mamaril', 0, 0, 'janina@gmial.com', '1999-08-11', 22, 'female', 'single', 'catholic', '09098374504', 'dadadsg', 'logistic_manager', 'logistic2', '2022-04-30'),
+(30330071, 'Eunice', 'D.', 'Rodriguez', 38, 9, '38', '0000-00-00', 0, '1999-02-05', '23', 'female', 'Single', 'Catholic', '09618002503', 'Meycauyan', '2022-05-17'),
+(30330072, 'grock', 'D.', 'Rodriguez', 38, 9, '38', '0000-00-00', 0, '1999-02-05', '23', 'female', 'Single', 'Catholic', '09618012503', 'Meycauyan', '2022-05-17');
 
 -- --------------------------------------------------------
 
@@ -1669,6 +1688,30 @@ INSERT INTO `image_tb` (`imageid`, `img_location`) VALUES
 (25, 'upload/Luxury Office_1651736023.jpg'),
 (26, 'upload/lobby_1651736031.jpg'),
 (27, 'upload/271913542_621039062325095_8928246852636406045_n_1651741605.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `income_statement`
+--
+
+CREATE TABLE `income_statement` (
+  `id` int(200) NOT NULL,
+  `Name` varchar(200) NOT NULL,
+  `Amount` int(200) NOT NULL,
+  `Type` varchar(200) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `income_statement`
+--
+
+INSERT INTO `income_statement` (`id`, `Name`, `Amount`, `Type`, `date`) VALUES
+(1, 'Collection Revenue', 392910, '1', '2022-05-17 18:01:10'),
+(4, 'Salaries Expenses', 50000, '2', '2022-05-17 18:35:57'),
+(5, 'Claims And reimbursments', 0, '2', '2022-05-17 18:42:57'),
+(6, 'Procurments', 0, '2', '2022-05-17 18:44:02');
 
 -- --------------------------------------------------------
 
@@ -2203,6 +2246,56 @@ INSERT INTO `performance_review` (`id`, `employee_id`, `date`, `rel_with_colleag
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `positions`
+--
+
+CREATE TABLE `positions` (
+  `pos_id` int(11) NOT NULL,
+  `pos_name` varchar(100) NOT NULL,
+  `dept_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `positions`
+--
+
+INSERT INTO `positions` (`pos_id`, `pos_name`, `dept_id`) VALUES
+(1, 'recruitment_staff', 1),
+(2, 'applicant_managing_staff', 1),
+(3, 'onboarding_staff', 1),
+(4, 'performance_ monitoring_staff', 1),
+(5, 'social_recognition_staff', 1),
+(6, 'hr1_manager', 1),
+(7, 'administrative_manager', 5),
+(8, 'administrative_staff', 5),
+(9, 'hr4_manager', 4),
+(10, 'hr4_staff', 4),
+(11, 'financials_manager', 10),
+(12, 'collection_officer', 10),
+(13, 'disbursement_officer', 10),
+(14, 'bookeeper', 10),
+(15, 'budget_officer', 10),
+(20, 'core1_manager', 6),
+(21, 'core1_staff', 6),
+(22, 'core2_manager', 7),
+(23, 'teller', 7),
+(24, 'hr2_manager', 2),
+(25, 'hr_officer', 2),
+(26, 'training_officer', 2),
+(27, 'logistics2_manager', 9),
+(28, 'fleet_manager', 9),
+(29, 'logistics_staff', 9),
+(30, 'vendor_manager', 9),
+(31, 'driver', 9),
+(32, 'logistics_manager', 8),
+(33, 'logistics_staff', 8),
+(36, 'hr3_manager', 3),
+(37, 'hr3_staff', 3),
+(38, 'logistics2_auditor', 9);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `posted_jobs`
 --
 
@@ -2405,6 +2498,34 @@ INSERT INTO `qualified_applicants` (`id`, `applicant_id`) VALUES
 (58, 20220028),
 (54, 20220029),
 (56, 20220032);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reimbursements`
+--
+
+CREATE TABLE `reimbursements` (
+  `reimbursement_id` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `user_level` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `reimbursement` varchar(100) NOT NULL,
+  `reimbursement_date` date NOT NULL,
+  `amount` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `accepted` int(11) NOT NULL,
+  `picture` varchar(255) NOT NULL DEFAULT 'blank.jpg',
+  `remarks` varchar(255) NOT NULL DEFAULT 'No remarks'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reimbursements`
+--
+
+INSERT INTO `reimbursements` (`reimbursement_id`, `username`, `name`, `user_level`, `user_id`, `reimbursement`, `reimbursement_date`, `amount`, `status`, `accepted`, `picture`, `remarks`) VALUES
+(5, 'sb18011168', 'Bardon Sharmine', 3, 32, 'I purchase an additional monitor for my workplace.', '2022-05-15', 3100, 'Accepted by Mamuyac Robert ', 1, '189084995Receipt-Form.jpg', 'No remarks');
 
 -- --------------------------------------------------------
 
@@ -2680,6 +2801,7 @@ INSERT INTO `student_loan` (`id`, `fullname`, `phone_no`, `email`, `address`, `n
 --
 
 CREATE TABLE `supplier_user` (
+  `id` int(11) NOT NULL,
   `vendor_fname` varchar(150) NOT NULL,
   `vendor_mi` varchar(150) NOT NULL,
   `vendor_lname` varchar(150) NOT NULL,
@@ -2697,8 +2819,9 @@ CREATE TABLE `supplier_user` (
 -- Dumping data for table `supplier_user`
 --
 
-INSERT INTO `supplier_user` (`vendor_fname`, `vendor_mi`, `vendor_lname`, `vendor_email`, `vendor_cell`, `vendor_pass`, `vendor_bday`, `vendor_gender`, `vendor_cstatus`, `vendor_religion`, `vendor_address`) VALUES
-('Kenneth', 'Mabansay', 'Ledde', 'leedskenneth12@gmail.com', 2147483647, 'Kledde0909-', '1999-07-25', 'Male', 'Single', 'Catholic', 'Caloocan City');
+INSERT INTO `supplier_user` (`id`, `vendor_fname`, `vendor_mi`, `vendor_lname`, `vendor_email`, `vendor_cell`, `vendor_pass`, `vendor_bday`, `vendor_gender`, `vendor_cstatus`, `vendor_religion`, `vendor_address`) VALUES
+(1, 'Kenneth', 'Mabansay', 'Ledde', 'leedskenneth12@gmail.com', 2147483647, 'Kledde0909-', '1999-07-25', 'Male', 'Single', 'Catholic', 'Caloocan City'),
+(2, 'John Lester', 'Versoza', 'Villamor', 'lestervillamor025@gmail.com', 2147483647, 'Lester,.25', '2000-07-25', 'Male', 'Single', 'Catholic', 'Holy Spirit, Quezon City.');
 
 -- --------------------------------------------------------
 
@@ -2882,7 +3005,7 @@ INSERT INTO `users` (`id`, `employee_id`, `name`, `username`, `password`, `user_
 (30, 30330048, 'cassey', 'core1admin', 'befec8e9b702b405874234f4302edb490d8b3896', 1, 'no_image.jpg', 1, '2022-05-17 14:56:43', 'core1', 'core1 manager'),
 (31, 30330049, 'dexter', 'core2admin', '236523049e73125e47db32656e78279cb22272e3', 1, 'no_image.jpg', 1, '2022-05-06 03:37:41', 'core2', 'core2 admin'),
 (32, 30330050, 'bless lopez', 'adminlogistic1', '178e4d75b6dace0e3ce9bdc72fac98d642dd0f92', 1, 'no_image.jpg', 1, '2022-05-15 00:34:24', 'logistic1', 'logistic1 manager'),
-(33, 30330051, 'janina mamaril', 'logistic2admin', 'a98e4a5eb71069c6d73969aa38800fba2617d933', 1, 'no_image.jpg', 1, '2022-05-22 01:02:51', 'logistic2', 'logistic_manager');
+(33, 30330051, 'janina mamaril', 'logistic2admin', 'a98e4a5eb71069c6d73969aa38800fba2617d933', 1, 'no_image.jpg', 1, '2022-05-27 15:43:19', 'logistic2', 'logistic_manager');
 
 -- --------------------------------------------------------
 
@@ -2924,26 +3047,28 @@ CREATE TABLE `vendors` (
   `users_id` int(11) UNSIGNED DEFAULT NULL,
   `statuss` int(1) NOT NULL,
   `category` varchar(20) NOT NULL,
-  `path_url` varchar(350) NOT NULL
+  `path_url` varchar(350) NOT NULL,
+  `bidding_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `vendors`
 --
 
-INSERT INTO `vendors` (`id`, `product_id`, `Name`, `Address`, `Company`, `Email`, `item_description`, `Offer`, `Phone`, `users_id`, `statuss`, `category`, `path_url`) VALUES
-(60, 0, 'Lester', '123asdawda', 'Adawdasd', 'Wadsd@gmail.com', '', '21312', 2147483647, 10, 1, '0', ''),
-(62, 0, 'Qwerty', '123asdwqe', 'Asdwdad', 'As@gmail.com', '', '2141213', 12512312, 10, 2, '1', ''),
-(63, 0, 'Sa', 'Sa', 'Sa', 'Sa@gmail.com', '', '15000', 123, 1, 2, '1', ''),
-(64, 0, 'sa', 'sa', 'sa', 'sa', '', '12', 21, 1, 0, '0', ''),
-(65, 0, 'test', '123asdwad', 'dwad', 'test@gmail.com', '', '124123', 0, 1, 0, '1', ''),
-(74, 12, 'teste', 'asdwata', 'wdasdas', 'teste@gmail.com', '', '125123', 2147483647, 0, 0, '1', ''),
-(75, 0, 'lester', 'quezon city', 'asdwad', 'lester@gmail.com', '', '1251231', 5123123, 0, 0, '1', ''),
-(77, 0, 'lester', 'asdwad', 'asdwa', 'dasd', '', 'awdasd', 0, 1, 0, '1', ''),
-(78, 1, 'kkkkk', 'kkkkk', 'kkkkk', 'kkk@gmail.com', 'kkkkk', '2131313', 1231312312, 0, 0, '1', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf'),
-(88, 1, 'trytry', 'trytry', 'trytry', 'trytry@gmail.com', 'trytry', '1231', 2147483647, 0, 0, '1', 'uploads/Cynthia_qtp.pdf'),
-(89, 3, 'testing', 'try', 'try', 'try@gmail.com', 'trytry', '312312313', 2147483647, 0, 0, '1', 'uploads/Document Tracking (1).pdf'),
-(90, 1, 'has', 'has', 'hsa', 'has@gmail.com', 'hasaha', '9912', 2147483647, 33, 0, '1', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II.pdf');
+INSERT INTO `vendors` (`id`, `product_id`, `Name`, `Address`, `Company`, `Email`, `item_description`, `Offer`, `Phone`, `users_id`, `statuss`, `category`, `path_url`, `bidding_status`) VALUES
+(60, 0, 'Lester', '123asdawda', 'Adawdasd', 'Wadsd@gmail.com', '', '21312', 2147483647, 10, 1, '0', '', 0),
+(62, 0, 'Qwerty', '123asdwqe', 'Asdwdad', 'As@gmail.com', '', '2141213', 12512312, 10, 2, '1', '', 0),
+(63, 0, 'Sa', 'Sa', 'Sa', 'Sa@gmail.com', '', '15000', 123, 1, 2, '1', '', 0),
+(64, 0, 'sa', 'sa', 'sa', 'sa', '', '12', 21, 1, 0, '0', '', 0),
+(65, 0, 'test', '123asdwad', 'dwad', 'test@gmail.com', '', '124123', 0, 1, 0, '1', '', 0),
+(74, 12, 'teste', 'asdwata', 'wdasdas', 'teste@gmail.com', '', '125123', 2147483647, 0, 0, '1', '', 0),
+(75, 0, 'lester', 'quezon city', 'asdwad', 'lester@gmail.com', '', '1251231', 5123123, 0, 0, '1', '', 0),
+(77, 0, 'lester', 'asdwad', 'asdwa', 'dasd', '', 'awdasd', 0, 1, 0, '1', '', 0),
+(78, 1, 'kkkkk', 'kkkkk', 'kkkkk', 'kkk@gmail.com', 'kkkkk', '2131313', 1231312312, 0, 0, '1', 'uploads/Filipino-8-Q4-Week-1-2 (2).pdf', 0),
+(88, 1, 'Trytry', 'Trytry', 'Trytry', 'Trytry@gmail.com', 'Trytry', '1231', 2147483647, 0, 0, '1', 'uploads/Cynthia_qtp.pdf', 1),
+(89, 3, 'Testing', 'Try', 'Try', 'Try@gmail.com', 'Trytry', '312312313', 2147483647, 0, 0, '1', 'uploads/Document Tracking (1).pdf', 2),
+(90, 1, 'Has', 'Has', 'Hsa', 'Has@gmail.com', 'Hasaha', '9912', 2147483647, 33, 0, '1', 'uploads/BANKING-AND-FINANCE-LOGISTICS-II.pdf', 1),
+(99, 4, 'Andrew', '123adasdqwe', 'Qwedasdwq', 'Qwe@gmail.com', 'Asdasd', '2312', 2147483647, 2, 1, '1', 'uploads/Document Tracking.pdf', 1);
 
 -- --------------------------------------------------------
 
@@ -2953,10 +3078,8 @@ INSERT INTO `vendors` (`id`, `product_id`, `Name`, `Address`, `Company`, `Email`
 
 CREATE TABLE `vendor_request_tbl` (
   `id` int(11) NOT NULL,
-  `fname` varchar(255) NOT NULL,
-  `mname` varchar(255) NOT NULL,
-  `lname` varchar(255) NOT NULL,
-  `position` varchar(255) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `department` varchar(255) NOT NULL,
   `req_type` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
@@ -2967,8 +3090,8 @@ CREATE TABLE `vendor_request_tbl` (
 -- Dumping data for table `vendor_request_tbl`
 --
 
-INSERT INTO `vendor_request_tbl` (`id`, `fname`, `mname`, `lname`, `position`, `department`, `req_type`, `status`, `date_of_request`) VALUES
-(1, 'Vhon Lester', 'Bunao', 'Partosa', 'HR1_Manager', 'LOGISTIC1', 'Vendor Request', 'Pending', '2022-05-19 19:22:02');
+INSERT INTO `vendor_request_tbl` (`id`, `product_id`, `user_id`, `department`, `req_type`, `status`, `date_of_request`) VALUES
+(1, 4, 33, 'LOGISTIC1', 'Vendor Request', 'Approved', '2022-05-19 19:22:02');
 
 -- --------------------------------------------------------
 
@@ -3083,7 +3206,6 @@ CREATE TABLE `v_info` (
 --
 
 INSERT INTO `v_info` (`fleetid`, `v_category`, `v_model`, `v_year`, `v_color`, `v_regnum`, `v_serialnum`, `v_capacity`, `v_datepur`, `v_manu`, `v_enginetype`, `v_loc`, `v_fueltype`, `v_fuelcap`, `v_license`, `v_condition`, `v_avail`, `fleetimg`) VALUES
-(7, 3, 'Starex', 2015, 'Gold', '5273423', '1234555', 9, '2017-03-23', 'Hyundai', 'Automatic', 'Baguio City', 'Diesel', '100L', '41231313', 'Good', 1, 'Project Scope.png'),
 (8, 3, 'a', 1, 'a', '1', '1', 1, '2022-04-18', 'a', 'a', 'a', 'a', '1', '2', 'good', 1, 'avatar.png');
 
 -- --------------------------------------------------------
@@ -3168,6 +3290,31 @@ ALTER TABLE `archive_visitor_registration`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `assets`
+--
+ALTER TABLE `assets`
+  ADD PRIMARY KEY (`Co_Code`);
+
+--
+-- Indexes for table `audit`
+--
+ALTER TABLE `audit`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `employee_id` (`preparedby`) USING BTREE;
+
+--
+-- Indexes for table `auditor_tasks`
+--
+ALTER TABLE `auditor_tasks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `audit_task`
+--
+ALTER TABLE `audit_task`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `available_job`
 --
 ALTER TABLE `available_job`
@@ -3239,6 +3386,19 @@ ALTER TABLE `contract`
   ADD PRIMARY KEY (`con_id`);
 
 --
+-- Indexes for table `contractor_form`
+--
+ALTER TABLE `contractor_form`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contractor_request`
+--
+ALTER TABLE `contractor_request`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_employees` (`employee_id`);
+
+--
 -- Indexes for table `contract_signing`
 --
 ALTER TABLE `contract_signing`
@@ -3249,6 +3409,12 @@ ALTER TABLE `contract_signing`
 -- Indexes for table `core1files`
 --
 ALTER TABLE `core1files`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `department_expenses`
+--
+ALTER TABLE `department_expenses`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3384,6 +3550,12 @@ ALTER TABLE `image_tb`
   ADD PRIMARY KEY (`imageid`);
 
 --
+-- Indexes for table `income_statement`
+--
+ALTER TABLE `income_statement`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `initial_interview`
 --
 ALTER TABLE `initial_interview`
@@ -3512,6 +3684,13 @@ ALTER TABLE `performance_review`
   ADD KEY `FK_performance` (`employee_id`);
 
 --
+-- Indexes for table `positions`
+--
+ALTER TABLE `positions`
+  ADD PRIMARY KEY (`pos_id`),
+  ADD KEY `FK_dept` (`dept_id`);
+
+--
 -- Indexes for table `posted_jobs`
 --
 ALTER TABLE `posted_jobs`
@@ -3555,6 +3734,12 @@ ALTER TABLE `purchases`
 ALTER TABLE `qualified_applicants`
   ADD PRIMARY KEY (`id`),
   ADD KEY `qualified_applicants_ibfk_1` (`applicant_id`);
+
+--
+-- Indexes for table `reimbursements`
+--
+ALTER TABLE `reimbursements`
+  ADD PRIMARY KEY (`reimbursement_id`);
 
 --
 -- Indexes for table `reimbursment`
@@ -3610,6 +3795,12 @@ ALTER TABLE `status`
 -- Indexes for table `student_loan`
 --
 ALTER TABLE `student_loan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `supplier_user`
+--
+ALTER TABLE `supplier_user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3672,6 +3863,14 @@ ALTER TABLE `user_groups`
 --
 ALTER TABLE `vendors`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vendor_request_tbl`
+--
+ALTER TABLE `vendor_request_tbl`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `visitorpolicy`
@@ -3759,6 +3958,30 @@ ALTER TABLE `archive_visitor_registration`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000129;
 
 --
+-- AUTO_INCREMENT for table `assets`
+--
+ALTER TABLE `assets`
+  MODIFY `Co_Code` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `audit`
+--
+ALTER TABLE `audit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `auditor_tasks`
+--
+ALTER TABLE `auditor_tasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `audit_task`
+--
+ALTER TABLE `audit_task`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `available_job`
 --
 ALTER TABLE `available_job`
@@ -3825,6 +4048,18 @@ ALTER TABLE `contract`
   MODIFY `con_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `contractor_form`
+--
+ALTER TABLE `contractor_form`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `contractor_request`
+--
+ALTER TABLE `contractor_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `contract_signing`
 --
 ALTER TABLE `contract_signing`
@@ -3835,6 +4070,12 @@ ALTER TABLE `contract_signing`
 --
 ALTER TABLE `core1files`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT for table `department_expenses`
+--
+ALTER TABLE `department_expenses`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `deployed_employees`
@@ -3852,7 +4093,7 @@ ALTER TABLE `deployment`
 -- AUTO_INCREMENT for table `docu_tracking`
 --
 ALTER TABLE `docu_tracking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `education_background`
@@ -3864,7 +4105,7 @@ ALTER TABLE `education_background`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30330052;
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30330073;
 
 --
 -- AUTO_INCREMENT for table `employee_documents`
@@ -3961,6 +4202,12 @@ ALTER TABLE `hr1files`
 --
 ALTER TABLE `image_tb`
   MODIFY `imageid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `income_statement`
+--
+ALTER TABLE `income_statement`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `initial_interview`
@@ -4083,6 +4330,12 @@ ALTER TABLE `performance_review`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT for table `positions`
+--
+ALTER TABLE `positions`
+  MODIFY `pos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
 -- AUTO_INCREMENT for table `posted_jobs`
 --
 ALTER TABLE `posted_jobs`
@@ -4173,6 +4426,12 @@ ALTER TABLE `student_loan`
   MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
+-- AUTO_INCREMENT for table `supplier_user`
+--
+ALTER TABLE `supplier_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tblleaves`
 --
 ALTER TABLE `tblleaves`
@@ -4218,7 +4477,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vendors`
 --
 ALTER TABLE `vendors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+
+--
+-- AUTO_INCREMENT for table `vendor_request_tbl`
+--
+ALTER TABLE `vendor_request_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `visitorpolicy`

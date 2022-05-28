@@ -1,41 +1,42 @@
 <?php require_once('includes/log2load.php');
-$groups = vendor_request_tbl();
+$id = $_GET['id'];
+$groups = contractor_request();
 //  $result = find_vendor_by_id('vendors',$users_id);
 //  $is_show = 1;
- $all_vendors = vendor_request_tbl();
+ $all_vendors = contractor_request();
  // FORM then post
  ?>
  <?php
- if(isset($_POST['vendor_approve'])){
+ if(isset($_POST['contractor_approve'])){
     if(empty($errors)){
-    $statuss   = remove_junk($db->escape($_POST['status'])); 
-    $sql= "UPDATE vendor_request_tbl SET status='Approved'";
+    $request_stat   = remove_junk($db->escape($_POST['request_stat'])); 
+    $sql= "UPDATE contractor_request SET request_stat='Approved'";
     $result = $db->query($sql);
     if($result && $db->affected_rows() === 1){
         $session->msg('s',"The Request have been Approved and Posted ");
  }
- redirect('vendor_request.php', false);
+ redirect('contractor_request.php', false);
 } else {
   $session->msg('d',' Sorry failed to updated!');
-  redirect('vendor_request.php', false);
+  redirect('contractor_request.php', false);
 }
 } 
-elseif(isset($_POST['vendor_reject'])){
+elseif(isset($_POST['contractor_reject'])){
     if(empty($errors)){
-    $statuss   = remove_junk($db->escape($_POST['status'])); 
-    $sql= "UPDATE vendor_request_tbl SET status='Rejected'";
+    $request_stat   = remove_junk($db->escape($_POST['request_stat'])); 
+    $sql= "UPDATE contractor_request SET request_stat='Rejected'";
     $result = $db->query($sql);
     if($result && $db->affected_rows() === 1){
         $session->msg('s',"The Request have been Approved and Posted ");
  }
- redirect('vendor_request.php', false);
+ redirect('contractor_request.php', false);
 } else {
   $session->msg('d',' Sorry failed to updated!');
-  redirect('vendor_request.php', false);
+  redirect('contractor_request.php', false);
 }
 } else {
 $session->msg("d", $errors);
-redirect('vendor_request.php',false);
+redirect('contractor_request.php',false);
 }
 
 ?>

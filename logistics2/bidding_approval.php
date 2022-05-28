@@ -4,6 +4,7 @@
    page_require_level(1);
    global $db;
    $id = $_GET['id'];
+   $isapproval =$_GET['isapproval'];
    $sql = $db->query("SELECT * FROM vendors WHERE id='{$id}' LIMIT 1");
           //if(
             $vendors = $db->fetch_assoc($sql);
@@ -24,6 +25,8 @@
              $offer   = remove_junk($db->escape($_POST['offer']));
              $phone   = remove_junk($db->escape($_POST['phone']));
              $statuss   = remove_junk($db->escape($_POST['bidding_status'])); 
+             $biddingdate   = $_POST['biddingdate']; 
+             $body = "Good Day $name your application is approved. Bidding date is $biddingdate";
              $sql = "UPDATE vendors SET name ='{$name}', address ='{$address}', company ='{$company}', email ='{$email}', item_description ='{$item_description}', offer ='{$offer}', phone ='{$phone}', bidding_status='{$statuss}' WHERE id ='{$id}'";
              $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
@@ -53,6 +56,7 @@
 
 
           //end AuditLog Insert
+            include 'testemail.php';
             redirect('bidding.php', false);
           } else {
             $session->msg('d',' Sorry failed to updated!');
@@ -106,18 +110,41 @@
                   <label for="phone" class="control-label">Phone Number</label>
                   <input type="tel" class="form-control" name="phone" value="<?php echo remove_junk(ucwords($vendors['Phone'])); ?>"readonly>
             </div>
-            <div class="form-group">
-              <label for="bidding_status">Status</label>
-                <select class="form-control" name="bidding_status">
-                  <option <?php if($vendors['bidding_status'] === '1') echo 'selected="selected"';?>value="1">Approved</option>
-                  <option <?php if($vendors['bidding_status'] === '2') echo 'selected="selected"';?>value="2">Rejected</option>
-                  <option <?php if($vendors['bidding_status'] === '0') echo 'selected="selected"';?>value="0">Pending</option>
-                </select>
-            </div>
+            <?php if($isapproval == 'True'):?>
+              <div class="form-group">
+                <label for="bidding_status">Status</label>
+                  <select class="form-control" name="bidding_status">
+                    <option <?php if($vendors['bidding_status'] === '1') echo 'selected="selected"';?>value="1">Approved</option>
+                    <option <?php if($vendors['bidding_status'] === '2') echo 'selected="selected"';?>value="2">Rejected</option>
+                    <option <?php if($vendors['bidding_status'] === '0') echo 'selected="selected"';?>value="0">Pending</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="biddingdate" class="control-label">Bidding Date</label>
+                  <input type="date" class="form-control" name="biddingdate">
+              </div>
+            <?php endif;?>
             <div>
               <br>
-            <button type="submit" name="update-vendor" class="btn btn-info">Update</button></a>
+              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
             <a href="bidding.php" name="vendor_approval" class="btn btn-danger">Cancel</a>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered">
+       <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you Sure ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       <div class="modal-body">
+        Do you want to update ?
+       </div>
+       <div class="modal-footer">
+        <button type="submit" name="update-vendor" class="btn btn-success">Update</button></a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </div>

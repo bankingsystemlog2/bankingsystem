@@ -107,8 +107,25 @@
             </div>
             <div>
               <br>
-            <button type="submit" name="update-contractor1" class="btn btn-info">Update</button></a>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
             <a href="approval_interview.php" name="update-contractor" class="btn btn-danger">Cancel</a>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered">
+       <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you Sure ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       <div class="modal-body">
+        Do you want to update ?
+       </div>
+       <div class="modal-footer">
+       <button type="submit" name="update-contractor1" class="btn btn-success">Update</button></a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </div>

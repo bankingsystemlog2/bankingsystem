@@ -4,7 +4,7 @@
    page_require_level(1);
    global $db;
    $id = $_GET['id'];
-   $sql = $db->query("SELECT * FROM vendors WHERE id='{$id}' LIMIT 1");
+   $sql = $db->query("SELECT vendors.*,product_name FROM vendors INNER JOIN product on vendors.product_id = product.product_id WHERE id='{$id}' LIMIT 1");
           //if(
             $vendors = $db->fetch_assoc($sql);
             //return $vendors;
@@ -15,7 +15,7 @@
     $req_fields = array('name','address','company','email','item_description','offer','phone','type');
    // validate_fields($req_fields);
     if(empty($errors)){
-             $id = (int)$vendors['id'];
+             $productname = $vendors['product_name'];
              $name   = remove_junk($db->escape($_POST['name']));
              $address   = remove_junk($db->escape($_POST['address']));
              $company   = remove_junk($db->escape($_POST['company']));
@@ -23,7 +23,8 @@
              $item_description   = remove_junk($db->escape($_POST['item_description']));
              $offer   = remove_junk($db->escape($_POST['offer']));
              $phone   = remove_junk($db->escape($_POST['phone']));
-             $statuss   = remove_junk($db->escape($_POST['statuss'])); 
+             $statuss   = remove_junk($db->escape($_POST['statuss']));
+             $body = "Congratulations $name you are now the supplier of $productname in our Company"; 
              $sql = "UPDATE vendors SET name ='{$name}', address ='{$address}', company ='{$company}', email ='{$email}', item_description ='{$item_description}', offer ='{$offer}', phone ='{$phone}', statuss='{$statuss}' WHERE id ='{$id}'";
              $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
@@ -53,6 +54,9 @@
 
 
           //end AuditLog Insert
+            if($statuss == 1){
+            include 'testemail.php';
+            }
             redirect('vendor copy.php', false);
           } else {
             $session->msg('d',' Sorry failed to updated!');
@@ -114,8 +118,27 @@
             <?php endif;?>
             <div>
               <br>
-            <button type="submit" name="update-vendor" class="btn btn-info">Update</button></a>
+              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
             <a href="vendor copy.php" name="vendor_approval" class="btn btn-danger">Cancel</a>
+      <!-- Button trigger modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered">
+       <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you Sure ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       <div class="modal-body">
+        Do you want to update ?
+       </div>
+       <div class="modal-footer">
+        <button type="submit" name="update-vendor" class="btn btn-success">Update</button></a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </div>

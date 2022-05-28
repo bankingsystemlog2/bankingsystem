@@ -177,29 +177,22 @@
      
   </div>
   <!-- End Notification div -->
+
   
   <div class="col-md-12 mb-3">
     <div class="card">
       <div class="card-header">
         <span class="badge rounded-pill bg-success"><i class="bi bi-table"></i> Vendor Portal</span>
-        <!-- <div class="text-end">
-        <div class="text-end">
-        <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
-         <div class="text-end">
-          <a href="fleet_addvehicle.php" class="btn btn-info pull-right"> View Approved List</a>
-         </div> -->
-        <!-- </div>
-      </div> -->
+      
       <div class="card-body">
         <div class="table-responsive">
-          <form method="post" action="vendor_button_approve.php">
+        <form method="post" action="contractor_button_approve.php">
           <table
             id="example"
             class="table table-striped data-table"
             style="width: 100%" >
             <thead>
             <tr>
-                
                 <th>Product Name</th>
                 <th>Name</th>
                 <th class="text-center" style="width: 15%;">Department</th>
@@ -218,25 +211,50 @@
             <td><?php echo remove_junk(ucwords($a_vendor['department']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['req_type']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['date_of_request']))?></td>
-            <td>
-                <div class="btn-group">
-                    <button type="submit" name="vendor_approve" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-check">Approved and Post</i>
-                  <i class="glyphicon glyphicon-ok"></i>
-                    </a>
-                    <button type="submit" name="vendor_reject" class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="fa fa-close">x Decline</i>
-                  <i class="glyphicon glyphicon-close"></i>
-            </a>
-                </div>
+              <td>
+              <button type="button" class="btn btn-sm btn-success"data-bs-toggle="modal" data-bs-target="#ModalApprove">Approved and Post</i>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDecline">Decline</button>
             </td>
             </tr>
             <?php ?>
             <?php endforeach;?>
         </tbody>
         </table>
-        </form>
         </div>
-
-
+ <div class="modal fade" id="ModalApprove" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+     <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you Sure ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       <div class="modal-body">
+        Do you want to Approved and Post this Request?
+       </div>
+       <div class="modal-footer">
+       <button type="submit" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-check">Approved and Post</i></a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalDecline" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+     <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you Sure ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       <div class="modal-body">
+       Do you want to Declined this Request?
+       </div>
+       <div class="modal-footer">
+       <button type="submit" name="vendor_reject" class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="fa fa-close">Decline</i>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
         <!-- <script>
         function Tab(evt, cityName) {
           var i, tabcontent, tablinks;

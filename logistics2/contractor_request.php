@@ -189,8 +189,11 @@
          </div> -->
         <!-- </div>
       </div> -->
+
       <div class="card-body">
         <div class="table-responsive">
+          
+        <form method="post" action="contractor_button_approve.php">
           <table
             id="example"
             class="table table-striped data-table"
@@ -215,10 +218,10 @@
             <td><?php echo remove_junk(ucwords($a_vendor['date']))?></td>
             <td>
                 <div class="btn-group">
-                    <a href="vendor_approval.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-check">Approved and Post</i>
+                    <button type="submit" name="contractor_approve" class="btn btn-sm btn-success" style="margin-right: 5px;"><i class="bi bi-check">Approved and Post</i>
                   <i class="glyphicon glyphicon-ok"></i>
                     </a>
-                    <a href="vendor_delete.php?id=<?php echo (int)$a_vendor['id'];?>" class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="fa fa-close">x Decline</i>
+                    <button type="submit" name="contractor_reject" class="btn btn-sm btn-danger" style="margin-right: 5px;"><i class="fa fa-close">x Decline</i>
                   <i class="glyphicon glyphicon-close"></i>
             </a>
                 </div>
