@@ -13,15 +13,18 @@
     $req_fields = array('vendors_fname','vendors_mi','vendors_lname','vendors_address','vendors_email','vendors_contact');
    // validate_fields($req_fields);
     if(empty($errors)){
+             $id = (int)$vendors['id'];
              $vendors_id   = remove_junk($db->escape($_POST['id']));
              $vendors_fname   = remove_junk($db->escape($_POST['vendors_fname']));
              $vendors_mi   = remove_junk($db->escape($_POST['vendors_mi']));
              $vendors_lname   = remove_junk($db->escape($_POST['vendors_lname']));
              $vendors_address   = remove_junk($db->escape($_POST['vendors_address']));
-             $vendors_email   = remove_junk($db->escape($_POST['vendors_email']));
+             $email   = remove_junk($db->escape($_POST['vendors_email']));
              $vendors_contact  = remove_junk($db->escape($_POST['vendors_contact']));
-             $vendors_status   = remove_junk($db->escape($_POST['vendors_status'])); 
-             $sql = "UPDATE contractor_form SET vendors_fname ='{$vendors_fname}', vendors_mi ='{$vendors_mi}', vendors_lname ='{$vendors_lname}', vendors_address ='{$vendors_address}', vendors_email ='{$vendors_email}', vendors_contact ='{$vendors_contact}', vendors_status='{$vendors_status}' WHERE id= '$vendors_id'";
+             $vendors_status   = remove_junk($db->escape($_POST['vendors_status']));
+             $meetingdate   = $_POST['meetingdate']; 
+             $body = "Good Day $vendors_fname $vendors_mi $vendors_lname we receive your Application. Meeting date for approval is on $meetingdate So See you there !";
+             $sql = "UPDATE contractor_form SET vendors_fname ='{$vendors_fname}', vendors_mi ='{$vendors_mi}', vendors_lname ='{$vendors_lname}', vendors_address ='{$vendors_address}', vendors_email ='{$email}', vendors_contact ='{$vendors_contact}', vendors_status='{$vendors_status}' WHERE id= '$vendors_id'";
              $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Application updated ");
@@ -50,7 +53,10 @@
 
 
           //end AuditLog Insert
-            redirect('approval_interview.php', false);
+          if($vendors_status === 'Approved'){
+            include 'testemail.php';
+          }
+          redirect('approval_interview.php', false);
           } else {
             $session->msg('d',' Sorry failed to updated!');
             redirect('approval_interview.php', false);
@@ -70,7 +76,7 @@
         <span>Application Form</span>
       </div>
       <div class="panel-body">
-          <form method="post" action="contractor_approval.php" class="clearfix">
+          <form method="post" action="contractor_approval.php?id=<?php echo (int)$vendors['id'];?>" class="clearfix">
           <div class="form-group">
                   <input type="hidden" class="form-control" name="id" value="<?php echo $vendors['id']; ?>"readonly>
             </div>
@@ -97,18 +103,22 @@
             <div class="form-group">
                   <label for="phone" class="control-label">Contact #</label>
                   <input type="tel" class="form-control" name="vendors_contact" value="<?php echo remove_junk(ucwords($vendors['vendors_contact'])); ?>"readonly>
-            <div class="form-group">
-              <label for="vendors_status">Status</label>
-                <select class="form-control" name="vendors_status">
-                  <option <?php if($vendors['vendors_status'] === 'Approved') echo 'selected="selected"';?>value="Approved">Approved</option>
-                  <option <?php if($vendors['vendors_status'] === 'Rejected') echo 'selected="selected"';?>value="Rejected">Rejected</option>
-                  <option <?php if($vendors['vendors_status'] === 'Pending') echo 'selected="selected"';?>value="Pending">Pending</option>
-                </select>
-            </div>
+                  <div class="form-group">
+                <label for="vendors_status">Status</label>
+                  <select class="form-control" name="vendors_status">
+                    <option <?php if($vendors['vendors_status'] === 'Approved') echo 'selected="selected"';?>value="Approved">Approved</option>
+                    <option <?php if($vendors['vendors_status'] === 'Rejected') echo 'selected="selected"';?>value="Rejected">Rejected</option>
+                    <option <?php if($vendors['vendors_status'] === 'Pending') echo 'selected="selected"';?>value="Pending">Pending</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="meetingdate" class="control-label">Meeting Date</label>
+                  <input type="date" class="form-control" name="meetingdate">
+              </div>
             <div>
               <br>
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
-            <a href="approval_interview.php" name="update-contractor" class="btn btn-danger">Cancel</a>
+            <a href="approval_interview.php" name="update-contractor1" class="btn btn-danger">Cancel</a>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-dialog-centered">
        <div class="modal-content">

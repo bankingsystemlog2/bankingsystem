@@ -13,15 +13,18 @@
     $req_fields = array('vendors_fname','vendors_mi','vendors_lname','vendors_address','vendors_email','vendors_contact');
    // validate_fields($req_fields);
     if(empty($errors)){
-      $vendors_id   = remove_junk($db->escape($_POST['id']));
+             $id = (int)$vendors['id'];
+             $vendors_id   = remove_junk($db->escape($_POST['id']));
              $vendors_fname   = remove_junk($db->escape($_POST['vendors_fname']));
              $vendors_mi   = remove_junk($db->escape($_POST['vendors_mi']));
              $vendors_lname   = remove_junk($db->escape($_POST['vendors_lname']));
              $vendors_address   = remove_junk($db->escape($_POST['vendors_address']));
-             $vendors_email   = remove_junk($db->escape($_POST['vendors_email']));
+             $email   = remove_junk($db->escape($_POST['vendors_email']));
              $vendors_contact  = remove_junk($db->escape($_POST['vendors_contact']));
-             $contractor_status   = remove_junk($db->escape($_POST['contractor_status'])); 
-             $sql = "UPDATE contractor_form SET vendors_fname ='{$vendors_fname}', vendors_mi ='{$vendors_mi}', vendors_lname ='{$vendors_lname}', vendors_address ='{$vendors_address}', vendors_email ='{$vendors_email}', vendors_contact ='{$vendors_contact}', contractor_status='{$contractor_status}' WHERE id ='$vendors_id'";
+             $contractor_status   = remove_junk($db->escape($_POST['contractor_status']));
+             $meetingdate1   = $_POST['meetingdate1'];
+             $body = "Congratulation! $vendors_fname $vendors_mi $vendors_lname You are now our New Contractor ";
+             $sql = "UPDATE contractor_form SET vendors_fname ='{$vendors_fname}', vendors_mi ='{$vendors_mi}', vendors_lname ='{$vendors_lname}', vendors_address ='{$vendors_address}', vendors_email ='{$email}', vendors_contact ='{$vendors_contact}', contractor_status='{$contractor_status}' WHERE id ='$vendors_id'";
              $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Application updated ");
@@ -50,6 +53,9 @@
 
 
           //end AuditLog Insert
+          if($contractor_status === 'Approved'){
+            include 'testemail.php';
+          }
             redirect('contractor_list.php', false);
           } else {
             $session->msg('d',' Sorry failed to updated!');

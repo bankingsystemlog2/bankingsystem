@@ -39,7 +39,7 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Meeting for All Bidders';
+    $mail->Subject = 'Update for your Application and Status';
     $mail->Body    = $body;
 
     $mail->send();
