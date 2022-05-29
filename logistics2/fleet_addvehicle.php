@@ -168,15 +168,6 @@
                   <option value="Unusable">Unusable</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="v_avail">Availability</label>
-                <select class="form-control" name ="v_avail"  placeholder="Availability" required>
-                  <option disable selected value> -- select an option -- </option>
-                  <option value="1">Available</option>
-                  <option value="2">Unavailable</option>
-                  <option value="3">Under Maintenance</option>
-                </select>
-            </div>
             <div class="input-group">
               <label for="v_avail">Vehicle Image</label>
               <span class="input-group-btn">

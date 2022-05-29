@@ -688,6 +688,14 @@ function find_all_approval_contractor() {
     return find_by_sql("SELECT * FROM contractor_form WHERE vendors_status ='Approved'");
   }
 }
+function find_payroll(){
+  global $db;
+  return find_by_sql("SELECT * FROM payroll p, users u, jobplan jp WHERE p.p_eid=u.employee_id AND jp.jp_position=u.position");
+}
+function find_income(){
+  global $db;
+  return find_by_sql("SELECT * FROM income_statement i, type y WHERE i.type=y.tp_id");
+}
 function specific_auditor($user) {
   global $db;
   return find_by_sql("SELECT * FROM audit INNER JOIN employees ON audit.preparedby = employees.employee_id WHERE audit.preparedby = ".$user);

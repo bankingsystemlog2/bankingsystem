@@ -18,6 +18,8 @@
  $all_assets = find_all('assets');
  $purchases = find_all('purchases');
  $reimbursement = find_all('reimbursment');
+ $payroll = find_payroll();
+ $income = find_income();
 ?>
 <?php
   if(isset($_POST['applicationform'])){
@@ -78,18 +80,19 @@
             <td><?php echo $a_vendor['first_name']," ",$a_vendor['last_name'];?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['date_created']))?></td>
             <td>
+            <input type="hidden" name = "task" value ="<?php echo $a_vendor['asset'];?>">
             <button data-bs-toggle = "modal" data-bs-target = "#exampleModal-<?php echo $a_vendor['id'];?>" class="btn btn-info btn-viewReciept"><i class="bi bi-file-earmark-post-fill"></i> Details</button>
-            </td>
+            
             <!-- Modal -->
             <div class="modal fade" id="exampleModal-<?php echo $a_vendor['id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-keyboard="true">
-                <div class="modal-dialog modal-m modal-dialog-centered">
+                <div class=" modal-dialog modal-xl modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header bg-secondary">
                       <h5 class="modal-title" id="exampleModalLabel" style="Color:white">Change password</h5>
                       <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close">
                       </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body table-responsive">
                             <?php if($a_vendor['asset'] === "Purchases"):?>
                                 <table
                                 class="table table-striped data-table"
@@ -142,7 +145,100 @@
                                     <?php endforeach;?>
                                     </tbody>
                                 </table>
+                                <?php elseif($a_vendor['asset'] === "Payroll"):?>
+                                <table
+                                class="table table-striped data-table"
+                                style="width: 100%" >
+                                    <thead>
+                                    <tr>
+                                        <th>Basic Salary</th>
+                                        <th>Overtime</th>
+                                        <th>House and Rent Allowance</th>
+                                        <th>Conveyance</th>
+                                        <th>Other Allowance</th>
+                                        <th>Employee ID</th>
+                                        <th>Employee Name</th>
+                                        <th>Salary</th>
+                                        <th>Salary Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($payroll as $pay): 
+                                    $bs = $pay['p_bs'] * $pay['jp_hrate'];
+                                    $ot = $pay['p_ot'] * $pay['jp_otrate'];
+
+                                    $ph = $pay['jp_ph'];
+                                    $sss = $pay['jp_sss'];
+                                    $pi = $pay['jp_pi'];
+                                    $tax = $pay['jp_tax'];
+
+                                    $totalearnings = $bs + $ot;
+                                    $deduction = $ph + $sss + $pi + $tax;
+
+                                    $totalsalary = $totalearnings - $deduction;
+                                    ?>
+                                    <tr>
+                                    <td><?php echo remove_junk(ucwords($pay['p_bs']));?></td>
+                                    <td><?php echo $pay['p_ot'];?></td>
+                                    <td><?php echo remove_junk(ucwords($pay['p_hra']));?></td>
+                                    <td><?php echo remove_junk(ucwords($pay['p_con']));?></td>
+                                    <td><?php echo remove_junk(ucwords($pay['p_oa']));?></td>
+                                    <td><?php echo remove_junk(ucwords($pay['p_eid']));?></td>
+                                    <td><?php echo remove_junk(ucwords($pay['name']));?></td>
+                                    <td><?php echo $totalsalary;?></td>
+                                    <td><?php echo remove_junk(ucwords($pay['p_date']));?></td>
+                                    </tr>
+                                    <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                                <?php elseif($a_vendor['asset'] === "Income"):?>
+                                <table
+                                class="table table-striped data-table"
+                                style="width: 100%" >
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                        <th>Type</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($income as $reim): ?>
+                                    <tr>
+                                    <td><?php echo remove_junk(ucwords($reim['Name']));?></td>
+                                    <td><?php echo $reim['Amount'];?></td>
+                                    <td><?php echo remove_junk(ucwords($reim['tp_id']));?></td>
+                                    <td><?php echo remove_junk(ucwords($reim['date']));?></td>
+                                    </tr>
+                                    <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                                <?php elseif($a_vendor['asset'] === "Expenses"):?>
+                                <table
+                                class="table table-striped data-table"
+                                style="width: 100%" >
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                        <th>Type</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($income as $reim): ?>
+                                    <tr>
+                                    <td><?php echo remove_junk(ucwords($reim['Name']));?></td>
+                                    <td><?php echo $reim['Amount'];?></td>
+                                    <td><?php echo remove_junk(ucwords($reim['tp_name']));?></td>
+                                    <td><?php echo remove_junk(ucwords($reim['date']));?></td>
+                                    </tr>
+                                    <?php endforeach;?>
+                                    </tbody>
+                                </table>
                             <?php endif;?>
+                                    </div>
                     <div class="modal-footer bg-secondary">
                       <button type="submit" name="edit_fleet" class="btn btn-success"><i class="fas fa-check"></i> Edit</button>
                       <button type="button" name="delete_fleet" data-bs-toggle = "modal" data-bs-dismiss="modal" class="btn btn-danger" data-bs-target = "#deleteModal-<?php echo $row['fleetid'];?>">Delete</button>
@@ -150,7 +246,7 @@
                   </div>
                 </div>
               </div>
-            
+             </td>
             </tr>
             <?php endforeach;?>
              </tbody>
