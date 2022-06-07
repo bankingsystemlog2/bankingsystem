@@ -59,7 +59,7 @@ $_SESSION['to_date'] = $_POST['todate'];
                 ";
             }
         }else{ $error .= '<div class="alert alert-danger border-light alert-dismissible fade show" role="alert">
-            11111111111No document to track in our database or you input incomplete code
+            No available vehicle.
         </div>';
         echo $error;
         }

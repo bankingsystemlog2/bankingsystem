@@ -692,6 +692,32 @@ function find_payroll(){
   global $db;
   return find_by_sql("SELECT * FROM payroll p, users u, jobplan jp WHERE p.p_eid=u.employee_id AND jp.jp_position=u.position");
 }
+function find_expenses(){
+  global $db;
+  return find_by_sql("SELECT * FROM department_expenses d, proposals p WHERE d.Co_Code=p.Co_Code");
+}
+function find_driver($from_date,$to_date){
+  global $db;
+  return find_by_sql(" SELECT * FROM v_res WHERE ('".$from_date."' NOT BETWEEN from_date AND to_date) OR ('".$to_date."' NOT BETWEEN from_date AND to_date) OR (from_date NOT BETWEEN '".$from_date."' AND '".$to_date."') OR (to_date NOT BETWEEN '".$from_date."' AND '".$to_date."')");
+}
+function find_av_driver($driver){
+  global $db;
+  return find_by_sql("SELECT * FROM employees WHERE (`employee_id` NOT LIKE '".$driver."') AND (pos_id = '31')");
+}
+function find_all_driver(){
+  global $db;
+  return find_by_sql("SELECT * FROM employees WHERE pos_id = 31");
+}
+function find_res_driver($driver){
+  global $db;
+  $date = date('y-m-d');
+  return find_by_sql("SELECT * FROM v_res v, employees e, v_info i, users u WHERE (v.to_date <= '".$date."') AND (u.id = v.emp_id) AND (i.fleetid = v.fleetid) AND (u.employee_id = e.employee_id) AND (v.driver ='".$driver."')");
+}
+function find_res_driver1($driver){
+  global $db;
+  $date = date('y-m-d');
+  return find_by_sql("SELECT * FROM v_res v, employees e, v_info i, users u WHERE (v.to_date >= '".$date."') AND (u.id = v.emp_id) AND (i.fleetid = v.fleetid) AND (u.employee_id = e.employee_id) AND (v.driver ='".$driver."')");
+}
 function find_income(){
   global $db;
   return find_by_sql("SELECT * FROM income_statement i, type y WHERE i.type=y.tp_id");
@@ -700,7 +726,7 @@ function specific_auditor($user) {
   global $db;
   return find_by_sql("SELECT * FROM audit INNER JOIN employees ON audit.preparedby = employees.employee_id WHERE audit.preparedby = ".$user);
 }
-  //===========================================End of Logistics2=======================================================================
+//===========================================End of Logistics2=======================================================================
 /*--------------------------------------------------------------*/
 /* Function for find all database table rows by table name
 /*--------------------------------------------------------------*/

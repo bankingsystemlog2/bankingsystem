@@ -80,6 +80,15 @@ $password = remove_junk($_POST['password']);
                        $session->msg("s", "Hello ".$user['username'].", Welcome to Administrative System");
                        redirect('logistics2/admin.php',false);
                        break;
+                       case ['3', 'logistic2'];
+                       // Logging user entries................
+                       $Log=$PersonName.', From '.$userDept.' has Logged in to the system.';
+                       activitylog($Log);
+                       //end of Logs..........................
+
+                       $session->msg("s", "Hello ".$user['username'].", Welcome to Administrative System");
+                       redirect('logistics2/driver.php',false);
+                       break;
                        
                         case ['1', 'HR4'];
                        // Logging user entries................

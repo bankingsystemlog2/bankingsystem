@@ -39,6 +39,7 @@
 <!-- top navigation bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top topNavBar">
   <div class="container-fluid">
+      <?php if($user['user_level'] === '1'): ?>
     <button
       class="navbar-toggler"
       type="button"
@@ -48,21 +49,21 @@
     >
       <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
     </button>
+    <?php elseif($user['user_level'] === '2'): ?>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#sidebar"
+      aria-controls="offcanvasExample"
+    >
+      <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
+    </button>
+      <?php endif;?>
     <a
       class="navbar-brand me-auto ms-lg-0 ms-2 text-uppercase fw-bold"
       href="#"
       >Banking and Finance</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#topNavBar"
-      aria-controls="topNavBar"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
     
      
       <ul class="navbar-nav">
@@ -91,27 +92,33 @@
 </nav>
    <!-- End of top navigation bar -->
 
+      <?php if($user['user_level'] === '1'): ?>
+        <!-- admin menu -->
 <div class="offcanvas offcanvas-start bg-dark sidebar-nav" tabindex="-1" id="sidebar">
 <div class="offcanvas-body p-0">
 <nav class="navbar-dark">
-      <?php if($user['user_level'] === '1'): ?>
-        <!-- admin menu -->
       <?php include_once('admin_menu.php');?>
-
-    <?php elseif($user['user_level'] === '2'): ?>
-        <!-- Special user -->
-      <?php include_once('user_menu.php');?>
-
-    <?php elseif($user['user_level'] === '3'): ?>
-        <!-- User menu -->
-      <?php include_once('special_menu.php');?>
-
-      <?php endif;?>
-
     </nav>
   </div>
  </div>
-<?php endif;?>
   <main class="mt-5 pt-3">
   <div class="container-fluid">
   <div class="page">
+    <?php elseif($user['user_level'] === '2'): ?>
+        <!-- Special user -->
+<div class="offcanvas offcanvas-start bg-dark sidebar-nav" tabindex="-1" id="sidebar">
+<div class="offcanvas-body p-0">
+<nav class="navbar-dark">
+      <?php include_once('user_menu.php');?>
+    </nav>
+  </div>
+ </div>
+  <main class="mt-5 pt-3">
+  <div class="container-fluid">
+  <div class="page">
+    <?php elseif($user['user_level'] === '3'): ?>
+  <div class="container-fluid">
+  <div class="page">
+      <?php endif;?>
+
+<?php endif;?>

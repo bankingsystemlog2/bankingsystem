@@ -8,8 +8,11 @@
   $fleet = find_all('v_info');
   $users_id = current_user()['id'];
   $user_name = current_user()['name'];
+  $user_employee = current_user()['employee_id'];
   $from_date = $_SESSION['from_date'];
   $to_date = $_SESSION['to_date'];
+  $av_driver1 = find_driver($from_date,$to_date);
+  $all_driver = find_all_driver();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
@@ -20,15 +23,16 @@
 
    if(empty($errors)){
        $emp_id   = remove_junk($db->escape($_POST['emp_id']));
+       $driver  =  remove_junk($db->escape($_POST['driver']));
        $fromdate   = remove_junk($db->escape($_POST['from_date']));
        $todate   = remove_junk($db->escape($_POST['to_date']));
        $fleetid   = remove_junk($db->escape($_POST['fleetid'])); 
        $remarks   = remove_junk($db->escape($_POST['remarks'])); 
        $location   = remove_junk($db->escape($_POST['location'])); 
         $query = "INSERT INTO v_res (";
-        $query .="emp_id,from_date,to_date,fleetid,location,remarks";
+        $query .="emp_id,driver,from_date,to_date,fleetid,location,remarks";
         $query .=") VALUES (";
-        $query .="'{$emp_id}', '{$fromdate}', '{$todate}', '{$fleetid}','{$location}','{$remarks}'";
+        $query .="'{$emp_id}','{$driver}', '{$fromdate}', '{$todate}', '{$fleetid}','{$location}','{$remarks}'";
         $query .=")";
         if($db->query($query)){
           //sucess
@@ -100,6 +104,16 @@
               <input type="text" class="form-control" name = "samplefleetid" value = <?php echo $fleet_id; ?> readonly>
             </div>
             <div class="form-group">
+              <label for="asset">Driver</label>
+              <select class="form-control" name="driver">
+                <option disable selected value> -- select Driver -- </option>
+                  <?php $av_driver = find_av_driver($av_driver1['driver']); ?>
+                  <?php foreach($av_driver as $audit): ?>
+                    <option value="<?php echo $audit['employee_id'];?>"><?php echo $audit['first_name']," ",$audit['last_name'];?></option>
+                  <?php endforeach;?>
+              </select>
+            </div>
+            <div class="form-group">
                 <label for="v_year">Location</label>
                 <input type="text" class="form-control" name ="location"  placeholder="Address">
             </div>
@@ -115,7 +129,7 @@
         </form>
 
       </div>
-
+      </div>
     </div>
   </div>
   <?php }

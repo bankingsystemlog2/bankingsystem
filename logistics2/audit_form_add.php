@@ -9,6 +9,7 @@
   $employees = "SELECT * FROM employees INNER JOIN users ON employees.employee_id = users.employee_id WHERE users.id = ".$user_id;
   $employees1 = mysqli_query($conn, $employees);
   $employee = mysqli_fetch_array($employees1);
+  $postasset = $_POST['asset'];
 ?>
 <?php
   if(isset($_POST['applicationform'])){

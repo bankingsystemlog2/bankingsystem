@@ -18,8 +18,10 @@
  $all_assets = find_all('assets');
  $purchases = find_all('purchases');
  $reimbursement = find_all('reimbursment');
+ $facility = find_all('facility');
  $payroll = find_payroll();
  $income = find_income();
+ $expenses = find_expenses();
 ?>
 <?php
   if(isset($_POST['applicationform'])){
@@ -85,6 +87,7 @@
             
             <!-- Modal -->
             <div class="modal fade" id="exampleModal-<?php echo $a_vendor['id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-keyboard="true">
+              <form action="audit_form_add.php" method="post">
                 <div class=" modal-dialog modal-xl modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header bg-secondary">
@@ -214,6 +217,27 @@
                                     <?php endforeach;?>
                                     </tbody>
                                 </table>
+                                <?php elseif($a_vendor['asset'] === "Facility"):?>
+                                <table
+                                class="table table-striped data-table"
+                                style="width: 100%" >
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($facility as $reim): ?>
+                                    <tr>
+                                    <td><?php echo remove_junk(ucwords($reim['name_of_room']));?></td>
+                                    <td><?php echo $reim['description'];?></td>
+                                    <td><?php echo remove_junk(ucwords($reim['status']));?></td>
+                                    </tr>
+                                    <?php endforeach;?>
+                                    </tbody>
+                                </table>
                                 <?php elseif($a_vendor['asset'] === "Expenses"):?>
                                 <table
                                 class="table table-striped data-table"
@@ -223,16 +247,18 @@
                                         <th>Name</th>
                                         <th>Amount</th>
                                         <th>Type</th>
-                                        <th>Date</th>
+                                        <th>Department</th>
+                                        <th>Requestor</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach($income as $reim): ?>
+                                    <?php foreach($expenses as $reim): ?>
                                     <tr>
-                                    <td><?php echo remove_junk(ucwords($reim['Name']));?></td>
-                                    <td><?php echo $reim['Amount'];?></td>
-                                    <td><?php echo remove_junk(ucwords($reim['tp_name']));?></td>
-                                    <td><?php echo remove_junk(ucwords($reim['date']));?></td>
+                                    <td><?php echo remove_junk(ucwords($reim['Expenses']));?></td>
+                                    <td><?php echo $reim['Total'];?></td>
+                                    <td><?php echo remove_junk(ucwords($reim['Comments']));?></td>
+                                    <td><?php echo remove_junk(ucwords($reim['PR_Department']));?></td>
+                                    <td><?php echo remove_junk(ucwords($reim['PR_Requestor']));?></td>
                                     </tr>
                                     <?php endforeach;?>
                                     </tbody>
@@ -240,11 +266,13 @@
                             <?php endif;?>
                                     </div>
                     <div class="modal-footer bg-secondary">
+                      <input type="hidden" name="asset" value="<?php echo $a_vendor['asset'];?>">
                       <button type="submit" name="edit_fleet" class="btn btn-success"><i class="fas fa-check"></i> Edit</button>
                       <button type="button" name="delete_fleet" data-bs-toggle = "modal" data-bs-dismiss="modal" class="btn btn-danger" data-bs-target = "#deleteModal-<?php echo $row['fleetid'];?>">Delete</button>
                     </div>
                   </div>
                 </div>
+                </form>
               </div>
              </td>
             </tr>
