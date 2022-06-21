@@ -738,6 +738,10 @@ function find_audit($user){
   global $db;
     return find_by_sql("SELECT * FROM audit INNER JOIN employees ON audit.preparedby = employees.employee_id WHERE audit.status = ".$user);
 }
+function find_audit_done(){
+  global $db;
+    return find_by_sql("SELECT * FROM auditor_done INNER JOIN users ON auditor_done.auditor = users.employee_id");
+}
 function find_employee_audit($user){
   global $db;
     return find_by_sql("SELECT * FROM employees INNER JOIN users ON employees.employee_id = users.employee_id WHERE users.id = ".$user );

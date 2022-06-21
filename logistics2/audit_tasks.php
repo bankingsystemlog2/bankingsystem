@@ -91,11 +91,40 @@
                 <div class=" modal-dialog modal-xl modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header bg-secondary">
-                      <h5 class="modal-title" id="exampleModalLabel" style="Color:white">Change password</h5>
+                      <h5 class="modal-title" id="exampleModalLabel" style="Color:white">Audit table</h5>
                       <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close">
                       </button>
                     </div>
-                    <div class="modal-body table-responsive">
+                    <style>
+                    @media print{
+                      #button{
+                        display: none; !important;
+                      }
+                      body * {
+                        visibility:hidden;
+                      }
+                      .modal-dialog {
+                        visibility: visible !important;
+                        /**Remove scrollbar for printing.**/
+                        overflow: visible !important;
+                      }
+                      #printSection *{
+                        visibility:visible;
+                        position:top;
+                        width:auto;
+                        height:auto;
+                        overflow: visible !important;
+                      }
+                      li {
+                        page-break-after: auto;
+                      }
+                    }
+                    @page {
+                        size: A4;  /* this affects the margin in the printer settings */
+                    }
+                    </style>
+                    <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
+                    <div id="printSection" class="modal-body table-responsive">
                             <?php if($a_vendor['asset'] === "Purchases"):?>
                                 <table
                                 class="table table-striped data-table"

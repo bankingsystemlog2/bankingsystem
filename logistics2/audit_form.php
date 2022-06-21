@@ -13,6 +13,7 @@
  $all_vendors = find_all_audit();
  $all_auditor = find_all_auditor();
  $all_assets = find_all('assets');
+ $all_done = find_audit_done();
 ?>
 <?php
   if(isset($_POST['applicationform'])){
@@ -155,8 +156,8 @@
         <table class="table table-bordered table-striped" id="myTable"><thead>
               <tr>
                 <th>Task</th>
+                <th>Date expected</th>
                 <th>Auditor</th>
-                <th>Actual Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -220,25 +221,23 @@
   </div>
             <thead>
             <tr>
-              <th>Item Name</th>
-              <th>Stated Amount</th>
-              <th>Actual Amount</th>
-              <th class="text-center" style="width: 15%;">Date Created</th>
               <th class="text-center" style="width: 15%;">Auditor</th>
-              <th class="text-center" style="width: 15%;">File Uploaded</th>
+              <th>Audit task</th>
+              <th class="text-center">Date Created</th>
+              <th class="text-center">Remarks</th>
+              <th class="text-center">File Uploaded</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach($all_vendors as $a_vendor): ?>
+            <?php foreach($all_done as $a_vendor): ?>
             <tr>
-            <td><?php echo remove_junk(ucwords($a_vendor['asset']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['stated_amount']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['actual_amount']))?></td>
-            <td><?php echo remove_junk(ucwords($a_vendor['date_created']))?></td>
             <td><?php echo remove_junk(ucwords($a_vendor['name']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['task_audited']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['date_created']))?></td>
+            <td><?php echo remove_junk(ucwords($a_vendor['remarks']))?></td>
             <td> 
-                <a href="download.php?id=<?php echo $a_vendor['id']; ?>&urlpath=<?php echo $a_vendor['urlpath']; ?>" class="btn btn-small btn-success" data-toggle="tooltip" title="Download file">
-                <?php echo basename($a_vendor['urlpath'])?><i class="glyphicon glyphicon-download"></i>
+                <a href="download.php?id=<?php echo $a_vendor['id']; ?>&urlpath=<?php echo $a_vendor['filepath']; ?>" class="btn btn-small btn-success" data-toggle="tooltip" title="Download file">
+                <?php echo basename($a_vendor['filepath'])?><i class="glyphicon glyphicon-download"></i>
                 </a>
             </td>
             

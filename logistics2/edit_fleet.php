@@ -49,15 +49,28 @@
   }
 ?>
 <?php include_once('layouts/header.php'); ?>
+<!-- Breadcrumb -->
+<nav class="breadcrumbs">
+  <?php if ($user['user_level'] === '1'): ?>
+    <a href="admin.php" class="breadcrumbs__item">Home</a>
+  <?php elseif ($user['user_level'] === '2'): ?>
+   <a href="user_dashboard.php" class="breadcrumbs__item">Home</a>
+   <?php elseif ($user['user_level'] === '4'): ?>
+   <a href="admin.php" class="breadcrumbs__item">Home</a>
+  <?php endif; ?>
+   <a href="fleet.php" class="breadcrumbs__item">Vehicle Information</a>
+  <a href="#checkout" class="breadcrumbs__item is-active">Edit Vehicle Information</a>
+</nav>
+<!-- /Breadcrumb -->
  <div class="row">
    <div class="col-md-12"> <?php echo display_msg($msg); ?> </div>
   <div class="col-md-6">
      <div class="panel panel-default">
-       <div class="panel-heading">
+       <div class="panel-heading"><h5>
         <strong>
           <span class="glyphicon glyphicon-th"></span>
           Update Fleet
-        </strong>
+        </strong></h5>
        </div>
        <div class="panel-body">
           <form method="post" action="edit_fleet.php" class="clearfix">
@@ -65,7 +78,7 @@
                 <input type="hidden" class="form-control" name ="fleetid"  value="<?php echo remove_junk(ucwords($e_fleet['fleetid'])); ?>">
             </div>
             <div class="form-group">
-                <label for="v_category" class="control-label">Category</label>
+                <label for="v_category" class="control-label"><b>Category</b></label>
                 <select class="form-control" name="v_category" value="<?php echo remove_junk(ucwords($e_fleet['v_category'])); ?>" readonly>
                   <option <?php if($e_fleet['v_category'] === '3')  echo 'selected="selected"';?>value="3">ARMORED VEHICLE</option>
                   <option <?php if($e_fleet['v_category'] ==='2')  echo 'selected="selected"';?>value="2">VAN</option>
@@ -73,51 +86,51 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="v_model" class="control-label">Model</label>
+                <label for="v_model" class="control-label"><b>Model</b></label>
                 <input type="text" class="form-control" name ="v_model"  value="<?php echo remove_junk(ucwords($e_fleet['v_model'])); ?>"readonly>
             </div>
             <div class="form-group">
-                <label for="v_year">Year</label>
+                <label for="v_year"><b>Year</b></label>
                 <input type="text" class="form-control" name ="v_year"  value="<?php echo remove_junk(ucwords($e_fleet['v_year'])); ?>"readonly>
             </div>
             <div class="form-group">
-                <label for="v_color">Color</label>
+                <label for="v_color"><b>Color</b></label>
                 <input type="text" class="form-control" name ="v_color"  value="<?php echo remove_junk(ucwords($e_fleet['v_color'])); ?>"readonly>
             </div>
             <div class="form-group">
-                <label for="v_serialnum">Serial Number</label>
+                <label for="v_serialnum"><b>Serial Number</b></label>
                 <input type="text" class="form-control" name ="v_serialnum"  value="<?php echo remove_junk(ucwords($e_fleet['v_serialnum'])); ?>"readonly>
             </div>
             <div class="form-group">
-                <label for="v_capacity">Maximum Capacity</label>
+                <label for="v_capacity"><b>Maximum Capacity</b></label>
                 <input type="text" class="form-control" name ="v_capacity"  value="<?php echo remove_junk(ucwords($e_fleet['v_capacity'])); ?>"readonly>
             </div>
             <div class="form-group">
-                <label for="v_datepur">Date of Purchase</label>
+                <label for="v_datepur"><b>Date of Purchase</b></label>
                 <input type="date" class="form-control" name ="v_datepur"  value='<?php echo $e_fleet["v_datepur"]?>'readonly>
             </div>
             <div class="form-group">
-                <label for="v_manu">Manufacturer</label>
+                <label for="v_manu"><b>Manufacturer</b></label>
                 <input type="text" class="form-control" name ="v_manu"  value="<?php echo remove_junk(ucwords($e_fleet['v_manu'])); ?>"readonly>
             </div>
             <div class="form-group">
-                <label for="v_enginetype">Engine Type</label>
+                <label for="v_enginetype"><b>Engine Type</b></label>
                 <input type="text" class="form-control" name ="v_enginetype"  value="<?php echo remove_junk(ucwords($e_fleet['v_enginetype'])); ?>"readonly>
             </div>
             <div class="form-group">
-                <label for="v_loc">Location of purchase</label>
+                <label for="v_loc"><b>Location of purchase</b></label>
                 <input type="text" class="form-control" name ="v_loc"  value="<?php echo remove_junk(ucwords($e_fleet['v_loc'])); ?>"readonly>
             </div>
             <div class="form-group">
-                <label for="v_fueltype">Fuel Type</label>
+                <label for="v_fueltype"><b>Fuel Type</b></label>
                 <input type="text" class="form-control" name ="v_fueltype"  value="<?php echo remove_junk(ucwords($e_fleet['v_fueltype'])); ?>"readonly>
             </div>
             <div class="form-group">
-                <label for="v_fuelcap">Fuel Capacity</label>
+                <label for="v_fuelcap"><b>Fuel Capacity</b></label>
                 <input type="text" class="form-control" name ="v_fuelcap"  value="<?php echo remove_junk(ucwords($e_fleet['v_fuelcap'])); ?>"readonly>
             </div>
             <div class="form-group">
-                <label for="v_condition">Condition</label>
+                <label for="v_condition"><b>Condition</b></label>
                 <select class="form-control" name ="v_condition"  placeholder="Car Condition" required>
                   <option disable selected value> -- select an option -- </option>
                   <option <?php if($e_fleet['v_condition'] = 'excellent') echo 'selected="selected"';?> value="Excellent">Excellent</option>
@@ -127,7 +140,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="v_avail">Vehicle Image</label>
+                <label for="v_avail"><b>Vehicle Image</b></label>
                 <input type="file" accept=".jpg,.jpeg,.png,.gif" multiple="multiple" class="form-control" name ="fleetimg"  value="<?php echo remove_junk(ucwords($e_fleet['fleetimg'])); ?>">
             </div>
             <div class="form-group clearfix">

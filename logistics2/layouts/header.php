@@ -59,6 +59,16 @@
     >
       <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
     </button>
+    <?php elseif($user['user_level'] === '4'): ?>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#sidebar"
+      aria-controls="offcanvasExample"
+    >
+      <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
+    </button>
       <?php endif;?>
     <a
       class="navbar-brand me-auto ms-lg-0 ms-2 text-uppercase fw-bold"
@@ -117,6 +127,18 @@
   <div class="container-fluid">
   <div class="page">
     <?php elseif($user['user_level'] === '3'): ?>
+  <div class="container-fluid">
+  <div class="page">
+    <?php elseif($user['user_level'] === '4'): ?>
+        <!-- Special user -->
+<div class="offcanvas offcanvas-start bg-dark sidebar-nav" tabindex="-1" id="sidebar">
+<div class="offcanvas-body p-0">
+<nav class="navbar-dark">
+      <?php include_once('auditor_menu.php');?>
+    </nav>
+  </div>
+ </div>
+  <main class="mt-5 pt-3">
   <div class="container-fluid">
   <div class="page">
       <?php endif;?>
