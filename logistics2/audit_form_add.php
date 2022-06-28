@@ -23,12 +23,10 @@
    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
    if(empty($errors)){
        $asset   = remove_junk($db->escape($_POST['asset']));
-       $stated_amount   = remove_junk($db->escape($_POST['stated_amount']));
-       $actual_amount   = remove_junk($db->escape($_POST['actual_amount']));
        $datecreated   =  date('Y-m-d');
        // remove_junk($db->escape(date('Y-m-d', strtotime($_POST['date_created']))));
        $preparedby   = remove_junk($db->escape($_POST['auditor']));
-        $query = "INSERT INTO auditor_tasks (";
+        $query = "INSERT INTO auditor_done (";
         $query .="task,date_created,preparedby,urlpath";
         $query .=") VALUES (";
         $query .="'{$asset}', '{$datecreated}', '{$preparedby}','{$target_file}'";
@@ -73,17 +71,8 @@
         <div class="col-md-6">
           <form method="post" action="fleet_addvehicle.php" autocomplete="off">
             <div class="form-group">
-                <label for="v_category">Category</label>
-                <select class="form-control" name="v_category" placeholder="v_category">         
-                  <option disable selected value> -- select an option -- </option>         
-                  <option <?php if('v_category');?>value="3">ARMORED VEHICLE</option>
-                  <option <?php if('v_category');?>value="2">VAN</option>
-                  <option <?php if('v_category');?>value="1">CAR</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="v_model">Model</label>
-                <input type="text" class="form-control" name ="v_model"  placeholder="Car Model">
+                <label for="v_model">Task</label>
+                <input type="text" class="form-control" name ="asset" value="<?php echo $postasset;?>" readonly>
             </div>
             <div class="form-group">
                 <label for="v_year">Year model</label>
