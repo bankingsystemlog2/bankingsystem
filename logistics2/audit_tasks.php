@@ -125,6 +125,7 @@
                     </style>
                     <button onclick="print()" id="button" class="btn btn-info md-2"><i class="bi bi-file-post"></i> Print report</button>
                     <div id="printSection" class="modal-body table-responsive">
+<form action = 'audit_form_add.php' method ='post'>
                             <?php if($a_vendor['asset'] === "Purchases"):?>
                                 <table
                                 class="table table-striped data-table"
@@ -299,6 +300,7 @@
                       <button type="submit" name="edit_fleet" class="btn btn-success"><i class="fas fa-check"></i> Edit</button>
                       <button type="button" name="delete_fleet" data-bs-toggle = "modal" data-bs-dismiss="modal" class="btn btn-danger" data-bs-target = "#deleteModal-<?php echo $row['fleetid'];?>">Delete</button>
                     </div>
+</form>
                   </div>
                 </div>
                 </form>
