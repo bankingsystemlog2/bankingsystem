@@ -28,10 +28,10 @@
        $datecreated   =  date('Y-m-d');
        // remove_junk($db->escape(date('Y-m-d', strtotime($_POST['date_created']))));
        $preparedby   = remove_junk($db->escape($_POST['auditor']));
-        $query = "INSERT INTO audit (";
-        $query .="asset,stated_amount,actual_amount,date_created,preparedby,urlpath";
+        $query = "INSERT INTO auditor_tasks (";
+        $query .="task,date_created,preparedby,urlpath";
         $query .=") VALUES (";
-        $query .="'{$asset}', '{$stated_amount}','{$actual_amount}', '{$datecreated}', '{$preparedby}','{$target_file}'";
+        $query .="'{$asset}', '{$datecreated}', '{$preparedby}','{$target_file}'";
         $query .=")";
 
 
@@ -154,18 +154,19 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="v_avail">Availability</label>
-                <select class="form-control" name ="v_avail"  placeholder="Availability">
+                <label for="v_avail">Status</label>
+                <select class="form-control" name ="status"  placeholder="Availability">
                   <option disable selected value> -- select an option -- </option>
-                  <option value="1">Available</option>
-                  <option value="2">Unavailable</option>
-                  <option value="3">Under Maintenance</option>
+                  <option value="1">Unqualified</option>
+                  <option value="2">Qualified</option>
+                  <option value="3">Adverse</option>
+                  <option value="4">Disclamer</option>
                 </select>
             </div>
             <div class="input-group">
               <label for="v_avail">Vehicle Image</label>
               <span class="input-group-btn">
-                <input type="file" accept=".jpg,.jpeg,.png,.gif" name="fleetimg" multiple="multiple" class="btn btn-primary btn-file"/>
+                <input type="file" name="filepath" multiple="multiple" class="btn btn-primary btn-file"/>
               </span>
             </div> 
             <div class="form-group clearfix">
