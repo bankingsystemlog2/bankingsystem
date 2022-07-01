@@ -5,17 +5,19 @@
   // page_require_level(1);
   //sample changes
   $user_id = current_user()['id'];
-  $conn = mysqli_connect("localhost", "root", "", "bank");
-  $employees = "SELECT * FROM employees INNER JOIN users ON employees.employee_id = users.employee_id WHERE users.id = ".$user_id;
-  $employees1 = mysqli_query($conn, $employees);
-  $employee = mysqli_fetch_array($employees1);
+  $employee_id = current_user()['employee_id'];
+  $employee_name = current_user()['name'];
   $postasset = $_POST['asset'];
+  if(isset($_POST['asset'])){}
+  else{
+    $session->msg('s',"Asset error");
+    redirect('audit_tasks.php',false);}
 ?>
 <?php
   if(isset($_POST['applicationform'])){
     header('Content-Type: text/plain; charset=utf-8');
 
-   $req_fields = array('asset','stated_amount','actual_amount');
+   $req_fields = array('asset');
    validate_fields($req_fields);
    $target_dir = "uploads/";
    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -24,10 +26,11 @@
    if(empty($errors)){
        $asset   = remove_junk($db->escape($_POST['asset']));
        $datecreated   =  date('Y-m-d');
+       $remarks = remove_junk($db->escape($_POST['remarks']));
        // remove_junk($db->escape(date('Y-m-d', strtotime($_POST['date_created']))));
        $preparedby   = remove_junk($db->escape($_POST['auditor']));
         $query = "INSERT INTO auditor_done (";
-        $query .="task,date_created,preparedby,urlpath";
+        $query .="task_audited,date_created,auditor,filepath,remarks,status";
         $query .=") VALUES (";
         $query .="'{$asset}', '{$datecreated}', '{$preparedby}','{$target_file}'";
         $query .=")";
@@ -71,76 +74,20 @@
         <div class="col-md-6">
           <form method="post" action="fleet_addvehicle.php" autocomplete="off">
             <div class="form-group">
+                <input type="hidden" class="form-control" name ="v_color"  placeholder="Car Color">
+            </div>
+            <div class="form-group">
                 <label for="v_model">Task</label>
-                <input type="text" class="form-control" name ="asset" value="<?php echo $postasset;?>" readonly>
+                <input type="hidden" class="form-control" value = "<?php echo $employee_id;?>" name ="auditor"  readonly>
+                <input type="hidden" class="form-control" name ="asset" value="<?php echo $postasset;?>" readonly>
             </div>
             <div class="form-group">
-                <label for="v_year">Year model</label>
-                <input type="tel" maxlength = "4" class="form-control" value = "2000"name ="v_year"  placeholder="Model year">
+                <label for="v_year">Auditor</label>
+                <input type="text" class="form-control" value = "<?php echo $employee_name;?>" name ="auditor1"  readonly>
             </div>
             <div class="form-group">
-                <label for="v_color">Color</label>
-                <input type="text" class="form-control" name ="v_color"  placeholder="Car Color">
-            </div>
-            <div class="form-group">
-                <label for="v_regnum">Registration Number</label>
-                <input type="text" class="form-control" name ="v_regnum"  placeholder="Registration Number">
-            </div>
-            <div class="form-group">
-                <label for="v_serialnum">Serial Number</label>
-                <input type="text" class="form-control" name ="v_serialnum"  placeholder="Serial Number">
-            </div>
-            <div class="form-group">
-                <label for="v_capacity">Maximum Capacity</label>
-                <input type="number" class="form-control" name ="v_capacity"  placeholder="Car Capacity">
-            </div>
-            <div class="form-group">
-                <label for="v_datepur">Date of Purchase</label>
-                <input type="date" class="form-control" name ="v_datepur"  placeholder="Date Purchased">
-            </div>
-            <div class="form-group">
-                <label for="v_manu">Manufacturer</label>
-                <input type="text" class="form-control" name ="v_manu"  placeholder="Manufacturer">
-            </div>
-            <div class="form-group">
-                <label for="v_enginetype">Transmission</label>
-                <select class="form-control" name ="v_enginetype"  placeholder="Automatic or Manual">
-                  <option disable selected value> -- select an option -- </option>
-                  <option value="Automatic">Automatic</option>
-                  <option value="Manual">Manual</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="v_loc">Location of purchase</label>
-                <input type="text" class="form-control" name ="v_loc"  placeholder="Location of purchase">
-            </div>
-            <div class="form-group">
-                <label for="v_fueltype">Fuel Type</label>
-                <select class="form-control" name ="v_fueltype"  placeholder="Fuel Type">
-                  <option disable selected value> -- select an option -- </option>
-                  <option value="Gasoline">Gasoline</option>
-                  <option value="Diesel">Diesel</option>
-                  <option value="Bio-diesel">Bio-diesel</option>
-                  <option value="Ethanol">Ethanol</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="v_fuelcap">Fuel Capacity</label>
-                <input type="text" class="form-control" name ="v_fuelcap"  placeholder="Fuel Capacity">
-            </div>
-            <div class="form-group">
-                <label for="v_license">License</label>
-                <input type="text" class="form-control" name ="v_license"  placeholder="License">
-            </div>
-            <div class="form-group">
-                <label for="v_condition">Condition</label>
-                <select class="form-control" name ="v_condition"  placeholder="Car Condition">
-                  <option disable selected value> -- select an option -- </option>
-                  <option value="Excellent">Excellent</option>
-                  <option value="Good">Good</option>
-                  <option value="Bad">Bad</option>
-                  <option value="Unusable">Unusable</option>
-                </select>
+                <label for="v_year">Audit Task</label>
+                <input type="text" class="form-control" name ="asset1" value="<?php echo $postasset;?>" readonly>
             </div>
             <div class="form-group">
                 <label for="v_avail">Status</label>
@@ -151,6 +98,10 @@
                   <option value="3">Adverse</option>
                   <option value="4">Disclamer</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="v_year">Remarks</label>
+                <textarea class="form-control" name ="asset1"></textarea>
             </div>
             <div class="input-group">
               <label for="v_avail">Vehicle Image</label>
